@@ -9,7 +9,7 @@
         height = 30;
         modules-left = ["hyprland/workspaces"];
         modules-center = ["hyprland/window"];
-        modules-right = ["custom/weather" "pulseaudio" "battery" "clock" "tray"];
+        modules-right = ["custom/weather" "pulseaudio" "battery" "backlight" "clock" "tray"];
         "hyprland/workspaces" = {
           disable-scroll = true;
           show-special = true;
@@ -39,6 +39,15 @@
           exec = "curl -s 'wttr.in/Tashkent?format=%c%t'";
           interval = 300;
           class = "weather";
+        };
+
+        "backlight" = {
+          device = "intel_backlight";
+          interval = 1;
+          format = "{percent}% {icon}";
+          format-icons = [
+            "" "" "" "󰃝" "󰃞" "󰃟" "󰃠"
+          ];
         };
 
         "pulseaudio" = {
