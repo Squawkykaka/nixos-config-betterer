@@ -19,5 +19,6 @@
     ./touchpad.nix
     ./timezone.nix
     ./user.nix
+    # ./polkit.nix
   ];
 }

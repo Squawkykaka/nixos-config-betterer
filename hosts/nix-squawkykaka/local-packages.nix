@@ -3,6 +3,7 @@
     gcc
     jetbrains.idea-ultimate
     jdk17
+    gradle
     sbctl
 
     (lutris.override {
