@@ -27,12 +27,18 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    blocklist-hosts = {
+      url = "github:StevenBlack/hosts";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, nixos-hardware, lanzaboote, nur, ... } @ inputs: let 
+  outputs = { self, nixpkgs, home-manager, stylix, nixos-hardware, lanzaboote, nur, blocklist-hosts, ... } @ inputs: let 
     system = "x86_64-linux";
     homeStateVersion = "24.11";
     user = "gleask";
+    locale = "en_NZ.UTF-8";
+
     hosts = [
       { hostname = "nix-squawkykaka"; stateVersion = "24.11"; }
     ];
@@ -40,7 +46,7 @@
     makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
       system = system;
       specialArgs = {
-        inherit inputs stateVersion hostname user;
+        inherit inputs stateVersion hostname user locale;
       };
 
       modules = [

@@ -8,6 +8,7 @@
     ./home-manager.nix
     ./hyprland.nix
     ./kernal.nix
+    ./hosts.nix
     ./mime.nix
     ./graphics.nix
     ./steam.nix
