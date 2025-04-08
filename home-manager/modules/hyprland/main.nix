@@ -13,7 +13,7 @@
         "XDG_SCREENSHOTS_DIR,$HOME/screens"
       ];
 
-      monitor = ",1920x1080@60,auto,1";
+      monitor = [ "eDP-1,1920x1080@60,0x0,1" "HDMI-A-1,2560x1440@120.00Hz,auto,1"];
       "$mainMod" = "SUPER";
       "$terminal" = "ghostty";
       "$fileManager" = "dolphin";
