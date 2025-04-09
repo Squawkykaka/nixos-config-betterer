@@ -11,7 +11,7 @@
     font-awesome
     powerline-fonts
     powerline-symbols
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    nerd-fonts.symbols-only
   ];
 
   stylix = {
@@ -25,6 +25,7 @@
       wofi.enable = false;
       hyprland.enable = false;
       hyprlock.enable = false;
+      firefox.enable = false;
     };
 
     cursor = {

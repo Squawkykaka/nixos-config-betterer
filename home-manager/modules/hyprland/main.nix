@@ -16,7 +16,7 @@
       monitor = [ "eDP-1,1920x1080@60,0x0,1" "HDMI-A-1,2560x1440@120.00Hz,auto,1"];
       "$mainMod" = "SUPER";
       "$terminal" = "ghostty";
-      "$fileManager" = "dolphin";
+      "$fileManager" = "thunar";
       "$menu" = "wofi";
       "$browser" = "firefox";
 

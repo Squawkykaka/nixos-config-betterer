@@ -1,13 +1,12 @@
 {
   description = "My new nixos configuration";
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, nixos-hardware, lanzaboote, blocklist-hosts, lix-module, ... } @ inputs: let 
+  outputs = { self, nixpkgs, home-manager, stylix, nixos-hardware, lanzaboote, blocklist-hosts, lix-module, ... } @ inputs: let 
     system = "x86_64-linux";
     homeStateVersion = "24.11";
     user = "gleask";
     locale = "en_NZ.UTF-8";
 
-    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     pkgs = nixpkgs.legacyPackages.${system};
 
     hosts = [
@@ -17,7 +16,7 @@
     makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
       system = system;
       specialArgs = {
-        inherit inputs stateVersion hostname user locale nixpkgs-unstable;
+        inherit inputs stateVersion hostname user locale;
       };
 
       modules = [
@@ -37,7 +36,7 @@
       inherit pkgs;
 
       extraSpecialArgs = {
-        inherit inputs homeStateVersion user pkgs-unstable;
+        inherit inputs homeStateVersion user;
       };
 
       modules = [
@@ -48,16 +47,15 @@
 
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {
-      url = "github:danth/stylix/release-24.11";
+      url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

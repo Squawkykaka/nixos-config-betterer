@@ -1,5 +1,5 @@
 {
   xdg.mime.defaultApplications = {
-    "inode/directory" = "dolphin";
+    "inode/directory" = "thunar";
   };
 }
