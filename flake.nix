@@ -1,7 +1,7 @@
 {
   description = "My new nixos configuration";
 
-  outputs = { self, nixpkgs, home-manager, stylix, nixos-hardware, lanzaboote, nur, blocklist-hosts, lix-module, ... } @ inputs: let 
+  outputs = { self, nixpkgs, home-manager, stylix, nixos-hardware, lanzaboote, blocklist-hosts, lix-module, ... } @ inputs: let 
     system = "x86_64-linux";
     homeStateVersion = "24.11";
     user = "gleask";
@@ -64,11 +64,6 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nur = {
-      url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

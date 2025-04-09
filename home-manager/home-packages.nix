@@ -9,7 +9,10 @@
     vesktop
     pavucontrol
     ripgrep
-    r2modman
+    # gale.overrideAttrs (old: rec {
+    #   finalAttrs.version = "1.5.6";
+    # })
+
 #    logseq
     dolphin
     prismlauncher

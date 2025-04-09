@@ -53,14 +53,12 @@
         "pulseaudio" = {
           format = "{icon} {volume}%";
           format-bluetooth = "{icon} {volume}% ";
-          format-muted = "";
+          format-muted = "";
           format-icons = {
-            "headphones" = "";
-            "handsfree" = "";
-            "headset" = "";
-            "phone" = "";
-            "portable" = "";
-            "car" = "";
+            "headphones" = "";
+            "headset" = "";
+            "phone" = "";
+            "car" = "";
             "default" = ["" ""];
           };
           on-click = "pavucontrol";
