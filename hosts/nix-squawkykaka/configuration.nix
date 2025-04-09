@@ -14,7 +14,7 @@
 
   system.stateVersion = stateVersion;
 
-  # allow unfree for all machines
+  # allow unfree for this machines
   nixpkgs.config.allowUnfree = true;
 }
 

@@ -13,8 +13,6 @@
         upd = "nh os switch --update";
         hms = "nh home switch";
 
-        pkgs = "nvim ${flakeDir}/nixos/packages.nix";
-
         gs = "git status";
         ga = "git add";
         gc = "git commit";
