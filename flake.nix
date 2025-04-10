@@ -1,13 +1,12 @@
 {
   description = "My new nixos configuration";
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, nixos-hardware, lanzaboote, blocklist-hosts, lix-module, ... } @ inputs: let 
+  outputs = { self, nixpkgs, home-manager, stylix, nixos-hardware, lanzaboote, blocklist-hosts, lix-module, solaar, ... } @ inputs: let 
     system = "x86_64-linux";
     homeStateVersion = "24.11";
     user = "gleask";
     locale = "en_NZ.UTF-8";
 
-    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     pkgs = nixpkgs.legacyPackages.${system};
 
     hosts = [
@@ -17,7 +16,7 @@
     makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
       system = system;
       specialArgs = {
-        inherit inputs stateVersion hostname user locale nixpkgs-unstable;
+        inherit inputs stateVersion hostname user locale;
       };
 
       modules = [
@@ -37,7 +36,7 @@
       inherit pkgs;
 
       extraSpecialArgs = {
-        inherit inputs homeStateVersion user pkgs-unstable;
+        inherit inputs homeStateVersion user;
       };
 
       modules = [
@@ -76,6 +75,11 @@
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    solaar = {
+      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
