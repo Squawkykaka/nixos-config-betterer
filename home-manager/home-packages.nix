@@ -9,12 +9,10 @@
     vesktop
     pavucontrol
     ripgrep
-
-#    logseq
-    gale
-    
     xfce.thunar
+    
     prismlauncher
+    r2modman
 
     # cli
     unzip

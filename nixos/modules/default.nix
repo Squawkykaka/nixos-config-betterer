@@ -20,6 +20,7 @@
     ./touchpad.nix
     ./timezone.nix
     ./user.nix
+    ./solaar.nix
     # ./polkit.nix
   ];
 }
