@@ -11,7 +11,7 @@
     font-awesome
     powerline-fonts
     powerline-symbols
-    nerd-fonts.symbols-only
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
   stylix = {
