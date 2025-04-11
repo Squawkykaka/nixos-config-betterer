@@ -1,7 +1,6 @@
-{ pkgs, ...}: {
+{ pkgs, ... }:
+{
   security.polkit.enable = true;
-  
-  environment.systemPackages = with pkgs; [
-    kdePackages.polkit-kde-agent-1
-  ];
+  security.rtkit.enable = true;
+  # security.soteria.enable = true;
 }

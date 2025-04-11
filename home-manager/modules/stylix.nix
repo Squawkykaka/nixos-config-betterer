@@ -31,6 +31,7 @@
       hyprland.enable = false;
       hyprlock.enable = false;
       firefox.enable = false;
+      bat.enable = false;
     };
 
     cursor = {
@@ -49,7 +50,6 @@
         name = "JetBrainsMono";
         package = pkgs.nerdfonts.override {
           fonts = [
-            "NerdFontsSymbolsOnly"
             "JetBrainsMono"
           ];
         };

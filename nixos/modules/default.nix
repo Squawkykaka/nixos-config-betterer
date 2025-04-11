@@ -21,6 +21,7 @@
     ./timezone.nix
     ./user.nix
     ./solaar.nix
-    # ./polkit.nix
+    ./polkit.nix
+    ./waydroid.nix
   ];
 }

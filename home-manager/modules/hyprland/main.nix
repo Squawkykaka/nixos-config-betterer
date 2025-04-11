@@ -13,7 +13,10 @@
         "XDG_SCREENSHOTS_DIR,$HOME/screens"
       ];
 
-      monitor = [ "eDP-1,1920x1080@60,0x0,1" "HDMI-A-1,2560x1440@120.00Hz,auto,1"];
+      monitor = [
+        "eDP-1,1920x1080@60,0x0,1"
+        "HDMI-A-1,2560x1440@120.00Hz,auto,1"
+      ];
       "$mainMod" = "SUPER";
       "$terminal" = "ghostty";
       "$fileManager" = "thunar";
@@ -24,6 +27,7 @@
         "waybar"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
+        "systemctl --user start hyprpolkitagent"
       ];
 
       general = {
@@ -68,7 +72,7 @@
       gestures = {
         workspace_swipe = true;
         workspace_swipe_invert = false;
-        workspace_swipe_forever	= true;
+        workspace_swipe_forever = true;
       };
 
       dwindle = {
