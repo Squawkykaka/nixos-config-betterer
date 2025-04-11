@@ -1,9 +1,9 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   imports = [ inputs.stylix.homeManagerModules.stylix ];
 
   home.packages = with pkgs; [
     dejavu_fonts
-    jetbrains-mono
     noto-fonts
     noto-fonts-lgc-plus
     texlivePackages.hebrew-fonts
@@ -11,7 +11,12 @@
     font-awesome
     powerline-fonts
     powerline-symbols
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "NerdFontsSymbolsOnly"
+        "JetBrainsMono"
+      ];
+    })
   ];
 
   stylix = {
@@ -39,9 +44,15 @@
         name = "Noto Color Emoji";
         package = pkgs.noto-fonts-color-emoji;
       };
+
       monospace = {
-        name = "JetBrains Mono";
-        package = pkgs.jetbrains-mono;
+        name = "JetBrainsMono";
+        package = pkgs.nerdfonts.override {
+          fonts = [
+            "NerdFontsSymbolsOnly"
+            "JetBrainsMono"
+          ];
+        };
       };
       sansSerif = {
         name = "Noto Sans";

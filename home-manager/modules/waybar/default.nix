@@ -7,9 +7,16 @@
         layer = "top";
         position = "top";
         height = 30;
-        modules-left = ["hyprland/workspaces"];
-        modules-center = ["hyprland/window"];
-        modules-right = ["custom/weather" "pulseaudio" "battery" "backlight" "clock" "tray"];
+        modules-left = [ "hyprland/workspaces" ];
+        modules-center = [ "hyprland/window" ];
+        modules-right = [
+          "custom/weather"
+          "pulseaudio"
+          "battery"
+          "backlight"
+          "clock"
+          "tray"
+        ];
         "hyprland/workspaces" = {
           disable-scroll = true;
           show-special = true;
@@ -46,7 +53,13 @@
           interval = 1;
           format = "{percent}% {icon}";
           format-icons = [
-            "" "" "" "󰃝" "󰃞" "󰃟" "󰃠"
+            ""
+            ""
+            ""
+            "󰃝"
+            "󰃞"
+            "󰃟"
+            "󰃠"
           ];
         };
 
@@ -59,7 +72,10 @@
             "headset" = "";
             "phone" = "";
             "car" = "";
-            "default" = ["" ""];
+            "default" = [
+              " "
+              " "
+            ];
           };
           on-click = "pavucontrol";
         };
@@ -72,7 +88,13 @@
           format = "{icon} {capacity}%";
           format-charging = " {capacity}%";
           format-alt = "{time} {icon}";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
 
         "clock" = {

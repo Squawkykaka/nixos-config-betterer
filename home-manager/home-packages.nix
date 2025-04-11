@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
@@ -10,7 +11,7 @@
     pavucontrol
     ripgrep
     xfce.thunar
-    
+
     prismlauncher
     r2modman
 

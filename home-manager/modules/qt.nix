@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     papirus-icon-theme
     pcmanfm-qt
@@ -7,8 +8,8 @@
     enable = true;
     platformTheme.name = "gtk";
     style = {
-      package = pkgs.adwaita-qt;
-      name = "adwaita-dark";
+      package = pkgs.kdePackages.qt6gtk2;
+      name = "qt6gtk2";
     };
   };
 }

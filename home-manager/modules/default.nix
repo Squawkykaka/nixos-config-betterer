@@ -5,6 +5,7 @@
     ./starship.nix
     ./qt.nix
     ./obsidian.nix
+    ./obs-studio.nix
     ./neovim.nix
     ./git.nix
     ./eza.nix

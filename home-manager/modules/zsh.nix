@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -8,7 +9,8 @@
     shellAliases =
       let
         flakeDir = "~/nixos";
-      in {
+      in
+      {
         sw = "nh os switch";
         upd = "nh os switch --update";
         hms = "nh home switch";

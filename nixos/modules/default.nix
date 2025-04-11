@@ -1,7 +1,7 @@
 {
   imports = [
     ./audio.nix
-    ./autocpufreq.nix
+    # ./power-save.nix
     ./bluetooth.nix
     ./boot.nix
     ./env.nix
