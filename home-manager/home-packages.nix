@@ -25,6 +25,7 @@
     brightnessctl
     hyprpicker
     showmethekey
+    nixd
 
     # WM stuff
     libsForQt5.xwaylandvideobridge
