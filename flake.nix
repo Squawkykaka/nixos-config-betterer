@@ -12,6 +12,7 @@
       blocklist-hosts,
       lix-module,
       solaar,
+      arkenfox,
       ...
     }@inputs:
     let
@@ -106,6 +107,11 @@
 
     solaar = {
       url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    arkenfox = {
+      url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

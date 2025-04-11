@@ -9,8 +9,12 @@ let
     git commit -m "$(date '+%Y-%m-%d %H:%M:%S')"
     git push origin main || exit 0
   '';
-in {
-  home.packages = [ gitSyncObsidian ];
+in
+{
+  home.packages = [
+    gitSyncObsidian
+    pkgs.obsidian
+  ];
 
   systemd.user.services.git-sync-obsidian = {
     Unit = {

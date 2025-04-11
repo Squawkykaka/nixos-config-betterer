@@ -13,7 +13,6 @@
     powerline-symbols
     (nerdfonts.override {
       fonts = [
-        "NerdFontsSymbolsOnly"
         "JetBrainsMono"
       ];
     })

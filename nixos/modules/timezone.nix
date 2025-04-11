@@ -3,7 +3,7 @@
   time.timeZone = "Pacific/Auckland";
 
   # set localisation
-  i18n.defaultLocale = "${locale}";
+  i18n.defaultLocale = locale;
   i18n.extraLocaleSettings = {
     LC_ADDRESS = locale;
     LC_IDENTIFICATION = locale;

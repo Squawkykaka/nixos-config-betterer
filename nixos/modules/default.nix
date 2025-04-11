@@ -15,6 +15,7 @@
     ./net.nix
     ./nh.nix
     ./nix.nix
+    # ./lix.nix
     ./nixos-hardware.nix
     ./tailscale.nix
     ./touchpad.nix
@@ -22,6 +23,6 @@
     ./user.nix
     ./solaar.nix
     ./polkit.nix
-    ./waydroid.nix
+    # ./waydroid.nix
   ];
 }

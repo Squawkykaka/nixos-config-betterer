@@ -6,7 +6,6 @@
     btop
     bitwarden-desktop
     vscodium
-    obsidian
     vesktop
     pavucontrol
     ripgrep
@@ -25,11 +24,11 @@
     brightnessctl
     hyprpicker
     showmethekey
-    nixd
+    nil
 
     # WM stuff
     libsForQt5.xwaylandvideobridge
     libnotify
-    hyprpolkitagent
+    # hyprpolkitagent
   ];
 }

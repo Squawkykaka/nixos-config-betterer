@@ -1,4 +1,5 @@
-{ inputs, ...}: {
+{ inputs, ... }:
+{
   # import lix
-  imports = [ inputs.lix-module.nixosModules.default ]
+  imports = [ inputs.lix-module.nixosModules.default ];
 }

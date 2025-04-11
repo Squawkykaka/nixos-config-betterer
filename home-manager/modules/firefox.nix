@@ -1,25 +1,27 @@
-{ pkgs, ... }:
+# { inputs, ... }:
 {
+  # imports = [ inputs.arkenfox.hmModules.arkenfox ];
+
   programs.firefox = {
     enable = true;
-    # profiles.home = {
-    #   name = "Home";
-    #   isDefault = true;
-    #   id = 1;
+    # arkenfox = {
+    #   enable = false;
+    #   version = "135.0";
     # };
-    # profiles.school = {
-    #   name = "School";
-    #   id = 2;
-    # };
-    #      name = "default";
-    #
-    #      extensions = [
-    #        # Bitwarden
-    #        { id = "446900e4-71c2-419f-a6a7-df9c091e268b"; }
 
-    # Rss feed url
-    #        { id = "15bdb1ce-fa9d-4a00-b859-66c214263ac0"; }
-    #      ];
-    #    };
+    # profiles.Default.arkenfox = {
+    #   enable = true;
+    #   "0000".enable = true;
+
+    #   "0100" = {
+    #     enable = true;
+    #     "0102"."browser.startup.page".value = 3;
+    #   };
+    #   "0200".enable = true;
+    #   "0300".enable = true;
+    #   "0300"."0320"."extensions.getAddons.showPane".value = true;
+    #   "0400".enable = true;
+    #   "0900".enable = true;
+    # };
   };
 }
