@@ -12,7 +12,7 @@
       blocklist-hosts,
       lix-module,
       solaar,
-      arkenfox,
+      # arkenfox,
       ...
     }@inputs:
     let
@@ -110,10 +110,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    arkenfox = {
-      url = "github:dwarfmaster/arkenfox-nixos";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # arkenfox = {
+    #   url = "github:dwarfmaster/arkenfox-nixos";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
 }

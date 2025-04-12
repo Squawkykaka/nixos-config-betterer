@@ -13,6 +13,7 @@
       extraPkgs = pkgs: [
         wineWowPackages.stable
         gamescope
+        geckodriver
       ];
     })
   ];
