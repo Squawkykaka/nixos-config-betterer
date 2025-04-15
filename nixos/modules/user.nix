@@ -1,18 +1,25 @@
-{ pkgs, user, ... }: {
+{ pkgs, user, ... }:
+{
   programs.zsh.enable = true;
 
   users = {
     defaultUserShell = pkgs.zsh;
     users.${user} = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" ];
+      initialHashedPassword = "$6$ZOTGb9wnuJIyq5j1$UfS9gJ.hR3Fq9SQVUuoI/U51v2tUCAhGI25W1cI8M9jjxw/b0oha5dMrdEZGWj.yKjYo7I4R31Jb0oJr5UuYf0";
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+      ];
     };
   };
 
   security.sudo.extraRules = [
-    { users = [ "${user}" ];
+    {
+      users = [ "${user}" ];
       commands = [
-        { command = "ALL";
+        {
+          command = "ALL";
           options = [ "NOPASSWD" ];
         }
       ];

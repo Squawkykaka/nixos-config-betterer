@@ -12,9 +12,11 @@
     (lutris.override {
       extraPkgs = pkgs: [
         wineWowPackages.stable
-        gamescope
         geckodriver
       ];
     })
+
+    # add an antivirus
+    clamav
   ];
 }

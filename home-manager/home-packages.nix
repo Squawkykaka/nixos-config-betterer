@@ -23,6 +23,7 @@
     wtype
     brightnessctl
     hyprpicker
+    grimblast
     showmethekey
     nil
 

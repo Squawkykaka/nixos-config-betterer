@@ -5,11 +5,15 @@
 
   nix.buildMachines = [
     {
+      inherit system;
       hostName = "100.64.0.6";
       sshUser = "remotebuild";
       sshKey = "/root/.ssh/remotebuild";
-      system = system;
-      supportedFeatures = [ "nixos-test" "big-parallel" "kvm" ];
+      supportedFeatures = [
+        "nixos-test"
+        "big-parallel"
+        "kvm"
+      ];
     }
   ];
 }

@@ -33,7 +33,7 @@
       makeSystem =
         { hostname, stateVersion }:
         nixpkgs.lib.nixosSystem {
-          system = system;
+          inherit system;
           specialArgs = {
             inherit
               inputs
