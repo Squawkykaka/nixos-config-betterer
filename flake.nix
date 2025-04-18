@@ -28,6 +28,10 @@
           hostname = "nix-squawkykaka";
           stateVersion = "24.11";
         }
+        {
+          hostname = "nixos-gamingpc";
+          stateVersion = "24.11";
+        }
       ];
 
       makeSystem =
