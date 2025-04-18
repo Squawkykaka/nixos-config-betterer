@@ -102,6 +102,7 @@
 
     blocklist-hosts = {
       url = "github:StevenBlack/hosts";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lix-module = {

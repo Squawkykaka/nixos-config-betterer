@@ -6,6 +6,8 @@
     ./local-packages.nix
     ./videodriver.nix
     ../../nixos/modules
+    inputs.lanzaboote.nixosModules.lanzaboote 
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2
   ];
 
   environment.systemPackages = [ pkgs.home-manager ];
@@ -16,9 +18,6 @@
 
   # allow unfree for this machines
   nixpkgs.config.allowUnfree = true;
-
-  # set up lanzaboote
-  imports = [ inputs.lanzaboote.nixosModules.lanzaboote inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2 ];
 
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = true;
