@@ -3,7 +3,7 @@
   # imports = [ inputs.arkenfox.hmModules.arkenfox ];
 
   programs.firefox = {
-    enable = true;
+    enable = false;
     # arkenfox = {
     #   enable = false;
     #   version = "135.0";

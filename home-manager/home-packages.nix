@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -13,6 +16,7 @@
 
     prismlauncher
     r2modman
+    floorp
 
     # cli
     unzip

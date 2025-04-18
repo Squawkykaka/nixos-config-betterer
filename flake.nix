@@ -12,10 +12,10 @@
       blocklist-hosts,
       lix-module,
       solaar,
-      # arkenfox,
       ...
     }@inputs:
     let
+      # these are editable attributes for all systems, TODO: move this into the per-system config
       system = "x86_64-linux";
       homeStateVersion = "24.11";
       user = "gleask";
@@ -23,6 +23,7 @@
 
       pkgs = nixpkgs.legacyPackages.${system};
 
+      # define each host
       hosts = [
         {
           hostname = "nix-squawkykaka";
@@ -34,6 +35,8 @@
         }
       ];
 
+      # define the makeSystem function, this takes in the
+      # stateversion and hostname and spits out a config pointing to the right directory
       makeSystem =
         { hostname, stateVersion }:
         nixpkgs.lib.nixosSystem {
@@ -54,8 +57,16 @@
         };
     in
     {
-      # making the nixos system by passing in the list of hosts as host and a blank config then concatenating a new config for that host.
+      # this function iterates over every host by creating a blank attributes set and passing in the hosts list
+      # it then appends the config of the hosts to the set for each host.
+      # // merges
+      # an example output is:
+      # nixosConfigurations = {
+      # "host1" = makeSystem { hostname = "host1"; stateVersion = "23.05"; };
+      # "host2" = makeSystem { hostname = "host2"; stateVersion = "23.05"; };
+      # };
       nixosConfigurations = nixpkgs.lib.foldl' (
+        # take the previous config and append the new one
         configs: host:
         configs
         // {
@@ -65,11 +76,17 @@
         }
       ) { } hosts;
 
+      # make the home-mananger configs TODO: seperate so that different parts can be disabled individually
       homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         extraSpecialArgs = {
-          inherit inputs homeStateVersion user;
+          inherit
+            inputs
+            homeStateVersion
+            user
+            system
+            ;
         };
 
         modules = [
@@ -114,11 +131,5 @@
       url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # arkenfox = {
-    #   url = "github:dwarfmaster/arkenfox-nixos";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
-
 }

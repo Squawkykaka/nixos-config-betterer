@@ -21,7 +21,7 @@
       "$terminal" = "ghostty";
       "$fileManager" = "thunar";
       "$menu" = "wofi";
-      "$browser" = "firefox";
+      "$browser" = "floorp";
 
       exec-once = [
         "waybar"
