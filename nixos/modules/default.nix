@@ -16,7 +16,6 @@
     ./nh.nix
     ./nix.nix
     # ./lix.nix
-    ./nixos-hardware.nix
     ./tailscale.nix
     ./touchpad.nix
     ./timezone.nix
