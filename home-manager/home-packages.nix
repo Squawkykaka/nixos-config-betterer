@@ -26,6 +26,7 @@
     grimblast
     showmethekey
     nil
+    direnv
 
     # WM stuff
     libsForQt5.xwaylandvideobridge
