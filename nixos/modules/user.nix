@@ -14,6 +14,7 @@
     };
   };
 
+  # makes sudo not need a password
   security.sudo.extraRules = [
     {
       users = [ "${user}" ];

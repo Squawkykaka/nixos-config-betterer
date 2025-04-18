@@ -3,7 +3,6 @@
     ./audio.nix
     # ./power-save.nix
     ./bluetooth.nix
-    # ./boot.nix
     ./env.nix
     ./home-manager.nix
     ./hyprland.nix
