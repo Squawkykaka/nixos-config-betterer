@@ -27,17 +27,13 @@
             "1" = "";
             "2" = "";
             "3" = "";
-            "4" = "";
+            "4" = "";
             "5" = "";
-            "6" = "";
-            "7" = "";
-            "8" = "";
-            "9" = "";
             "magic" = "";
           };
 
           persistent-workspaces = {
-            "*" = 9;
+            "*" = 5;
           };
         };
 
@@ -48,10 +44,12 @@
           class = "weather";
         };
 
-        "backlight" = {
+        backlight = {
           device = "intel_backlight";
           interval = 1;
           format = "{percent}% {icon}";
+          on-scroll-up = "brightnessctl s 5%+";
+          on-scroll-down = "brightnessctl s 5%-";
           format-icons = [
             ""
             ""
