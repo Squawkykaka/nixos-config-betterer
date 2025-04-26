@@ -12,7 +12,7 @@
       in
       {
         sw = "nh os switch";
-        upd = "nh os switch --update";
+        upd = "nix flake update --flake ${flakeDir}";
         hms = "nh home switch";
 
         gs = "git status";
