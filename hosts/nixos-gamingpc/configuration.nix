@@ -14,7 +14,9 @@
 
   system.stateVersion = stateVersion;
 
-  # allow unfree for this machines
+  time.hardwareClockInLocalTime = true;
+  
+# allow unfree for this machines
   nixpkgs.config.allowUnfree = true;
 
   boot.loader = {

@@ -18,6 +18,8 @@
     r2modman
     floorp
 
+    obsidian
+
     # cli
     unzip
     zip
