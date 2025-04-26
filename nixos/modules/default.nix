@@ -9,7 +9,7 @@
     ./kernal.nix
     ./hosts.nix
     ./mime.nix
-    ./graphics.nix
+    # ./graphics.nix
     ./steam.nix
     ./net.nix
     ./nh.nix
