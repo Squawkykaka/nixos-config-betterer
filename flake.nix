@@ -21,6 +21,7 @@
       user = "gleask";
       locale = "en_NZ.UTF-8";
 
+      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
       pkgs = nixpkgs.legacyPackages.${system};
 
       # define each host
