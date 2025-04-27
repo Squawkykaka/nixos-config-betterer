@@ -1,27 +1,21 @@
-# { inputs, ... }:
+{ pkgs, ... }:
 {
-  # imports = [ inputs.arkenfox.hmModules.arkenfox ];
-
   programs.firefox = {
-    enable = false;
-    # arkenfox = {
-    #   enable = false;
-    #   version = "135.0";
-    # };
+    enable = true;
+    package = pkgs.floorp;
 
-    # profiles.Default.arkenfox = {
-    #   enable = true;
-    #   "0000".enable = true;
+    policies = {
+      ExtensionSettings = {
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+          installation_mode = "force_installed";
+        };
 
-    #   "0100" = {
-    #     enable = true;
-    #     "0102"."browser.startup.page".value = 3;
-    #   };
-    #   "0200".enable = true;
-    #   "0300".enable = true;
-    #   "0300"."0320"."extensions.getAddons.showPane".value = true;
-    #   "0400".enable = true;
-    #   "0900".enable = true;
-    # };
+        "uBlock0@raymondhill.net" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+        };
+      };
+    };
   };
 }

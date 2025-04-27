@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 {
   imports = [ inputs.stylix.homeManagerModules.stylix ];
 
@@ -64,7 +69,7 @@
 
       sizes = {
         terminal = 13;
-        applications = 11;
+        applications = 12;
       };
     };
 

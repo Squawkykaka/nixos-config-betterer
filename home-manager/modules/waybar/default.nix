@@ -66,10 +66,10 @@
           format-bluetooth = "{icon} {volume}% ";
           format-muted = "";
           format-icons = {
-            "headphones" = "";
-            "headset" = "";
-            "phone" = "";
-            "car" = "";
+            "headphones" = "";
+            "headset" = "";
+            "phone" = "";
+            "car" = "󰄋";
             "default" = [
               " "
               " "
