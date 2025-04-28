@@ -11,6 +11,7 @@
 
     (map lib.custom.relativeToRoot [
       "modules/common"
+      "hosts/common/users/primary"
     ])
   ];
 
