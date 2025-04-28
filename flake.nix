@@ -8,7 +8,7 @@
       ...
     }@inputs:
     let
-      inherit (self) inputs;
+      inherit (self) outputs;
 
       # ========== Extend lib with lib.custom ==========
       lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
