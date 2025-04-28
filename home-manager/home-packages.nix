@@ -16,7 +16,7 @@
 
     prismlauncher
     r2modman
-    floorp
+    # floorp
 
     obsidian
 
