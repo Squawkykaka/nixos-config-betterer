@@ -52,8 +52,8 @@
 
     prime = {
       offload = {
-        enable = true;
-        enableOffloadCmd = true;
+        enable = false;
+        enableOffloadCmd = false;
       };
       # Make sure to use the correct Bus ID values for your system!
       amdgpuBusId = "PCI:14:0:0"; # For AMD GPU
