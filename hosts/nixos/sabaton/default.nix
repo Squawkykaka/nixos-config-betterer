@@ -1,7 +1,7 @@
 ##############################################################
 #
-#  Simba - Main Desktop
-#  NixOS running on Ryzen 5 7600X, Nvidia RTX 3060Ti, 32GB RAM
+#  Sabaton - Thinkpad X1 Extreme Gen 2
+#  NixOS running on Intel Core i7, Nvidia GTX 1650 Mobile, 16GB RAM
 #
 ###############################################################
 {
@@ -18,9 +18,7 @@
     #
 
     ./hardware-configuration.nix
-    inputs.hardware.nixosModules.common-cpu-intel
-    inputs.hardware.nixosModules.common-gpu-nvidia
-    inputs.hardware.nixosModules.common-pc-ssd
+    inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2
     inputs.disko.nixosModules.disko
 
     #
@@ -30,6 +28,7 @@
     #
     # ========== Misc Inputs ==========
     #
+    inputs.lanzaboote.nixosModules.lanzaboote
     (map lib.custom.relativeToRoot [
       #
       # ========== Required Configs ==========
@@ -95,6 +94,11 @@
       nvidiaBusId = "PCI:01:00:0";
     };
   };
+
+  # make sure sbctl is enabled for this machine
+  environment.systemPackages = [
+    pkgs.sbctl
+  ];
 
   system.stateVersion = "24.11";
 }

@@ -3,6 +3,12 @@
   environment.systemPackages = with pkgs; [
     prismlauncher
     r2modman
+    (lutris.override {
+      extraPkgs = pkgs: [
+        wineWowPackages.stable
+        geckodriver
+      ];
+    })
   ];
 
   programs = {
