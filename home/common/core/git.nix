@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -15,7 +16,7 @@
       # direnv
       ".direnv"
     ];
-    
+
     userName = "Squawkykaka";
     userEmail = "squawkykaka@gmail.com";
     extraConfig = {

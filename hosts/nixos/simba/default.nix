@@ -46,7 +46,7 @@
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/nvtop.nix"
       "hosts/common/optional/stylix.nix"
-# TODO
+      # TODO
     ])
   ];
 
@@ -54,6 +54,7 @@
 
   hostSpec = {
     hostName = "simba";
+    username = "gleask";
     persistFolder = "/persist";
   };
 
@@ -69,10 +70,10 @@
       efiSysMountPoint = "/boot/"; # ← use the same mount point here.
     };
     grub = {
-       efiSupport = true;
-       #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-       device = "nodev";
-       useOSProber = true;
+      efiSupport = true;
+      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+      device = "nodev";
+      useOSProber = true;
     };
   };
 

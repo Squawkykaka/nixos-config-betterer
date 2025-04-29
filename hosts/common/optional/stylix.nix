@@ -1,13 +1,12 @@
 {
   pkgs,
   inputs,
-  lib,
   ...
 }:
 {
-  imports = [ inputs.stylix.homeManagerModules.stylix ];
+  imports = [ inputs.stylix.nixosModules.stylix ];
 
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     dejavu_fonts
     noto-fonts
     noto-fonts-lgc-plus
@@ -26,6 +25,8 @@
   stylix = {
     enable = true;
     polarity = "dark";
+    homeManagerIntegration.followSystem = true;
+    homeManagerIntegration.autoImport = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
 
     targets = {
@@ -73,12 +74,12 @@
       };
     };
 
-    iconTheme = {
-      enable = true;
-      package = pkgs.papirus-icon-theme;
-      dark = "Papirus-Dark";
-      light = "Papirus-Light";
-    };
+    # iconTheme = {
+    #   enable = true;
+    #   package = pkgs.papirus-icon-theme;
+    #   dark = "Papirus-Dark";
+    #   light = "Papirus-Light";
+    # };
 
     image = pkgs.fetchurl {
       url = "https://codeberg.org/lunik1/nixos-logo-gruvbox-wallpaper/raw/branch/master/png/gruvbox-dark-rainbow.png";

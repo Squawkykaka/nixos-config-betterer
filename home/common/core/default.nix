@@ -4,14 +4,15 @@
   pkgs,
   hostSpec,
   ...
-}: {
+}:
+{
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
       "modules/common/host-spec.nix"
       # "modules/home"
     ])
 
-    ./zsh.nix
+    ./zsh
     ./git.nix
     ./xdg.nix
     ./eza.nix
@@ -74,7 +75,6 @@
       warn-dirty = false;
     };
   };
-
 
   programs.home-manager.enable = true;
 

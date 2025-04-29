@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  config,
+  pkgs,
+  hostSpec,
+  ...
+}:
 {
   programs.zsh = {
     enable = true;
@@ -7,43 +12,37 @@
     syntaxHighlighting.enable = true;
     autocd = true;
 
-    shellAliases =
-      let
-      # TODO make this speicified in hostSpec
-        flakeDir = "~/nixos";
-      in
-      {
-        sw = "nh os switch";
-        upd = "nix flake update --flake ${flakeDir}";
-        hms = "nh home switch";
+    shellAliases = {
+      sw = "nh os switch";
+      upd = "nix flake update --flake /home/${hostSpec.username}/nixos";
+      hms = "nh home switch";
 
-        gs = "git status";
-        ga = "git add";
-        gc = "git commit";
-        gp = "git push";
+      gs = "git status";
+      ga = "git add";
+      gc = "git commit";
+      gp = "git push";
 
-        ls = "eza";
-        cat = "bat";
+      ls = "eza";
+      cat = "bat";
 
-        ".." = "cd ..";
-      };
+      ".." = "cd ..";
+    };
 
     history.size = 10000;
     history.path = "${config.xdg.dataHome}/zsh/history";
 
-    plugins =
-      [
-        {
-          name = "powerlevel10k-config";
-          src = ./p10k;
-          file = "p10k.zsh.theme";
-        }
-        {
-          name = "zsh-powerlevel10k";
-          src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
-          file = "powerlevel10k.zsh-theme";
-        }
-      ];
+    plugins = [
+      {
+        name = "powerlevel10k-config";
+        src = ./p10k;
+        file = "p10k.zsh.theme";
+      }
+      {
+        name = "zsh-powerlevel10k";
+        src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
+        file = "powerlevel10k.zsh-theme";
+      }
+    ];
 
     initExtraFirst = ''
       # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -54,7 +53,7 @@
       fi
     '';
 
-# TODO replace uwsm with greetd
+    # TODO replace uwsm with greetd
     initExtra = ''
       # autoSuggestions config
 

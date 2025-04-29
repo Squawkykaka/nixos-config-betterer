@@ -11,7 +11,7 @@
 
     (map lib.custom.relativeToRoot [
       "modules/common"
-      "hosts/common/users/primary"
+      "hosts/common/users"
     ])
   ];
 
@@ -21,6 +21,7 @@
 
   hostSpec = {
     username = "gleask";
+    handle = "squawkykaka";
   };
 
   networking.hostName = config.hostSpec.hostName;

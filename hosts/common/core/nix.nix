@@ -1,4 +1,4 @@
-{user, ...}: {
+{
   nix.settings = {
     experimental-features = [
       "nix-command"
@@ -23,12 +23,5 @@
       "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
       "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
     ];
-  };
-
-  programs.nh = {
-    enable = true;
-    # clean.enable = true;
-    # clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/${user}/nixos";
   };
 }

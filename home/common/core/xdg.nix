@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   xdg = {
     enable = true;

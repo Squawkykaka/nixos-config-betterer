@@ -1,4 +1,9 @@
+{ pkgs, ... }:
 {
+  home.packages = {
+    inherit (pkgs) libnotify;
+  };
+
   services.swaync = {
     enable = true;
     settings = {
