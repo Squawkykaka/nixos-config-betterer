@@ -15,6 +15,10 @@ in
     name = hostSpec.username;
     isNormalUser = true;
     shell = pkgs.zsh; # default shell
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
 
     # These get placed into /etc/ssh/authorized_keys.d/<name> on nixos
     openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
