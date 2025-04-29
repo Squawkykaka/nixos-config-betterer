@@ -14,5 +14,8 @@
     common/optional/comms
     common/optional/development
 
+    common/optional/bitwarden.nix
+    common/optional/obsidian.nix
+
   ];
 }
