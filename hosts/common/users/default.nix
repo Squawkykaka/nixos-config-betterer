@@ -13,6 +13,7 @@ in
 {
   users.users.${hostSpec.username} = {
     name = hostSpec.username;
+    isNormalUser = true;
     shell = pkgs.zsh; # default shell
 
     # These get placed into /etc/ssh/authorized_keys.d/<name> on nixos

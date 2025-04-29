@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = {
+  home.packages = builtins.attrValues {
     inherit (pkgs)
       obsidian
       ;

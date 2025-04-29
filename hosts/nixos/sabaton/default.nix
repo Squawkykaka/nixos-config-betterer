@@ -18,7 +18,7 @@
     #
 
     ./hardware-configuration.nix
-    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.disko.nixosModules.disko
@@ -40,9 +40,9 @@
       # ========== Optional Configs ==========
       #
       "hosts/common/optional/services/bluetooth.nix"
-      "hosts/common/optional/gaming.nix"
+      # "hosts/common/optional/gaming.nix"
       "hosts/common/optional/hyprland.nix"
-      "hosts/common/optional/solaar.nix"
+      # "hosts/common/optional/solaar.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/nvtop.nix"
       # "hosts/common/optional/stylix.nix"
@@ -64,17 +64,12 @@
   };
 
   # set the boot loader
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/"; # ← use the same mount point here.
-    };
-    grub = {
-      efiSupport = true;
-      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-      device = "nodev";
-      useOSProber = true;
-    };
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
   };
 
   # enable graphics
@@ -96,8 +91,8 @@
       #   enableOffloadCmd = true;
       # };
       # Make sure to use the correct Bus ID values for your system!
-      amdgpuBusId = "PCI:14:0:0"; # For AMD GPU
-      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:00:02.0"; # For Intel GPU
+      nvidiaBusId = "PCI:01:00:0";
     };
   };
 
