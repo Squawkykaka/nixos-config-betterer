@@ -19,8 +19,7 @@
       # ========= Formatting =========
       #
       # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
-      formatter = nixpkgs.legacyPackages."x86_64-linux".nixfmt-rfc-style;
-
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
       # ========= Host Configurations =========
       #
       # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`

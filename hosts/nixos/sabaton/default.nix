@@ -52,7 +52,7 @@
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
   hostSpec = {
-    hostName = "simba";
+    hostName = "sabaton";
     username = "gleask";
     persistFolder = "/persist";
   };

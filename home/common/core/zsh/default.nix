@@ -15,7 +15,6 @@
     shellAliases = {
       sw = "nh os switch";
       upd = "nix flake update --flake /home/${hostSpec.username}/nixos";
-      hms = "nh home switch";
 
       gs = "git status";
       ga = "git add";

@@ -18,12 +18,19 @@
     ./eza.nix
     ./ghostty.nix
     ./neovim.nix
+    ./stylix.nix
     ./direnv.nix
     ./bat.nix
     ./zoxide.nix
   ];
 
   inherit hostSpec;
+
+  programs.nh = {
+    enable = true;
+    # clean.enable = true;
+    # clean.extraArgs = "--keep-since 4d --keep 3";
+  };
 
   services.ssh-agent.enable = true;
 
@@ -59,6 +66,7 @@
       ripgrep # better grep
       tree # cli dir tree viewer
       unzip
+      nil # nix language server
       zip
       wget
       killall

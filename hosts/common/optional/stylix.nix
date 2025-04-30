@@ -24,19 +24,7 @@
 
   stylix = {
     enable = true;
-    # homeManagerIntegration.followSystem = true;
-    homeManagerIntegration.autoImport = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-
-    targets = {
-      neovim.enable = false;
-      waybar.enable = false;
-      wofi.enable = false;
-      hyprland.enable = false;
-      hyprlock.enable = false;
-      firefox.enable = false;
-      bat.enable = false;
-    };
 
     cursor = {
       name = "Bibata-Modern-Ice";
