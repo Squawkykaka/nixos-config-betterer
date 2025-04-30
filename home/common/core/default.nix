@@ -67,6 +67,7 @@
       tree # cli dir tree viewer
       unzip
       nil # nix language server
+      nixfmt-rfc-style # nix formatter
       zip
       wget
       killall
