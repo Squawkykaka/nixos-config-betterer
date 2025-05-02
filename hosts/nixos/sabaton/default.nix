@@ -44,7 +44,7 @@
       # "hosts/common/optional/solaar.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/nvtop.nix"
-      "hosts/common/optional/stylix.nix"
+      # "hosts/common/optional/stylix.nix"
       # TODO
     ])
   ];
@@ -60,6 +60,12 @@
   networking = {
     networkmanager.enable = true;
     enableIPv6 = false;
+  };
+
+  # make sure my touchpad works when typing
+  services.libinput.enable = true;
+  services.libinput = {
+      touchpad.disableWhileTyping = true;
   };
 
   # set the boot loader

@@ -26,9 +26,25 @@
     flake = "/home/user/${config.hostSpec.home}/nixos";
   };
 
+  security.polkit.enable = true;
+  security.rtkit.enable = true;
+  security.soteria.enable = true;
+
   #
   # ========== Localization ==========
   #
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
-  time.timeZone = lib.mkDefault "America/Edmonton";
+  time.timeZone = lib.mkDefault "Pacific/Auckland";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = locale;
+    LC_IDENTIFICATION = locale;
+    LC_MEASUREMENT = locale;
+    LC_MONETARY = locale;
+    LC_NAME = locale;
+    LC_NUMERIC = locale;
+    LC_PAPER = locale;
+    LC_TELEPHONE = locale;
+    LC_TIME = locale;
+  };
 }

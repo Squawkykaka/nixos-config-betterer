@@ -4,7 +4,7 @@
     prismlauncher
     r2modman
     (lutris.override {
-      extraPkgs = pkgs: [
+      extraPkgs = _pkgs: [
         wineWowPackages.stable
         geckodriver
       ];
