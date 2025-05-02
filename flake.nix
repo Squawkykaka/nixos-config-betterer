@@ -11,7 +11,7 @@
       inherit (self) outputs;
 
       # ========== Extend lib with lib.custom ==========
-      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+      lib = nixpkgs.lib.extend (_self: _super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
 
     in
     {
