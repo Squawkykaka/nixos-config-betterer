@@ -24,6 +24,8 @@
   hostSpec = {
     username = "gleask";
     handle = "squawkykaka";
+
+    networking.ports.tcp.ssh = 22;
   };
 
   networking.hostName = config.hostSpec.hostName;

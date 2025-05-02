@@ -34,6 +34,7 @@
 
     #TODO(git): This is stuff for home/ta/common/core/git.nix. should create home/ta/common/optional/development.nix so core git.nix doesn't use it.
     handle = "squawkykaka";
+    networking.ports.tcp.ssh = 22;
     # email.gitHub = inputs.nix-secrets.email.gitHub;
   };
 
