@@ -8,3 +8,8 @@ rebuild: rebuild-pre && rebuild-post
   scripts/rebuild.sh
 
 rebuild-post:
+
+iso:
+  # If we dont remove this folder, libvirtd VM doesnt run with the new iso...
+  rm -rf result
+  nix build --impure .#nixosConfigurations.iso.config.system.build.isoImage && ln -sf result/iso/*.iso latest.iso
