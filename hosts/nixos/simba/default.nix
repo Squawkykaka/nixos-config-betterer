@@ -45,7 +45,7 @@
       "hosts/common/optional/solaar.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/nvtop.nix"
-      # "hosts/common/optional/stylix.nix"
+      "hosts/common/optional/stylix.nix"
       # TODO
     ])
   ];
