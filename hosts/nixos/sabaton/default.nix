@@ -39,7 +39,7 @@
       # ========== Optional Configs ==========
       #
       "hosts/common/optional/services/bluetooth.nix"
-      # "hosts/common/optional/gaming.nix"
+      "hosts/common/optional/gaming.nix"
       "hosts/common/optional/hyprland.nix"
       # "hosts/common/optional/solaar.nix"
       "hosts/common/optional/audio.nix"
