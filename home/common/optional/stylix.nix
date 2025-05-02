@@ -1,12 +1,4 @@
 {
-  lib,
-  config,
-  ...
-}:
-let
-  enabled = config.stylix.enable;
-in
-lib.mkIf enabled {
   stylix = {
     targets = {
       neovim.enable = false;

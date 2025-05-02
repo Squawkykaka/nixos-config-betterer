@@ -18,7 +18,6 @@
     ./eza.nix
     ./ghostty.nix
     ./neovim.nix
-    ./stylix.nix
     ./direnv.nix
     ./bat.nix
     ./zoxide.nix
