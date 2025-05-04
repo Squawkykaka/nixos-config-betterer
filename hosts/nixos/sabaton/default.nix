@@ -65,7 +65,7 @@
   # make sure my touchpad works when typing
   services.libinput.enable = true;
   services.libinput = {
-      touchpad.disableWhileTyping = true;
+    touchpad.disableWhileTyping = true;
   };
 
   # set the boot loader
