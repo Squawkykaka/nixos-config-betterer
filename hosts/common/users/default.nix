@@ -11,6 +11,7 @@ let
   pubKeys = lib.filesystem.listFilesRecursive ./keys;
 in
 {
+  users.mutableUsers = false;
   users.users.${hostSpec.username} = {
     name = hostSpec.username;
     isNormalUser = true;
