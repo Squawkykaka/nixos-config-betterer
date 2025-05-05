@@ -30,6 +30,8 @@
   security.rtkit.enable = true;
   security.soteria.enable = true;
 
+  users.mutableUsers = false;
+
   #
   # ========== Localization ==========
   #

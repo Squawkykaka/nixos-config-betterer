@@ -45,7 +45,6 @@
       "hosts/common/optional/solaar.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/nvtop.nix"
-      # "hosts/common/optional/stylix.nix"
       # TODO
     ])
   ];
@@ -91,12 +90,13 @@
     };
     nvidiaSettings = true;
     prime = {
-      # offload = {
-      #   enable = true;
-      #   enableOffloadCmd = true;
-      # };
+      offload = {
+        enable = false;
+        enableOffloadCmd = false;
+      };
+      sync.enable = true;
       # Make sure to use the correct Bus ID values for your system!
-      amdgpuBusId = "PCI:14:0:0"; # For AMD GPU
+      amdgpuBusId = "PCI:54:0:0";
       nvidiaBusId = "PCI:1:0:0";
     };
   };
