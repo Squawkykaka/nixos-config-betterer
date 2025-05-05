@@ -15,6 +15,7 @@
     ])
 
     ./stylix.nix
+    ./nixos.nix
   ];
 
   #
