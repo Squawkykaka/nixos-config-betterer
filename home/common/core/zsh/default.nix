@@ -30,27 +30,27 @@
     history.size = 10000;
     history.path = "${config.xdg.dataHome}/zsh/history";
 
-    plugins = [
-      {
-        name = "powerlevel10k-config";
-        src = ./p10k;
-        file = "p10k.zsh.theme";
-      }
-      {
-        name = "zsh-powerlevel10k";
-        src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
-        file = "powerlevel10k.zsh-theme";
-      }
-    ];
+    # plugins = [
+    #   {
+    #     name = "powerlevel10k-config";
+    #     src = ./p10k;
+    #     file = "p10k.zsh.theme";
+    #   }
+    #   {
+    #     name = "zsh-powerlevel10k";
+    #     src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
+    #     file = "powerlevel10k.zsh-theme";
+    #   }
+    # ];
 
-    initExtraFirst = ''
-      # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-      # Initialization code that may require console input (password prompts, [y/n]
-      # confirmations, etc.) must go above this block; everything else may go below.
-      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      fi
-    '';
+    # initExtraFirst = ''
+    #   # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+    #   # Initialization code that may require console input (password prompts, [y/n]
+    #   # confirmations, etc.) must go above this block; everything else may go below.
+    #   if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+    #     source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+    #   fi
+    # '';
 
     # TODO replace uwsm with greetd
     initExtra = ''
@@ -79,6 +79,7 @@
       # Standard OMZ plugins pre-installed to $ZSH/plugins/
       # Custom OMZ plugins are added to $ZSH_CUSTOM/plugins/
       # Enabling too many plugins will slowdown shell startup
+      theme = "robbyrussell";
       plugins = [
         "git"
         "sudo" # press Esc twice to get the previous command prefixed with sudo https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
