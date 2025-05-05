@@ -110,6 +110,7 @@
   # enable auto-cpu freq, disable power profiles as it interferes
   services.power-profiles-daemon.enable = false;
   services.auto-cpufreq.enable = true;
+  services.tlp.enable = true;
 
   system.stateVersion = "24.11";
 }
