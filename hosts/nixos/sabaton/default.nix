@@ -92,10 +92,10 @@
     };
     nvidiaSettings = true;
     prime = {
-      # offload = {
-      #   enable = true;
-      #   enableOffloadCmd = true;
-      # };
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
       # Make sure to use the correct Bus ID values for your system!
       intelBusId = "PCI:00:02.0"; # For Intel GPU
       nvidiaBusId = "PCI:01:00:0";
