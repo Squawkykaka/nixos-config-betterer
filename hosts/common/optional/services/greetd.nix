@@ -26,15 +26,21 @@ in
   };
 
   config = {
-    #    environment.systemPackages = [ pkgs.greetd.tuigreet ];
+    environment.systemPackages = [ pkgs.greetd.tuigreet ];
     services.greetd = {
       enable = true;
 
       restart = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --asterisks --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
-          user = "ta";
+          command = ''
+            ${pkgs.greetd.tuigreet}/bin/tuigreet \
+                        --asterisks --remember \
+                        --time --time-format '%I:%M %p | %a • %h | %F' \
+                        --theme "text=white;time=red;input=green;border=green;action=blue;button=yellow;container=black;prompt=lime" \
+                        --cmd Hyprland
+          '';
+          user = config.hostSpec.username;
         };
 
         initial_session = lib.mkIf cfg.enable {

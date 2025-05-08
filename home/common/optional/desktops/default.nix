@@ -21,6 +21,6 @@
     pkgs.hyprpicker # screenshot tool
     pkgs.grimblast # screenshot tool
     pkgs.wtype # wayland input tool
-    pkgs.xfce.thunar # file manager
+    pkgs.xfce.thunar # file manager TODO move into own module.
   ];
 }
