@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   hostSpec,
   ...
 }:
@@ -52,7 +51,6 @@
     #   fi
     # '';
 
-    # TODO replace uwsm with greetd
     initExtra = ''
       # autoSuggestions config
 

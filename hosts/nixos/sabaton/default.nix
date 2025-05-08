@@ -39,7 +39,9 @@
       # ========== Optional Configs ==========
       #
       "hosts/common/optional/services/bluetooth.nix"
+      "hosts/common/optional/services/greetd.nix"
       "hosts/common/optional/gaming.nix"
+      "hosts/common/optional/hyprland.nix"
       "hosts/common/optional/hyprland.nix"
       # "hosts/common/optional/solaar.nix"
       "hosts/common/optional/audio.nix"
@@ -79,18 +81,23 @@
   };
 
   # enable graphics
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [ nvidia-vaapi-driver ];
+  };
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     open = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #   version = "570.133.07";
-    #   sha256_64bit = "sha256-LUPmTFgb5e9VTemIixqpADfvbUX1QoTT2dztwI3E3CY=";
-    #   sha256_aarch64 = "sha256-2l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    #   openSha256 = "sha256-9l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    #   settingsSha256 = "sha256-XMk+FvTlGpMquM8aE8kgYK2PIEszUZD2+Zmj2OpYrzU=";
-    #   persistencedSha256 = "sha256-4l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    # };
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      version = "570.133.07";
+      sha256_64bit = "sha256-LUPmTFgb5e9VTemIixqpADfvbUX1QoTT2dztwI3E3CY=";
+      sha256_aarch64 = "sha256-2l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
+      openSha256 = "sha256-9l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
+      settingsSha256 = "sha256-XMk+FvTlGpMquM8aE8kgYK2PIEszUZD2+Zmj2OpYrzU=";
+      persistencedSha256 = "sha256-4l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
+    };
     nvidiaSettings = true;
     prime = {
       offload = {
@@ -98,8 +105,8 @@
         enableOffloadCmd = true;
       };
       # Make sure to use the correct Bus ID values for your system!
-      intelBusId = "PCI:00:02.0"; # For Intel GPU
-      nvidiaBusId = "PCI:01:00:0";
+      intelBusId = "PCI:0:2:0"; # For Intel GPU
+      nvidiaBusId = "PCI:1:0:0";
     };
   };
 
