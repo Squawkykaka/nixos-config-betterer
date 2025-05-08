@@ -18,7 +18,7 @@
             ESP = {
               priority = 1;
               name = "ESP";
-              start = "1M";
+              start = "0M";
               end = "512M";
               type = "EF00";
               content = {
