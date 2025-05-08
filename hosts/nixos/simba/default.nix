@@ -25,7 +25,16 @@
 
     #
     # ========== Disk Layout ==========
-    # TODO
+    # 
+    inputs.disko.nixosModules.disko
+    (lib.custom.relativeToRoot "hosts/common/disks/btrfs-disk.nix")
+    {
+      _module.args = {
+        disk = "/dev/nvme0n1";
+        withSwap = true;
+        swapSize = 38;
+      };
+    }
 
     #
     # ========== Misc Inputs ==========
@@ -40,6 +49,7 @@
       # ========== Optional Configs ==========
       #
       "hosts/common/optional/services/bluetooth.nix"
+      "hosts/common/optional/services/greetd.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/hyprland.nix"
       "hosts/common/optional/solaar.nix"
@@ -84,6 +94,7 @@
     enable32Bit = true;
     extraPackages = with pkgs; [ nvidia-vaapi-driver ];
   };
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
