@@ -81,6 +81,7 @@
   services = {
     qemuGuest.enable = true;
     openssh = {
+      enable = true;
       ports = [ config.hostSpec.networking.ports.tcp.ssh ];
       settings.PermitRootLogin = lib.mkForce "yes";
     };

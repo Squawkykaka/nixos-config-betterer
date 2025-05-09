@@ -49,6 +49,7 @@
       # ========== Optional Configs ==========
       #
       "hosts/common/optional/services/bluetooth.nix"
+      "hosts/common/optional/services/openssh.nix"
       "hosts/common/optional/services/greetd.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/hyprland.nix"
@@ -67,6 +68,8 @@
     hostName = "simba";
     username = "gleask";
     persistFolder = "/persist";
+
+    networking.ports.tcp.ssh = 22;
   };
 
   networking = {
