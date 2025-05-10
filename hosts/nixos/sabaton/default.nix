@@ -113,6 +113,7 @@
   # make sure sbctl is enabled for this machine
   environment.systemPackages = [
     pkgs.sbctl
+    pkgs.timeshift
   ];
 
   # enable auto-cpu freq, disable power profiles as it interferes
