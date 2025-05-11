@@ -1,6 +1,7 @@
 {
   programs.waybar = {
     enable = true;
+    # you can use config.lib.stylix.colors.withHashtag to get the colors
     style = ./style.css;
     settings = {
       mainBar = {
@@ -27,7 +28,7 @@
             "1" = "";
             "2" = "";
             "3" = "";
-            "4" = "";
+            "4" = "";
             "5" = "";
             "magic" = "";
           };
