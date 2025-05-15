@@ -16,7 +16,8 @@
     ./git.nix
     ./xdg.nix
     ./eza.nix
-    ./ghostty.nix
+    # ./ghostty.nix
+    ./wezterm.nix
     ./neovim.nix
     ./direnv.nix
     ./bat.nix
@@ -43,8 +44,8 @@
     sessionVariables = {
       FLAKE = "$HOME/nixos";
       SHELL = "zsh";
-      TERM = "ghostty";
-      TERMINAL = "ghostty";
+      TERM = "wezterm";
+      TERMINAL = "wezterm";
       VISUAL = "nvim";
       EDITOR = "nvim";
       MANPAGER = "batman"; # see ./cli/bat.nix

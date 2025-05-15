@@ -18,7 +18,7 @@
         "HDMI-A-1,2560x1440@120.00Hz,auto,1"
       ];
       "$mainMod" = "SUPER";
-      "$terminal" = "ghostty";
+      "$terminal" = "wezterm";
       "$fileManager" = "thunar";
       "$menu" = "wofi";
       "$browser" = "floorp";
@@ -31,7 +31,6 @@
         "vesktop &"
         "obsidian &"
         "codium &"
-        "steam &"
         # "systemctl --user start hyprpolkitagent"
       ];
 
