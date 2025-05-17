@@ -68,6 +68,7 @@
       unzip
       nil # nix language server
       nixfmt-rfc-style # nix formatter
+      tldr # very nice short descriptions
       zip
       wget
       killall

@@ -17,6 +17,7 @@
     common/optional/bitwarden.nix
     common/optional/obsidian.nix
     common/optional/stylix.nix
+    common/optional/kicad.nix
 
   ];
 }
