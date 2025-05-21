@@ -23,7 +23,7 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 20d --keep 5";
-    flake = "/home/user/${config.hostSpec.home}/nixos";
+    flake = "/home/${config.hostSpec.home}/nixos";
   };
 
   security.polkit.enable = true;
