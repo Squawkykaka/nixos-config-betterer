@@ -15,11 +15,7 @@
     font-awesome
     powerline-fonts
     powerline-symbols
-    (nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-      ];
-    })
+    nerd-fonts.jetbrains-mono
   ];
 
   stylix = {
@@ -39,12 +35,8 @@
       };
 
       monospace = {
-        name = "JetBrainsMono";
-        package = pkgs.nerdfonts.override {
-          fonts = [
-            "JetBrainsMono"
-          ];
-        };
+        name = "JetBrainsMono Nerd Font Mono";
+        package = pkgs.nerd-fonts.jetbrains-mono;
       };
       sansSerif = {
         name = "Noto Sans";

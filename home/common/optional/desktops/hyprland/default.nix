@@ -6,4 +6,6 @@
     ./hyprpaper.nix
     ./main.nix
   ];
+
+  # TODO switch to hyprland flake
 }
