@@ -21,16 +21,18 @@
       "$terminal" = "wezterm";
       "$fileManager" = "thunar";
       "$menu" = "wofi";
+      "$notes" = "obsidian";
       "$browser" = "floorp";
 
       exec-once = [
         "waybar"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
-        "floorp &"
-        "vesktop &"
-        "obsidian &"
-        "codium &"
+        "[workspace 2 silent] $notes"
+        "[workspace 3 silent] codium"
+        "[workspace 5 silent] vesktop"
+        "[workspace 1] $browser"
+        "nm-applet &"
         # "systemctl --user start hyprpolkitagent"
       ];
 
@@ -102,11 +104,11 @@
         "move 990 60,size 900 170,pin,noinitialfocus,class:(showmethekey-gtk)"
         "noborder,nofocus,class:(showmethekey-gtk)"
 
-        "workspace 1,class:(floorp)"
-        "workspace 2,class:(codium)"
-        "workspace 3,class:(obsidian)"
-        "workspace 3,class:(logseq)"
-        "workspace 4,class:(steam)"
+        # "workspace 1,class:(floorp)"
+        "workspace 3,class:(codium)"
+        # "workspace 3,class:(obsidian)"
+        # "workspace 3,class:(logseq)"
+        # "workspace 4,class:(steam)"
         "workspace 5,class:(vesktop)"
 
         "suppressevent maximize, class:.*"

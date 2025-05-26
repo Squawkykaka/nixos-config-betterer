@@ -1,5 +1,9 @@
 { inputs, pkgs, ... }:
 {
+  environment.systemPackages = [
+    pkgs.networkmanagerapplet
+  ];
+
   programs.hyprland = {
     enable = true;
     # xwayland.enable = true;

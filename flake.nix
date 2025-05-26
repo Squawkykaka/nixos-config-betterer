@@ -5,6 +5,7 @@
     {
       self,
       nixpkgs,
+      lix-module,
       ...
     }@inputs:
     let
@@ -30,7 +31,10 @@
             specialArgs = {
               inherit inputs outputs lib;
             };
-            modules = [ ./hosts/nixos/${host} ];
+            modules = [
+              ./hosts/nixos/${host}
+              lix-module.nixosModules.default
+            ];
           };
         }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
       );
@@ -70,6 +74,11 @@
 
     hyprland = {
       url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

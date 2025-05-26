@@ -11,7 +11,6 @@
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
-          "custom/weather"
           "pulseaudio"
           "battery"
           "backlight"
@@ -26,8 +25,8 @@
           format = "{icon}";
           format-icons = {
             "1" = "";
-            "2" = "";
-            "3" = "";
+            "2" = "";
+            "3" = "";
             "4" = "";
             "5" = "";
             "magic" = "";
@@ -38,11 +37,17 @@
           };
         };
 
-        "custom/weather" = {
-          format = " {} ";
-          exec = "curl -s 'wttr.in/Tashkent?format=%c%t'";
-          interval = 300;
-          class = "weather";
+        network = {
+          interface = "wlp82s0";
+          format = " {icon} ";
+          tooltip-format = "{essid}: {ipaddr}/{cidr}";
+          format-icons = [
+            "󰤯"
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
         };
 
         backlight = {
