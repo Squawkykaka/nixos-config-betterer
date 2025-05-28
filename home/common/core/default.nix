@@ -66,7 +66,7 @@
       ripgrep # better grep
       tree # cli dir tree viewer
       unzip
-      nil # nix language server
+      nixd # nix language server
       nixfmt-rfc-style # nix formatter
       tldr # very nice short descriptions
       zip
