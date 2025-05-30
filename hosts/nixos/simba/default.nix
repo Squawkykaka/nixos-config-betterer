@@ -123,5 +123,11 @@
     };
   };
 
+  environment.systemPackages = [
+    pkgs.kicad
+    pkgs.freecad
+    pkgs.dualsensectl
+  ];
+
   system.stateVersion = "24.11";
 }
