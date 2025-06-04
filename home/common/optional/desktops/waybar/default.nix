@@ -70,7 +70,7 @@
         "pulseaudio" = {
           format = "{icon}  {volume}%";
           format-bluetooth = "{icon}  {volume}% ";
-          format-muted = "";
+          format-muted = "";
           format-icons = {
             "headphones" = "";
             "headset" = "";
