@@ -13,6 +13,7 @@
         gh # github cli
         glab # gitlab cli
         yq-go # Parser for Yaml and Toml Files, that mirrors jq
+	devenv
 
         # nix
         nixpkgs-review

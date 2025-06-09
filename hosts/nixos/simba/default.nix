@@ -127,7 +127,15 @@
     pkgs.kicad
     pkgs.freecad
     pkgs.dualsensectl
+    pkgs.pinentry-curses
   ];
+
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-curses;
+  };
 
   system.stateVersion = "24.11";
 }
