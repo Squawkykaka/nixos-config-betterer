@@ -43,7 +43,7 @@
     ];
     sessionVariables = {
       FLAKE = "$HOME/nixos";
-      SHELL = "zsh";
+      # SHELL = "zsh";
       TERM = "wezterm";
       TERMINAL = "wezterm";
       VISUAL = "nvim";
