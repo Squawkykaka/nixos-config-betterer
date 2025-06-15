@@ -73,7 +73,7 @@
     loader = {
       systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
-      timeout = 3;
+      timeout = 0;
     };
 
     lanzaboote = {
