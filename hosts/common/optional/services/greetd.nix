@@ -2,18 +2,14 @@
 # greeter -> tuigreet https://github.com/apognu/tuigreet?tab=readme-ov-file
 # display manager -> greetd https://man.sr.ht/~kennylevinsen/greetd/
 #
-
 {
   config,
   pkgs,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.autoLogin;
-in
-{
+in {
   # Declare custom options for conditionally enabling auto login
   options.autoLogin = {
     enable = lib.mkEnableOption "Enable automatic login";
@@ -26,7 +22,7 @@ in
   };
 
   config = {
-    environment.systemPackages = [ pkgs.greetd.tuigreet ];
+    environment.systemPackages = [pkgs.greetd.tuigreet];
     services.greetd = {
       enable = true;
 

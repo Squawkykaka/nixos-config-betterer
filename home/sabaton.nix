@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     #
     # ========== Required Configs ==========
@@ -18,6 +17,5 @@
     common/optional/obsidian.nix
     common/optional/stylix.nix
     common/optional/kicad.nix
-
   ];
 }

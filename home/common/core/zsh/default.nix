@@ -2,8 +2,7 @@
   config,
   hostSpec,
   ...
-}:
-{
+}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;

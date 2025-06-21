@@ -22,7 +22,7 @@
       "$fileManager" = "thunar";
       "$menu" = "wofi";
       "$notes" = "obsidian";
-      "$browser" = "floorp";
+      "$browser" = "firefox";
 
       exec-once = [
         "waybar"

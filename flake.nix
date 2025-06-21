@@ -1,44 +1,40 @@
 {
   description = "My new nixos configuration";
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      lix-module,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
+  outputs = {
+    self,
+    nixpkgs,
+    lix-module,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
 
-      # ========== Extend lib with lib.custom ==========
-      lib = nixpkgs.lib.extend (_self: _super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
-
-    in
-    {
-      #
-      # ========= Formatting =========
-      #
-      # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-      # ========= Host Configurations =========
-      #
-      # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
-      nixosConfigurations = builtins.listToAttrs (
-        map (host: {
-          name = host;
-          value = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs outputs lib;
-            };
-            modules = [
-              ./hosts/nixos/${host}
-              lix-module.nixosModules.default
-            ];
+    # ========== Extend lib with lib.custom ==========
+    lib = nixpkgs.lib.extend (_self: _super: {custom = import ./lib {inherit (nixpkgs) lib;};});
+  in {
+    #
+    # ========= Formatting =========
+    #
+    # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+    # ========= Host Configurations =========
+    #
+    # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
+    nixosConfigurations = builtins.listToAttrs (
+      map (host: {
+        name = host;
+        value = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs lib;
           };
-        }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
-      );
-    };
+          modules = [
+            ./hosts/nixos/${host}
+            lix-module.nixosModules.default
+          ];
+        };
+      }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
+    );
+  };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

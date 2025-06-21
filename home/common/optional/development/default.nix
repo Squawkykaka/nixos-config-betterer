@@ -1,10 +1,14 @@
-{ lib, pkgs, ... }:
 {
+  lib,
+  pkgs,
+  ...
+}: {
   imports = lib.custom.scanPaths ./.;
 
   home.packages = lib.flatten [
     (builtins.attrValues {
-      inherit (pkgs)
+      inherit
+        (pkgs)
         # Development
         direnv
         delta # diffing
@@ -13,23 +17,17 @@
         gh # github cli
         glab # gitlab cli
         yq-go # Parser for Yaml and Toml Files, that mirrors jq
-	devenv
-
+        devenv
         # nix
         nixpkgs-review
-
         # networking
         nmap
-
         # Diffing
         difftastic
-
         # devops
         ansible
-
         # serial debugging
         screen
-
         # Standard man pages for linux API
         man-pages
         man-pages-posix

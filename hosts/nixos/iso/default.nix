@@ -5,8 +5,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   imports = lib.flatten [
     "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
     #"${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
@@ -48,12 +47,10 @@
   environment.etc = {
     isoBuildTime = {
       #
-      text = lib.readFile (
-        "${pkgs.runCommand "timestamp" {
-          # builtins.currentTime requires --impure
-          env.when = builtins.currentTime;
-        } "echo -n `date -d @$when  +%Y-%m-%d_%H-%M-%S` > $out"}"
-      );
+      text = lib.readFile "${pkgs.runCommand "timestamp" {
+        # builtins.currentTime requires --impure
+        env.when = builtins.currentTime;
+      } "echo -n `date -d @$when  +%Y-%m-%d_%H-%M-%S` > $out"}";
     };
   };
 
@@ -82,7 +79,7 @@
     qemuGuest.enable = true;
     openssh = {
       enable = true;
-      ports = [ config.hostSpec.networking.ports.tcp.ssh ];
+      ports = [config.hostSpec.networking.ports.tcp.ssh];
       settings.PermitRootLogin = lib.mkForce "yes";
     };
   };
@@ -100,7 +97,7 @@
   };
 
   systemd = {
-    services.sshd.wantedBy = lib.mkForce [ "multi-user.target" ];
+    services.sshd.wantedBy = lib.mkForce ["multi-user.target"];
     # gnome power settings to not turn off screen
     targets = {
       sleep.enable = false;

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     #
     # ========== Required Configs ==========
@@ -17,6 +16,5 @@
     common/optional/bitwarden.nix
     common/optional/obsidian.nix
     common/optional/stylix.nix
-
   ];
 }

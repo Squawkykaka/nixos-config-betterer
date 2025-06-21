@@ -1,6 +1,9 @@
 # Core functionality for every nixos host
-{ config, lib, ... }:
 {
+  config,
+  lib,
+  ...
+}: {
   # Database for aiding terminal-based programs
   environment.enableAllTerminfo = true;
   # Enable firmware with a license allowing redistribution

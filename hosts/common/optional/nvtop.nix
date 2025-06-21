@@ -1,7 +1,7 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment.systemPackages = builtins.attrValues {
-    inherit (pkgs.nvtopPackages)
+    inherit
+      (pkgs.nvtopPackages)
       amd
       intel
       nvidia
