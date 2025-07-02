@@ -14,10 +14,10 @@
     common/optional/comms
     common/optional/development
 
-    common/optional/bitwarden.nix
+    # common/optional/bitwarden.nix
     common/optional/obsidian.nix
     common/optional/stylix.nix
-    common/optional/kicad.nix
+    # common/optional/kicad.nix
     common/optional/atuin.nix
   ];
 }
