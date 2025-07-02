@@ -2,7 +2,8 @@
   config,
   hostSpec,
   ...
-}: {
+}:
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -11,9 +12,7 @@
     autocd = true;
 
     shellAliases = {
-      sw = "nh os switch";
-      upd = "nix flake update --flake /home/${hostSpec.username}/nixos";
-
+      # Replace with lazygit.
       gs = "git status";
       ga = "git add";
       gc = "git commit";
@@ -21,8 +20,6 @@
 
       ls = "eza";
       cat = "bat";
-
-      ".." = "cd ..";
     };
 
     history.size = 10000;
@@ -76,7 +73,7 @@
       # Standard OMZ plugins pre-installed to $ZSH/plugins/
       # Custom OMZ plugins are added to $ZSH_CUSTOM/plugins/
       # Enabling too many plugins will slowdown shell startup
-      theme = "robbyrussell";
+      theme = "edvardm";
       plugins = [
         "git"
         "sudo" # press Esc twice to get the previous command prefixed with sudo https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo

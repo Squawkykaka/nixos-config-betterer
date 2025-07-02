@@ -7,6 +7,9 @@ rebuild-pre:
 rebuild: rebuild-pre && rebuild-post
   scripts/rebuild.sh
 
+update:
+  @nix flake update
+
 rebuild-post:
 
 iso:
