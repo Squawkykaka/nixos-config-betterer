@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     prismlauncher
     r2modman
@@ -17,10 +18,35 @@
         enable = true;
         package = pkgs.protontricks;
       };
+      package = pkgs.steam.override {
+        extraPkgs =
+          pkgs:
+          (builtins.attrValues {
+            inherit (pkgs.xorg)
+              libXcursor
+              libXi
+              libXinerama
+              libXScrnSaver
+              ;
+
+            inherit (pkgs.stdenv.cc.cc)
+              lib
+              ;
+
+            inherit (pkgs)
+              libpng
+              libpulseaudio
+              libvorbis
+              libkrb5
+              keyutils
+              gperftools
+              ;
+          });
+      };
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = false;
       gamescopeSession.enable = true;
-      extraCompatPackages = [pkgs.proton-ge-bin];
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
     gamescope = {
