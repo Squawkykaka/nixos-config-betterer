@@ -113,7 +113,6 @@
     polkit.enable = true;
     rtkit.enable = true;
     soteria.enable = true;
-    gnome.gnome-keyring.enable = true;
   };
 
   #
