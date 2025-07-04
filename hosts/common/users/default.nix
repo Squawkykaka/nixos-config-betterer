@@ -7,7 +7,7 @@
   ...
 }:
 let
-  hostSpec = config.hostSpec;
+  inherit (config) hostSpec;
   pubKeys = lib.filesystem.listFilesRecursive ./keys;
 in
 {
@@ -31,7 +31,8 @@ in
   systemd.tmpfiles.rules =
     let
       user = config.users.users.${hostSpec.username}.name;
-      group = config.users.users.${hostSpec.username}.group;
+
+      inherit (config.users.users.${hostSpec.username}) group;
     in
     # you must set the rule for .ssh separately first, otherwise it will be automatically created as root:root and .ssh/sockects will fail
     [
@@ -51,7 +52,7 @@ in
   home-manager = {
     extraSpecialArgs = {
       inherit pkgs inputs;
-      hostSpec = config.hostSpec;
+      inherit (config) hostSpec;
     };
     users.${hostSpec.username}.imports = lib.flatten [
       (
