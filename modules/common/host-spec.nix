@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.hostSpec = {
     # Data variables that don't dictate configuration settings
     username = lib.mkOption {
@@ -19,7 +20,7 @@
       description = "The email of the user";
     };
     networking = lib.mkOption {
-      default = {};
+      default = { };
       type = lib.types.attrsOf lib.types.anything;
       description = "An attribute set of networking information";
     };
@@ -43,9 +44,11 @@
     home = lib.mkOption {
       type = lib.types.str;
       description = "The home directory of the user";
-      default = let
-        user = config.hostSpec.username;
-      in "/home/${user}";
+      default =
+        let
+          user = config.hostSpec.username;
+        in
+        "/home/${user}";
     };
     persistFolder = lib.mkOption {
       type = lib.types.str;
@@ -77,15 +80,17 @@
   };
 
   config = {
-    assertions = let
-      # We import these options to HM and NixOS, so need to not fail on HM
-      isImpermanent =
-        config ? "system" && config.system ? "impermanence" && config.system.impermanence.enable;
-    in [
-      {
-        assertion = !isImpermanent || (isImpermanent && !("${config.hostSpec.persistFolder}" == ""));
-        message = "config.system.impermanence.enable is true but no persistFolder path is provided";
-      }
-    ];
+    assertions =
+      let
+        # We import these options to HM and NixOS, so need to not fail on HM
+        isImpermanent =
+          config ? "system" && config.system ? "impermanence" && config.system.impermanence.enable;
+      in
+      [
+        {
+          assertion = !isImpermanent || (isImpermanent && !("${config.hostSpec.persistFolder}" == ""));
+          message = "config.system.impermanence.enable is true but no persistFolder path is provided";
+        }
+      ];
   };
 }

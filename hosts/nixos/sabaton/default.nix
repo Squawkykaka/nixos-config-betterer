@@ -10,7 +10,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = lib.flatten [
     #
     # ========== Hardware ==========
@@ -44,7 +45,6 @@
       "hosts/common/optional/hyprland.nix"
       # "hosts/common/optional/solaar.nix"
       "hosts/common/optional/audio.nix"
-      # "hosts/common/optional/stylix.nix"
       "hosts/common/optional/syncthing.nix"
       # TODO
     ])
@@ -87,10 +87,10 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [nvidia-vaapi-driver];
+    extraPackages = with pkgs; [ nvidia-vaapi-driver ];
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;

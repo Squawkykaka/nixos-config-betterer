@@ -5,7 +5,6 @@
     {
       self,
       nixpkgs,
-      lix-module,
       ...
     }@inputs:
     let
@@ -13,13 +12,10 @@
 
       # ========== Extend lib with lib.custom ==========
       lib = nixpkgs.lib.extend (_self: _super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+
+      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
     in
     {
-      #
-      # ========= Formatting =========
-      #
-      # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
       # ========= Host Configurations =========
       #
       # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
@@ -32,20 +28,44 @@
             };
             modules = [
               ./hosts/nixos/${host}
-              lix-module.nixosModules.default
             ];
           };
         }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
       );
+
+      #
+      # ========= Formatting =========
+      #
+      # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+      # Pre-commit checks
+      checks = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        import ./checks.nix { inherit inputs system pkgs; }
+      );
+
+      #
+      # ========= DevShell =========
+      #
+      devShells = forAllSystems (
+        system:
+        import ./shell.nix {
+          pkgs = nixpkgs.legacyPackages.${system};
+          checks = self.checks.${system};
+        }
+      );
     };
 
   inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -81,13 +101,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
+    # Pre-commit
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -4,7 +4,8 @@
   pkgs,
   hostSpec,
   ...
-}: {
+}:
+{
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
       "modules/common/host-spec.nix"
@@ -16,6 +17,7 @@
     ./xdg.nix
     ./eza.nix
     # ./ghostty.nix
+    ./stylix.nix
     ./wezterm.nix
     ./neovim.nix
     ./direnv.nix
@@ -53,8 +55,7 @@
   };
 
   home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       btop # resource monitor
       coreutils # basic gnu utils
       curl

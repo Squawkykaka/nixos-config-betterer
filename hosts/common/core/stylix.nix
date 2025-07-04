@@ -2,8 +2,9 @@
   pkgs,
   inputs,
   ...
-}: {
-  imports = [inputs.stylix.nixosModules.stylix];
+}:
+{
+  imports = [ inputs.stylix.nixosModules.stylix ];
 
   environment.systemPackages = with pkgs; [
     dejavu_fonts
