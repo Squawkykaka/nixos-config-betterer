@@ -126,5 +126,11 @@
   services.auto-cpufreq.enable = true;
   services.tlp.enable = true;
 
+  services.undervolt = {
+    enable = true;
+    uncoreOffset = -130;
+    coreOffset = -130;
+  };
+
   system.stateVersion = "24.11";
 }
