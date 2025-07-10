@@ -34,6 +34,25 @@
       );
 
       #
+      # ========= Packages =========
+      #
+      # Expose custom packages
+
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            # overlays = [ self.overlays.default ];
+          };
+        in
+        nixpkgs.lib.packagesFromDirectoryRecursive {
+          callPackage = nixpkgs.lib.callPackageWith pkgs;
+          directory = ./packages;
+        }
+      );
+
+      #
       # ========= Formatting =========
       #
       # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
@@ -60,7 +79,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -68,7 +87,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
