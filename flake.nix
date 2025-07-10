@@ -16,6 +16,12 @@
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
     in
     {
+      #
+      # ========= Overlays =========
+      #
+      # Custom modifications/overrides to upstream packages
+      overlays = import ./overlays { inherit inputs; };
+
       # ========= Host Configurations =========
       #
       # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
