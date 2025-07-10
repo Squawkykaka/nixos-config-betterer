@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -7,6 +8,7 @@
       lua-language-server
       python311Packages.python-lsp-server
       nixd
+      gcc
       vimPlugins.nvim-treesitter-parsers.hyprlang
     ];
   };

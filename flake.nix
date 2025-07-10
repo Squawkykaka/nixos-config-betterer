@@ -1,5 +1,5 @@
 {
-  description = "My new nixos configuration";
+  description = "Squawkykaka's NixOS configuration";
 
   outputs =
     {
@@ -22,6 +22,7 @@
       # Custom modifications/overrides to upstream packages
       overlays = import ./overlays { inherit inputs; };
 
+      #
       # ========= Host Configurations =========
       #
       # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
@@ -31,10 +32,9 @@
           value = nixpkgs.lib.nixosSystem {
             specialArgs = {
               inherit inputs outputs lib;
+              isDarwin = false;
             };
-            modules = [
-              ./hosts/nixos/${host}
-            ];
+            modules = [ ./hosts/nixos/${host} ];
           };
         }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
       );
@@ -85,7 +85,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -93,7 +93,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -122,7 +122,7 @@
     };
 
     solaar = {
-      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
+      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
