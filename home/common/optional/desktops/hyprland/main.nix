@@ -3,6 +3,7 @@
     enable = true;
     systemd.enable = true;
     settings = {
+      "debug:full_cm_proto" = true;
       env = [
         # Hint Electron apps to use Wayland
         "NIXOS_OZONE_WL,1"
