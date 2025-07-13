@@ -2,7 +2,7 @@
 # This file defines overlays/custom modifications to upstream packages
 #
 
-# { inputs, ... }:
+{ ... }:
 
 let
   # Adds my custom packages
