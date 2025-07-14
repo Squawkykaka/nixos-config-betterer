@@ -126,6 +126,11 @@
   services.auto-cpufreq.enable = true;
   services.tlp.enable = true;
 
+  services.netbird = {
+    package = pkgs.netbird;
+    enable = true;
+  };
+
   services.undervolt = {
     enable = true;
     uncoreOffset = -130;

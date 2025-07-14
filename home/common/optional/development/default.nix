@@ -2,17 +2,17 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = lib.custom.scanPaths ./.;
 
   home.packages = lib.flatten [
     (builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         # Development
         direnv
         delta # diffing
-        vscodium
+        vscode
         act # github workflow runner
         gh # github cli
         glab # gitlab cli
