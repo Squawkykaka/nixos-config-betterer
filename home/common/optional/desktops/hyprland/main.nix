@@ -30,7 +30,7 @@
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
         "[workspace 2 silent] $notes"
-        "[workspace 3 silent] codium"
+        "[workspace 3 silent] code"
         "[workspace 5 silent] vesktop"
         "[workspace 1] $browser"
         "nm-applet &"

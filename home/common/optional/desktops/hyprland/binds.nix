@@ -6,6 +6,7 @@
       "$mainMod SHIFT, M, exit,"
       "$mainMod,       E, exec, $fileManager"
       "$mainMod,       F, togglefloating,"
+      "$mainMod SHIFT, F, exec, pid=$(pidof waybar) && kill $pid || waybar &"
       "$mainMod,       D, exec, pgrep $menu >/dev/null 2>&1 && killall $menu || $menu --show drun --location=top -y 15 --width 700"
       "$mainMod,       P, pin,"
       "$mainMod,       J, togglesplit,"
