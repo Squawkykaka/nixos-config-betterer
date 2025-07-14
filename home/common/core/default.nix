@@ -16,9 +16,9 @@
     ./git.nix
     ./xdg.nix
     ./eza.nix
-    # ./ghostty.nix
+    ./ghostty.nix
     ./stylix.nix
-    ./wezterm.nix
+    # ./wezterm.nix
     ./neovim.nix
     ./direnv.nix
     ./bat.nix

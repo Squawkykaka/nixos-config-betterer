@@ -19,7 +19,7 @@
         "HDMI-A-1,2560x1440@120.00Hz,auto,1"
       ];
       "$mainMod" = "SUPER";
-      "$terminal" = "wezterm";
+      "$terminal" = "ghostty";
       "$fileManager" = "thunar";
       "$menu" = "wofi";
       "$notes" = "obsidian";
@@ -106,7 +106,7 @@
         "noborder,nofocus,class:(showmethekey-gtk)"
 
         # "workspace 1,class:(floorp)"
-        "workspace 3,class:(codium)"
+        "workspace 3,class:(code)"
         # "workspace 3,class:(obsidian)"
         # "workspace 3,class:(logseq)"
         # "workspace 4,class:(steam)"
