@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+# TODO rework so that everything is placed in specific desktop folders, so i could have multiple.
+
+{ pkgs, ... }:
+{
   imports = [
     # Packages with custom configs go here
 

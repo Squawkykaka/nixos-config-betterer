@@ -16,9 +16,7 @@
     ./git.nix
     ./xdg.nix
     ./eza.nix
-    ./ghostty.nix
     ./stylix.nix
-    # ./wezterm.nix
     ./neovim.nix
     ./direnv.nix
     ./bat.nix
@@ -49,7 +47,8 @@
       TERMINAL = "wezterm";
       VISUAL = "nvim";
       EDITOR = "nvim";
-      MANPAGER = "batman"; # see ./cli/bat.nix
+      # Removed since it doesnt open the page directly
+      # MANPAGER = "batman"; # see ./cli/bat.nix
     };
     preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
   };

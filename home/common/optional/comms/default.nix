@@ -1,13 +1,14 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   #imports = [ ./foo.nix ];
 
   home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       #telegram-desktop
       vesktop
-      slack
-      whatsapp-for-linux
+
+      # FIXME has wierd graphical issues on hyprland
+      # slack
       ;
   };
 }
