@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  #imports = [ ./foo.nix ];
+  imports = [ ./mpv.nix ];
 
   home.packages = builtins.attrValues {
     inherit (pkgs)

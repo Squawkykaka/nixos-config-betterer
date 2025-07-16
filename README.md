@@ -5,3 +5,4 @@
 - [x] fix somewhat laggy boot time
 - [ ] remove some caches so that download time is reduced.
 - [ ]
+- [ ] setup mpv for audio playing.
