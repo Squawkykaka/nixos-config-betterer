@@ -17,5 +17,6 @@
     common/optional/obsidian.nix
     common/optional/atuin.nix
     common/optional/ghostty.nix
+    common/optional/mpd.nix
   ];
 }

@@ -8,8 +8,11 @@
         layer = "top";
         position = "top";
         height = 30;
-        modules-left = ["hyprland/workspaces"];
-        modules-center = ["hyprland/window"];
+        modules-left = [
+          "hyprland/workspaces"
+          "mpd"
+        ];
+        modules-center = [ "hyprland/window" ];
         modules-right = [
           "pulseaudio"
           "battery"
@@ -34,6 +37,22 @@
 
           persistent-workspaces = {
             "*" = 5;
+          };
+        };
+
+        mpd = {
+          server = "127.0.0.1";
+          port = 6600;
+
+          format = "{consumeIcon} {artist} - {title}";
+          format-stopped = "Stopped";
+          format-paused = "Paused";
+
+          on-click = "rmpc togglepause";
+
+          state-icons = {
+            "playing" = "";
+            "paused" = "";
           };
         };
 

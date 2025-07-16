@@ -8,5 +8,5 @@
     jack.enable = true;
   };
 
-  hardware.pulseaudio.enable = false; # Use Pipewire, the modern sound subsystem
+  services.pulseaudio.enable = false; # Use Pipewire, the modern sound subsystem
 }
