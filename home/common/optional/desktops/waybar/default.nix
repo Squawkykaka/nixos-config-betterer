@@ -1,3 +1,4 @@
+{ lib, config, ... }:
 {
   programs.waybar = {
     enable = true;
@@ -10,8 +11,9 @@
         height = 30;
         modules-left = [
           "hyprland/workspaces"
-          "mpd"
+          (lib.mkIf (config.services.mpd.enable == true) "mpd")
         ];
+
         modules-center = [ "hyprland/window" ];
         modules-right = [
           "pulseaudio"
@@ -44,16 +46,11 @@
           server = "127.0.0.1";
           port = 6600;
 
-          format = "{consumeIcon} {artist} - {title}";
-          format-stopped = "Stopped";
+          format = "{artist} - {title}";
+          format-stopped = "{stateIcon} Stopped";
           format-paused = "Paused";
 
           on-click = "rmpc togglepause";
-
-          state-icons = {
-            "playing" = "";
-            "paused" = "";
-          };
         };
 
         network = {

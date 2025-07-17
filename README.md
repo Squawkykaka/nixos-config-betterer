@@ -6,3 +6,4 @@
 - [ ] remove some caches so that download time is reduced.
 - [ ]
 - [ ] setup mpv for audio playing.
+- [ ] make a quickshell thingy for mpd, showing on waybar
