@@ -23,18 +23,27 @@
     # ========= Host Configurations =========
     #
     # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
-    nixosConfigurations = builtins.listToAttrs (
-      map (host: {
-        name = host;
-        value = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs lib;
-            isDarwin = false;
+    nixosConfigurations =
+      builtins.listToAttrs (
+        map (host: {
+          name = host;
+          value = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs outputs lib;
+            };
+            modules = [./hosts/nixos/${host}];
           };
-          modules = [./hosts/nixos/${host}];
+        }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
+      )
+      // {
+        iso = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {inherit inputs outputs;};
+          modules = [
+            (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+          ];
         };
-      }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
-    );
+      };
 
     #
     # ========= Packages =========
