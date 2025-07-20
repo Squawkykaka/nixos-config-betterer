@@ -1,88 +1,83 @@
 {
   description = "Squawkykaka's NixOS configuration";
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
 
-      # ========== Extend lib with lib.custom ==========
-      lib = nixpkgs.lib.extend (_self: _super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+    # ========== Extend lib with lib.custom ==========
+    lib = nixpkgs.lib.extend (_self: _super: {custom = import ./lib {inherit (nixpkgs) lib;};});
 
-      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
-    in
-    {
-      #
-      # ========= Overlays =========
-      #
-      # Custom modifications/overrides to upstream packages
-      overlays = import ./overlays { inherit inputs; };
+    forAllSystems = nixpkgs.lib.genAttrs ["x86_64-linux"];
+  in {
+    #
+    # ========= Overlays =========
+    #
+    # Custom modifications/overrides to upstream packages
+    overlays = import ./overlays {inherit inputs;};
 
-      #
-      # ========= Host Configurations =========
-      #
-      # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
-      nixosConfigurations = builtins.listToAttrs (
-        map (host: {
-          name = host;
-          value = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs outputs lib;
-              isDarwin = false;
-            };
-            modules = [ ./hosts/nixos/${host} ];
+    #
+    # ========= Host Configurations =========
+    #
+    # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
+    nixosConfigurations = builtins.listToAttrs (
+      map (host: {
+        name = host;
+        value = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs lib;
+            isDarwin = false;
           };
-        }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
-      );
+          modules = [./hosts/nixos/${host}];
+        };
+      }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
+    );
 
-      #
-      # ========= Packages =========
-      #
-      # Expose custom packages
+    #
+    # ========= Packages =========
+    #
+    # Expose custom packages
 
-      packages = forAllSystems (
-        system:
-        let
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [ self.overlays.default ];
-          };
-        in
+    packages = forAllSystems (
+      system: let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [self.overlays.default];
+        };
+      in
         nixpkgs.lib.packagesFromDirectoryRecursive {
           callPackage = nixpkgs.lib.callPackageWith pkgs;
           directory = ./packages;
         }
-      );
+    );
 
-      #
-      # ========= Formatting =========
-      #
-      # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
-      # Pre-commit checks
-      checks = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        import ./checks.nix { inherit inputs system pkgs; }
-      );
+    #
+    # ========= Formatting =========
+    #
+    # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    # Pre-commit checks
+    checks = forAllSystems (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        import ./checks.nix {inherit inputs system pkgs;}
+    );
 
-      #
-      # ========= DevShell =========
-      #
-      devShells = forAllSystems (
-        system:
+    #
+    # ========= DevShell =========
+    #
+    devShells = forAllSystems (
+      system:
         import ./shell.nix {
           pkgs = nixpkgs.legacyPackages.${system};
           checks = self.checks.${system};
         }
-      );
-    };
+    );
+  };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

@@ -1,19 +1,18 @@
 # Shell for bootstrapping flake-enabled nix and other tooling
 {
   pkgs ?
-    # If pkgs is not defined, instantiate nixpkgs from locked commit
-    let
-      lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
-      nixpkgs = fetchTarball {
-        url = "https://github.com/nixos/nixpkgs/archive/${lock.rev}.tar.gz";
-        sha256 = lock.narHash;
-      };
-    in
-    import nixpkgs { overlays = [ ]; },
+  # If pkgs is not defined, instantiate nixpkgs from locked commit
+  let
+    lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
+    nixpkgs = fetchTarball {
+      url = "https://github.com/nixos/nixpkgs/archive/${lock.rev}.tar.gz";
+      sha256 = lock.narHash;
+    };
+  in
+    import nixpkgs {overlays = [];},
   checks,
   ...
-}:
-{
+}: {
   default = pkgs.mkShell {
     NIX_CONFIG = "extra-experimental-features = nix-command flakes";
     BOOTSTRAP_USER = "gleask";
@@ -24,7 +23,8 @@
     buildInputs = checks.pre-commit-check.enabledPackages;
 
     nativeBuildInputs = builtins.attrValues {
-      inherit (pkgs)
+      inherit
+        (pkgs)
         nix
         home-manager
         nh
@@ -33,6 +33,7 @@
         pre-commit
         deadnix
         sops
+        alejandra
         yq-go # jq for yaml, used for build scripts
         bats # for bash testing
         age # for bootstrap script

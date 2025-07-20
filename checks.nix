@@ -2,12 +2,10 @@
   inputs,
   system,
   ...
-}:
-{
-
+}: {
   pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
     src = ./.;
-    default_stages = [ "pre-commit" ];
+    default_stages = ["pre-commit"];
     hooks = {
       # ========== General ==========
       check-added-large-files = {
@@ -32,7 +30,7 @@
         description = "forbids any submodules in the repository";
         language = "fail";
         entry = "submodules are not allowed in this repository:";
-        types = [ "directory" ];
+        types = ["directory"];
       };
 
       destroyed-symlinks = {
@@ -41,11 +39,11 @@
         description = "detects symlinks which are changed to regular files with a content of a path which that symlink was pointing to.";
         package = inputs.pre-commit-hooks.checks.${system}.pre-commit-hooks;
         entry = "${inputs.pre-commit-hooks.checks.${system}.pre-commit-hooks}/bin/destroyed-symlinks";
-        types = [ "symlink" ];
+        types = ["symlink"];
       };
 
       # ========== nix ==========
-      nixfmt-rfc-style.enable = true;
+      alejandra.enable = true;
       deadnix = {
         enable = true;
         settings = {

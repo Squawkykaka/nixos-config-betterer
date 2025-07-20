@@ -8,7 +8,6 @@
   pkg-config,
   ...
 }:
-
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "bevy_cli";
   version = "0.1.0-alpha.1";

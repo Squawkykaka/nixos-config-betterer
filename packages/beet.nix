@@ -4,7 +4,6 @@
   fetchFromGitHub,
   fetchPypi,
 }:
-
 python3.pkgs.buildPythonPackage rec {
   pname = "mcbeet";
   version = "0.111.0";
@@ -62,7 +61,7 @@ python3.pkgs.buildPythonPackage rec {
     homepage = "https://mcbeet.dev/";
     changelog = "https://github.com/mcbeet/beet/releases/tag/v${version}";
     license = licenses.mit;
-    maintainers = [ ];
+    maintainers = [];
     mainProgram = "beet";
   };
 }

@@ -1,20 +1,15 @@
 #
 # This file defines overlays/custom modifications to upstream packages
 #
-
-{ ... }:
-
-let
+{...}: let
   # Adds my custom packages
   # FIXME: Add per-system packages
-  additions =
-    final: prev:
-    (prev.lib.packagesFromDirectoryRecursive {
-      callPackage = prev.lib.callPackageWith final;
-      directory = ../packages;
-    });
+  additions = final: prev: (prev.lib.packagesFromDirectoryRecursive {
+    callPackage = prev.lib.callPackageWith final;
+    directory = ../packages;
+  });
 
-  linuxModifications = final: prev: { };
+  linuxModifications = final: prev: {};
 
   modifications = final: prev: {
     # example = prev.example.overrideAttrs (oldAttrs: let ... in {
@@ -27,7 +22,6 @@ let
     #      ];
     #    };
   };
-
   # stable-packages = final: _prev: {
   #   stable = import inputs.nixpkgs-stable {
   #     inherit (final) system;
@@ -36,7 +30,6 @@ let
   #     #     ];
   #   };
   # };
-
   # unstable-packages = final: _prev: {
   #   unstable = import inputs.nixpkgs-unstable {
   #     inherit (final) system;
@@ -45,11 +38,8 @@ let
   #     #     ];
   #   };
   # };
-in
-{
-  default =
-    final: prev:
-
+in {
+  default = final: prev:
     (additions final prev) // (modifications final prev) // (linuxModifications final prev);
   # // (stable-packages final prev)
   # // (unstable-packages final prev);

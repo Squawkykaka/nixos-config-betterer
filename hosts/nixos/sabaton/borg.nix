@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   services.borgbackup.jobs."borgbase" = {
     paths = [
       "/var/lib"

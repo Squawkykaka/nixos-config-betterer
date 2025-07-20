@@ -10,8 +10,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   imports = lib.flatten [
     #
     # ========== Hardware ==========
@@ -51,6 +50,7 @@
       "hosts/common/optional/services/bluetooth.nix"
       "hosts/common/optional/services/openssh.nix"
       "hosts/common/optional/services/greetd.nix"
+      "hosts/common/optional/services/gpg.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/hyprland.nix"
       # "hosts/common/optional/solaar.nix" # FIXME: Solaar is not working witht latest flake update
@@ -104,7 +104,7 @@
       driversi686Linux.amdvlk
     ];
   };
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -136,13 +136,6 @@
     pkgs.dualsensectl
     pkgs.pinentry-curses
   ];
-
-  services.pcscd.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-curses;
-  };
 
   services.tailscale.enable = true;
   services.netbird = {

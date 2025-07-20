@@ -5,7 +5,6 @@
   tokenstream,
   beet,
 }:
-
 python3.pkgs.buildPythonPackage rec {
   pname = "mecha";
   version = "0.98.1";
@@ -23,7 +22,7 @@ python3.pkgs.buildPythonPackage rec {
     tokenstream
   ];
 
-  nativeBuildInputs = [ python3.pkgs.poetry-core ];
+  nativeBuildInputs = [python3.pkgs.poetry-core];
 
   postPatch = ''
     substituteInPlace pyproject.toml \
@@ -31,13 +30,13 @@ python3.pkgs.buildPythonPackage rec {
       --replace-quiet 'requires = ["poetry>=0.12"]' 'requires = ["poetry-core>=1.0.0"]'
   '';
 
-  pythonImportsCheck = [ "mecha" ];
+  pythonImportsCheck = ["mecha"];
 
   meta = with lib; {
     mainProgram = "mecha";
     description = "A powerful Minecraft command library";
     homepage = "https://github.com/mcbeet/mecha";
     license = licenses.mit;
-    maintainers = [ ];
+    maintainers = [];
   };
 }

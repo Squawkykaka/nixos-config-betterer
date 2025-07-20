@@ -1,5 +1,8 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   programs.waybar = {
     enable = true;
     # you can use config.lib.stylix.colors.withHashtag to get the colors
@@ -14,7 +17,7 @@
           (lib.mkIf (config.services.mpd.enable == true) "mpd")
         ];
 
-        modules-center = [ "hyprland/window" ];
+        modules-center = ["hyprland/window"];
         modules-right = [
           "pulseaudio"
           "battery"

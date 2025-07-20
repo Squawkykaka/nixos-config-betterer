@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   ghostty = pkgs.ghostty.overrideAttrs (_: {
     preBuild = ''
       shopt -s globstar
@@ -7,8 +6,7 @@ let
       shopt -u globstar
     '';
   });
-in
-{
+in {
   programs.ghostty = {
     enable = true;
     package = ghostty;

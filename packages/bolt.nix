@@ -6,7 +6,6 @@
   mecha,
   ...
 }:
-
 python3.pkgs.buildPythonPackage rec {
   pname = "mcbolt";
   version = "0.49.2";
@@ -19,7 +18,7 @@ python3.pkgs.buildPythonPackage rec {
     hash = "sha256-kJgZVwMZ1Z50KSYFA16SF3zMpGgYbX3ryFgYTso+JUM=";
   };
 
-  nativeBuildInputs = [ python3.pkgs.poetry-core ];
+  nativeBuildInputs = [python3.pkgs.poetry-core];
 
   # Poetry dependencies
   propagatedBuildInputs = [
@@ -32,6 +31,6 @@ python3.pkgs.buildPythonPackage rec {
     description = "Supercharge Minecraft commands with Python";
     homepage = "https://github.com/mcbeet/bolt";
     license = licenses.mit;
-    maintainers = [ ];
+    maintainers = [];
   };
 }

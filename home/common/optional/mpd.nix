@@ -1,12 +1,11 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.mpd = {
     # user = "gleask";
     enable = true;
     musicDirectory = /home/gleask/media/audio;
     playlistDirectory = /home/gleask/media/audio/playlists;
 
-    extraArgs = [ "--verbose" ];
+    extraArgs = ["--verbose"];
 
     extraConfig = ''
       auto_update "yes"
