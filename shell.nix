@@ -30,6 +30,7 @@
         nh
         git
         just
+        nixos-anywhere
         pre-commit
         deadnix
         sops
