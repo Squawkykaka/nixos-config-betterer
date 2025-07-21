@@ -22,5 +22,11 @@
     extraConfig = {
       init.defaultBranch = "main";
     };
+
+    signing = {
+      format = "openpgp";
+      key = "EEE6D399CBF032538BB85DE421DE591A2CFFC23D";
+      signByDefault = true;
+    };
   };
 }
