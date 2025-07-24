@@ -39,7 +39,7 @@ green "====== REBUILD ======"
 if command -v nh &>/dev/null; then
 	REPO_PATH=$(pwd)
 	export REPO_PATH
-	nh os switch . -- --impure --show-trace
+	nh os switch . -- --impure --debug
 else
 	sudo nixos-rebuild $switch_args
 fi
