@@ -21,7 +21,7 @@ Rework into
 │   │       ├── 1.nix
 │   │       ├── 2.nix
 │   │       └── 3.nix
-│   └── users
+│   └── home
 │       └── gleask.nix
 └── nix
     ├── home

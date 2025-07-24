@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -39,6 +43,10 @@
       #      bindkey '^I' forward-word         # tab
       #      bindkey '^[[Z' backward-word      # shift+tab
       #      bindkey '^ ' autosuggest-accept   # ctrl+space
+    '';
+
+    loginExtra = ''
+      ${pkgs.fortune} | ${pkgs.cowsay} -f sus
     '';
 
     oh-my-zsh = {

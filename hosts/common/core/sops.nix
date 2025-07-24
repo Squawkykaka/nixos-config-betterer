@@ -26,6 +26,11 @@
         mode = "0600";
         path = "/etc/borg/passphrase";
       };
+
+      "wireguard/privkey" = {
+        sopsFile = ../../../secrets/sabaton.yaml;
+        mode = "0600";
+      };
     };
   };
 }
