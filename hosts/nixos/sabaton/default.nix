@@ -136,5 +136,7 @@
     coreOffset = -130;
   };
 
+  virtualisation.docker.enable = true;
+
   system.stateVersion = "24.11";
 }
