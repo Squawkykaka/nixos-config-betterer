@@ -11,7 +11,7 @@
       # "modules/home"
     ])
 
-    ./zsh
+    ./zsh.nix
     ./git.nix
     ./xdg.nix
     ./eza.nix
