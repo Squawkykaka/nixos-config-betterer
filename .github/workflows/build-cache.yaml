@@ -12,12 +12,6 @@ jobs:
     outputs:
       nixos: ${{ steps.finder.outputs.nixos }}
     steps:
-      - name: Maximize build space
-        uses: easimon/maximize-build-space@master
-        with:
-          root-reserve-mb: 512
-          swap-size-mb: 1024
-          remove-dotnet: "true"
       - uses: cachix/install-nix-action@v31
       - uses: actions/checkout@v4
       - id: finder
@@ -36,6 +30,12 @@ jobs:
       matrix:
         host: ${{ fromJSON(needs.find-systems.outputs.nixos) }}
     steps:
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 512
+          swap-size-mb: 1024
+          remove-dotnet: "true"
       - uses: cachix/install-nix-action@v31
       - uses: actions/checkout@v4
       - uses: cachix/cachix-action@v16
