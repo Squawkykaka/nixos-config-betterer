@@ -25,7 +25,7 @@ jobs:
   x86_64-linux:
     name: ${{ matrix.host }} x86_64-linux
     needs: [find-systems]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       matrix:
         host: ${{ fromJSON(needs.find-systems.outputs.nixos) }}
