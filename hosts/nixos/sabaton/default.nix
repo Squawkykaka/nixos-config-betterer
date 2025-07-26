@@ -46,7 +46,7 @@
       "hosts/common/optional/hyprland.nix"
       # "hosts/common/optional/solaar.nix"
       "hosts/common/optional/audio.nix"
-      "hosts/common/optional/syncthing.nix"
+      # "hosts/common/optional/syncthing.nix"
       # TODO
     ])
   ];
