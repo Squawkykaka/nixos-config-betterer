@@ -1,19 +1,39 @@
-name: "Build & Push to Cachix"
+name: build-systems
 on:
+  workflow_dispatch:
   pull_request:
   push:
+    branches: [master]
+
 jobs:
-  build-cache:
+  find-systems:
+    name: find-systems
     runs-on: ubuntu-latest
+    outputs:
+      nixos: ${{ steps.finder.outputs.nixos }}
     steps:
+      - uses: cachix/install-nix-action@v31
       - uses: actions/checkout@v4
-      - uses: cachix/install-nix-action@v25
-        with:
-          nix_path: nixpkgs=channel:nixos-unstable
-      - uses: cachix/cachix-action@v14
+      - id: finder
+        run: |
+          nixos=$(nix eval --accept-flake-config --quiet .#.lib.hostsBySystem --apply 'f: f "x86_64-linux"' --json)
+
+          echo "nixos=$nixos"
+
+          echo "nixos=$nixos" >> $GITHUB_OUTPUT
+
+  x86_64-linux:
+    name: ${{ matrix.host }} x86_64-linux
+    needs: [find-systems]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        host: ${{ fromJSON(needs.find-systems.outputs.nixos) }}
+    steps:
+      - uses: cachix/install-nix-action@v31
+      - uses: actions/checkout@v4
+      - uses: cachix/cachix-action@v16
         with:
           name: squawkykaka
-          # If you chose API tokens for write access OR if you have a private cache
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - run: nix-build
-      - run: nix-shell --run "echo OK"
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - run: nix build --accept-flake-config --no-link --print-out-paths .#.nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel
