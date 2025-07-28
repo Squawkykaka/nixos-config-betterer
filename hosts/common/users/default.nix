@@ -20,6 +20,7 @@ in
       extraGroups = [
         "wheel"
         "networkmanager"
+        "docker"
       ];
 
       # These get placed into /etc/ssh/authorized_keys.d/<name> on nixos

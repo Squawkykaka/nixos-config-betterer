@@ -25,14 +25,15 @@ jobs:
   x86_64-linux:
     name: ${{ matrix.host }} x86_64-linux
     needs: [find-systems]
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         host: ${{ fromJSON(needs.find-systems.outputs.nixos) }}
     steps:
       - uses: actions/checkout@v4
-      # - uses: cachix/install-nix-action@v31
-      - run: nix build --accept-flake-config --no-link --print-out-paths .#.nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel
+      - uses: DeterminateSystems/nix-installer-action@main
+      - id: nix-build
+        run: nix build --accept-flake-config --no-link --print-out-paths .#.nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel
       - uses: cachix/cachix-action@v16
         with:
           name: squawkykaka

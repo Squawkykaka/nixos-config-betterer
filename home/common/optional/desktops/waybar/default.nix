@@ -17,7 +17,7 @@
           (lib.mkIf (config.services.mpd.enable == true) "mpd")
         ];
 
-        modules-center = ["hyprland/window"];
+        modules-center = ["inhibitor" "hyprland/window"];
         modules-right = [
           "pulseaudio"
           "battery"
@@ -128,6 +128,15 @@
         "tray" = {
           icon-size = 14;
           spacing = 1;
+        };
+
+        inhibitor = {
+          what = "idle";
+          format = "{icon}  ";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
         };
       };
     };

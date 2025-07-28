@@ -8,6 +8,14 @@
       python311Packages.python-lsp-server
       nixd
       lua-language-server
+      rust-analyzer
+      lua5_1
+      luarocks
+      cargo
+      fd
+      tree-sitter
+      go
+      python3
       gcc
       nodejs_24
       vimPlugins.nvim-treesitter-parsers.hyprlang

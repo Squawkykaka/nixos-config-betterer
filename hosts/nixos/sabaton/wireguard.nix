@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  serverIp = "203.211.120.109:51820";
+  serverIp = "203.211.120.109:1026";
   vpnAddress = ["10.25.33.2/32"];
   pubKey = "eSSKuC1ByITL8gyedJVQd+8hZFo3Boz4huMD0fG2J1o=";
 in {
@@ -13,11 +13,16 @@ in {
 
       privateKeyFile = config.sops.secrets."wireguard/privkey".path;
 
+      dns = ["10.0.0.1"];
+
       peers = [
         {
           publicKey = pubKey;
 
-          allowedIPs = ["10.0.0.0/24"];
+          allowedIPs = [
+            # "10.0.0.0/24"
+            "0.0.0.0/0"
+          ];
 
           endpoint = serverIp;
 
