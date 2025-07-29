@@ -145,7 +145,9 @@
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
+    package = pkgs.docker_28;
   };
+  hardware.nvidia-container-toolkit.enable = true;
 
   system.stateVersion = "24.11";
 }
