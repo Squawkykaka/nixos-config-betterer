@@ -4,9 +4,6 @@ on:
   schedule:
     - cron: "0 6 * * *" # daily at 1 am EST/2 am EDT
 
-permissions:
-  content: write
-
 jobs:
   update-dependencies:
     runs-on: ubuntu-latest
