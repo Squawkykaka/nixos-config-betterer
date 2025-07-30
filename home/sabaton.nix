@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     #
     # ========== Required Configs ==========
@@ -17,5 +17,10 @@
     common/optional/atuin.nix
     common/optional/ghostty.nix
     common/optional/mpd.nix
+  ];
+
+  home.packages = [
+    pkgs.gimp
+    pkgs.thunderbird
   ];
 }
