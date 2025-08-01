@@ -108,6 +108,22 @@
     soteria.enable = true;
   };
 
+  security.pki.certificates = [
+    ''
+      -----BEGIN CERTIFICATE-----
+      MIIBpDCCAUmgAwIBAgIQBh+vmThPEnQkiY7L73KtmjAKBggqhkjOPQQDAjAwMRIw
+      EAYDVQQKEwlTcXVhd2t5Q0ExGjAYBgNVBAMTEVNxdWF3a3lDQSBSb290IENBMB4X
+      DTI1MDczMTEwMzQzNloXDTM1MDcyOTEwMzQzNlowMDESMBAGA1UEChMJU3F1YXdr
+      eUNBMRowGAYDVQQDExFTcXVhd2t5Q0EgUm9vdCBDQTBZMBMGByqGSM49AgEGCCqG
+      SM49AwEHA0IABNSfbIgxfooq/3qJPWl6Uws+Fcs3ga+ULOtJDr+nKkNWL561uc7a
+      915FwfHVSNnf4YDto8bErmRVfi4ov6PoFKCjRTBDMA4GA1UdDwEB/wQEAwIBBjAS
+      BgNVHRMBAf8ECDAGAQH/AgEBMB0GA1UdDgQWBBRUanE7yI+97CnxJo1uphF6BWGU
+      ejAKBggqhkjOPQQDAgNJADBGAiEA1WesJk6CjaJvAgNOcysG6h4QxilXT2EK3Nm7
+      OxioeZUCIQDuVxCdGFR7L90rO9eT9SmfgsVJbmESrYfCVwzxni7ggw==
+      -----END CERTIFICATE-----
+    ''
+  ];
+
   #
   # ========== Nix Helper ==========
   #
