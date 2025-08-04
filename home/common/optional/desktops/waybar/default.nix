@@ -6,7 +6,81 @@
   programs.waybar = {
     enable = true;
     # you can use config.lib.stylix.colors.withHashtag to get the colors
-    style = ./style.css;
+    style = with config.lib.stylix.colors.withHashtag; ''
+      * {
+          border: none;
+          border-radius: 0px;
+          font-family: "JetBrains Mono";
+          font-weight: bold;
+          font-size: 16px;
+          min-height: 0;
+          color: ${base05};
+        }
+
+        window#waybar {
+          background: ${base01};
+        }
+
+        /* Workspace Buttons */
+        #workspaces button label{
+          color: #ebdbb2;
+          padding: 0 10px;
+        }
+        #workspaces button.active label {
+          color: #1d2021;
+        }
+        #workspaces button.active {
+          background: ${orange};
+        }
+
+        #clock, #battery, #backlight, #pulseaudio, #tray, #language, #weather {
+          padding: 0 10px;
+          margin: 0 10px;
+        }
+
+        #language {
+          margin: 0;
+          color: #d79921;
+          border-bottom: 5px solid #d79921;
+        }
+
+        #pulseaudio {
+          margin: 0;
+          color: ${magenta};
+          border-bottom: 5px solid ${magenta};
+        }
+
+        #pulseaudio.muted {
+          padding: 0 20px;
+          color: ${red};
+          border-bottom: 5px solid ${red};
+        }
+
+        #battery {
+          margin: 0;
+          color: ${blue};
+          border-bottom: 5px solid ${blue};
+        }
+
+        #backlight {
+          margin: 0;
+          color: ${green};
+          border-bottom: 5px solid ${green};
+        }
+
+        #clock {
+          margin: 0;
+          color: ${orange};
+          border-bottom: 5px solid ${orange};
+        }
+
+        #tray {
+          margin: 0;
+          color: ${red};
+          border-bottom: 5px solid ${red};
+        }
+
+    '';
     settings = {
       mainBar = {
         layer = "top";
