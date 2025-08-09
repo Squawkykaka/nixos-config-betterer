@@ -19,6 +19,7 @@
 
       ls = "eza";
       cat = "bat";
+      rm = "trash";
     };
 
     history.size = 10000;
