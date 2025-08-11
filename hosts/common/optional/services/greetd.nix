@@ -30,7 +30,7 @@ in {
       settings = {
         default_session = {
           command = ''
-            ${pkgs.greetd.tuigreet}/bin/tuigreet \
+            ${pkgs.tuigreet}/bin/tuigreet \
                         --asterisks --remember \
                         --time --time-format '%I:%M %p | %a • %h | %F' \
                         --theme "text=white;time=red;input=green;border=green;action=blue;button=yellow;container=black;prompt=lime" \

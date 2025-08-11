@@ -30,8 +30,6 @@
     # clean.extraArgs = "--keep-since 4d --keep 3";
   };
 
-  services.ssh-agent.enable = true;
-
   home = {
     username = lib.mkDefault config.hostSpec.username;
     homeDirectory = lib.mkDefault config.hostSpec.home;
