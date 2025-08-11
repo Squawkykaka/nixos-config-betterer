@@ -14,7 +14,7 @@ in
     users.users.${hostSpec.username} = {
       name = hostSpec.username;
       isNormalUser = true;
-      shell = pkgs.zsh; # default shell
+      shell = pkgs.nushell; # default shell
       hashedPasswordFile = config.sops.secrets."users/${config.hostSpec.username}/password".path;
       # initialHashedPassword = "$6$ZOTGb9wnuJIyq5j1$UfS9gJ.hR3Fq9SQVUuoI/U51v2tUCAhGI25W1cI8M9jjxw/b0oha5dMrdEZGWj.yKjYo7I4R31Jb0oJr5UuYf0";
       extraGroups = [

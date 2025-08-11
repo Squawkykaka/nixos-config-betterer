@@ -29,7 +29,7 @@
 
   networking.hostName = config.hostSpec.hostName;
 
-  environment.systemPackages = [pkgs.openssh];
+  environment.systemPackages = [pkgs.openssh pkgs.trashy pkgs.nushell pkgs.starship pkgs.carapace];
 
   # make home-manager backup files.
   home-manager.backupFileExtension = "bk";
