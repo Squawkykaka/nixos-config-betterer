@@ -140,7 +140,7 @@
   services.tailscale.enable = true;
   services.netbird = {
     package = pkgs.netbird;
-    enable = true;
+    enable = false;
   };
   virtualisation.docker = {
     enable = true;

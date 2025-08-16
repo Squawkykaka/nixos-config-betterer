@@ -22,7 +22,7 @@ in {
   };
 
   config = {
-    environment.systemPackages = [pkgs.greetd.tuigreet];
+    environment.systemPackages = [pkgs.tuigreet];
     services.greetd = {
       enable = true;
 

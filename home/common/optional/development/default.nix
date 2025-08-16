@@ -13,6 +13,7 @@
         direnv
         delta # diffing
         vscode
+        tree-sitter
         act # github workflow runner
         gh # github cli
         glab # gitlab cli
