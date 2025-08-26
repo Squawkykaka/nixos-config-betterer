@@ -19,7 +19,7 @@
         "HDMI-A-1,2560x1440@120.00Hz,auto,1"
       ];
       "$mainMod" = "SUPER";
-      "$terminal" = "ghostty";
+      "$terminal" = "ghostty --gtk-single-instance=true";
       "$fileManager" = "thunar";
       "$menu" = "wofi";
       "$notes" = "obsidian";
@@ -33,7 +33,8 @@
         "[workspace 3 silent] code"
         "[workspace 5 silent] vesktop"
         "[workspace 1] $browser"
-        "nm-applet &"
+        "nm-applet"
+        "ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
         # "systemctl --user start hyprpolkitagent"
       ];
 
