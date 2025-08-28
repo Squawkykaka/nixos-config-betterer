@@ -53,7 +53,6 @@
       "hosts/common/optional/services/gpg.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/hyprland.nix"
-      # "hosts/common/optional/solaar.nix" # FIXME: Solaar is not working witht latest flake update
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/nvtop.nix"
       "hosts/common/optional/syncthing.nix"
@@ -104,9 +103,20 @@
       driversi686Linux.amdvlk
     ];
   };
+
+  boot.kernelParams = ["nvidia-drm.modeset=1"];
+
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1"; # Hint for Electron apps to use Wayland
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
+
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
-    open = true;
+    modesetting.enable = true;
+    open = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {

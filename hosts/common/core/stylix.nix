@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   inputs,
   ...
@@ -19,7 +20,7 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+    base16Scheme = config.home-manager.users.gleask.stylix.base16Scheme;
 
     cursor = {
       name = "Bibata-Modern-Ice";

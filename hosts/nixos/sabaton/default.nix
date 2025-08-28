@@ -44,7 +44,6 @@
       "hosts/common/optional/services/greetd.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/hyprland.nix"
-      # "hosts/common/optional/solaar.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/syncthing.nix"
       # TODO

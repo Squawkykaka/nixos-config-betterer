@@ -6,7 +6,6 @@
       "debug:full_cm_proto" = true;
       env = [
         # Hint Electron apps to use Wayland
-        "NIXOS_OZONE_WL,1"
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
