@@ -33,6 +33,7 @@
   fileSystems."/data" = {
     device = "/dev/nvme1n1p1";
     fsType = "ext4";
+    neededForBoot = true;
   };
 
   fileSystems."/boot" = {

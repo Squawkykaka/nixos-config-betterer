@@ -136,7 +136,6 @@
     coreOffset = -130;
   };
 
-  virtualisation.docker.enable = true;
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
 
