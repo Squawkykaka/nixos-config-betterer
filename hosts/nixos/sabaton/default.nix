@@ -18,7 +18,7 @@
 
     ./hardware-configuration.nix
     ./borg.nix
-    ./wireguard.nix
+    # ./wireguard.nix
     inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2
     inputs.disko.nixosModules.disko
 
@@ -118,6 +118,8 @@
   # make sure sbctl is enabled for this machine
   environment.systemPackages = [
     pkgs.sbctl
+    pkgs.networkmanager
+    pkgs.networkmanager-openvpn
   ];
 
   # enable auto-cpu freq, disable power profiles as it interferes
