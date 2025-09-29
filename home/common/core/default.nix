@@ -14,8 +14,6 @@
     ./zsh.nix
     ./git.nix
     ./xdg.nix
-    ./eza.nix
-    ./stylix.nix
     ./neovim.nix
     ./direnv.nix
     ./bat.nix

@@ -17,7 +17,6 @@
       gc = "git commit";
       gp = "git push";
 
-      ls = "eza";
       cat = "bat";
       rm = "trash";
     };

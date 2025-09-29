@@ -7,9 +7,13 @@
   ...
 }: let
   inherit (config) hostSpec;
-  pubKeys = lib.filesystem.listFilesRecursive ./keys;
 in
   {
+    imports = [
+      # Allow simple alias to set/get attributes of this node
+      (lib.mkAliasOptionModule ["hm"] ["home-manager" "users" hostSpec.username])
+    ];
+
     users.mutableUsers = false;
     users.users.${hostSpec.username} = {
       name = hostSpec.username;
@@ -22,9 +26,6 @@ in
         "libvirt"
         "docker"
       ];
-
-      # These get placed into /etc/ssh/authorized_keys.d/<name> on nixos
-      openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
     };
 
     # Create ssh sockets directory for controlpaths when homemanager not loaded (i.e. isMinimal)
