@@ -159,5 +159,7 @@
   };
   hardware.nvidia-container-toolkit.enable = true;
 
+  kaka.desktop.enable = true;
+
   system.stateVersion = "24.11";
 }

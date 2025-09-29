@@ -9,7 +9,7 @@
     inputs.home-manager.nixosModules.home-manager
 
     (map lib.custom.relativeToRoot [
-      "modules/common"
+      "modules"
       "hosts/common/users"
     ])
 
@@ -29,7 +29,13 @@
 
   networking.hostName = config.hostSpec.hostName;
 
-  environment.systemPackages = [pkgs.openssh pkgs.trashy pkgs.nushell pkgs.starship pkgs.carapace];
+  environment.systemPackages = [
+    pkgs.openssh
+    pkgs.trashy
+    pkgs.nushell
+    pkgs.starship
+    pkgs.carapace
+  ];
 
   # make home-manager backup files.
   home-manager.backupFileExtension = "bk";

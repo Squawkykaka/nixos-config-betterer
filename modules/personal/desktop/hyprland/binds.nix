@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   wayland.windowManager.hyprland.settings = {
     bind = [
       "$mainMod SHIFT, Return, exec, $terminal"
@@ -16,7 +16,7 @@
       "$mainMod,       L, exec, loginctl lock-session"
       "$mainMod,       P, exec, hyprpicker -an"
       "$mainMod,       N, exec, swaync-client -t"
-      ", Print, exec, grimblast --notify --freeze copysave area"
+      ", Print, exec, ${pkgs.grimblast} --notify --freeze copysave area"
 
       # Moving focus
       "$mainMod, left, movefocus, l"

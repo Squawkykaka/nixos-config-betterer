@@ -27,6 +27,7 @@
         "mpris"
         "notifications"
       ];
+
       widget-config = {
         title = {
           text = "Notifications";

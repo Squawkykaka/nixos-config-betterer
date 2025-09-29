@@ -147,31 +147,33 @@
         cert = "/home/gleask/.certs/client.crt";
         key = "/home/gleask/.certs/client.key";
 
-        CAFile = toString (pkgs.writeText "stunnel-key.crt" ''
-          -----BEGIN CERTIFICATE-----
-          MIIDvzCCAqegAwIBAgIUAqXSBNds+gwUHHBjEpcVCZ+Q8pIwDQYJKoZIhvcNAQEL
-          BQAwbzELMAkGA1UEBhMCTloxEzARBgNVBAgMCkxvd2VyIEh1dHQxEzARBgNVBAcM
-          CldlbGxpbmd0b24xITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDET
-          MBEGA1UEAwwKYm9vbS5ib2F0czAeFw0yNTA5MTgwMTU2MTBaFw0zNTA5MTYwMTU2
-          MTBaMG8xCzAJBgNVBAYTAk5aMRMwEQYDVQQIDApMb3dlciBIdXR0MRMwEQYDVQQH
-          DApXZWxsaW5ndG9uMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0eSBMdGQx
-          EzARBgNVBAMMCmJvb20uYm9hdHMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
-          AoIBAQCwli4U4bAmbi85HTyPXgiL6owGlotCo5osFIZ4dNgiylAcmc2P/WfLGA/e
-          Qbfd9Zc2pZ1lHEcG0oN7YXOj0MQK7z0vvq23oNdVAQS3H/vW7+5T84SBSuMzCW1H
-          O+Xwhv34lfYrOh1CTB3F2EqLoYeImlWCVn4tqMRP6UHQUvAv0AjWdobeqR/naq5s
-          rjPoYSI6bv9PYjBXHFB3YOxlJ1Cn4yMWIqKVzqTFp9GYtw7RLV1YEbLDy6IQdvAZ
-          25a69imLjO6TKJlqUIGzNOYlqUZfYrAR7RIJ3SIeFLgTiU4O0aLKIoK/kyEf/mMT
-          /ENyf9TrlnBT8bNS+1Ct58IGm/QdAgMBAAGjUzBRMB0GA1UdDgQWBBRT3UeVA4tw
-          Xb4SI++gUPoFAu1ygTAfBgNVHSMEGDAWgBRT3UeVA4twXb4SI++gUPoFAu1ygTAP
-          BgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQCWEDIKXeqp54wm97k+
-          wvNTtK91LCZ/vvcgOKNoRE/t7+DkcG8zGFEg1Ls0KxvvD0/pU/7VndiIbkrubEg/
-          o5CdZ/0Xao5+ct3x8+zWpMOQyGyCkWjzUAl80W42aUS2s61xAY7HIWqyLN26miF4
-          gDXettOcDEQbey7aDTqmGW/0/6hP87ZISrzxS3+FauJMnAaF2Mi0Qr+1T4evqfUh
-          njMQMVUbDwpReKDxkzyUvV+CO239WKqNF9zdhfe4cQMNvljqBCCUxJbIjna2t3Dv
-          MP4ATkEJrD/7zgIl/Tw155HUfvki2OovNj04+7VwsyivNKU1l7XgGGLi6nPUzYBI
-          hcyy
-          -----END CERTIFICATE-----
-        '');
+        CAFile = toString (
+          pkgs.writeText "stunnel-key.crt" ''
+            -----BEGIN CERTIFICATE-----
+            MIIDvzCCAqegAwIBAgIUAqXSBNds+gwUHHBjEpcVCZ+Q8pIwDQYJKoZIhvcNAQEL
+            BQAwbzELMAkGA1UEBhMCTloxEzARBgNVBAgMCkxvd2VyIEh1dHQxEzARBgNVBAcM
+            CldlbGxpbmd0b24xITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDET
+            MBEGA1UEAwwKYm9vbS5ib2F0czAeFw0yNTA5MTgwMTU2MTBaFw0zNTA5MTYwMTU2
+            MTBaMG8xCzAJBgNVBAYTAk5aMRMwEQYDVQQIDApMb3dlciBIdXR0MRMwEQYDVQQH
+            DApXZWxsaW5ndG9uMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0eSBMdGQx
+            EzARBgNVBAMMCmJvb20uYm9hdHMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+            AoIBAQCwli4U4bAmbi85HTyPXgiL6owGlotCo5osFIZ4dNgiylAcmc2P/WfLGA/e
+            Qbfd9Zc2pZ1lHEcG0oN7YXOj0MQK7z0vvq23oNdVAQS3H/vW7+5T84SBSuMzCW1H
+            O+Xwhv34lfYrOh1CTB3F2EqLoYeImlWCVn4tqMRP6UHQUvAv0AjWdobeqR/naq5s
+            rjPoYSI6bv9PYjBXHFB3YOxlJ1Cn4yMWIqKVzqTFp9GYtw7RLV1YEbLDy6IQdvAZ
+            25a69imLjO6TKJlqUIGzNOYlqUZfYrAR7RIJ3SIeFLgTiU4O0aLKIoK/kyEf/mMT
+            /ENyf9TrlnBT8bNS+1Ct58IGm/QdAgMBAAGjUzBRMB0GA1UdDgQWBBRT3UeVA4tw
+            Xb4SI++gUPoFAu1ygTAfBgNVHSMEGDAWgBRT3UeVA4twXb4SI++gUPoFAu1ygTAP
+            BgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQCWEDIKXeqp54wm97k+
+            wvNTtK91LCZ/vvcgOKNoRE/t7+DkcG8zGFEg1Ls0KxvvD0/pU/7VndiIbkrubEg/
+            o5CdZ/0Xao5+ct3x8+zWpMOQyGyCkWjzUAl80W42aUS2s61xAY7HIWqyLN26miF4
+            gDXettOcDEQbey7aDTqmGW/0/6hP87ZISrzxS3+FauJMnAaF2Mi0Qr+1T4evqfUh
+            njMQMVUbDwpReKDxkzyUvV+CO239WKqNF9zdhfe4cQMNvljqBCCUxJbIjna2t3Dv
+            MP4ATkEJrD/7zgIl/Tw155HUfvki2OovNj04+7VwsyivNKU1l7XgGGLi6nPUzYBI
+            hcyy
+            -----END CERTIFICATE-----
+          ''
+        );
         # verify = 2; # Verify server certificate
       };
     };
@@ -195,6 +197,8 @@
 
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
+
+  kaka.desktop.enable = true;
 
   system.stateVersion = "24.11";
 }
