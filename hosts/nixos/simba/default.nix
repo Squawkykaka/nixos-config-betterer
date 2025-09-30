@@ -159,7 +159,9 @@
   };
   hardware.nvidia-container-toolkit.enable = true;
 
-  kaka.desktop.enable = true;
+  kaka.desktop = {
+    hyprland.enable = true;
+  };
 
   system.stateVersion = "24.11";
 }

@@ -100,15 +100,8 @@
   hardware.nvidia = {
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-    # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #   version = "570.133.07";
-    #   sha256_64bit = "sha256-LUPmTFgb5e9VTemIixqpADfvbUX1QoTT2dztwI3E3CY=";
-    #   sha256_aarch64 = "sha256-2l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    #   openSha256 = "sha256-9l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    #   settingsSha256 = "sha256-XMk+FvTlGpMquM8aE8kgYK2PIEszUZD2+Zmj2OpYrzU=";
-    #   persistencedSha256 = "sha256-4l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    # };
     nvidiaSettings = true;
+    # Enabling offloading, use `nvidia-offload` to use gpu
     prime = {
       offload = {
         enable = true;
@@ -198,7 +191,9 @@
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
 
-  kaka.desktop.enable = true;
+  kaka.desktop = {
+    hyprland.enable = true;
+  };
 
   system.stateVersion = "24.11";
 }

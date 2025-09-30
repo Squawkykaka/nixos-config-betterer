@@ -9,7 +9,9 @@
     inputs.home-manager.nixosModules.home-manager
 
     (map lib.custom.relativeToRoot [
-      "modules"
+      "modules/public"
+      "modules/personal"
+
       "hosts/common/users"
     ])
 
