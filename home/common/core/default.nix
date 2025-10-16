@@ -73,6 +73,7 @@
         wget
         killall
         lm_sensors
+        cava
         ;
     }
     ++ [

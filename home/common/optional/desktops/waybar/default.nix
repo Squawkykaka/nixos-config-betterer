@@ -85,13 +85,11 @@
         modules-left = [
           "battery"
           "temperature"
-          "hyprland/workspaces"
           "mpd"
         ];
 
         modules-center = [
-          "idle_inhibitor"
-          "hyprland/window"
+          "hyprland/workspaces"
         ];
 
         modules-right = [
@@ -140,6 +138,8 @@
         };
 
         temperature = {
+          hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
+          critical-threshold = 80;
           format = "{temperatureC}°C ";
         };
 
@@ -208,8 +208,9 @@
         };
 
         "clock" = {
-          format = "{:%d.%m.%Y - %H:%M}";
-          format-alt = "{:%A, %B %d at %R}";
+          timezone = "Pacific/Auckland";
+          interval = 60;
+          format = "{:%a %d %b %H:%M}";
         };
 
         "tray" = {
