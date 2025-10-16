@@ -1,16 +1,20 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  startCava = pkgs.writeShellScriptBin "start" ''
+    ghostty --class="com.mitchellh.ghostty.bg" --command="sleep 1 && cava" --background-opacity=0
+  '';
+in {
   wayland.windowManager.hyprland = {
     settings = {
       plugin.hyprwinwrap = {
-        class = "hyprland-background";
+        class = "com.mitchellh.ghostty.bg";
 
         pos_x = 0;
-        pos_y = 0;
+        pos_y = 60;
         size_x = 100;
-        size_y = 100;
+        size_y = 40;
       };
 
-      exec-once = ["${pkgs.ghostty} --class='hyprland-background' --command='sleep 1 && ${pkgs.cava}"];
+      exec-once = ["${startCava}/bin/start"];
     };
   };
 }

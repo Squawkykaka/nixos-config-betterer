@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.waybar = {
     enable = true;
     # you can use config.lib.stylix.colors.withHashtag to get the colors
@@ -97,6 +101,7 @@
           "backlight"
           "clock"
           "tray"
+          "custom/wlogout"
         ];
 
         "hyprland/workspaces" = {
@@ -117,6 +122,13 @@
           persistent-workspaces = {
             "*" = 5;
           };
+        };
+
+        "custom/wlogout" = {
+          format = "";
+          tooltip = "Logout menu";
+          on-click = "${pkgs.wlogout}/bin/wlogout"; # Runs wlogout when clicked
+          interval = 0; # No refresh needed
         };
 
         mpd = {
