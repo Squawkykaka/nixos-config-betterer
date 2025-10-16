@@ -4,6 +4,7 @@
   outputs = {
     self,
     nixpkgs,
+    snix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -39,7 +40,12 @@
           name = host;
           value = nixpkgs.lib.nixosSystem {
             specialArgs = {
-              inherit inputs outputs lib;
+              inherit
+                inputs
+                outputs
+                lib
+                snix
+                ;
             };
             modules = [./hosts/nixos/${host}];
           };
@@ -105,6 +111,7 @@
       "https://hyprland.cachix.org"
       "https://nixpkgs-unfree.cachix.org"
       "https://catppuccin.cachix.org"
+      "https://cache.snix.dev"
       "https://squawkykaka.cachix.org"
     ];
     extra-trusted-public-keys = [
@@ -113,6 +120,7 @@
       "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
       "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
       "squawkykaka.cachix.org-1:ZZ57B03Er06R2Xmi6wFWyUuegFV6WJrTXCvhHVaE+co="
+      "cache.snix.dev-1:miTqzIzmCbX/DyK2tLNXDROk77CbbvcRdWA4y2F8pno="
     ];
   };
 
@@ -122,6 +130,11 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    snix = {
+      url = "git+https://git.snix.dev/snix/snix";
+      flake = false;
     };
 
     home-manager = {

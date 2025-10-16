@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: {
+{config, ...}: {
   programs.waybar = {
     enable = true;
     # you can use config.lib.stylix.colors.withHashtag to get the colors
@@ -87,18 +83,24 @@
         position = "top";
         height = 30;
         modules-left = [
+          "battery"
+          "temperature"
           "hyprland/workspaces"
-          (lib.mkIf (config.services.mpd.enable == true) "mpd")
+          "mpd"
         ];
 
-        modules-center = ["idle_inhibitor" "hyprland/window"];
+        modules-center = [
+          "idle_inhibitor"
+          "hyprland/window"
+        ];
+
         modules-right = [
           "pulseaudio"
-          "battery"
           "backlight"
           "clock"
           "tray"
         ];
+
         "hyprland/workspaces" = {
           disable-scroll = true;
           show-special = true;
@@ -111,7 +113,7 @@
             "3" = "";
             "4" = "";
             "5" = "";
-            "magic" = "";
+            "magic" = "";
           };
 
           persistent-workspaces = {
@@ -123,11 +125,22 @@
           server = "127.0.0.1";
           port = 6600;
 
-          format = "{artist} - {title}";
-          format-stopped = "{stateIcon} Stopped";
-          format-paused = "Paused";
+          format = "{stateIcon} {artist} - {title}";
+          format-paused = "{stateIcon} <i>{artist} - {title}</i>";
+          format-stopped = "...";
 
           on-click = "rmpc togglepause";
+          on-scroll-up = "rmpc volume +5";
+          on-scroll-down = "rmpc volume -5";
+
+          state-icons = {
+            paused = "";
+            playing = "";
+          };
+        };
+
+        temperature = {
+          format = "{temperatureC}°C ";
         };
 
         network = {
