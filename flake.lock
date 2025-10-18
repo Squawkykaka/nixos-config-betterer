@@ -123,11 +123,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758287904,
-        "narHash": "sha256-IGmaEf3Do8o5Cwp1kXBN1wQmZwQN3NLfq5t4nHtVtcU=",
+        "lastModified": 1760701190,
+        "narHash": "sha256-y7UhnWlER8r776JsySqsbTUh2Txf7K30smfHlqdaIQw=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "67ff9807dd148e704baadbd4fd783b54282ca627",
+        "rev": "3a9450b26e69dcb6f8de6e2b07b3fc1c288d85f5",
         "type": "github"
       },
       "original": {
@@ -932,11 +932,11 @@
     "snix": {
       "flake": false,
       "locked": {
-        "lastModified": 1760604233,
-        "narHash": "sha256-a/WYaBl5xluFUyvOh/hPgR0bjBcL7GfS0fpFxIV49cc=",
+        "lastModified": 1760700656,
+        "narHash": "sha256-P/nC6b0AoQ392ev9/P1RTUFx5oibFV6C9s0q+uFOL/w=",
         "ref": "refs/heads/canon",
-        "rev": "4aaef4cdf6f7766eedcfe1b5bad8f1c4e4d05c12",
-        "revCount": 21972,
+        "rev": "6c01d3dad078bc8f196c152ca389e04f573f6455",
+        "revCount": 21975,
         "type": "git",
         "url": "https://git.snix.dev/snix/snix"
       },
