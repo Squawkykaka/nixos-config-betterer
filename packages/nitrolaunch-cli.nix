@@ -5,7 +5,7 @@
   # makeDesktopItem,
 }:
 rustPlatform.buildRustPackage rec {
-  pname = "nitrolaunch-gui";
+  pname = "nitrolaunch-cli";
   version = "0.27.0";
 
   src = fetchFromGitHub {

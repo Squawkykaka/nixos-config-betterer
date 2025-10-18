@@ -13,6 +13,7 @@
   nodejs,
   npmHooks,
   fetchNpmDeps,
+  makeWrapper,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nitrolaunch";
@@ -25,16 +26,16 @@ rustPlatform.buildRustPackage (finalAttrs: {
     hash = "sha256-eWBD9bzN5aAo5xE4MUIsbkBDl800gR6EGw4PSMRwBVA=";
   };
 
-  cargoHash = "sha256-iRtnO998qEn6tIy6TfvGL/TOGonf7QL58mFrCfUaGqo=";
-
   # cargoBuildFlags = [
   #   "--package"
   #   "nitro_gui"
   # ];
 
-  postPatch = ''
-    ln -s $NIX_BUILD_TOP/source/Cargo.lock gui/src-tauri/Cargo.lock
-  '';
+  postPatch = ''ln -s $NIX_BUILD_TOP/source/Cargo.lock gui/src-tauri/Cargo.lock'';
+
+  cargoLock = {
+    lockFile = "${finalAttrs.src}/Cargo.lock";
+  };
 
   npmDeps = fetchNpmDeps {
     name = "${finalAttrs.pname}-${finalAttrs.version}-npm-deps";
@@ -50,6 +51,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     nodejs
     npmHooks.npmConfigHook
     pkg-config
+    makeWrapper
   ];
 
   buildInputs = [
@@ -63,6 +65,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
   # This tells the builder where the Cargo.toml is
   cargoRoot = "gui/src-tauri";
   buildAndTestSubdir = "gui/src-tauri";
+
+  postInstall = ''
+    wrapProgram $out/bin/nitrolaunch \
+      --set __NV_DISABLE_EXPLICIT_SYNC 1
+  '';
 
   desktopItems = [
     (makeDesktopItem {
