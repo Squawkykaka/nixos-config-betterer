@@ -14,6 +14,7 @@
   npmHooks,
   fetchNpmDeps,
   makeWrapper,
+  wrapGAppsHook,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nitrolaunch";
@@ -26,12 +27,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
     hash = "sha256-eWBD9bzN5aAo5xE4MUIsbkBDl800gR6EGw4PSMRwBVA=";
   };
 
-  # cargoBuildFlags = [
-  #   "--package"
-  #   "nitro_gui"
-  # ];
-
-  postPatch = ''ln -s $NIX_BUILD_TOP/source/Cargo.lock gui/src-tauri/Cargo.lock'';
+  # Needed as nitro_gui is in a cargo workspace
+  postPatch = "ln -s $NIX_BUILD_TOP/source/Cargo.lock gui/src-tauri/Cargo.lock";
 
   cargoLock = {
     lockFile = "${finalAttrs.src}/Cargo.lock";
@@ -51,6 +48,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     nodejs
     npmHooks.npmConfigHook
     pkg-config
+    wrapGAppsHook
     makeWrapper
   ];
 
@@ -62,7 +60,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     webkitgtk_4_0
   ];
 
-  # This tells the builder where the Cargo.toml is
   cargoRoot = "gui/src-tauri";
   buildAndTestSubdir = "gui/src-tauri";
 
@@ -74,7 +71,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   desktopItems = [
     (makeDesktopItem {
       name = "Nitrolaunch";
-      exec = "nitro";
+      exec = "nitrolaunch";
       icon = "nitrolaunch";
       desktopName = "Nitrolaunch";
       comment = "A fast, extensible, and powerful Minecraft launcher";

@@ -2,7 +2,6 @@
   lib,
   fetchFromGitHub,
   rustPlatform,
-  # makeDesktopItem,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "nitrolaunch-cli";
@@ -15,7 +14,9 @@ rustPlatform.buildRustPackage rec {
     hash = "sha256-eWBD9bzN5aAo5xE4MUIsbkBDl800gR6EGw4PSMRwBVA=";
   };
 
-  cargoHash = "sha256-iRtnO998qEn6tIy6TfvGL/TOGonf7QL58mFrCfUaGqo=";
+  cargoLock = {
+    lockFile = "${src}/Cargo.lock";
+  };
 
   cargoBuildFlags = [
     "--package"
