@@ -78,14 +78,6 @@
     }
     ++ [
       (pkgs.callPackage "${snix}/default.nix" {localSystem = "x86_64-linux";}).snix.cli
-      (pkgs.writeShellApplication {
-        name = "ns";
-        runtimeInputs = with pkgs; [
-          fzf
-          nix-search-tv
-        ];
-        text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
-      })
     ];
 
   nix = {
