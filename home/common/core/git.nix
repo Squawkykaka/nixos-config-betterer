@@ -17,9 +17,10 @@
       ".direnv"
     ];
 
-    userName = "Squawkykaka";
-    userEmail = "squawkykaka@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "Squawkykaka";
+      user.email = "squawkykaka@gmail.com";
+
       init.defaultBranch = "main";
     };
 

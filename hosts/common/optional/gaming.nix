@@ -1,7 +1,27 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     prismlauncher
-    r2modman
+    # FIX Will return back to normal after nixpkgs updates
+    (r2modman.overrideAttrs (oldAttrs: rec {
+      version = "3.2.9";
+
+      src = fetchFromGitHub {
+        owner = "ebkr";
+        repo = "r2modmanPlus";
+        rev = "v3.2.9";
+        hash = "sha256-rnW8itUsP2a09gQU3IXZI7kSVKIxxCgbt15NoH/g0a8=";
+      };
+
+      preBuild = ''
+        # Sass doesnt play nice with nix
+        rm -r node_modules/sass-embedded*
+      '';
+
+      offlineCache = fetchYarnDeps {
+        yarnLock = "${src}/yarn.lock";
+        hash = "sha256-V6N0RIjT3etoP6XdZhnQv4XViLRypp/JWxnb0sBc6Oo=";
+      };
+    }))
     (lutris.override {
       extraPkgs = _pkgs: [
         wineWowPackages.stable
