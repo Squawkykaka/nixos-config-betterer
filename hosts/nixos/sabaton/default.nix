@@ -60,9 +60,6 @@
   networking = {
     networkmanager = {
       enable = true;
-      plugins = with pkgs; [
-        networkmanager-openvpn
-      ];
     };
 
     enableIPv6 = false;
@@ -101,14 +98,6 @@
   hardware.nvidia = {
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-    # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #   version = "570.133.07";
-    #   sha256_64bit = "sha256-LUPmTFgb5e9VTemIixqpADfvbUX1QoTT2dztwI3E3CY=";
-    #   sha256_aarch64 = "sha256-2l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    #   openSha256 = "sha256-9l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    #   settingsSha256 = "sha256-XMk+FvTlGpMquM8aE8kgYK2PIEszUZD2+Zmj2OpYrzU=";
-    #   persistencedSha256 = "sha256-4l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    # };
     nvidiaSettings = true;
     prime = {
       offload = {
@@ -124,59 +113,7 @@
   # make sure sbctl is enabled for this machine
   environment.systemPackages = [
     pkgs.sbctl
-    pkgs.openvpn
-    # pkgs.networkmanager
-    # pkgs.networkmanager-openvpn
   ];
-
-  services.stunnel = {
-    enable = true;
-
-    # Run stunnel as root (or another user if you prefer)
-    user = "root";
-    group = "root";
-
-    # Increase verbosity for debugging
-    logLevel = "info";
-
-    # Define client connections
-    clients = {
-      openvpn = {
-        accept = "127.0.0.1:1194"; # Local port your OpenVPN client connects to
-        connect = "boom.boats:443"; # Your UDM SE public IP and port
-        client = true; # Must be client mode
-        cert = "/home/gleask/.certs/client.crt";
-        key = "/home/gleask/.certs/client.key";
-
-        CAFile = toString (pkgs.writeText "stunnel-key.crt" ''
-          -----BEGIN CERTIFICATE-----
-          MIIDvzCCAqegAwIBAgIUAqXSBNds+gwUHHBjEpcVCZ+Q8pIwDQYJKoZIhvcNAQEL
-          BQAwbzELMAkGA1UEBhMCTloxEzARBgNVBAgMCkxvd2VyIEh1dHQxEzARBgNVBAcM
-          CldlbGxpbmd0b24xITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDET
-          MBEGA1UEAwwKYm9vbS5ib2F0czAeFw0yNTA5MTgwMTU2MTBaFw0zNTA5MTYwMTU2
-          MTBaMG8xCzAJBgNVBAYTAk5aMRMwEQYDVQQIDApMb3dlciBIdXR0MRMwEQYDVQQH
-          DApXZWxsaW5ndG9uMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0eSBMdGQx
-          EzARBgNVBAMMCmJvb20uYm9hdHMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
-          AoIBAQCwli4U4bAmbi85HTyPXgiL6owGlotCo5osFIZ4dNgiylAcmc2P/WfLGA/e
-          Qbfd9Zc2pZ1lHEcG0oN7YXOj0MQK7z0vvq23oNdVAQS3H/vW7+5T84SBSuMzCW1H
-          O+Xwhv34lfYrOh1CTB3F2EqLoYeImlWCVn4tqMRP6UHQUvAv0AjWdobeqR/naq5s
-          rjPoYSI6bv9PYjBXHFB3YOxlJ1Cn4yMWIqKVzqTFp9GYtw7RLV1YEbLDy6IQdvAZ
-          25a69imLjO6TKJlqUIGzNOYlqUZfYrAR7RIJ3SIeFLgTiU4O0aLKIoK/kyEf/mMT
-          /ENyf9TrlnBT8bNS+1Ct58IGm/QdAgMBAAGjUzBRMB0GA1UdDgQWBBRT3UeVA4tw
-          Xb4SI++gUPoFAu1ygTAfBgNVHSMEGDAWgBRT3UeVA4twXb4SI++gUPoFAu1ygTAP
-          BgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQCWEDIKXeqp54wm97k+
-          wvNTtK91LCZ/vvcgOKNoRE/t7+DkcG8zGFEg1Ls0KxvvD0/pU/7VndiIbkrubEg/
-          o5CdZ/0Xao5+ct3x8+zWpMOQyGyCkWjzUAl80W42aUS2s61xAY7HIWqyLN26miF4
-          gDXettOcDEQbey7aDTqmGW/0/6hP87ZISrzxS3+FauJMnAaF2Mi0Qr+1T4evqfUh
-          njMQMVUbDwpReKDxkzyUvV+CO239WKqNF9zdhfe4cQMNvljqBCCUxJbIjna2t3Dv
-          MP4ATkEJrD/7zgIl/Tw155HUfvki2OovNj04+7VwsyivNKU1l7XgGGLi6nPUzYBI
-          hcyy
-          -----END CERTIFICATE-----
-        '');
-        # verify = 2; # Verify server certificate
-      };
-    };
-  };
 
   # enable auto-cpu freq, disable power profiles as it interferes
   services.power-profiles-daemon.enable = false;
