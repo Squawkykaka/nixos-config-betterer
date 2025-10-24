@@ -13,7 +13,7 @@ in {
     wg0 = {
       address = vpnAddress;
 
-      privateKeyFile = config.sops.secrets."wireguard/privkey".path;
+      privateKeyFile = config.sops.secrets."simba/wireguard/privkey".path;
 
       dns = ["10.0.0.1"];
 

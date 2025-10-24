@@ -17,6 +17,7 @@
     #
 
     ./hardware-configuration.nix
+    ./wireguard.nix
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
@@ -133,11 +134,6 @@
     pkgs.pinentry-curses
   ];
 
-  services.tailscale.enable = true;
-  services.netbird = {
-    package = pkgs.netbird;
-    enable = false;
-  };
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
