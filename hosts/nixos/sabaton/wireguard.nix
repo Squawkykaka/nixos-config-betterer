@@ -6,8 +6,6 @@
   serverIp = "127.0.0.1:8765";
   vpnAddress = ["10.25.33.2/32"];
   pubKey = "eSSKuC1ByITL8gyedJVQd+8hZFo3Boz4huMD0fG2J1o=";
-
-  ckclientJson = pkgs.writeText "ckclient.json" (pkgs.sops-nix.decryptFile ../../../secrets/ckclient.sops.json);
 in {
   networking.wg-quick.interfaces = {
     wg0 = {
@@ -21,9 +19,40 @@ in {
         {
           publicKey = pubKey;
 
+          # Generated with https://www.procustodibus.com/blog/2021/03/wireguard-allowedips-calculator/
           allowedIPs = [
-            # "10.0.0.0/24"
-            "0.0.0.0/0"
+            "0.0.0.0/1"
+            "128.0.0.0/2"
+            "192.0.0.0/5"
+            "200.0.0.0/7"
+            "202.0.0.0/8"
+            "203.0.0.0/9"
+            "203.128.0.0/10"
+            "203.192.0.0/12"
+            "203.208.0.0/15"
+            "203.210.0.0/16"
+            "203.211.0.0/18"
+            "203.211.64.0/19"
+            "203.211.96.0/20"
+            "203.211.112.0/21"
+            "203.211.120.0/26"
+            "203.211.120.64/27"
+            "203.211.120.96/29"
+            "203.211.120.104/30"
+            "203.211.120.108/32"
+            "203.211.120.110/31"
+            "203.211.120.112/28"
+            "203.211.120.128/25"
+            "203.211.121.0/24"
+            "203.211.122.0/23"
+            "203.211.124.0/22"
+            "203.211.128.0/17"
+            "203.212.0.0/14"
+            "203.216.0.0/13"
+            "203.224.0.0/11"
+            "204.0.0.0/6"
+            "208.0.0.0/4"
+            "224.0.0.0/3"
           ];
 
           endpoint = serverIp;
@@ -31,13 +60,27 @@ in {
           persistentKeepalive = 25;
         }
       ];
+
+      # postUp = "ip route add 203.211.120.109/32 via wlp82s0";
+      # postDown = "ip route del 203.211.120.109/32 via wlp82s0";
     };
   };
 
+  sops.secrets.ckclient-json = {
+    sopsFile = ../../../secrets/sabaton-ckclient.json;
+    format = "json";
+    key = "";
+    owner = "ckclient";
+    group = "ckclient";
+    mode = "0400";
+  };
+
+  users.groups.ckclient = {};
   users.users.ckclient = {
     isSystemUser = true;
     description = "Cloak CK Client user";
     home = "/var/lib/ckclient";
+    group = "ckclient";
     createHome = true;
     shell = pkgs.bash;
   };
@@ -46,16 +89,18 @@ in {
     description = "Cloak CK Client";
     after = ["network.target"];
     wants = ["network.target"];
-    serviceConfig = {
-      ExecStart = "${pkgs.ck-client}/bin/ck-client -s boom.boats -l 8765 -u ${ckclientJson}";
-      Restart = "always";
-      User = "ckclient";
-    };
-    wantedBy = ["multi-user.target"];
 
-    preStart = ''
-      ${ckclientJson}
-    '';
+    serviceConfig = {
+      User = "ckclient";
+      Group = "ckclient";
+      Restart = "on-failure";
+
+      RestartSec = "2s";
+
+      ExecStart = "${pkgs.cloak-pt}/bin/ck-client -s 203.211.120.109 -l 8765 -u -c ${config.sops.secrets."ckclient-json".path}";
+    };
+
+    wantedBy = ["multi-user.target"];
   };
 
   environment.systemPackages = [pkgs.wireguard-tools pkgs.cloak-pt];
