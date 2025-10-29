@@ -60,9 +60,6 @@ in {
           persistentKeepalive = 25;
         }
       ];
-
-      # postUp = "ip route add 203.211.120.109/32 via wlp82s0";
-      # postDown = "ip route del 203.211.120.109/32 via wlp82s0";
     };
   };
 

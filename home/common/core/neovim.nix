@@ -17,7 +17,9 @@
       go
       python3
       gcc
+      tinymist
       nodejs_24
+      typst
       vimPlugins.nvim-treesitter-parsers.hyprlang
     ];
   };
