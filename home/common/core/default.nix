@@ -71,6 +71,7 @@
         tldr # very nice short descriptions
         zip
         wget
+        zellij
         killall
         lm_sensors
         cava

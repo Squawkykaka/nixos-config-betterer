@@ -120,19 +120,11 @@
   services.auto-cpufreq.enable = true;
   services.tlp.enable = true;
 
-  services.netbird = {
-    package = pkgs.netbird;
-    enable = false;
-  };
-
   services.undervolt = {
     enable = true;
     uncoreOffset = -130;
     coreOffset = -130;
   };
-
-  programs.virt-manager.enable = true;
-  virtualisation.libvirtd.enable = true;
 
   system.stateVersion = "24.11";
 }
