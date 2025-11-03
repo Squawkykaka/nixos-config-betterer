@@ -450,11 +450,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762041416,
-        "narHash": "sha256-rmJKABRXnhFjjI6RB/MnEvLTQa569zu684Th9y6UlOI=",
+        "lastModified": 1762146130,
+        "narHash": "sha256-/XOEA0a61fZ45i/BpaSsyLNNbw/yKwjMbkB/IWSGLzU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c0016dd14773f4ca0b467b74c7cdcc501570df4b",
+        "rev": "b5ed4afc2277339bdf0e9edf59befff7350cf075",
         "type": "github"
       },
       "original": {
@@ -567,11 +567,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761824067,
-        "narHash": "sha256-dB27qZRH2X5h2KM99UBYmksxb2ly2EGp5eSznTzRDe0=",
+        "lastModified": 1762115485,
+        "narHash": "sha256-hr53AWO96ooLCwS1a2v416eT1/aWQZmuQV0ULqhaBTY=",
         "owner": "hyprwm",
         "repo": "hyprland-plugins",
-        "rev": "7a07883c4d3e7ec6726862586483ea119e20eb0f",
+        "rev": "bbb8d2cb0eb667f2911103eadb3d1e8176f4462c",
         "type": "github"
       },
       "original": {
@@ -787,11 +787,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1762057117,
-        "narHash": "sha256-TDuR+ga/21BxHHKNb0s8LErpvFo5wUgZxEcyP1DfPBE=",
+        "lastModified": 1762143785,
+        "narHash": "sha256-K0FvAQtxYY/nAR7/3SSxjBI2XEfyd/Euih5P8Oek2Pw=",
         "owner": "DreamMaoMao",
         "repo": "mango",
-        "rev": "96938f5f86653bbcd19e82bf2f94d79ce34d4028",
+        "rev": "e47dc831c4e8a981679d0b3c6dd492f442d114ab",
         "type": "github"
       },
       "original": {
@@ -1007,11 +1007,11 @@
     "snix": {
       "flake": false,
       "locked": {
-        "lastModified": 1762030022,
-        "narHash": "sha256-eMCQRCr+eLWYdE3r4DdhPQKfxgBUZK9MWmmFso1WKYU=",
+        "lastModified": 1762132265,
+        "narHash": "sha256-Y/nbqO7LbQA83K/FD093D6MdVuAk/9JqiccPImNWumw=",
         "ref": "refs/heads/canon",
-        "rev": "49c37d6eaa99e402ac2dc0312ac4fc3c15928e6c",
-        "revCount": 21980,
+        "rev": "6b08b3382f68417111a15721be2c79e75b0d0c23",
+        "revCount": 21981,
         "type": "git",
         "url": "https://git.snix.dev/snix/snix"
       },
@@ -1106,11 +1106,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1761840967,
-        "narHash": "sha256-alE8Vesztx3tPxXpJURtYWD8x1cXaU/x+10Q6hbgGBY=",
+        "lastModified": 1762101397,
+        "narHash": "sha256-wGiL2K3kAyBBmIZpJEskaSIgyzzpg0zwfvri+Sy6/CI=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "c33226f205aeab42a170913cd1f8bc3428b7e6b1",
+        "rev": "8c0640d5722a02178c8ee80a62c5f019cab4b3c1",
         "type": "github"
       },
       "original": {
