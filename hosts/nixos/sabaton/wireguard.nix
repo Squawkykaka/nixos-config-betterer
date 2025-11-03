@@ -5,7 +5,7 @@
 }: let
   serverIp = "127.0.0.1:8765";
   vpnAddress = ["10.25.33.2/32"];
-  pubKey = "eSSKuC1ByITL8gyedJVQd+8hZFo3Boz4huMD0fG2J1o=";
+  pubKey = "MOR/0/aBD1s54aTH+iwRBGfVpKiS5pOKeA2OCQMNNTk=";
 in {
   networking.wg-quick.interfaces = {
     wg0 = {
@@ -21,7 +21,13 @@ in {
 
           # Generated with https://www.procustodibus.com/blog/2021/03/wireguard-allowedips-calculator/
           allowedIPs = [
-            "0.0.0.0/1"
+            "0.0.0.0/2"
+            "64.0.0.0/3"
+            "96.0.0.0/4"
+            "112.0.0.0/5"
+            "120.0.0.0/6"
+            "124.0.0.0/7"
+            "126.0.0.0/8"
             "128.0.0.0/2"
             "192.0.0.0/5"
             "200.0.0.0/7"
@@ -94,11 +100,16 @@ in {
 
       RestartSec = "2s";
 
-      ExecStart = "${pkgs.cloak-pt}/bin/ck-client -s 203.211.120.109 -l 8765 -u -c ${config.sops.secrets."ckclient-json".path}";
+      ExecStart = "${pkgs.cloak-pt}/bin/ck-client -s 203.211.120.109 -l 8765 -u -c ${
+        config.sops.secrets."ckclient-json".path
+      }";
     };
 
     wantedBy = ["multi-user.target"];
   };
 
-  environment.systemPackages = [pkgs.wireguard-tools pkgs.cloak-pt];
+  environment.systemPackages = [
+    pkgs.wireguard-tools
+    pkgs.cloak-pt
+  ];
 }
