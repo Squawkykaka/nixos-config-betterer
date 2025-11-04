@@ -17,7 +17,7 @@
     #
 
     ./hardware-configuration.nix
-    ./wireguard.nix
+    # ./wireguard.nix
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
@@ -55,6 +55,7 @@
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/mangowc.nix"
       "hosts/common/optional/hyprland.nix"
+      "hosts/common/optional/backup.nix"
       # "hosts/common/optional/solaar.nix" # FIXME: Solaar is not working witht latest flake update
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/nvtop.nix"
