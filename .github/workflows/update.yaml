@@ -2,7 +2,7 @@ name: update-dependencies
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: "0 6 * * *" # daily at 1 am EST/2 am EDT
+    - cron: "0 0 * * 1" # At 00:00 on Monday.
 
 jobs:
   update-dependencies:
