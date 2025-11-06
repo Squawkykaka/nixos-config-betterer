@@ -53,7 +53,6 @@
       "hosts/common/optional/services/greetd.nix"
       "hosts/common/optional/services/gpg.nix"
       "hosts/common/optional/gaming.nix"
-      "hosts/common/optional/mangowc.nix"
       "hosts/common/optional/hyprland.nix"
       "hosts/common/optional/backup.nix"
       # "hosts/common/optional/solaar.nix" # FIXME: Solaar is not working witht latest flake update

@@ -27,6 +27,9 @@
     networking.ports.tcp.ssh = 22;
   };
 
+  # FIXME current nixpkgs borked, latest borked as well
+  nixpkgs.config.allowBroken = true;
+
   networking.hostName = config.hostSpec.hostName;
 
   environment.systemPackages = [pkgs.openssh pkgs.trashy pkgs.nushell pkgs.starship pkgs.carapace];

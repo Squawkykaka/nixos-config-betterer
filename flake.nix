@@ -34,33 +34,22 @@
     # ========= Host Configurations =========
     #
     # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
-    nixosConfigurations =
-      builtins.listToAttrs (
-        map (host: {
-          name = host;
-          value = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit
-                inputs
-                outputs
-                lib
-                snix
-                ;
-            };
-            modules = [./hosts/nixos/${host}];
+    nixosConfigurations = builtins.listToAttrs (
+      map (host: {
+        name = host;
+        value = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              lib
+              snix
+              ;
           };
-        }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
-      )
-      // {
-        iso = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {inherit inputs outputs lib;};
-          modules = [
-            (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-            ./iso.nix
-          ];
+          modules = [./hosts/nixos/${host}];
         };
-      };
+      }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
+    );
 
     #
     # ========= Packages =========
@@ -112,14 +101,12 @@
       "https://nixpkgs-unfree.cachix.org"
       "https://catppuccin.cachix.org"
       "https://cache.snix.dev"
-      "https://squawkykaka.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
       "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
-      "squawkykaka.cachix.org-1:ZZ57B03Er06R2Xmi6wFWyUuegFV6WJrTXCvhHVaE+co="
       "cache.snix.dev-1:miTqzIzmCbX/DyK2tLNXDROk77CbbvcRdWA4y2F8pno="
     ];
   };
@@ -185,11 +172,6 @@
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    mango = {
-      url = "github:DreamMaoMao/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
