@@ -1,33 +1,28 @@
-{
-  buildFHSEnv,
-  callPackage,
-}: let
-  nitrolaunch-gui-unwrapped = callPackage ./nitrolaunch-gui-unwrapped.nix {};
-in
-  buildFHSEnv {
-    name = "nitrolaunch-gui";
-    targetPkgs = pkgs: [
-      nitrolaunch-gui-unwrapped
+{buildFHSEnv}:
+buildFHSEnv {
+  name = "nitrolaunch-gui";
+  targetPkgs = pkgs: [
+    pkgs.nitrolaunch-gui-unwrapped
 
-      pkgs.openal
+    pkgs.openal
 
-      pkgs.glfw3-minecraft
-      pkgs.alsa-lib
-      pkgs.libjack2
-      pkgs.libpulseaudio
-      pkgs.pipewire
+    pkgs.glfw3-minecraft
+    pkgs.alsa-lib
+    pkgs.libjack2
+    pkgs.libpulseaudio
+    pkgs.pipewire
 
-      pkgs.libGL
-      pkgs.xorg.libX11
-      pkgs.xorg.libXcursor
-      pkgs.xorg.libXext
-      pkgs.xorg.libXrandr
-      pkgs.xorg.libXxf86vm
+    pkgs.libGL
+    pkgs.xorg.libX11
+    pkgs.xorg.libXcursor
+    pkgs.xorg.libXext
+    pkgs.xorg.libXrandr
+    pkgs.xorg.libXxf86vm
 
-      pkgs.udev
+    pkgs.udev
 
-      pkgs.vulkan-loader
-    ];
+    pkgs.vulkan-loader
+  ];
 
-    runScript = "/bin/nitrolaunch";
-  }
+  runScript = "/bin/Nitrolaunch";
+}
