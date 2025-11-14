@@ -119,6 +119,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    awww = {
+      url = "git+https://codeberg.org/LGFae/awww";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     snix = {
       url = "git+https://git.snix.dev/snix/snix";
       flake = false;
@@ -126,11 +131,6 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
