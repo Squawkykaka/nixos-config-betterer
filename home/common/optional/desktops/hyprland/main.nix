@@ -38,7 +38,6 @@
         "[workspace 5 silent] vesktop"
         "[workspace 1] $browser"
         "nm-applet"
-        "ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
         # "systemctl --user start hyprpolkitagent"
       ];
 
