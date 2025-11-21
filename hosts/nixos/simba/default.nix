@@ -131,7 +131,7 @@
     pkgs.kicad
     pkgs.freecad
     pkgs.dualsensectl
-    pkgs.pinentry-curses
+    pkgs.pinentry-gnome3
   ];
 
   hardware.nvidia-container-toolkit.enable = true;
