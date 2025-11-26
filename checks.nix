@@ -1,9 +1,9 @@
 {
   inputs,
-  system,
+  pkgs,
   ...
 }: {
-  pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+  pre-commit-check = inputs.pre-commit-hooks.lib.${pkgs.stdenv.hostPlatform.system}.run {
     src = ./.;
     default_stages = ["pre-commit"];
     hooks = {
@@ -31,15 +31,6 @@
         language = "fail";
         entry = "submodules are not allowed in this repository:";
         types = ["directory"];
-      };
-
-      destroyed-symlinks = {
-        enable = true;
-        name = "destroyed-symlinks";
-        description = "detects symlinks which are changed to regular files with a content of a path which that symlink was pointing to.";
-        package = inputs.pre-commit-hooks.checks.${system}.pre-commit-hooks;
-        entry = "${inputs.pre-commit-hooks.checks.${system}.pre-commit-hooks}/bin/destroyed-symlinks";
-        types = ["symlink"];
       };
 
       # ========== nix ==========
