@@ -130,7 +130,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager?rev=3d6c1c8fa0bea3a1a7ba23d6fa5993116766073b";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -170,7 +170,7 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/v0.51.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

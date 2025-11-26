@@ -24,8 +24,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
     owner = "Nitrolaunch";
     repo = finalAttrs.pname;
     # rev = finalAttrs.version;
-    rev = "08821dd";
-    hash = "sha256-wbnQ2ka6kmvb1gDompOcA+dJH58OyQpaL8MiQlPaTwg=";
+    rev = "59424fd";
+    hash = "sha256-pZfgl9OxcD8XB9PaYeIcHbZktXijXBj0uW9NopBGzH0=";
   };
 
   # Needed as nitro_gui is in a cargo workspace

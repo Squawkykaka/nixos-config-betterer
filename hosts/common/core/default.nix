@@ -32,7 +32,13 @@
 
   networking.hostName = config.hostSpec.hostName;
 
-  environment.systemPackages = [pkgs.openssh pkgs.trashy pkgs.nushell pkgs.starship pkgs.carapace];
+  environment.systemPackages = [
+    pkgs.openssh
+    pkgs.trashy
+    pkgs.nushell
+    pkgs.starship
+    pkgs.carapace
+  ];
 
   # make home-manager backup files.
   home-manager.backupFileExtension = "bk";
@@ -68,7 +74,10 @@
       min-free = 128000000; # 128MB
       max-free = 1000000000; # 1GB
 
-      trusted-users = ["@wheel"];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
       warn-dirty = false;
@@ -108,20 +117,6 @@
 
     polkit.enable = true;
     rtkit.enable = true;
-  };
-
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
-    after = ["graphical-session.target"];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
   };
 
   security.pki.certificates = [

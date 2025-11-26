@@ -57,7 +57,6 @@
       "hosts/common/optional/backup.nix"
       # "hosts/common/optional/solaar.nix" # FIXME: Solaar is not working witht latest flake update
       "hosts/common/optional/audio.nix"
-      "hosts/common/optional/nvtop.nix"
       "hosts/common/optional/syncthing.nix"
 
       # TODO
@@ -76,7 +75,6 @@
 
   networking = {
     networkmanager.enable = true;
-    enableIPv6 = false;
   };
 
   # set the boot loader
@@ -105,15 +103,6 @@
   hardware.nvidia = {
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-    # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #   version = "570.133.07";
-    #   sha256_64bit = "sha256-LUPmTFgb5e9VTemIixqpADfvbUX1QoTT2dztwI3E3CY=";
-    #   sha256_aarch64 = "sha256-2l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    #   openSha256 = "sha256-9l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    #   settingsSha256 = "sha256-XMk+FvTlGpMquM8aE8kgYK2PIEszUZD2+Zmj2OpYrzU=";
-    #   persistencedSha256 = "sha256-4l8N83Spj0MccA8+8R1uqiXBS0Ag4JrLPjrU3TaXHnM=";
-    # };
     nvidiaSettings = true;
     prime = {
       offload = {
@@ -133,8 +122,6 @@
     pkgs.dualsensectl
     pkgs.pinentry-gnome3
   ];
-
-  hardware.nvidia-container-toolkit.enable = true;
 
   system.stateVersion = "24.11";
 }
