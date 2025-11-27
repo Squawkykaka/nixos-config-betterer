@@ -17,7 +17,6 @@
     #
 
     ./hardware-configuration.nix
-    ./borg.nix
     # ./wireguard.nix
     inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2
     inputs.disko.nixosModules.disko

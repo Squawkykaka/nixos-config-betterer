@@ -22,13 +22,7 @@
       "users/${config.hostSpec.username}/password" = {
         neededForUsers = true;
       };
-
-      "borg_pass" = {
-        owner = "root";
-        group = "wheel";
-        mode = "0600";
-        path = "/etc/borg/passphrase";
-      };
+      "email" = {};
 
       "sabaton/wireguard/privkey" = {
         mode = "0600";
