@@ -10,6 +10,8 @@
     drivers = with pkgs; [
       cups-filters
       cups-browsed
+      cups-bjnp
+      gutenprint
     ];
   };
 }
