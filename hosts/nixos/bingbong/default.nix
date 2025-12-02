@@ -54,7 +54,7 @@
       CLOUDFLARE_EMAIL=${config.sops.placeholder."email"}
       CLOUDFLARE_DNS_API_TOKEN=${config.sops.placeholder."cloudflare/api_token"}
     '';
-    owner = "caddy";
+    #    owner = "caddy";
   };
 
   services.caddy = {
@@ -71,6 +71,7 @@
     config.sops.templates."matrix-caddy-env".path
   ];
 
+  networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
     22
   ];
@@ -80,13 +81,37 @@
   security.acme.defaults.dnsProvider = "cloudflare";
   security.acme.acceptTerms = true;
 
-  # kaka.matrix = {
-  #   enable = true;
-  #   externalIp = "203.211.120.109";
-  #   listeningIp = "10.0.0.76";
-  #   synapseUrl = "smeagol.me";
-  #   turn.url = "turn.smeagol.me";
-  #   metrics = true;
+  kaka.matrix = {
+    enable = true;
+    externalIp = "203.211.120.109";
+    listeningIp = "10.0.0.76";
+    synapseUrl = "smeagol.me";
+    turn.url = "turn.smeagol.me";
+    synapseAdmin = {
+      enable = true;
+      url = "admin.smeagol.me";
+    };
+    metrics = true;
+  };
 
-  # };
+  services.jellyfin = {
+    enable = true;
+  };
+
+  services.caddy.virtualHosts."jellyfin.smeagol.me".extraConfig = ''
+    reverse_proxy localhost:8096
+  '';
+
+  services.calibre-web = {
+    enable = true;
+    options = {
+      enableBookUploading = true;
+      enableBookConversion = true;
+      calibreLibrary = "/var/lib/calibre-web/library";
+    };
+  };
+
+  services.caddy.virtualHosts."calibre.smeagol.me".extraConfig = ''
+    reverse_proxy localhost:${toString config.services.calibre-web.listen.port}
+  '';
 }

@@ -124,5 +124,7 @@
     pkgs.pinentry-gnome3
   ];
 
+  networking.firewall.allowedTCPPorts = [40681];
+
   system.stateVersion = "24.11";
 }
