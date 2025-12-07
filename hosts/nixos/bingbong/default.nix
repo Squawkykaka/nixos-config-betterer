@@ -94,13 +94,9 @@
     metrics = true;
   };
 
-  services.jellyfin = {
+  kaka.servarr = {
     enable = true;
   };
-
-  services.caddy.virtualHosts."jellyfin.smeagol.me".extraConfig = ''
-    reverse_proxy localhost:8096
-  '';
 
   services.calibre-web = {
     enable = true;

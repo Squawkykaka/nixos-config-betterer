@@ -65,6 +65,9 @@
   ];
 
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  boot.supportedFilesystems = [
+    "nfs"
+  ];
 
   hostSpec = {
     hostName = "simba";
