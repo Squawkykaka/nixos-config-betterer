@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.kaka.servarr;
@@ -44,6 +45,7 @@ in {
     users.users.qbittorrent.extraGroups = ["media"];
     users.users.sonarr.extraGroups = ["media"];
     users.users.radarr.extraGroups = ["media"];
+    users.users.lidarr.extraGroups = ["media"];
     users.users.gleask.extraGroups = ["media"];
 
     networking.wireguard.interfaces.wg-qbittorrent = {
@@ -94,6 +96,37 @@ in {
       ];
     };
 
+    services.qui = {
+      enable = true;
+      package = (
+        pkgs.qui.overrideAttrs (old: rec {
+          version = "1.9.1";
+          src = pkgs.fetchFromGitHub {
+            owner = "autobrr";
+            repo = "qui";
+            tag = "v${version}";
+            hash = "sha256-PcJl9nxHPWv17AqtEok0qHhrTQ1WInUKAtxrxoSeMSw=";
+          };
+
+          vendorHash = "sha256-UF6V737MF2la24oW8oPp+0N8nv0uEykMrTbzvx/gtec=";
+
+          qui-web = old.qui-web.overrideAttrs (oldWeb: {
+            inherit src version;
+            sourceRoot = "${src.name}/web";
+
+            pnpmDeps = pkgs.pnpm_9.fetchDeps {
+              inherit src version;
+              pname = "${old.pname}-web";
+              sourceRoot = "${src.name}/web";
+              fetcherVersion = 2;
+              hash = "sha256-bDaMax5RS+ot6vaJmNJm6p4gFaCD9aslJXI/58ua9DI=";
+            };
+          });
+        })
+      );
+      settings.sessionSecret = "FCuR9YzVgNZgFHmNTNR";
+      settings.baseUrl = "/qui/";
+    };
     services.qbittorrent = {
       enable = true;
       webuiPort = 3056;
@@ -127,14 +160,30 @@ in {
       NetworkNamespacePath = "/var/run/netns/wg-qbittorrent";
     };
     services.caddy.virtualHosts."torrent.smeagol.me".extraConfig = ''
-      reverse_proxy /* 10.200.200.2:${toString config.services.qbittorrent.webuiPort} {
-        header_up Host {host}
-        header_up X-Forwarded-For {remote}
-        header_up X-Forwarded-Host {host}
-        header_up X-Forwarded-Proto {scheme}
+      handle /qui {
+        redir /qui/ permanent
+      }
 
-        transport http {
-          versions 1.1
+      # Qui on port 7476
+      handle /qui/* {
+        reverse_proxy 127.0.0.1:7476 {
+          header_up Host {host}
+          header_up X-Forwarded-For {remote}
+          header_up X-Forwarded-Host {host}
+          header_up X-Forwarded-Proto {scheme}
+        }
+      }
+
+      # qBittorrent - must come last as catch-all
+      handle /* {
+        reverse_proxy 10.200.200.2:${toString config.services.qbittorrent.webuiPort} {
+          header_up Host {host}
+          header_up X-Forwarded-For {remote}
+          header_up X-Forwarded-Host {host}
+          header_up X-Forwarded-Proto {scheme}
+          transport http {
+            versions 1.1
+          }
         }
       }
     '';
@@ -173,6 +222,11 @@ in {
     services.sonarr.enable = true;
     services.caddy.virtualHosts."sonarr.smeagol.me".extraConfig = ''
       reverse_proxy localhost:${toString config.services.sonarr.settings.server.port}
+    '';
+
+    services.lidarr.enable = true;
+    services.caddy.virtualHosts."lidarr.smeagol.me".extraConfig = ''
+      reverse_proxy localhost:${toString config.services.lidarr.settings.server.port}
     '';
 
     services.jellyseerr.enable = true;
