@@ -31,21 +31,24 @@ in {
       options = [
         "rw"
         "sec=sys"
-        "x-systemd.automount"
-        "x-systemd.idle-timeout=600"
         "noatime"
-        "soft"
+        "hard"
+        "intr"
+        "proto=tcp"
         "_netdev"
       ];
 
       neededForBoot = false;
     };
-    users.groups.media = {};
+    users.groups.media = {
+      gid = 984;
+    };
     users.users.jellyfin.extraGroups = ["media"];
     users.users.qbittorrent.extraGroups = ["media"];
     users.users.sonarr.extraGroups = ["media"];
     users.users.radarr.extraGroups = ["media"];
     users.users.lidarr.extraGroups = ["media"];
+    users.users.jackett.extraGroups = ["media"];
     users.users.gleask.extraGroups = ["media"];
 
     networking.wireguard.interfaces.wg-qbittorrent = {
@@ -189,7 +192,7 @@ in {
     '';
 
     services.jellyfin.enable = true;
-    services.caddy.virtualHosts."`jellyfin.smeagol.me`".extraConfig = ''
+    services.caddy.virtualHosts."jellyfin.smeagol.me".extraConfig = ''
       reverse_proxy localhost:8096 {
         # transport http {
         #   versions 1.1
@@ -210,7 +213,7 @@ in {
     services.radarr = {
       enable = true;
     };
-    services.caddy.virtualHosts."`radarr.smeagol.me`".extraConfig = ''
+    services.caddy.virtualHosts."radarr.smeagol.me".extraConfig = ''
       reverse_proxy localhost:${toString config.services.radarr.settings.server.port}
     '';
 
@@ -232,6 +235,33 @@ in {
     services.jellyseerr.enable = true;
     services.caddy.virtualHosts."jellyseerr.smeagol.me".extraConfig = ''
       reverse_proxy localhost:${toString config.services.jellyseerr.port}
+    '';
+
+    services.jackett.enable = true;
+    services.caddy.virtualHosts."jackett.smeagol.me".extraConfig = ''
+      @local {
+          remote_ip 10.0.0.0/8
+          remote_ip 172.16.0.0/12
+          remote_ip 192.168.0.0/16
+      }
+      handle @local {
+          reverse_proxy localhost:${toString config.services.jackett.port}
+      }
+      handle {
+          respond "Forbidden" 403
+      }
+    '';
+
+    sops.secrets = {
+      "autobrr/secret" = {};
+    };
+    # services.notifiarr.enable = true;
+    services.autobrr = {
+      enable = true;
+      secretFile = config.sops.secrets."autobrr/secret".path;
+    };
+    services.caddy.virtualHosts."autobrr.smeagol.me".extraConfig = ''
+      reverse_proxy localhost:${toString config.services.autobrr.settings.port}
     '';
 
     services.flaresolverr.enable = true;

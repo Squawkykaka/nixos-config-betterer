@@ -7,6 +7,8 @@
     pkgs.networkmanagerapplet
   ];
 
+  services.gnome.gnome-keyring.enable = true;
+
   programs.hyprland = {
     enable = true;
     # xwayland.enable = true;
@@ -18,6 +20,8 @@
 
   xdg.portal = {
     enable = true;
+    xdgOpenUsePortal = true;
+
     extraPortals = [
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
     ];
