@@ -1,5 +1,6 @@
 {
   inputs,
+  outputs,
   lib,
   pkgs,
   config,
@@ -47,9 +48,9 @@
   # ========== Overlays ==========
   #
   nixpkgs = {
-    # overlays = [
-    #   outputs.overlays.default
-    # ];
+    overlays = [
+      outputs.overlays.default
+    ];
     config = {
       allowUnfree = true;
     };

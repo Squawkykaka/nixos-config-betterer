@@ -119,6 +119,9 @@
       nvidia-vaapi-driver
     ];
   };
+
+  services.flatpak.enable = true;
+
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     open = true;
@@ -141,7 +144,10 @@
     pkgs.freecad
     pkgs.dualsensectl
     pkgs.pinentry-gnome3
+    pkgs.bottles
+    pkgs.idescriptor
   ];
+  services.udev.packages = [pkgs.idescriptor];
 
   networking.firewall.allowedTCPPorts = [40681];
 

@@ -17,9 +17,7 @@
     ./xdg.nix
     ./eza.nix
     ./stylix.nix
-    ./neovim.nix
     ./direnv.nix
-    ./bat.nix
     ./zoxide.nix
   ];
 
@@ -75,6 +73,7 @@
         killall
         lm_sensors
         cava
+        helix
         ;
     }
     ++ [
