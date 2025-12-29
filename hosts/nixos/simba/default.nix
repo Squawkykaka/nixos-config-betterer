@@ -49,7 +49,7 @@
       #
       "hosts/common/optional/services/bluetooth.nix"
       "hosts/common/optional/services/openssh.nix"
-      "hosts/common/optional/services/greetd.nix"
+      "hosts/common/optional/services/sddm.nix"
       "hosts/common/optional/services/gpg.nix"
       "hosts/common/optional/gaming.nix"
       "hosts/common/optional/printing.nix"
@@ -62,6 +62,8 @@
       # TODO
     ])
   ];
+
+  services.kanata.enable = true;
 
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   boot.supportedFilesystems = [
@@ -140,7 +142,9 @@
   };
 
   environment.systemPackages = [
-    pkgs.kicad
+    (pkgs.kicad.override {
+      addons = with pkgs.kicadAddons; [kikit kikit-library];
+    })
     pkgs.freecad
     pkgs.dualsensectl
     pkgs.pinentry-gnome3

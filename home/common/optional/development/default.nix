@@ -11,6 +11,7 @@
         (pkgs)
         # Development
         direnv
+        vscode
         delta # diffing
         tree-sitter
         act # github workflow runner

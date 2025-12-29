@@ -907,7 +907,6 @@
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
         "pre-commit-hooks": "pre-commit-hooks_2",
-        "snix": "snix",
         "solaar": "solaar",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
@@ -954,22 +953,6 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
-      }
-    },
-    "snix": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1765479090,
-        "narHash": "sha256-l9dYmtyefXJNOUwYwf6iJEQZKQhg/7yXfhl/niS9CGI=",
-        "ref": "refs/heads/canon",
-        "rev": "5022823cc3a05a46b22da45cd3827658fe0c653f",
-        "revCount": 22024,
-        "type": "git",
-        "url": "https://git.snix.dev/snix/snix"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.snix.dev/snix/snix"
       }
     },
     "solaar": {

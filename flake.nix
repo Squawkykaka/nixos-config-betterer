@@ -4,7 +4,6 @@
   outputs = {
     self,
     nixpkgs,
-    snix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -43,7 +42,6 @@
               inputs
               outputs
               lib
-              snix
               ;
           };
           modules = [./hosts/nixos/${host}];
@@ -126,11 +124,6 @@
     awww = {
       url = "git+https://codeberg.org/LGFae/awww";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    snix = {
-      url = "git+https://git.snix.dev/snix/snix";
-      flake = false;
     };
 
     home-manager = {
