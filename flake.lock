@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "adios": {
+      "locked": {
+        "lastModified": 1764607811,
+        "narHash": "sha256-f7GHSqsGJGkbtIS4YHTk8Zs5rI2IGyqGsJ0qbF1J9Tg=",
+        "owner": "adisbladis",
+        "repo": "adios",
+        "rev": "6754e85bce51ea198fa405394fb5b57d67555e7d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "adisbladis",
+        "repo": "adios",
+        "type": "github"
+      }
+    },
     "aquamarine": {
       "inputs": {
         "hyprutils": [
@@ -897,6 +912,7 @@
     },
     "root": {
       "inputs": {
+        "adios": "adios",
         "awww": "awww",
         "disko": "disko",
         "hardware": "hardware",

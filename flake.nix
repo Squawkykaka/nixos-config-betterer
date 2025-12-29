@@ -11,23 +11,19 @@
     # ========== Extend lib with lib.custom ==========
     lib = nixpkgs.lib.extend (_self: _super: {custom = import ./lib {inherit (nixpkgs) lib;};});
 
-    forAllSystems = nixpkgs.lib.genAttrs ["x86_64-linux"];
+    forAllSystems = apply:
+      lib.genAttrs ["x86_64-linux"] (system:
+        apply (import nixpkgs {
+          inherit system;
+          overlays = [self.overlays.default];
+        })
+        system);
   in {
     #
     # ========= Overlays =========
     #
     # Custom modifications/overrides to upstream packages
     overlays = import ./overlays {inherit inputs;};
-
-    lib.hostsBySystem = system: let
-      self = inputs.self;
-      where =
-        if lib.hasSuffix "darwin" system
-        then self.darwinConfigurations
-        else self.nixosConfigurations;
-      sameSystem = lib.filterAttrs (_: v: v.config.nixpkgs.hostPlatform.system == system) where;
-    in
-      lib.attrNames sameSystem;
 
     #
     # ========= Host Configurations =========
@@ -42,28 +38,38 @@
               inputs
               outputs
               lib
+              self
               ;
+            wrappers = inputs.self.packages."x86_64-linux".wrappers;
           };
           modules = [./hosts/nixos/${host}];
         };
       }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
     );
 
+    wrapperModules = forAllSystems (
+      pkgs: _:
+        import ./wrappers/modules/default.nix {
+          inherit pkgs lib;
+          adios = inputs.adios.adios;
+        }
+    );
     #
     # ========= Packages =========
     #
     # Expose custom packages
-
     packages = forAllSystems (
-      system: let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [self.overlays.default];
-        };
+      pkgs: system: let
+        wrappers = inputs.self.wrapperModules.${system};
       in
-        nixpkgs.lib.packagesFromDirectoryRecursive {
-          callPackage = nixpkgs.lib.callPackageWith pkgs;
+        pkgs.lib.packagesFromDirectoryRecursive {
+          callPackage = pkgs.lib.callPackageWith pkgs;
           directory = ./packages;
+        }
+        // {
+          wrappers = import ./wrappers/config {
+            inherit pkgs wrappers;
+          };
         }
     );
 
@@ -71,22 +77,20 @@
     # ========= Formatting =========
     #
     # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    formatter = forAllSystems (pkgs: _: pkgs.alejandra);
     # Pre-commit checks
     checks = forAllSystems (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        import ./checks.nix {inherit inputs system pkgs;}
+      pkgs: system:
+        import ./checks.nix {inherit inputs pkgs system;}
     );
 
     #
     # ========= DevShell =========
     #
     devShells = forAllSystems (
-      system:
+      pkgs: system:
         import ./shell.nix {
-          pkgs = nixpkgs.legacyPackages.${system};
+          inherit pkgs;
           checks = self.checks.${system};
         }
     );
@@ -176,5 +180,7 @@
       inputs.hyprland.follows = "hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    adios.url = "github:adisbladis/adios";
   };
 }

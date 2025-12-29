@@ -111,6 +111,9 @@
     reverse_proxy localhost:${toString config.services.calibre-web.listen.port}
   '';
 
+  services.caddy.virtualHosts."search.boom.boats".extraConfig = ''
+    reverse_proxy 10.0.0.8:8998
+  '';
   # sops.secrets = {
   #   "peertube/redis_pass" = {
   #     group = "peertube";

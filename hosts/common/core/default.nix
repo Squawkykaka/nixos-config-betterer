@@ -4,6 +4,7 @@
   lib,
   pkgs,
   config,
+  wrappers,
   ...
 }: {
   imports = lib.flatten [
@@ -39,6 +40,7 @@
     pkgs.nushell
     pkgs.starship
     pkgs.carapace
+    wrappers.git
   ];
 
   # make home-manager backup files.

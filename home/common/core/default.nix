@@ -12,12 +12,10 @@
     ])
 
     ./zsh.nix
-    ./git.nix
+    ./zoxide.nix
     ./xdg.nix
-    ./eza.nix
     ./stylix.nix
     ./direnv.nix
-    ./zoxide.nix
   ];
 
   inherit hostSpec;

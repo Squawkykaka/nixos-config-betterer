@@ -35,7 +35,6 @@
 
   environment.systemPackages = with pkgs; [
     vim
-    git
   ];
 
   security.sudo.wheelNeedsPassword = false;

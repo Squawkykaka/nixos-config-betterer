@@ -4,6 +4,8 @@
   pkgs,
   config,
   lib,
+  self,
+  wrappers,
   ...
 }: let
   inherit (config) hostSpec;
@@ -51,7 +53,7 @@ in
   // {
     home-manager = {
       extraSpecialArgs = {
-        inherit pkgs inputs;
+        inherit pkgs inputs self wrappers;
         inherit (config) hostSpec;
       };
       users.${hostSpec.username}.imports = lib.flatten [
