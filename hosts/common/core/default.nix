@@ -30,7 +30,7 @@
   };
 
   # FIXME current nixpkgs borked, latest borked as well
-  nixpkgs.config.allowBroken = true;
+  # nixpkgs.config.allowBroken = true;
 
   networking.hostName = config.hostSpec.hostName;
 
@@ -51,12 +51,15 @@
   #
   nixpkgs = {
     overlays = [
+      # (self: super: { git = wrappers.git; })
       outputs.overlays.default
     ];
     config = {
       allowUnfree = true;
     };
   };
+  programs.git.enable = false;
+  programs.git.package = wrappers.git;
 
   #
   # ========== Nix Nix Nix ==========

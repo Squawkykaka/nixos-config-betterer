@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  wrappers,
   hostSpec,
   ...
 }: {
@@ -19,6 +20,8 @@
   ];
 
   inherit hostSpec;
+
+  programs.git.enable = false;
 
   programs.nh = {
     enable = true;
@@ -43,31 +46,33 @@
     preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
   };
 
-  home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
-      btop # resource monitor
-      coreutils # basic gnu utils
-      curl
-      fzf # nice fuzzyfind
-      fastfetch # come on, we need it
-      pciutils
-      pfetch # system info
-      pre-commit # git hooks
-      ripgrep # better grep
-      tree # cli dir tree viewer
-      unzip
-      nixd # nix language server
-      nixfmt-rfc-style # nix formatter
-      tldr # very nice short descriptions
-      zip
-      wget
-      killall
-      lm_sensors
-      cava
-      helix
-      ;
-  };
+  home.packages =
+    builtins.attrValues {
+      inherit
+        (pkgs)
+        btop # resource monitor
+        coreutils # basic gnu utils
+        curl
+        fzf # nice fuzzyfind
+        fastfetch # come on, we need it
+        pciutils
+        pfetch # system info
+        pre-commit # git hooks
+        ripgrep # better grep
+        tree # cli dir tree viewer
+        unzip
+        nixd # nix language server
+        nixfmt-rfc-style # nix formatter
+        tldr # very nice short descriptions
+        zip
+        wget
+        killall
+        lm_sensors
+        cava
+        helix
+        ;
+    }
+    ++ [wrappers.git];
 
   nix = {
     package = lib.mkDefault pkgs.nix;
