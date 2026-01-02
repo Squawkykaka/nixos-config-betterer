@@ -35,12 +35,6 @@
 
       # ========== nix ==========
       alejandra.enable = true;
-      deadnix = {
-        enable = true;
-        settings = {
-          noLambdaArg = true;
-        };
-      };
 
       # ========== shellscripts ==========
       shfmt.enable = true;

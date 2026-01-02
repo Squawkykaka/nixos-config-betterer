@@ -24,4 +24,5 @@
       signByDefault = true;
     };
   };
+  fish = wrappers.fish {};
 }

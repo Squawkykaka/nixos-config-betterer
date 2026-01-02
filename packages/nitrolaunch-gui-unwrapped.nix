@@ -18,14 +18,14 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nitrolaunch";
-  version = "0.27.0";
+  version = "0.28.0";
 
   src = fetchFromGitHub {
     owner = "Nitrolaunch";
     repo = finalAttrs.pname;
     # rev = finalAttrs.version;
-    rev = "e7153bd";
-    hash = "sha256-HaamJ0WwAdwVV2WMQLTsQ9buEEH05WqRWwlLvagRZ5o=";
+    rev = finalAttrs.version;
+    hash = "sha256-QnmC8BmMKr7M206Np6Dafe8T04iZGIbkY4Lzj3TlUyE=";
   };
 
   # Needed as nitro_gui is in a cargo workspace
@@ -36,6 +36,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
        --replace-fail '"createUpdaterArtifacts": "v1Compatible"' '"createUpdaterArtifacts": false'
   '';
 
+  buildType = "fast_release"; # source has all settings on minimum exe size, making build super slow
+
   cargoLock = {
     lockFile = "${finalAttrs.src}/Cargo.lock";
   };
@@ -44,7 +46,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     name = "${finalAttrs.pname}-${finalAttrs.version}-npm-deps";
     src = "${finalAttrs.src}/${finalAttrs.npmRoot}";
     lockFile = "package-lock.json";
-    hash = "sha256-Xw0gl/SVUUiWH2r30kwqZ8Y0mH6uQ1RSZ4J0ngcbP1E=";
+    hash = "sha256-cKKcTk2ZOXalzNEiYERWCUAd1mm0chh3JFAyai5rnBo=";
   };
 
   npmRoot = "gui";

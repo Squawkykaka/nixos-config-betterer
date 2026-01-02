@@ -15,6 +15,7 @@
     ./zsh.nix
     ./zoxide.nix
     ./xdg.nix
+    ./neovim.nix
     ./stylix.nix
     ./direnv.nix
   ];

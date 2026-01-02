@@ -64,6 +64,7 @@
   ];
 
   services.kanata.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   boot.supportedFilesystems = [
@@ -142,9 +143,6 @@
   };
 
   environment.systemPackages = [
-    (pkgs.kicad.override {
-      addons = with pkgs.kicadAddons; [kikit kikit-library];
-    })
     pkgs.freecad
     pkgs.dualsensectl
     pkgs.pinentry-gnome3
