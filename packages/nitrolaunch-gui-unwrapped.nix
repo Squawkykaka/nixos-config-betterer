@@ -2,7 +2,6 @@
   lib,
   fetchFromGitHub,
   rustPlatform,
-  makeDesktopItem,
   pkg-config,
   openssl,
   libsoup_3,
@@ -17,7 +16,7 @@
   wrapGAppsHook3,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
-  pname = "nitrolaunch";
+  pname = "nitrolaunch-gui";
   version = "0.28.0";
 
   src = fetchFromGitHub {
@@ -70,20 +69,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   cargoRoot = "gui/src-tauri";
   buildAndTestSubdir = "gui/src-tauri";
-
-  desktopItems = [
-    (makeDesktopItem {
-      name = "Nitrolaunch";
-      exec = "nitrolaunch";
-      icon = "nitrolaunch";
-      desktopName = "Nitrolaunch";
-      comment = "A fast, extensible, and powerful Minecraft launcher";
-      categories = [
-        "Game"
-        "Utility"
-      ];
-    })
-  ];
 
   meta = with lib; {
     description = "A fast, extensible, and powerful Minecraft launcher";

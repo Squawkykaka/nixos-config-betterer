@@ -5,18 +5,20 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "nitrolaunch-cli";
-  version = "0.27.0";
+  version = "0.28.0";
 
   src = fetchFromGitHub {
     owner = "Nitrolaunch";
     repo = "nitrolaunch";
     rev = version;
-    hash = "sha256-eWBD9bzN5aAo5xE4MUIsbkBDl800gR6EGw4PSMRwBVA=";
+    hash = "sha256-QnmC8BmMKr7M206Np6Dafe8T04iZGIbkY4Lzj3TlUyE=";
   };
 
   cargoLock = {
     lockFile = "${src}/Cargo.lock";
   };
+
+  buildType = "fast_release";
 
   cargoBuildFlags = [
     "--package"
