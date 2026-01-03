@@ -45,6 +45,7 @@
 
   sops.secrets = {
     "cloudflare/api_token" = {};
+    "searxng/secret_key" = {};
   };
 
   sops.templates."matrix-caddy-env" = {
@@ -54,6 +55,12 @@
       CLOUDFLARE_DNS_API_TOKEN=${config.sops.placeholder."cloudflare/api_token"}
     '';
     #    owner = "caddy";
+  };
+  sops.templates."searxng-environment" = {
+    content = lib.generators.toKeyValue {} {
+      SEARXNG_SECRET = config.sops.placeholder."searxng/secret_key";
+      SEARXNG_VALKEY_URL = "unix://${config.services.redis.servers.searx.unixSocket}";
+    };
   };
 
   services.caddy = {
@@ -111,8 +118,15 @@
   '';
 
   services.caddy.virtualHosts."search.boom.boats".extraConfig = ''
-    reverse_proxy 10.0.0.8:8998
+    reverse_proxy 127.0.0.1:8888
   '';
+
+  services.searx = {
+    enable = true;
+    redisCreateLocally = true;
+    environmentFile = config.sops.templates."searxng-environment".path;
+    settingsFile = ./searxng.yml;
+  };
   # sops.secrets = {
   #   "peertube/redis_pass" = {
   #     group = "peertube";
