@@ -1,4 +1,5 @@
-{wrappers, ...}: {
+{ wrappers, ... }:
+{
   git = wrappers.git {
     ignores = [
       ".csvignore"
@@ -24,5 +25,6 @@
       signByDefault = true;
     };
   };
-  fish = wrappers.fish {};
+  fish = wrappers.fish { };
+  ssserver = wrappers.ssserver { };
 }

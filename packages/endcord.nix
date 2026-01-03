@@ -7,7 +7,8 @@
   rustPlatform,
   makeWrapper,
   ...
-}: let
+}:
+let
   numpy_2_4_0 = python3Packages.numpy.overrideAttrs (old: rec {
     version = "2.4.0";
 
@@ -18,11 +19,9 @@
     };
 
     # numpy uses meson now
-    nativeBuildInputs =
-      old.nativeBuildInputs
-      ++ [
-        python3Packages.meson-python
-      ];
+    nativeBuildInputs = old.nativeBuildInputs ++ [
+      python3Packages.meson-python
+    ];
   });
 
   orjson_3_11_5 = python3Packages.orjson.overrideAttrs (old: rec {
@@ -80,7 +79,11 @@
     version = "0.0.2";
     pyproject = true;
 
-    build-system = with python3Packages; [setuptools setuptools-scm protobuf];
+    build-system = with python3Packages; [
+      setuptools
+      setuptools-scm
+      protobuf
+    ];
 
     src = fetchPypi {
       inherit pname version;
@@ -88,43 +91,50 @@
     };
   };
 in
-  python3Packages.buildPythonApplication rec {
-    pname = "endcord";
-    version = "1.1.6";
-    pyproject = true;
+python3Packages.buildPythonApplication rec {
+  pname = "endcord";
+  version = "1.1.6";
+  pyproject = true;
 
-    src = fetchFromGitHub {
-      owner = "sparklost";
-      repo = "endcord";
-      rev = version;
-      hash = "sha256-eD4ZNziMDJiX5AlpLXIxbmjCjFF/5v/pX6M9hJLpSxQ=";
-    };
+  src = fetchFromGitHub {
+    owner = "sparklost";
+    repo = "endcord";
+    rev = version;
+    hash = "sha256-eD4ZNziMDJiX5AlpLXIxbmjCjFF/5v/pX6M9hJLpSxQ=";
+  };
 
-    nativeBuildInputs = [makeWrapper];
-    build-system = [
-      python3Packages.setuptools
-      python3Packages.setuptools-scm
-      python3Packages.cython
-      numpy_2_4_0
-    ];
+  nativeBuildInputs = [ makeWrapper ];
+  build-system = [
+    python3Packages.setuptools
+    python3Packages.setuptools-scm
+    python3Packages.cython
+    numpy_2_4_0
+  ];
 
-    propagatedBuildInputs =
-      [
-        orjson_3_11_5
-        python-socks_2_8_0
-        urllib3_2_6_2
-        websocket-client_1_9_0
-        discord-protos
-      ]
-      ++ (with python3Packages; [setuptools emoji pexpect filetype pysocks soundcard soundfile]);
+  propagatedBuildInputs = [
+    orjson_3_11_5
+    python-socks_2_8_0
+    urllib3_2_6_2
+    websocket-client_1_9_0
+    discord-protos
+  ]
+  ++ (with python3Packages; [
+    setuptools
+    emoji
+    pexpect
+    filetype
+    pysocks
+    soundcard
+    soundfile
+  ]);
 
-    postInstall = ''
-      makeWrapper ${lib.getExe python3} $out/bin/endcord \
-        --set PYTHONPATH "$PYTHONPATH" \
-        --add-flags "-m endcord_cython"
-    '';
+  postInstall = ''
+    makeWrapper ${lib.getExe python3} $out/bin/endcord \
+      --set PYTHONPATH "$PYTHONPATH" \
+      --add-flags "-m endcord_cython"
+  '';
 
-    meta = {
-      mainProgram = "endcord";
-    };
-  }
+  meta = {
+    mainProgram = "endcord";
+  };
+}

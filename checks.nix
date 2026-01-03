@@ -2,10 +2,11 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   pre-commit-check = inputs.pre-commit-hooks.lib.${pkgs.stdenv.hostPlatform.system}.run {
     src = ./.;
-    default_stages = ["pre-commit"];
+    default_stages = [ "pre-commit" ];
     hooks = {
       # ========== General ==========
       check-added-large-files = {
@@ -30,11 +31,12 @@
         description = "forbids any submodules in the repository";
         language = "fail";
         entry = "submodules are not allowed in this repository:";
-        types = ["directory"];
+        types = [ "directory" ];
       };
 
       # ========== nix ==========
-      alejandra.enable = true;
+      # alejandra.enable = true;
+      nixfmt.enable = true;
 
       # ========== shellscripts ==========
       shfmt.enable = true;

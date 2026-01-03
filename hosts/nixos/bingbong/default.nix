@@ -2,16 +2,17 @@
   lib,
   pkgs,
   config,
+  wrappers,
   ...
-}: {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ]
-    ++ (map lib.custom.relativeToRoot [
-      "hosts/common/core"
-      "modules/common"
-    ]);
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+  ]
+  ++ (map lib.custom.relativeToRoot [
+    "hosts/common/core"
+    "modules/common"
+  ]);
 
   hostSpec = {
     hostName = "bingbong";
@@ -23,7 +24,7 @@
 
   boot.loader.grub.enable = lib.mkDefault true; # Use the boot drive for GRUB
   boot.loader.timeout = 0; # Use the boot drive for GRUB
-  boot.loader.grub.devices = ["nodev"];
+  boot.loader.grub.devices = [ "nodev" ];
   boot.growPartition = true;
 
   environment.systemPackages = with pkgs; [
@@ -44,8 +45,9 @@
   system.stateVersion = "25.11";
 
   sops.secrets = {
-    "cloudflare/api_token" = {};
-    "searxng/secret_key" = {};
+    "cloudflare/api_token" = { };
+    "searxng/secret_key" = { };
+    "bingbong/private_key" = { };
   };
 
   sops.templates."matrix-caddy-env" = {
@@ -57,7 +59,7 @@
     #    owner = "caddy";
   };
   sops.templates."searxng-environment" = {
-    content = lib.generators.toKeyValue {} {
+    content = lib.generators.toKeyValue { } {
       SEARXNG_SECRET = config.sops.placeholder."searxng/secret_key";
       SEARXNG_VALKEY_URL = "unix://${config.services.redis.servers.searx.unixSocket}";
     };
@@ -65,8 +67,8 @@
 
   services.caddy = {
     package = pkgs.caddy.withPlugins {
-      plugins = ["github.com/caddy-dns/cloudflare@v0.2.2"];
-      hash = "sha256-ea8PC/+SlPRdEVVF/I3c1CBprlVp1nrumKM5cMwJJ3U=";
+      plugins = [ "github.com/caddy-dns/cloudflare@v0.2.2" ];
+      hash = "sha256-dnhEjopeA0UiI+XVYHYpsjcEI6Y1Hacbi28hVKYQURg=";
     };
 
     globalConfig = ''
@@ -80,7 +82,9 @@
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
     22
+    7654
   ];
+  networking.firewall.allowedUDPPorts = [ 7654 ];
 
   security.acme.defaults.email = "contact@squawkykaka.com";
   security.acme.defaults.environmentFile = config.sops.templates."matrix-caddy-env".path;
@@ -127,6 +131,47 @@
     environmentFile = config.sops.templates."searxng-environment".path;
     settingsFile = ./searxng.yml;
   };
+
+  networking.nat = {
+    enable = true;
+    externalInterface = "ens18";
+    internalInterfaces = [ "wg0" ];
+  };
+
+  sops.secrets."shadowsocks/password" = { };
+  sops.templates."shadowsocks-env" = {
+    content = lib.generators.toKeyValue { } {
+      PASSWORD_ENV = config.sops.placeholder."shadowsocks/password";
+    };
+  };
+  systemd.services.shadowsocks = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ wrappers.ssserver ];
+    serviceConfig = {
+      EnvironmentFile = config.sops.templates."shadowsocks-env".path;
+      ExecStart = "${wrappers.ssserver}/bin/ssserver";
+    };
+  };
+
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      #     # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
+      privateKeyFile = config.sops.secrets."bingbong/private_key".path;
+      address = [ "10.25.25.1/32" ];
+      listenPort = 51820;
+      postUp = ''
+        ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.25.25.0/32 -o ens18 -j MASQUERADE
+      '';
+
+      #     # Undo the above
+      preDown = ''
+        ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.25.25.0/32 -o ens18 -j MASQUERADE
+      '';
+    };
+  };
+
   # sops.secrets = {
   #   "peertube/redis_pass" = {
   #     group = "peertube";

@@ -2,26 +2,33 @@
   pkgs,
   config,
   ...
-}: let
-  serverIp = "127.0.0.1:8765";
-  vpnAddress = ["10.25.33.3/32"];
-  pubKey = "eSSKuC1ByITL8gyedJVQd+8hZFo3Boz4huMD0fG2J1o=";
-in {
+}:
+let
+  serverIp = "127.0.0.1:4567";
+  vpnAddress = [ "10.25.25.2/32" ];
+  pubKey = "OVx+WLrLyR/ShAYW3N2AiFRWJw+msbL4nBrJ+Z5u4VU=";
+in
+{
+  sops.secrets = {
+    "simba/private_key" = { };
+  };
   networking.wg-quick.interfaces = {
     wg0 = {
       address = vpnAddress;
 
-      privateKeyFile = config.sops.secrets."simba/wireguard/privkey".path;
+      privateKeyFile = config.sops.secrets."simba/private_key".path;
 
-      dns = ["10.0.0.1"];
+      dns = [ "10.0.0.1" ];
 
       peers = [
         {
           publicKey = pubKey;
 
           allowedIPs = [
+            "10.25.25.1/32"
             # "10.0.0.0/24"
-            "0.0.0.0/0"
+            # modify to exclude home ip
+            # "0.0.0.0/0"
           ];
 
           endpoint = serverIp;
@@ -32,5 +39,5 @@ in {
     };
   };
 
-  environment.systemPackages = [pkgs.wireguard-tools];
+  environment.systemPackages = [ pkgs.wireguard-tools ];
 }

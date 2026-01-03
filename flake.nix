@@ -1,67 +1,73 @@
 {
   description = "Squawkykaka's NixOS configuration";
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
 
-    # ========== Extend lib with lib.custom ==========
-    lib = nixpkgs.lib.extend (_self: _super: {custom = import ./lib {inherit (nixpkgs) lib;};});
+      # ========== Extend lib with lib.custom ==========
+      lib = nixpkgs.lib.extend (_self: _super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
 
-    forAllSystems = apply:
-      lib.genAttrs ["x86_64-linux"] (system:
-        apply (import nixpkgs {
-          inherit system;
-          overlays = [self.overlays.default];
-        })
-        system);
-  in {
-    #
-    # ========= Overlays =========
-    #
-    # Custom modifications/overrides to upstream packages
-    overlays = import ./overlays {inherit inputs;};
+      forAllSystems =
+        apply:
+        lib.genAttrs [ "x86_64-linux" ] (
+          system:
+          apply (import nixpkgs {
+            inherit system;
+            overlays = [ self.overlays.default ];
+          }) system
+        );
+    in
+    {
+      #
+      # ========= Overlays =========
+      #
+      # Custom modifications/overrides to upstream packages
+      overlays = import ./overlays { inherit inputs; };
 
-    #
-    # ========= Host Configurations =========
-    #
-    # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
-    nixosConfigurations = builtins.listToAttrs (
-      map (host: {
-        name = host;
-        value = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit
-              inputs
-              outputs
-              lib
-              self
-              ;
-            wrappers = inputs.self.packages."x86_64-linux".wrappers;
+      #
+      # ========= Host Configurations =========
+      #
+      # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
+      nixosConfigurations = builtins.listToAttrs (
+        map (host: {
+          name = host;
+          value = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit
+                inputs
+                outputs
+                lib
+                self
+                ;
+              wrappers = inputs.self.packages."x86_64-linux".wrappers;
+            };
+            modules = [ ./hosts/nixos/${host} ];
           };
-          modules = [./hosts/nixos/${host}];
-        };
-      }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
-    );
+        }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
+      );
 
-    wrapperModules = forAllSystems (
-      pkgs: _:
+      wrapperModules = forAllSystems (
+        pkgs: _:
         import ./wrappers/modules/default.nix {
           inherit pkgs lib;
           adios = inputs.adios.adios;
         }
-    );
-    #
-    # ========= Packages =========
-    #
-    # Expose custom packages
-    packages = forAllSystems (
-      pkgs: system: let
-        wrappers = inputs.self.wrapperModules.${system};
-      in
+      );
+      #
+      # ========= Packages =========
+      #
+      # Expose custom packages
+      packages = forAllSystems (
+        pkgs: system:
+        let
+          wrappers = inputs.self.wrapperModules.${system};
+        in
         pkgs.lib.packagesFromDirectoryRecursive {
           callPackage = pkgs.lib.callPackageWith pkgs;
           directory = ./packages;
@@ -71,30 +77,27 @@
             inherit pkgs wrappers;
           };
         }
-    );
+      );
 
-    #
-    # ========= Formatting =========
-    #
-    # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
-    formatter = forAllSystems (pkgs: _: pkgs.alejandra);
-    # Pre-commit checks
-    checks = forAllSystems (
-      pkgs: system:
-        import ./checks.nix {inherit inputs pkgs system;}
-    );
+      #
+      # ========= Formatting =========
+      #
+      # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
+      formatter = forAllSystems (pkgs: _: pkgs.alejandra);
+      # Pre-commit checks
+      checks = forAllSystems (pkgs: system: import ./checks.nix { inherit inputs pkgs system; });
 
-    #
-    # ========= DevShell =========
-    #
-    devShells = forAllSystems (
-      pkgs: system:
+      #
+      # ========= DevShell =========
+      #
+      devShells = forAllSystems (
+        pkgs: system:
         import ./shell.nix {
           inherit pkgs;
           checks = self.checks.${system};
         }
-    );
-  };
+      );
+    };
 
   nixConfig = {
     extra-substituters = [

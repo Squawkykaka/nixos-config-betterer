@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -22,15 +23,7 @@
       "users/${config.hostSpec.username}/password" = {
         neededForUsers = true;
       };
-      "email" = {};
-
-      "sabaton/wireguard/privkey" = {
-        mode = "0600";
-      };
-
-      "simba/wireguard/privkey" = {
-        mode = "0600";
-      };
+      "email" = { };
     };
   };
 }

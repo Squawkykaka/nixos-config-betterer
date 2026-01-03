@@ -9,15 +9,17 @@
   lib,
   config,
   pkgs,
+  wrappers,
   ...
-}: {
+}:
+{
   imports = lib.flatten [
     #
     # ========== Hardware ==========
     #
 
     ./hardware-configuration.nix
-    # ./wireguard.nix
+    ./wireguard.nix
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
@@ -73,7 +75,7 @@
   users.groups.media = {
     gid = 984;
   };
-  users.users.gleask.extraGroups = ["media"];
+  users.users.gleask.extraGroups = [ "media" ];
   fileSystems."/mnt/media" = {
     device = "192.168.1.44:/volume1/linux-isos";
     fsType = "nfs";
@@ -125,7 +127,7 @@
 
   services.flatpak.enable = true;
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -149,9 +151,23 @@
     pkgs.bottles
     pkgs.idescriptor
   ];
-  services.udev.packages = [pkgs.idescriptor];
+  services.udev.packages = [ pkgs.idescriptor ];
 
-  networking.firewall.allowedTCPPorts = [40681];
+  networking.firewall.allowedTCPPorts = [ 40681 ];
+  sops.secrets."shadowsocks/password" = { };
+  sops.templates."shadowsocks-env" = {
+    content = lib.generators.toKeyValue { } {
+      PASSWORD_ENV = config.sops.placeholder."shadowsocks/password";
+    };
+  };
+  systemd.services.shadowsocks-local = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ wrappers.ssserver ];
+    serviceConfig = {
+      EnvironmentFile = config.sops.templates."shadowsocks-env".path;
+      ExecStart = "${wrappers.ssserver}/bin/sslocal";
+    };
+  };
 
   system.stateVersion = "24.11";
 }
