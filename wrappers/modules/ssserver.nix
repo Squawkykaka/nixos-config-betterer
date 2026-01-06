@@ -36,8 +36,9 @@ in
     server-settings = {
       type = types.attrs;
       default = {
-        server = "127.0.0.1";
+        server = "0.0.0.0";
         server_port = 7654;
+        fast_open = true;
         password = "\${PASSWORD_ENV}";
         timeout = 300;
         method = "chacha20-ietf-poly1305";

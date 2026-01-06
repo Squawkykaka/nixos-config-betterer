@@ -6,7 +6,7 @@
 let
   serverIp = "127.0.0.1:4567";
   vpnAddress = [ "10.25.25.2/32" ];
-  pubKey = "OVx+WLrLyR/ShAYW3N2AiFRWJw+msbL4nBrJ+Z5u4VU=";
+  pubKey = "QhkTigyEq1EFnQKG9fH0f29OCoecybIveairBUyGPBU=";
 in
 {
   sops.secrets = {
@@ -18,7 +18,11 @@ in
 
       privateKeyFile = config.sops.secrets."simba/private_key".path;
 
+      listenPort = 51820;
+
       dns = [ "10.0.0.1" ];
+
+      mtu = 1350;
 
       peers = [
         {
