@@ -10,20 +10,16 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = lib.flatten [
     #
     # ========== Hardware ==========
     #
 
     ./hardware-configuration.nix
-    # ./wireguard.nix
-    inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2
+    # inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2
     inputs.disko.nixosModules.disko
-
-    #
-    # ========== Disk Layout ==========
-    # TODO
 
     #
     # ========== Misc Inputs ==========
@@ -34,19 +30,16 @@
       # ========== Required Configs ==========
       #
       "hosts/common/core"
-
+      "hosts/common/disks/btrfs-disk-luks.nix"
       #
       # ========== Optional Configs ==========
       #
       "hosts/common/optional/services/bluetooth.nix"
       "hosts/common/optional/services/gpg.nix"
-      "hosts/common/optional/services/greetd.nix"
       "hosts/common/optional/gaming.nix"
-      "hosts/common/optional/hyprland.nix"
       # "hosts/common/optional/solaar.nix"
       "hosts/common/optional/audio.nix"
       "hosts/common/optional/syncthing.nix"
-      # TODO
     ])
   ];
 
@@ -73,15 +66,12 @@
   # set the boot loader
   boot = {
     loader = {
-      systemd-boot.enable = lib.mkForce false;
+      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       timeout = 0;
     };
 
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
+    initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/3dff3469-53ee-451c-8a23-e90e487768b0";
 
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
@@ -90,40 +80,12 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [nvidia-vaapi-driver];
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia = {
-    open = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    nvidiaSettings = true;
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-      # Make sure to use the correct Bus ID values for your system!
-      intelBusId = "PCI:0:2:0"; # For Intel GPU
-      nvidiaBusId = "PCI:1:0:0";
-    };
   };
 
   # make sure sbctl is enabled for this machine
   environment.systemPackages = [
     pkgs.sbctl
   ];
-
-  # enable auto-cpu freq, disable power profiles as it interferes
-  services.power-profiles-daemon.enable = false;
-  services.auto-cpufreq.enable = true;
-  services.tlp.enable = true;
-
-  services.undervolt = {
-    enable = true;
-    uncoreOffset = -130;
-    coreOffset = -130;
-  };
 
   system.stateVersion = "24.11";
 }
