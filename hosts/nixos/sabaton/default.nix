@@ -21,10 +21,6 @@
     # inputs.hardware.nixosModules.lenovo-thinkpad-x1-extreme-gen2
     inputs.disko.nixosModules.disko
 
-    #
-    # ========== Misc Inputs ==========
-    #
-    inputs.lanzaboote.nixosModules.lanzaboote
     (map lib.custom.relativeToRoot [
       #
       # ========== Required Configs ==========
@@ -49,6 +45,14 @@
     persistFolder = "/persist";
   };
 
+  services.openssh.enable = true;
+
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager = {
+    autoLogin.enable = true;
+    autoLogin.user = "gleask";
+  };
+
   networking = {
     networkmanager = {
       enable = true;
@@ -71,8 +75,6 @@
       timeout = 0;
     };
 
-    initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/3dff3469-53ee-451c-8a23-e90e487768b0";
-
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
 
@@ -81,11 +83,6 @@
     enable = true;
     enable32Bit = true;
   };
-
-  # make sure sbctl is enabled for this machine
-  environment.systemPackages = [
-    pkgs.sbctl
-  ];
 
   system.stateVersion = "24.11";
 }

@@ -17,7 +17,7 @@
   sops = {
     defaultSopsFile = ../../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
-    age.keyFile = "/home/${config.hostSpec.username}/.config/sops/age/keys.txt";
+    age.keyFile = "/root/keys.txt";
 
     secrets = {
       "users/${config.hostSpec.username}/password" = {

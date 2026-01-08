@@ -2,16 +2,15 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = lib.custom.scanPaths ./.;
 
   home.packages = lib.flatten [
     (builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         # Development
         direnv
-        vscode
         delta # diffing
         tree-sitter
         act # github workflow runner
@@ -25,13 +24,6 @@
         nmap
         # Diffing
         difftastic
-        # devops
-        ansible
-        # serial debugging
-        screen
-        # Standard man pages for linux API
-        man-pages
-        man-pages-posix
         ;
     })
   ];
