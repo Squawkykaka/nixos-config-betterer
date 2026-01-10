@@ -1,20 +1,26 @@
 #
 # This file defines overlays/custom modifications to upstream packages
 #
-{...}: let
+{ ... }:
+let
   # Adds my custom packages
   # FIXME: Add per-system packages
-  additions = final: prev: (prev.lib.packagesFromDirectoryRecursive {
-    callPackage = prev.lib.callPackageWith final;
-    directory = ../packages;
-  });
+  additions =
+    final: prev:
+    (prev.lib.packagesFromDirectoryRecursive {
+      callPackage = prev.lib.callPackageWith final;
+      directory = ../packages;
+    });
 
-  linuxModifications = final: prev: {};
+  linuxModifications = final: prev: { };
 
   modifications = final: prev: {
     # example = prev.example.overrideAttrs (oldAttrs: let ... in {
     # ...
     # });
+    handbrake = prev.handbrake.overrideAttrs (previous: {
+      nativeBuildInputs = (previous.nativeBuildInputs or [ ]) ++ [ prev.pkgs.autoAddDriverRunpath ];
+    });
     #    flameshot = prev.flameshot.overrideAttrs {
     #      cmakeFlags = [
     #        (prev.lib.cmakeBool "USE_WAYLAND_GRIM" true)
@@ -38,8 +44,10 @@
   #     #     ];
   #   };
   # };
-in {
-  default = final: prev:
+in
+{
+  default =
+    final: prev:
     (additions final prev) // (modifications final prev) // (linuxModifications final prev);
   # // (stable-packages final prev)
   # // (unstable-packages final prev);

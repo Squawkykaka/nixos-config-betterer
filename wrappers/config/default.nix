@@ -27,4 +27,14 @@
   };
   fish = wrappers.fish { };
   ssserver = wrappers.ssserver { };
+  helix = wrappers.helix {
+    settings = {
+      theme = "gruvbox";
+
+      editor = {
+        line-number = "relative";
+        mouse = false;
+      };
+    };
+  };
 }

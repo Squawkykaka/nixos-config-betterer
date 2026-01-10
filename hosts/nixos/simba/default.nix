@@ -68,6 +68,8 @@
   services.kanata.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  kaka.stalwart-mail.enable = true;
+
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   boot.supportedFilesystems = [
     "nfs"
@@ -150,24 +152,9 @@
     pkgs.pinentry-gnome3
     pkgs.bottles
     pkgs.idescriptor
+    pkgs.handbrake
   ];
   services.udev.packages = [ pkgs.idescriptor ];
-
-  networking.firewall.allowedTCPPorts = [ 40681 ];
-  sops.secrets."shadowsocks/password" = { };
-  sops.templates."shadowsocks-env" = {
-    content = lib.generators.toKeyValue { } {
-      PASSWORD_ENV = config.sops.placeholder."shadowsocks/password";
-    };
-  };
-  systemd.services.shadowsocks-local = {
-    wantedBy = [ "multi-user.target" ];
-    path = [ wrappers.ssserver ];
-    serviceConfig = {
-      EnvironmentFile = config.sops.templates."shadowsocks-env".path;
-      ExecStart = "${wrappers.ssserver}/bin/sslocal";
-    };
-  };
 
   system.stateVersion = "24.11";
 }

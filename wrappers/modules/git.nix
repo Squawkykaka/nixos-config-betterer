@@ -12,12 +12,7 @@ in
   options = {
     package = {
       type = types.derivation;
-      defaultFunc =
-        { inputs }:
-        let
-          inherit (inputs.nixpkgs) pkgs;
-        in
-        pkgs.gitFull;
+      defaultFunc = { inputs }: inputs.nixpkgs.pkgs.gitFull;
     };
     ignores = {
       type = types.listOf types.str;

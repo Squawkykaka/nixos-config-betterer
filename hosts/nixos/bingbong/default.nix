@@ -82,9 +82,13 @@
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
     22
+    9800
     7654
   ];
-  networking.firewall.allowedUDPPorts = [ 7654 ];
+  networking.firewall.allowedUDPPorts = [
+    7654
+    9800
+  ];
 
   security.acme.defaults.email = "contact@squawkykaka.com";
   security.acme.defaults.environmentFile = config.sops.templates."matrix-caddy-env".path;
@@ -92,7 +96,7 @@
   security.acme.acceptTerms = true;
 
   kaka.matrix = {
-    enable = true;
+    enable = false;
     externalIp = "203.211.120.109";
     listeningIp = "10.0.0.76";
     synapseUrl = "smeagol.me";
@@ -138,18 +142,33 @@
     internalInterfaces = [ "wg0" ];
   };
 
-  sops.secrets."shadowsocks/password" = { };
-  sops.templates."shadowsocks-env" = {
+  users.users.wstunnel = {
+    isSystemUser = true;
+    group = "wstunnel";
+  };
+  users.groups.wstunnel = { };
+
+  sops.secrets = {
+    "wstunnel_secret" = { };
+  };
+
+  sops.templates."wstunnel-env" = {
     content = lib.generators.toKeyValue { } {
-      PASSWORD_ENV = config.sops.placeholder."shadowsocks/password";
+      WSTUNNEL_HTTP_UPGRADE_PATH_PREFIX = config.sops.placeholder."wstunnel_secret";
     };
   };
-  systemd.services.shadowsocks = {
+
+  systemd.services.wstunnel = {
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
-    path = [ wrappers.ssserver ];
+
     serviceConfig = {
-      EnvironmentFile = config.sops.templates."shadowsocks-env".path;
-      ExecStart = "${wrappers.ssserver}/bin/ssserver";
+      ExecStart = "${pkgs.wstunnel}/bin/wstunnel server --restrict-to localhost:51820 wss://0.0.0.0:9800";
+      Restart = "always";
+      EnvironmentFile = config.sops.templates."wstunnel-env".path;
+      User = "wstunnel";
+      Group = "wstunnel";
     };
   };
 
@@ -169,6 +188,16 @@
         ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.25.25.0/32 -o ens18 -j MASQUERADE
       '';
+
+      peers = [
+        {
+          publicKey = "OVx+WLrLyR/ShAYW3N2AiFRWJw+msbL4nBrJ+Z5u4VU=";
+          allowedIPs = [
+            "10.25.25.2/32"
+          ];
+          # endpoint =
+        }
+      ];
     };
   };
 }

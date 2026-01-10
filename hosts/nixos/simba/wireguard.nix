@@ -1,17 +1,47 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }:
 let
-  serverIp = "127.0.0.1:4567";
   vpnAddress = [ "10.25.25.2/32" ];
-  pubKey = "QhkTigyEq1EFnQKG9fH0f29OCoecybIveairBUyGPBU=";
 in
 {
   sops.secrets = {
     "simba/private_key" = { };
   };
+
+  users.users.wstunnel = {
+    isSystemUser = true;
+    group = "wstunnel";
+  };
+  users.groups.wstunnel = { };
+
+  sops.secrets = {
+    "wstunnel_secret" = { };
+  };
+
+  sops.templates."wstunnel-env" = {
+    content = lib.generators.toKeyValue { } {
+      WSTUNNEL_HTTP_UPGRADE_PATH_PREFIX = config.sops.placeholder."wstunnel_secret";
+    };
+  };
+
+  systemd.services.wstunnel = {
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      ExecStart = "${pkgs.wstunnel}/bin/wstunnel client -L 'udp://51821:localhost:51820?timeout_sec=0' wss://203.211.120.109:9800";
+      Restart = "always";
+      EnvironmentFile = config.sops.templates."wstunnel-env".path;
+      User = "wstunnel";
+      Group = "wstunnel";
+    };
+  };
+
   networking.wg-quick.interfaces = {
     wg0 = {
       address = vpnAddress;
@@ -22,11 +52,11 @@ in
 
       dns = [ "10.0.0.1" ];
 
-      mtu = 1350;
+      mtu = 1400;
 
       peers = [
         {
-          publicKey = pubKey;
+          publicKey = "QhkTigyEq1EFnQKG9fH0f29OCoecybIveairBUyGPBU=";
 
           allowedIPs = [
             "10.25.25.1/32"
@@ -35,9 +65,9 @@ in
             # "0.0.0.0/0"
           ];
 
-          endpoint = serverIp;
+          endpoint = "127.0.0.1:51821";
 
-          persistentKeepalive = 25;
+          persistentKeepalive = 20;
         }
       ];
     };

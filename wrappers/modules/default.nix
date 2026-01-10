@@ -2,7 +2,8 @@
   pkgs,
   lib,
   adios,
-}: let
+}:
+let
   root = {
     name = "root";
     modules = adios.lib.importModules ./.;
@@ -16,4 +17,4 @@
     };
   };
 in
-  tree.root.modules
+tree.root.modules
