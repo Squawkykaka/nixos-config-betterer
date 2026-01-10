@@ -37,4 +37,5 @@
       };
     };
   };
+  nushell = wrappers.nushell { };
 }

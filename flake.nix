@@ -184,6 +184,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    adios.url = "github:adisbladis/adios";
+    adios.url = "github:llakala/adios/providers-and-consumers";
   };
 }
