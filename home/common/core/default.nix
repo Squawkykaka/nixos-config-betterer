@@ -5,7 +5,8 @@
   wrappers,
   hostSpec,
   ...
-}: {
+}:
+{
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
       "modules/common/host-spec.nix"
@@ -49,8 +50,7 @@
 
   home.packages =
     builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         btop # resource monitor
         coreutils # basic gnu utils
         curl
@@ -70,10 +70,12 @@
         killall
         lm_sensors
         cava
-        helix
         ;
     }
-    ++ [wrappers.git];
+    ++ [
+      wrappers.git
+      wrappers.helix
+    ];
 
   nix = {
     package = lib.mkDefault pkgs.nix;

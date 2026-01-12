@@ -38,8 +38,6 @@ in
           endpoint = "https://s3.us-east-005.backblazeb2.com";
         };
 
-        webadmin.enable = true;
-
         server.listener = {
           smtp = {
             bind = [ "[::]:25" ];

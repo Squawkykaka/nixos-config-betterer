@@ -47,7 +47,7 @@
           "/var/log/tdarr:/app/logs"
           "/var/lib/tdarr:/app/server"
           "/var/lib/tdarr/configs:/app/configs"
-          "/mnt/media:/media"
+          "/mnt/media:/mnt/media"
         ];
         environment = {
           TZ = "Pacific/Auckland";
@@ -62,11 +62,11 @@
 
           maxLogSizeMB = "10";
 
-          # NVIDIA_DRIVER_CAPABILITIES="all";
-          # NVIDIA_VISIBLE_DEVICES="all";
+          NVIDIA_DRIVER_CAPABILITIES = "all";
+          NVIDIA_VISIBLE_DEVICES = "all";
         };
         extraOptions = [ "--group-add=984" ];
-        # devices = [ "/dev/dri:/dev/dri" ];
+        devices = [ "/dev/dri:/dev/dri" ];
       };
       tdarr-node = {
         image = "ghcr.io/haveagitgat/tdarr_node:latest";
@@ -97,7 +97,7 @@
           "/var/lib/tdarr/configs:/app/configs"
           "/var/log/tdarr:/app/logs"
           "/var/lib/transcode-cache:/temp"
-          "/mnt/media:/media"
+          "/mnt/media:/mnt/media"
         ];
         devices = [ "/dev/dri:/dev/dri" ];
         extraOptions = [ "--group-add=984" ];

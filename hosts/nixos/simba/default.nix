@@ -73,6 +73,7 @@
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   boot.supportedFilesystems = [
     "nfs"
+    "ntfs"
   ];
   users.groups.media = {
     gid = 984;

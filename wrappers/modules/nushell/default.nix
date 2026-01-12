@@ -9,7 +9,10 @@ in
 
   options = {
     settings = {
-      mutators = [ "/zoxide" ];
+      mutators = [
+        "/zoxide"
+        "/carapace"
+      ];
       type = types.str;
       mutatorType = types.str;
       mergeFunc =
