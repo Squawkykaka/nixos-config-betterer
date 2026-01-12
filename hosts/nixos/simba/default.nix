@@ -68,8 +68,6 @@
   services.kanata.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  kaka.stalwart-mail.enable = true;
-
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   boot.supportedFilesystems = [
     "nfs"

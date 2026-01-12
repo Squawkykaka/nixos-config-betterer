@@ -3,9 +3,11 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.kaka.servarr;
-in {
+in
+{
   options.kaka.servarr = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -17,8 +19,8 @@ in {
   };
   config = lib.mkIf cfg.enable {
     sops.secrets = {
-      "airvpn/private_key" = {};
-      "airvpn/preshared_key" = {};
+      "airvpn/private_key" = { };
+      "airvpn/preshared_key" = { };
     };
 
     boot.supportedFilesystems = [
@@ -43,13 +45,13 @@ in {
     users.groups.media = {
       gid = 984;
     };
-    users.users.jellyfin.extraGroups = ["media"];
-    users.users.qbittorrent.extraGroups = ["media"];
-    users.users.sonarr.extraGroups = ["media"];
-    users.users.radarr.extraGroups = ["media"];
-    users.users.lidarr.extraGroups = ["media"];
-    users.users.jackett.extraGroups = ["media"];
-    users.users.gleask.extraGroups = ["media"];
+    users.users.jellyfin.extraGroups = [ "media" ];
+    users.users.qbittorrent.extraGroups = [ "media" ];
+    users.users.sonarr.extraGroups = [ "media" ];
+    users.users.radarr.extraGroups = [ "media" ];
+    users.users.lidarr.extraGroups = [ "media" ];
+    # users.users.jackett.extraGroups = ["media"];
+    users.users.gleask.extraGroups = [ "media" ];
 
     networking.wireguard.interfaces.wg-qbittorrent = {
       # Use a separate network namespace for the VPN.
@@ -101,32 +103,7 @@ in {
 
     services.qui = {
       enable = true;
-      package = (
-        pkgs.qui.overrideAttrs (old: rec {
-          version = "1.9.1";
-          src = pkgs.fetchFromGitHub {
-            owner = "autobrr";
-            repo = "qui";
-            tag = "v${version}";
-            hash = "sha256-PcJl9nxHPWv17AqtEok0qHhrTQ1WInUKAtxrxoSeMSw=";
-          };
-
-          vendorHash = "sha256-UF6V737MF2la24oW8oPp+0N8nv0uEykMrTbzvx/gtec=";
-
-          qui-web = old.qui-web.overrideAttrs (oldWeb: {
-            inherit src version;
-            sourceRoot = "${src.name}/web";
-
-            pnpmDeps = pkgs.pnpm_9.fetchDeps {
-              inherit src version;
-              pname = "${old.pname}-web";
-              sourceRoot = "${src.name}/web";
-              fetcherVersion = 2;
-              hash = "sha256-bDaMax5RS+ot6vaJmNJm6p4gFaCD9aslJXI/58ua9DI=";
-            };
-          });
-        })
-      );
+      package = pkgs.qui;
       settings.sessionSecret = "FCuR9YzVgNZgFHmNTNR";
       settings.baseUrl = "/qui/";
     };
@@ -237,23 +214,23 @@ in {
       reverse_proxy localhost:${toString config.services.jellyseerr.port}
     '';
 
-    services.jackett.enable = true;
-    services.caddy.virtualHosts."jackett.smeagol.me".extraConfig = ''
-      @local {
-          remote_ip 10.0.0.0/8
-          remote_ip 172.16.0.0/12
-          remote_ip 192.168.0.0/16
-      }
-      handle @local {
-          reverse_proxy localhost:${toString config.services.jackett.port}
-      }
-      handle {
-          respond "Forbidden" 403
-      }
-    '';
+    # services.jackett.enable = true;
+    # services.caddy.virtualHosts."jackett.smeagol.me".extraConfig = ''
+    #   @local {
+    #       remote_ip 10.0.0.0/8
+    #       remote_ip 172.16.0.0/12
+    #       remote_ip 192.168.0.0/16
+    #   }
+    #   handle @local {
+    #       reverse_proxy localhost:${toString config.services.jackett.port}
+    #   }
+    #   handle {
+    #       respond "Forbidden" 403
+    #   }
+    # '';
 
     sops.secrets = {
-      "autobrr/secret" = {};
+      "autobrr/secret" = { };
     };
     # services.notifiarr.enable = true;
     services.autobrr = {

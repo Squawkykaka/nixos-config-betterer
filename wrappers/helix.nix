@@ -10,7 +10,13 @@ in
   options = {
     settings = {
       type = types.attrs;
-      default = { };
+      default = {
+        theme = "gruvbox";
+        editor = {
+          line-number = "relative";
+          mouse = false;
+        };
+      };
     };
   };
 

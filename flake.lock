@@ -2,17 +2,40 @@
   "nodes": {
     "adios": {
       "locked": {
-        "lastModified": 1767983504,
-        "narHash": "sha256-fU87WH7vHdAjtBrT6KgNbwc/K1Iw2cKHEMf633D4lm8=",
+        "lastModified": 1768188214,
+        "narHash": "sha256-ddgxO/B+omkkv7ewzsPNh2Xw5LQqC856U4VfOoGWzdQ=",
         "owner": "llakala",
         "repo": "adios",
-        "rev": "557651beb3c87f12bfad5bacbe8fa0ab9fdc6b1b",
+        "rev": "f5b63c76044e9eb13e34278df72d4ba6508208d4",
         "type": "github"
       },
       "original": {
         "owner": "llakala",
         "ref": "providers-and-consumers",
         "repo": "adios",
+        "type": "github"
+      }
+    },
+    "adios-wrappers": {
+      "inputs": {
+        "adios": [
+          "adios"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768274803,
+        "narHash": "sha256-6sgm0kvZLnxEMvwCbVwJxWsSnzhs/FYcdCnb6rv953M=",
+        "owner": "llakala",
+        "repo": "adios-wrappers",
+        "rev": "8b67462bde1dead27078e26efb22d20db53f9388",
+        "type": "github"
+      },
+      "original": {
+        "owner": "llakala",
+        "repo": "adios-wrappers",
         "type": "github"
       }
     },
@@ -914,6 +937,7 @@
     "root": {
       "inputs": {
         "adios": "adios",
+        "adios-wrappers": "adios-wrappers",
         "awww": "awww",
         "disko": "disko",
         "hardware": "hardware",

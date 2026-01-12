@@ -198,6 +198,10 @@
           ];
           # endpoint =
         }
+        {
+          publicKey = "K9wJiRVFTX+49gpe6jeD++mOEKgh0WNtPPaIV8iE6Bc=";
+          allowedIPs = [ "10.25.25.3/32" ];
+        }
       ];
     };
   };

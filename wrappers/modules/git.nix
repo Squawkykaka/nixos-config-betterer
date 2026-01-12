@@ -34,9 +34,8 @@ in
           );
           key = types.str;
           signByDefault = types.bool;
-          signer = types.str;
         }).override
-          { total = false; };
+          { total = false; unknown = false; };
       default = { };
     };
   };
@@ -69,8 +68,6 @@ in
         (lib.optionalAttrs (options.signing ? format) {
           gpg = {
             format = options.signing.format;
-            ${options.signing.format}.program =
-              if (options.signing ? signer) then lib.getExe options.signing.signer else lib.getExe pkgs.gnupg;
           };
         })
       ];

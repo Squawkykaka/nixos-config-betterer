@@ -17,12 +17,13 @@
       user.name = "Squawkykaka";
       user.email = "squawkykaka@gmail.com";
 
+      # gpg.format = "ssh";
       init.defaultBranch = "main";
     };
     signing = {
-      format = "openpgp";
-      key = "EEE6D399CBF032538BB85DE421DE591A2CFFC23D";
-      # signByDefault = true;
+      format = "ssh";
+      key = "/home/gleask/.ssh/id_ed25519";
+      signByDefault = true;
     };
   };
   fish = wrappers.fish { };

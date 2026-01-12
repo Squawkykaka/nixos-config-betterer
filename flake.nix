@@ -45,18 +45,19 @@
                 lib
                 self
                 ;
-              wrappers = inputs.self.packages."x86_64-linux".wrappers;
+              wrappers = inputs.self.wrappers."x86_64-linux";
             };
             modules = [ ./hosts/nixos/${host} ];
           };
         }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
       );
 
-      wrapperModules = forAllSystems (
-        pkgs: _:
-        import ./wrappers/modules/default.nix {
-          inherit pkgs lib;
+      wrappers = forAllSystems (
+        pkgs: system:
+        import ./wrappers/default.nix {
+          inherit pkgs;
           adios = inputs.adios.adios;
+          adios-wrappers = inputs.adios-wrappers.wrapperModules;
         }
       );
       #
@@ -65,17 +66,9 @@
       # Expose custom packages
       packages = forAllSystems (
         pkgs: system:
-        let
-          wrappers = inputs.self.wrapperModules.${system};
-        in
         pkgs.lib.packagesFromDirectoryRecursive {
           callPackage = pkgs.lib.callPackageWith pkgs;
           directory = ./packages;
-        }
-        // {
-          wrappers = import ./wrappers/config {
-            inherit pkgs wrappers;
-          };
         }
       );
 
@@ -185,5 +178,10 @@
     };
 
     adios.url = "github:llakala/adios/providers-and-consumers";
+    adios-wrappers = {
+      url = "github:llakala/adios-wrappers";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.adios.follows = "adios";
+    };
   };
 }
