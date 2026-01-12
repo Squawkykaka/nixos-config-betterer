@@ -8,7 +8,7 @@
   options.services.tdarr = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = false;
     };
     server = lib.mkOption {
       type = lib.types.bool;

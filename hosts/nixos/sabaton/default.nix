@@ -32,6 +32,7 @@
       #
       "hosts/common/optional/services/bluetooth.nix"
       "hosts/common/optional/services/gpg.nix"
+      "hosts/common/optional/services/sddm.nix"
       "hosts/common/optional/gaming.nix"
       # "hosts/common/optional/solaar.nix"
       "hosts/common/optional/audio.nix"
@@ -53,13 +54,7 @@
     autoLogin.user = "gleask";
   };
 
-  networking = {
-    networkmanager = {
-      enable = true;
-    };
-
-    enableIPv6 = false;
-  };
+  networking.networkmanager.enable = true;
 
   # make sure my touchpad works when typing
   services.libinput.enable = true;
