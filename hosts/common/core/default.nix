@@ -38,8 +38,8 @@
   environment.systemPackages = [
     pkgs.openssh
     pkgs.trashy
-    pkgs.nushell
     pkgs.starship
+    wrappers.nushell.drv
     pkgs.carapace
     wrappers.git.drv
     wrappers.helix.drv
