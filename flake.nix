@@ -179,7 +179,7 @@
 
     adios.url = "github:llakala/adios/providers-and-consumers";
     adios-wrappers = {
-      url = "github:llakala/adios-wrappers";
+      url = "github:squawkykaka/adios-wrappers/add-helix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.adios.follows = "adios";
     };

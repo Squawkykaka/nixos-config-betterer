@@ -2,11 +2,11 @@
   "nodes": {
     "adios": {
       "locked": {
-        "lastModified": 1768188214,
-        "narHash": "sha256-ddgxO/B+omkkv7ewzsPNh2Xw5LQqC856U4VfOoGWzdQ=",
+        "lastModified": 1768439042,
+        "narHash": "sha256-dWVI9wUtgzpmMrd5bjTokmCVc65TLMfNZtlKi7quCTw=",
         "owner": "llakala",
         "repo": "adios",
-        "rev": "f5b63c76044e9eb13e34278df72d4ba6508208d4",
+        "rev": "36aeea44abd7957f75455cb6107683cb03038b55",
         "type": "github"
       },
       "original": {
@@ -26,15 +26,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1768274803,
-        "narHash": "sha256-6sgm0kvZLnxEMvwCbVwJxWsSnzhs/FYcdCnb6rv953M=",
-        "owner": "llakala",
+        "lastModified": 1768494918,
+        "narHash": "sha256-wH6/s7bfoqfyrV+5x+qLChXHO6P9LVUQ8g8HQ4MQJ+E=",
+        "owner": "squawkykaka",
         "repo": "adios-wrappers",
-        "rev": "8b67462bde1dead27078e26efb22d20db53f9388",
+        "rev": "a74a3ec14573ae5ef40a52f3270d7d4be73f3f76",
         "type": "github"
       },
       "original": {
-        "owner": "llakala",
+        "owner": "squawkykaka",
+        "ref": "add-helix",
         "repo": "adios-wrappers",
         "type": "github"
       }
