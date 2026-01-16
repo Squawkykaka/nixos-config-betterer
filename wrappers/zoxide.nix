@@ -20,7 +20,7 @@
         if not $__zoxide_hooked {
           $env.config.hooks.env_change.PWD = ($env.config.hooks.env_change.PWD | append {
             __zoxide_hook: true,
-            code: {|_, dir| zoxide add -- $dir}
+            code: {|_, dir| ${finalWrapper}/bin/zoxide add -- $dir}
           })
         }
       }

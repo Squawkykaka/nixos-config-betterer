@@ -1283,6 +1283,7 @@ engines:
     engine: lucide
     shortcut: luc
     timeout: 3.0
+    disabled: true
 
   - name: marginalia
     engine: marginalia

@@ -1,0 +1,161 @@
+.
+├── checks.nix
+├── flake.lock
+├── flake.nix
+├── home
+│   ├── bingbong.nix
+│   ├── common
+│   │   ├── core
+│   │   │   ├── bat.nix
+│   │   │   ├── default.nix
+│   │   │   ├── direnv.nix
+│   │   │   ├── neovim.nix
+│   │   │   ├── stylix.nix
+│   │   │   ├── xdg.nix
+│   │   │   ├── zoxide.nix
+│   │   │   └── zsh.nix
+│   │   └── optional
+│   │       ├── atuin.nix
+│   │       ├── bitwarden.nix
+│   │       ├── browsers
+│   │       │   ├── default.nix
+│   │       │   ├── firefox.nix
+│   │       │   └── zen.nix
+│   │       ├── comms
+│   │       │   ├── default.nix
+│   │       │   └── mpv.nix
+│   │       ├── development
+│   │       │   └── default.nix
+│   │       ├── ghostty.nix
+│   │       ├── hyprland-old
+│   │       │   ├── default.nix
+│   │       │   ├── hyprland
+│   │       │   │   ├── awww.nix
+│   │       │   │   ├── binds.nix
+│   │       │   │   ├── default.nix
+│   │       │   │   ├── hypridle.nix
+│   │       │   │   ├── hyprlock.nix
+│   │       │   │   └── main.nix
+│   │       │   ├── services
+│   │       │   │   └── swaync.nix
+│   │       │   ├── waybar
+│   │       │   │   └── default.nix
+│   │       │   └── wofi
+│   │       │       ├── default.nix
+│   │       │       └── style.css
+│   │       ├── mpd.nix
+│   │       └── obsidian.nix
+│   ├── sabaton.nix
+│   ├── simba.nix
+│   └── wyrmwild.nix
+├── hosts
+│   ├── common
+│   │   ├── core
+│   │   │   ├── default.nix
+│   │   │   ├── sops.nix
+│   │   │   └── stylix.nix
+│   │   ├── disks
+│   │   │   ├── btrfs-disk-impermanence.nix
+│   │   │   ├── btrfs-disk-luks.nix
+│   │   │   └── btrfs-disk.nix
+│   │   ├── optional
+│   │   │   ├── audio.nix
+│   │   │   ├── backup.nix
+│   │   │   ├── gaming.nix
+│   │   │   ├── hyprland.nix
+│   │   │   ├── impermanence.nix
+│   │   │   ├── printing.nix
+│   │   │   ├── services
+│   │   │   │   ├── bluetooth.nix
+│   │   │   │   ├── gpg.nix
+│   │   │   │   ├── greetd.nix
+│   │   │   │   ├── openssh.nix
+│   │   │   │   └── sddm.nix
+│   │   │   ├── solaar.nix
+│   │   │   └── syncthing.nix
+│   │   └── users
+│   │       ├── default.nix
+│   │       └── keys
+│   │           ├── gpg-key.pub
+│   │           └── sabaton.pub
+│   └── nixos
+│       ├── bingbong
+│       │   ├── default.nix
+│       │   ├── hardware-configuration.nix
+│       │   └── searxng.yml
+│       ├── sabaton
+│       │   ├── default.nix
+│       │   ├── hardware-configuration.nix
+│       │   └── wireguard.nix
+│       ├── simba
+│       │   ├── default.nix
+│       │   ├── hardware-configuration.nix
+│       │   └── wireguard.nix
+│       └── wyrmwild
+│           ├── default.nix
+│           └── hardware-configuration.nix
+├── iso.nix
+├── justfile
+├── lib
+│   └── default.nix
+├── modules
+│   └── common
+│       ├── default.nix
+│       ├── host-spec.nix
+│       ├── mastodon.nix
+│       ├── matrix-synapse.nix
+│       ├── notifiarr.nix
+│       ├── qui.nix
+│       ├── servarr.nix
+│       ├── stalwart.nix
+│       └── tdarr.nix
+├── overlays
+│   └── default.nix
+├── packages
+│   ├── beet.nix
+│   ├── bevy_cli.nix
+│   ├── bolt.nix
+│   ├── endcord.nix
+│   ├── fusion360.nix
+│   ├── idescriptor.nix
+│   ├── ksa
+│   │   └── package.nix
+│   ├── mecha.nix
+│   ├── nitrolaunch
+│   │   └── package.nix
+│   ├── nitrolaunch-cli-unwrapped.nix
+│   ├── nitrolaunch-gui-unwrapped.nix
+│   ├── notifiarr.nix
+│   ├── pixieditor
+│   │   ├── deps.json
+│   │   ├── package.nix
+│   │   ├── patches
+│   │   │   ├── 0000-fix-protogen.patch
+│   │   │   └── 0001-set-build-id.patch
+│   │   └── resources
+│   │       ├── mimeinfo.xml
+│   │       └── pixieditor.svg
+│   ├── sclauncher
+│   │   ├── deps.json
+│   │   └── package.nix
+│   ├── tokenstream.nix
+│   └── zmk.nix
+├── README.md
+├── scripts
+│   └── rebuild.sh
+├── secrets
+│   ├── sabaton-ckclient.json
+│   └── secrets.yaml
+├── shell.nix
+├── tree.txt
+└── wrappers
+    ├── default.nix
+    ├── ghostty.nix
+    ├── git.nix
+    ├── helix.nix
+    ├── nushell
+    │   ├── default.nix
+    │   └── env.nu
+    └── zoxide.nix
+
+41 directories, 118 files
