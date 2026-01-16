@@ -10,6 +10,7 @@ in
 {
   sops.secrets = {
     "sabaton/private_key" = { };
+    "simba/private_key" = { };
   };
 
   users.users.wstunnel = {

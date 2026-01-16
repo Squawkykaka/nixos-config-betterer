@@ -53,6 +53,19 @@
             ./desktop
           ];
         };
+        sabaton = nixpkgs.lib.nixosSystem {
+          specialArgs = specialArgs // {
+            hostVars = {
+              hostName = "sabaton";
+              stateVersion = "24.11";
+            };
+          };
+          modules = recursivelyImport [
+            ./hosts/sabaton
+            ./base
+            ./desktop
+          ];
+        };
       };
 
       wrappers = forAllSystems (
