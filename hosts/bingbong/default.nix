@@ -6,20 +6,6 @@
   ...
 }:
 {
-  imports = [
-    ./hardware-configuration.nix
-  ]
-  ++ (map lib.custom.relativeToRoot [
-    "hosts/common/core"
-    "modules/common"
-  ]);
-
-  hostSpec = {
-    hostName = "bingbong";
-    username = "gleask";
-    persistFolder = "/persist";
-  };
-
   services.cloud-init.network.enable = true;
 
   boot.loader.grub.enable = lib.mkDefault true; # Use the boot drive for GRUB
@@ -83,6 +69,7 @@
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
     22
+    443
     9800
     7654
   ];

@@ -66,6 +66,18 @@
             ./desktop
           ];
         };
+        bingbong = nixpkgs.lib.nixosSystem {
+          specialArgs = specialArgs // {
+            hostVars = {
+              hostName = "bingbong";
+              stateVersion = "25.11";
+            };
+          };
+          modules = recursivelyImport [
+            ./hosts/bingbong
+            ./base
+          ];
+        };
       };
 
       wrappers = forAllSystems (
