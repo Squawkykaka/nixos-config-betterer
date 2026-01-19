@@ -1,0 +1,7 @@
+- [] Fixup users file
+- [] Fixup openssh file
+- [] fixup zen file.
+- [] add back in vesktop
+- [] add back in mpv (wrap)
+- [] fixup xdg config
+- [] look at why this is needed `systemd.user.startServices = "sd-switch";`

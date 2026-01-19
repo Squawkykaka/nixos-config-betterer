@@ -10,18 +10,23 @@
     let
       inherit (self) outputs;
 
-      # ========== Extend lib with lib.custom ==========
-      lib = nixpkgs.lib.extend (_self: _super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
-
       forAllSystems =
         apply:
-        lib.genAttrs [ "x86_64-linux" ] (
+        nixpkgs.lib.genAttrs [ "x86_64-linux" ] (
           system:
           apply (import nixpkgs {
             inherit system;
             overlays = [ self.overlays.default ];
           }) system
         );
+
+      recursivelyImport = import ./lib/default.nix { inherit (nixpkgs) lib; };
+
+      specialArgs = {
+        inherit inputs outputs;
+        inherit (nixpkgs) lib;
+        wrappers = inputs.self.wrappers."x86_64-linux";
+      };
     in
     {
       #
@@ -34,23 +39,46 @@
       # ========= Host Configurations =========
       #
       # Building configurations is available through `just rebuild` or `nixos-rebuild --flake .#hostname`
-      nixosConfigurations = builtins.listToAttrs (
-        map (host: {
-          name = host;
-          value = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit
-                inputs
-                outputs
-                lib
-                self
-                ;
-              wrappers = inputs.self.wrappers."x86_64-linux";
+      nixosConfigurations = {
+        simba = nixpkgs.lib.nixosSystem {
+          specialArgs = specialArgs // {
+            hostVars = {
+              hostName = "simba";
+              stateVersion = "24.11";
             };
-            modules = [ ./hosts/nixos/${host} ];
           };
-        }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
-      );
+          modules = recursivelyImport [
+            ./hosts/simba
+            ./base
+            ./desktop
+          ];
+        };
+        sabaton = nixpkgs.lib.nixosSystem {
+          specialArgs = specialArgs // {
+            hostVars = {
+              hostName = "sabaton";
+              stateVersion = "24.11";
+            };
+          };
+          modules = recursivelyImport [
+            ./hosts/sabaton
+            ./base
+            ./desktop
+          ];
+        };
+        bingbong = nixpkgs.lib.nixosSystem {
+          specialArgs = specialArgs // {
+            hostVars = {
+              hostName = "bingbong";
+              stateVersion = "25.11";
+            };
+          };
+          modules = recursivelyImport [
+            ./hosts/bingbong
+            ./base
+          ];
+        };
+      };
 
       wrappers = forAllSystems (
         pkgs: system:
