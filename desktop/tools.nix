@@ -1,4 +1,7 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = [ pkgs.vesktop ];
+  environment.systemPackages = [
+    pkgs.vesktop
+    pkgs.mpv
+  ];
 }
