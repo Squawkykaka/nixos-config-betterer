@@ -75,6 +75,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     homepage = "https://github.com/Nitrolaunch/nitrolaunch";
     license = licenses.gpl3;
     mainProgram = "Nitrolaunch";
-    maintainers = [];
+    maintainers = [ ];
   };
 })

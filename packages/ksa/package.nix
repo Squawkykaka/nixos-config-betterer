@@ -40,13 +40,13 @@ stdenv.mkDerivation {
         hash = "sha256-pEv5DMgCjNNXBvsNf8/hPiFMPeR0fz5OXLsOcBDWWao=";
       };
       exec = "votv";
-      categories = ["Game"];
+      categories = [ "Game" ];
     })
   ];
 
   meta = {
     homepage = "https://votv.dev/";
-    maintainers = with lib.maintainers; [notarin];
+    maintainers = with lib.maintainers; [ notarin ];
     platforms = lib.platforms.linux;
     mainProgram = "votv";
   };

@@ -20,7 +20,7 @@ buildDotnetModule rec {
   projectFile = "SCLauncher/SCLauncher.csproj";
   nugetDeps = ./deps.json;
 
-  executables = ["SCLauncher"];
+  executables = [ "SCLauncher" ];
 
   dotnet-sdk = dotnetCorePackages.dotnet_9.sdk;
 

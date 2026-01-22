@@ -30,6 +30,6 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://github.com/Nitrolaunch/nitrolaunch";
     license = licenses.gpl3;
     mainProgram = "nitro";
-    maintainers = [];
+    maintainers = [ ];
   };
 }

@@ -4,7 +4,8 @@
   importNpmLock,
   fetchzip,
   buildGoModule,
-}: let
+}:
+let
   # src = fetchFromGitHub {
   #   owner = "Notifiarr";
   #   repo = "notifiarr";
@@ -19,7 +20,7 @@
     pname = "notifiarr-frontend";
     version = "0.9.1";
 
-    npmDeps = importNpmLock {npmRoot = "${src}/frontend";};
+    npmDeps = importNpmLock { npmRoot = "${src}/frontend"; };
 
     inherit src;
 
@@ -32,27 +33,27 @@
     '';
   };
 in
-  buildGoModule (finalAttrs: {
-    pname = "notifiarr";
-    version = "0.9.1";
+buildGoModule (finalAttrs: {
+  pname = "notifiarr";
+  version = "0.9.1";
 
-    inherit src;
+  inherit src;
 
-    vendorHash = "sha256-RJTLud3HLk+pvfKaR2HyhXsBvEOdeX0DotjylX70pv4=";
+  vendorHash = "sha256-RJTLud3HLk+pvfKaR2HyhXsBvEOdeX0DotjylX70pv4=";
 
-    preBuild = ''
-      echo "Copying frontend dist to frontend/dist"
-      rm -rf frontend/dist
-      cp -r ${frontend}/dist frontend/dist
-    '';
+  preBuild = ''
+    echo "Copying frontend dist to frontend/dist"
+    rm -rf frontend/dist
+    cp -r ${frontend}/dist frontend/dist
+  '';
 
-    subPackages = ["."];
+  subPackages = [ "." ];
 
-    meta = with lib; {
-      description = "Notifiarr automation & notification daemon";
-      homepage = "https://github.com/Notifiarr/notifiarr";
-      license = licenses.mit;
-      maintainers = [];
-      platforms = platforms.unix;
-    };
-  })
+  meta = with lib; {
+    description = "Notifiarr automation & notification daemon";
+    homepage = "https://github.com/Notifiarr/notifiarr";
+    license = licenses.mit;
+    maintainers = [ ];
+    platforms = platforms.unix;
+  };
+})
