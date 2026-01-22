@@ -4,7 +4,7 @@ let
 in
 {
   options = {
-    config = {
+    settings = {
       default = {
         theme = "gruvbox";
         editor = {

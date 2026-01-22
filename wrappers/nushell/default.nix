@@ -1,12 +1,12 @@
 { adios }:
 {
-  options.config.mutators = [
+  options.settings.mutators = [
     "/zoxide"
     "/nushell"
   ];
-  options.environmentFile.default = ./env.nu;
+  # options.environmentFile.default = ./env.nu;
 
-  mutations."/nushell".config =
+  mutations."/nushell".settings =
     { inputs }:
     ''
       $env.PATH = ($env.PATH | split row (char esep) | where { $in != "/home/gleask/.config/carapace/bin" } | prepend "/home/gleask/.config/carapace/bin")
