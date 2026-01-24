@@ -1,0 +1,33 @@
+{
+  "policies": {
+    "Preferences": {
+      "privacy.globalprivacycontrol.enabled": true,
+      "media.eme.enabled": true,
+
+      "browser.aboutConfig.showWarning": false,
+      "browser.warnOnQuitShortcut": false,
+      "browser.link.open_newwindow.override.external": 7,
+      "media.webspeech.synth.dont_notify_on_error": true,
+
+      "browser.urlbar.suggest.calculator": true,
+      "browser.urlbar.unitConversion.enabled": true,
+      "browser.urlbar.trimHttps": true,
+      "browser.urlbar.suggest.searches": true,
+
+      "browser.toolbars.bookmarks.visibility": "never",
+
+      "services.sync.engine.tabs": false,
+
+      "media.ffmpeg.vaapi.enabled": true,
+      "layers.acceleration.force-enabled": true,
+      "gfx.webrender.all": true,
+
+      "browser.in-content.dark-mode": true,
+      "ui.systemUsesDarkTheme": true,
+      "widget.use-xdg-desktop-portal.file-picker": 1,
+
+      "extensions.autoDisableScopes": 0,
+      "extensions.update.enabled": false
+    }
+  }
+}

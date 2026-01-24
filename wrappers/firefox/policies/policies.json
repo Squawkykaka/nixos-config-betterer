@@ -1,0 +1,49 @@
+{
+  "policies": {
+    "DontCheckDefaultBrowser": true,
+    "DisableFirefoxScreenshots": true,
+    "DisableFirefoxStudies": true,
+    "DisableTelemetry": true,
+    "DisplayBookmarksToolbar": "never",
+    "DisplayMenuBar": "never",
+    "OverrideFirstRunPage": "",
+    "PictureInPicture": {
+      "Enabled": false
+    },
+    "GenerativeAI": {
+      "Enabled": false
+    },
+    "PromptForDownloadLocation": false,
+    "HardwareAcceleration": true,
+    "TranslateEnabled": true,
+    "Homepage": {
+      "StartPage": "previous-session"
+    },
+    "UserMessaging": {
+      "SkipOnboarding": true,
+      "UrlbarInterventions": false
+    },
+    "FirefoxSuggest": {
+      "ImproveSuggest": false,
+      "SponsoredSuggestions": false,
+      "WebSuggestions": false
+    },
+    "EnableTrackingProtection": {
+      "Cryptomining": true,
+      "Fingerprinting": true,
+      "EmailTracking": true,
+      "Value": true
+    },
+    "FirefoxHome": {
+      "Search": true,
+      "TopSites": false,
+      "SponsoredTopSites": false,
+      "Highlights": false,
+      "Pocket": false,
+      "SponsoredPocket": false,
+      "Stories": false,
+      "SponsoredStories": false,
+      "Snippets": false
+    }
+  }
+}
