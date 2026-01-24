@@ -1,0 +1,40 @@
+{
+  "policies": {
+    "ExtensionSettings": {
+            "*": {
+        "installation_mode": "blocked"
+      },
+            "jid1-BoFifL9Vbdl2zQ@jetpack": {
+        "default_area": "menupanel",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/file/4392113/decentraleyes-3.0.0.xpi",
+        "installation_mode": "force_installed",
+        "updates_disabled": true
+      },
+      "jid1-MnnxcxisBPnSXQ@jetpack": {
+        "default_area": "menupanel",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/file/4638816/privacy_badger17-2025.12.9.xpi",
+        "updates_disabled": true
+      },
+      "uBlock0@raymondhill.net": {
+        "default_area": "menupanel",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/file/4629131/ublock_origin-1.68.0.xpi",
+        "installation_mode": "force_installed",
+        "private_browsing": true,
+        "updates_disabled": true
+      },
+      "{446900e4-71c2-419f-a6a7-df9c091e268b}": {
+        "default_area": "navbar",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/file/4664623/bitwarden_password_manager-2025.12.1.xpi",
+        "installation_mode": "force_installed",
+        "updates_disabled": true
+      },
+      "{cb31ec5d-c49a-4e5a-b240-16c767444f62}": {
+        "default_area": "menupanel",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/file/4585291/indie_wiki_buddy-3.13.8.xpi",
+        "installation_mode": "force_installed",
+        "updates_disabled": true
+      }
+
+    }
+  }
+}

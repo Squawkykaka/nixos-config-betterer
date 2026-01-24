@@ -6,6 +6,7 @@
     "DisableTelemetry": true,
     "DisplayBookmarksToolbar": "never",
     "DisplayMenuBar": "never",
+    "DisableProfileImport": true,
     "OverrideFirstRunPage": "",
     "PictureInPicture": {
       "Enabled": false
@@ -44,6 +45,19 @@
       "Stories": false,
       "SponsoredStories": false,
       "Snippets": false
+    },
+        "SearchEngines": {
+      "Add": [
+        {
+          "Alias": "ddg",
+          "IconURL": "https://duckduckgo.com/assets/logo_header.v109.svg",
+          "Method": "GET",
+          "Name": "DuckDuckGo",
+          "URLTemplate": "https://duckduckgo.com/{searchTerms}"
+        }
+      ],
+      "Default": "DuckDuckGo",
+      "PreventInstalls": true
     }
   }
 }

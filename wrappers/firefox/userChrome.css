@@ -1,0 +1,14 @@
+/* remove useless separator */
+.titlebar-spacer {
+  display: none;
+}
+
+/* remove bookmark star */
+#star-button-box {
+  display: none !important;
+}
+
+/* remove "protection shield" icon */
+#tracking-protection-icon-container {
+  display: none !important;
+}
