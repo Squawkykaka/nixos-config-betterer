@@ -30,11 +30,21 @@
 
   system.stateVersion = "25.11";
 
+  services.invidious = {
+    enable = true;
+    domain = "invidious.boom.boats";
+    database.passwordFile = config.sops.secrets."invidious/password".path;
+  };
+
   sops.secrets = {
     "cloudflare/api_token" = { };
-    "searxng/secret_key" = { };
     "bingbong/private_key" = { };
+    "invidious/password" = { };
   };
+
+  services.caddy.virtualHosts.${config.services.invidious.domain}.extraConfig = ''
+    reverse_proxy 127.0.0.1:${toString config.services.invidious.port}
+  '';
 
   sops.templates."matrix-caddy-env" = {
     content = ''
@@ -43,12 +53,6 @@
       CLOUDFLARE_DNS_API_TOKEN=${config.sops.placeholder."cloudflare/api_token"}
     '';
     #    owner = "caddy";
-  };
-  sops.templates."searxng-environment" = {
-    content = lib.generators.toKeyValue { } {
-      SEARXNG_SECRET = config.sops.placeholder."searxng/secret_key";
-      SEARXNG_VALKEY_URL = "unix://${config.services.redis.servers.searx.unixSocket}";
-    };
   };
 
   services.caddy = {
@@ -112,17 +116,6 @@
   services.caddy.virtualHosts."calibre.smeagol.me".extraConfig = ''
     reverse_proxy localhost:${toString config.services.calibre-web.listen.port}
   '';
-
-  services.caddy.virtualHosts."search.boom.boats".extraConfig = ''
-    reverse_proxy 127.0.0.1:8888
-  '';
-
-  services.searx = {
-    enable = true;
-    redisCreateLocally = true;
-    environmentFile = config.sops.templates."searxng-environment".path;
-    settingsFile = ./searxng.yml;
-  };
 
   networking.nat = {
     enable = true;

@@ -17,6 +17,8 @@
     "${inputs.self}/disks/btrfs-disk-luks.nix"
   ];
 
+  virtualisation.docker.enable = true;
+
   services.desktopManager.plasma6.enable = true;
   services.displayManager = {
     autoLogin.enable = true;

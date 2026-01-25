@@ -37,6 +37,12 @@ in
         Disjoint with the `config` option.
       '';
     };
+    themes = {
+      type = types.attrsOf types.attrs;
+    };
+    themesDir = {
+      type = types.pathLike;
+    };
   };
 
   impl =
@@ -44,13 +50,29 @@ in
     let
       inherit (inputs.nixpkgs.lib) generators;
       inherit (inputs.nixpkgs.pkgs) ghostty formats;
+      inherit (builtins) listToAttrs attrNames;
 
       generator = formats.keyValue {
         listsAsDuplicateKeys = true;
         mkKeyValue = generators.mkKeyValueDefault { } " = ";
       };
+      generatedThemes =
+        if options ? themesDir then
+          {
+            "$out/helix/themes" = options.themesDir;
+          }
+        else if options ? themes then
+          listToAttrs (
+            map (name: {
+              name = "$out/ghostty/themes/${name}.toml";
+              value = generator.generate name options.themes.${name};
+            }) (attrNames options.themes)
+          )
+        else
+          { };
     in
     assert !(options ? config && options ? configFile);
+    assert !(options ? themes && options ? themesDir);
     inputs.mkWrapper {
       name = "ghostty";
       package = ghostty;
@@ -65,13 +87,10 @@ in
             generator.generate "ghostty-config" options.config
           else
             null;
-      };
-      flags =
-        if options ? configFile then
-          [ "--config-file=${options.configFile}" ]
-        else if options ? config then
-          [ "--config-file=${generator.generate "ghostty-config" options.config}" ]
-        else
-          [ ];
+      }
+      // generatedThemes;
     };
+  environment = {
+    XDG_CONFIG_HOME = "$out";
+  };
 }
