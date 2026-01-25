@@ -9,7 +9,7 @@ let
     modules = pkgs.lib.recursiveUpdate adios-wrappers (adios.lib.importModules ./.);
   };
 
-  tree = (adios root).eval {
+  tree = adios root {
     options = {
       "/nixpkgs" = {
         inherit pkgs;
@@ -24,4 +24,4 @@ builtins.mapAttrs (
     (removeAttrs wrapper.args.options [ "__functor" ]) // { drv = wrapper { }; }
   else
     wrapper.args.options
-) tree.root.modules
+) tree.modules

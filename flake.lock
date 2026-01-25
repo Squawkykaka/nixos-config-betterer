@@ -2,11 +2,11 @@
   "nodes": {
     "adios": {
       "locked": {
-        "lastModified": 1768586254,
-        "narHash": "sha256-K3hFY/46VA5iBBUS23gKfIoOtXHxvklhQP42COsA7qg=",
+        "lastModified": 1769214517,
+        "narHash": "sha256-j+3kux0VO8PkAOVL08oRK4QleDqepQYhwJu16fwBpIc=",
         "owner": "llakala",
         "repo": "adios",
-        "rev": "11d509bddef44eb6b229eeafb3b398be96303db5",
+        "rev": "cb622eb83683acff13b889c60d4a82fa987d6114",
         "type": "github"
       },
       "original": {
@@ -20,17 +20,14 @@
       "inputs": {
         "adios": [
           "adios"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1769121131,
-        "narHash": "sha256-SP0+/QEW3PTXvZRQEEjVkv9HKN3tkocRFPY4eWlbLM8=",
+        "lastModified": 1769216164,
+        "narHash": "sha256-QDU/PJYQNPXlM5u0GYiRUa/OBbj0RM0QEZsPtbuDcL4=",
         "owner": "llakala",
         "repo": "adios-wrappers",
-        "rev": "9e357f21e7f8027f4ff7a116b8da84daaa9c24f0",
+        "rev": "73dc50d618ea61791d27cacdf0cc1e0cd62c51f5",
         "type": "github"
       },
       "original": {
