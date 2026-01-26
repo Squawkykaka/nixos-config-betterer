@@ -32,6 +32,27 @@
     settings = {
       https_only = true;
       external_port = 443;
+
+      invidious_companion = [
+        {
+          private_url = "http://localhost:8282/companion";
+        }
+      ];
+      # Generate as per https://docs.invidious.io/installation/
+      invidious_companion_key = "haedoh0eej1cev2U";
+    };
+  };
+  virtualisation.oci-containers.containers = {
+    invidious-companion = {
+      image = "quay.io/invidious/invidious-companion:latest";
+      ports = [ "127.0.0.1:8282:8282" ];
+      volumes = [
+        "companioncache:/var/tmp/youtubei.js:rw"
+      ];
+      environment = {
+        # Same as configured on invidious above.
+        SERVER_SECRET_KEY = "haedoh0eej1cev2U";
+      };
     };
   };
 
