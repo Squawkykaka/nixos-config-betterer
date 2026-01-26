@@ -18,13 +18,6 @@
   ];
 
   security.sudo.wheelNeedsPassword = false;
-  services.openssh = {
-    enable = true;
-    openFirewall = true;
-    settings.PasswordAuthentication = false;
-    settings.KbdInteractiveAuthentication = false;
-  };
-  programs.ssh.startAgent = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
@@ -34,6 +27,12 @@
     enable = true;
     domain = "invidious.boom.boats";
     database.passwordFile = config.sops.secrets."invidious/password".path;
+
+    http3-ytproxy.enable = true;
+    settings = {
+      https_only = true;
+      external_port = 443;
+    };
   };
 
   sops.secrets = {

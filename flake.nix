@@ -78,6 +78,16 @@
             ./base
           ];
         };
+        kiri = nixpkgs.lib.nixosSystem {
+          specialArgs = specialArgs // {
+            hostName = "bingbong";
+            stateVersion = "25.11";
+          };
+          modules = recursivelyImport [
+            ./hosts/kiri
+            ./base
+          ];
+        };
       };
 
       wrappers = forAllSystems (
@@ -172,7 +182,6 @@
     adios.url = "github:llakala/adios/providers-and-consumers";
     adios-wrappers = {
       url = "github:llakala/adios-wrappers";
-      inputs.nixpkgs.follows = "nixpkgs";
       inputs.adios.follows = "adios";
     };
   };
