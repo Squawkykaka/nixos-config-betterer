@@ -1,5 +1,4 @@
-{ adios }:
-{
+adios: {
   options.settings.mutators = [ "/git" ];
   mutations."/git".settings =
     { }:

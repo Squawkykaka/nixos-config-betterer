@@ -1,12 +1,11 @@
-{ adios }:
-{
-  options.settings.mutators = [
+adios: {
+  options.shellInit.mutators = [
     "/zoxide"
     "/nushell"
   ];
   # options.environmentFile.default = ./env.nu;
 
-  mutations."/nushell".settings =
+  mutations."/nushell".shellInit =
     { inputs }:
     ''
       $env.PATH = ($env.PATH | split row (char esep) | where { $in != "/home/gleask/.config/carapace/bin" } | prepend "/home/gleask/.config/carapace/bin")
@@ -44,5 +43,7 @@
       | upsert completer { if $in == null { $carapace_completer } else { $in } })
 
       $env.config = $current
+
+      ${builtins.readFile ./env.nu}
     '';
 }

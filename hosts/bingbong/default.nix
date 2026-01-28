@@ -23,6 +23,13 @@
 
   system.stateVersion = "25.11";
 
+  services.caddy.extraConfig = ''
+    (trusted_only) {
+      @not_trusted not remote_ip 10.0.0.0/8 192.168.0.0/16
+      respond @not_trusted 403
+    }
+  '';
+
   services.invidious = {
     enable = true;
     domain = "invidious.boom.boats";
@@ -63,6 +70,7 @@
   };
 
   services.caddy.virtualHosts.${config.services.invidious.domain}.extraConfig = ''
+    import trusted_only
     reverse_proxy 127.0.0.1:${toString config.services.invidious.port}
   '';
 
@@ -107,19 +115,6 @@
   security.acme.defaults.dnsProvider = "cloudflare";
   security.acme.acceptTerms = true;
 
-  kaka.matrix = {
-    enable = false;
-    externalIp = "203.211.120.109";
-    listeningIp = "10.0.0.76";
-    synapseUrl = "smeagol.me";
-    turn.url = "turn.smeagol.me";
-    synapseAdmin = {
-      enable = true;
-      url = "admin.smeagol.me";
-    };
-    metrics = true;
-  };
-
   kaka.servarr = {
     enable = true;
   };
@@ -134,6 +129,7 @@
   };
 
   services.caddy.virtualHosts."calibre.smeagol.me".extraConfig = ''
+    import trusted_only
     reverse_proxy localhost:${toString config.services.calibre-web.listen.port}
   '';
 

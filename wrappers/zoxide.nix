@@ -1,6 +1,5 @@
-{ adios }:
-{
-  mutations."/nushell".settings =
+adios: {
+  mutations."/nushell".shellInit =
     { inputs, options }:
     let
       finalWrapper = options { };

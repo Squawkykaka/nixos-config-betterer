@@ -101,12 +101,6 @@ in
       ];
     };
 
-    services.qui = {
-      enable = true;
-      package = pkgs.qui;
-      settings.sessionSecret = "FCuR9YzVgNZgFHmNTNR";
-      settings.baseUrl = "/qui/";
-    };
     services.qbittorrent = {
       enable = true;
       webuiPort = 3056;
@@ -139,31 +133,16 @@ in
     systemd.services.qbittorrent.serviceConfig = {
       NetworkNamespacePath = "/var/run/netns/wg-qbittorrent";
     };
+
     services.caddy.virtualHosts."torrent.smeagol.me".extraConfig = ''
-      handle /qui {
-        redir /qui/ permanent
-      }
-
-      # Qui on port 7476
-      handle /qui/* {
-        reverse_proxy 127.0.0.1:7476 {
-          header_up Host {host}
-          header_up X-Forwarded-For {remote}
-          header_up X-Forwarded-Host {host}
-          header_up X-Forwarded-Proto {scheme}
-        }
-      }
-
-      # qBittorrent - must come last as catch-all
-      handle /* {
-        reverse_proxy 10.200.200.2:${toString config.services.qbittorrent.webuiPort} {
-          header_up Host {host}
-          header_up X-Forwarded-For {remote}
-          header_up X-Forwarded-Host {host}
-          header_up X-Forwarded-Proto {scheme}
-          transport http {
-            versions 1.1
-          }
+      import trusted_only
+      reverse_proxy 10.200.200.2:${toString config.services.qbittorrent.webuiPort} {
+        header_up Host {host}
+        header_up X-Forwarded-For {remote}
+        header_up X-Forwarded-Host {host}
+        header_up X-Forwarded-Proto {scheme}
+        transport http {
+          versions 1.1
         }
       }
     '';
@@ -191,43 +170,27 @@ in
       enable = true;
     };
     services.caddy.virtualHosts."radarr.smeagol.me".extraConfig = ''
+      import trusted_only
       reverse_proxy localhost:${toString config.services.radarr.settings.server.port}
     '';
 
     services.prowlarr.enable = true;
     services.caddy.virtualHosts."prowlarr.smeagol.me".extraConfig = ''
+      import trusted_only
       reverse_proxy localhost:${toString config.services.prowlarr.settings.server.port}
     '';
 
     services.sonarr.enable = true;
     services.caddy.virtualHosts."sonarr.smeagol.me".extraConfig = ''
+      import trusted_only
       reverse_proxy localhost:${toString config.services.sonarr.settings.server.port}
     '';
 
     services.lidarr.enable = true;
     services.caddy.virtualHosts."lidarr.smeagol.me".extraConfig = ''
+      import trusted_only
       reverse_proxy localhost:${toString config.services.lidarr.settings.server.port}
     '';
-
-    services.jellyseerr.enable = true;
-    services.caddy.virtualHosts."jellyseerr.smeagol.me".extraConfig = ''
-      reverse_proxy localhost:${toString config.services.jellyseerr.port}
-    '';
-
-    services.jackett.enable = false;
-    # services.caddy.virtualHosts."jackett.smeagol.me".extraConfig = ''
-    #   @local {
-    #       remote_ip 10.0.0.0/8
-    #       remote_ip 172.16.0.0/12
-    #       remote_ip 192.168.0.0/16
-    #   }
-    #   handle @local {
-    #       reverse_proxy localhost:${toString config.services.jackett.port}
-    #   }
-    #   handle {
-    #       respond "Forbidden" 403
-    #   }
-    # '';
 
     sops.secrets = {
       "autobrr/secret" = { };
@@ -238,6 +201,7 @@ in
       secretFile = config.sops.secrets."autobrr/secret".path;
     };
     services.caddy.virtualHosts."autobrr.smeagol.me".extraConfig = ''
+      import trusted_only
       reverse_proxy localhost:${toString config.services.autobrr.settings.port}
     '';
 

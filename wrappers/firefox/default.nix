@@ -1,5 +1,4 @@
-{ adios }:
-{
+adios: {
   options = {
     policiesFiles.default = [
       ./policies/policies.json
