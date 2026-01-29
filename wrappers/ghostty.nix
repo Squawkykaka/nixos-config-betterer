@@ -43,7 +43,10 @@
   };
 
   impl =
-    { inputs, options }:
+    {
+      inputs,
+      options,
+    }:
     let
       inherit (inputs.nixpkgs.lib) generators;
       inherit (inputs.nixpkgs.pkgs) ghostty formats;
@@ -73,7 +76,7 @@
     inputs.mkWrapper {
       name = "ghostty";
       package = ghostty;
-      preWrap = ''
+      preSymlink = ''
         mkdir -p $out/ghostty/themes
       '';
       symlinks = {
@@ -86,8 +89,8 @@
             null;
       }
       // generatedThemes;
+      environment = {
+        XDG_CONFIG_HOME = "$out";
+      };
     };
-  environment = {
-    XDG_CONFIG_HOME = "$out";
-  };
 }

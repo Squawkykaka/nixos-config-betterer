@@ -114,7 +114,7 @@
       # ========= Formatting =========
       #
       # Nix formatter available through 'nix fmt' https://github.com/NixOS/nixfmt
-      formatter = forAllSystems (pkgs: _: pkgs.alejandra);
+      formatter = forAllSystems (pkgs: _: pkgs.nixfmt);
       # Pre-commit checks
       checks = forAllSystems (pkgs: system: import ./checks.nix { inherit inputs pkgs system; });
 

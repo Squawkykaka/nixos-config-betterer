@@ -119,20 +119,6 @@
     enable = true;
   };
 
-  services.calibre-web = {
-    enable = true;
-    options = {
-      enableBookUploading = true;
-      enableBookConversion = true;
-      calibreLibrary = "/var/lib/calibre-web/library";
-    };
-  };
-
-  services.caddy.virtualHosts."calibre.smeagol.me".extraConfig = ''
-    import trusted_only
-    reverse_proxy localhost:${toString config.services.calibre-web.listen.port}
-  '';
-
   networking.nat = {
     enable = true;
     externalInterface = "ens18";

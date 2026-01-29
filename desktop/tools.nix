@@ -3,7 +3,7 @@
   environment.systemPackages = [
     pkgs.vesktop
     pkgs.mpv
-    wrappers.ghostty.drv
+    pkgs.ghostty
     pkgs.gimp
     pkgs.imagemagick
     pkgs.ffmpeg-full
