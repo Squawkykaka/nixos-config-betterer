@@ -163,25 +163,18 @@
       listenPort = 51820;
       postUp = ''
         ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.25.25.0/32 -o ens18 -j MASQUERADE
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.25.25.0/24 -o ens18 -j MASQUERADE
       '';
 
       #     # Undo the above
       preDown = ''
         ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.25.25.0/32 -o ens18 -j MASQUERADE
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.25.25.0/24 -o ens18 -j MASQUERADE
       '';
 
       peers = [
         {
           publicKey = "OVx+WLrLyR/ShAYW3N2AiFRWJw+msbL4nBrJ+Z5u4VU=";
-          allowedIPs = [
-            "10.25.25.2/32"
-          ];
-          # endpoint =
-        }
-        {
-          publicKey = "K9wJiRVFTX+49gpe6jeD++mOEKgh0WNtPPaIV8iE6Bc=";
           allowedIPs = [ "10.25.25.3/32" ];
         }
       ];

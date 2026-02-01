@@ -7,5 +7,6 @@
     pkgs.gimp
     pkgs.imagemagick
     pkgs.ffmpeg-full
+    pkgs.kdePackages.korganizer
   ];
 }
