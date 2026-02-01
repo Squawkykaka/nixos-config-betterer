@@ -44,7 +44,14 @@
 
     # This will add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
-    # nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+    channel.enable = false;
+    nixPath = lib.mapAttrsToList (k: v: "${k}=${v}") self.sources;
+    registry = lib.mapAttrs (_: path: {
+      to = {
+        type = "path";
+        inherit path;
+      };
+    }) self.sources;
 
     settings = {
       # See https://jackson.dev/post/nix-reasonable-defaults/
