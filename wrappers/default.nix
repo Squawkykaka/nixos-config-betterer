@@ -1,9 +1,11 @@
 {
   pkgs,
-  adios,
-  adios-wrappers,
+  sources,
 }:
 let
+  adios = import "${sources.adios}/adios";
+  adios-wrappers = import sources.adios-wrappers { adios = sources.adios; };
+
   root = {
     name = "root";
     modules = pkgs.lib.recursiveUpdate adios-wrappers (adios.lib.importModules ./.);

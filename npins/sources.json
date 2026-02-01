@@ -1,0 +1,122 @@
+{
+  "pins": {
+    "adios": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "llakala",
+        "repo": "adios"
+      },
+      "branch": "providers-and-consumers",
+      "submodules": false,
+      "revision": "43b702d3e12ffdb83fac9595e8f5a2b75b72924c",
+      "url": "https://github.com/llakala/adios/archive/43b702d3e12ffdb83fac9595e8f5a2b75b72924c.tar.gz",
+      "hash": "0lax5w2srr8rjb2h13p4q6bynhcm88h9fx5aki8gqfm854vc3l6b"
+    },
+    "adios-wrappers": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "llakala",
+        "repo": "adios-wrappers"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "1d4715cebdb72856a7d0514af6b26ee7a1726e06",
+      "url": "https://github.com/llakala/adios-wrappers/archive/1d4715cebdb72856a7d0514af6b26ee7a1726e06.tar.gz",
+      "hash": "0762jxrixww12h3gai2qicz5rx8xyk744srwx4n1bcgfq2cip03x"
+    },
+    "disko": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "disko"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "71a3fc97d80881e91710fe721f1158d3b96ae14d",
+      "url": "https://github.com/nix-community/disko/archive/71a3fc97d80881e91710fe721f1158d3b96ae14d.tar.gz",
+      "hash": "0q8i0frvdvnfla5wlv0x409dafmp56pciv338x6waggmll7isa6g"
+    },
+    "git-hooks.nix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "cachix",
+        "repo": "git-hooks.nix"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "a1ef738813b15cf8ec759bdff5761b027e3e1d23",
+      "url": "https://github.com/cachix/git-hooks.nix/archive/a1ef738813b15cf8ec759bdff5761b027e3e1d23.tar.gz",
+      "hash": "1x9ga67p7cbgy7gz3vnk4ph03wd2yvrprsbkgxp1g5fy8dakgyqi"
+    },
+    "home-manager": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "home-manager"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "f4ad5068ee8e89e4a7c2e963e10dd35cd77b37b7",
+      "url": "https://github.com/nix-community/home-manager/archive/f4ad5068ee8e89e4a7c2e963e10dd35cd77b37b7.tar.gz",
+      "hash": "18jqz8sw3knvl6g5x2a030mq6m43ljr06a4s8209fn1zchhcrcfk"
+    },
+    "nixos-hardware": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nixos",
+        "repo": "nixos-hardware"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "a351494b0e35fd7c0b7a1aae82f0afddf4907aa8",
+      "url": "https://github.com/nixos/nixos-hardware/archive/a351494b0e35fd7c0b7a1aae82f0afddf4907aa8.tar.gz",
+      "hash": "1nyr1jrdy2bcm69s4zv2ifpsshrwma68fibrybqwcfi4s5rfsh20"
+    },
+    "nixpkgs": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nixos",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixos-unstable",
+      "submodules": false,
+      "revision": "bfc1b8a4574108ceef22f02bafcf6611380c100d",
+      "url": "https://github.com/nixos/nixpkgs/archive/bfc1b8a4574108ceef22f02bafcf6611380c100d.tar.gz",
+      "hash": "04lns5xspj7nd99ygwf8js5syabbrc9zbgsnalgibc2n9r4vrhcs"
+    },
+    "sops-nix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Mic92",
+        "repo": "sops-nix"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "1e89149dcfc229e7e2ae24a8030f124a31e4f24f",
+      "url": "https://github.com/Mic92/sops-nix/archive/1e89149dcfc229e7e2ae24a8030f124a31e4f24f.tar.gz",
+      "hash": "1v359qxpdc0m13njixsn83kvzg43wjcnsw8i8dcknsrgchl4q05p"
+    },
+    "stylix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "danth",
+        "repo": "stylix"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "ae5c0239ae4f82a8c7e33ad8a456535d5a9ba813",
+      "url": "https://github.com/danth/stylix/archive/ae5c0239ae4f82a8c7e33ad8a456535d5a9ba813.tar.gz",
+      "hash": "1g2b2zm8gwkz8xxssjgv7a9aq0k0b7klwwmis5x7cqhskil9p9g0"
+    }
+  },
+  "version": 5
+}

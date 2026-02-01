@@ -1,38 +1,26 @@
 {
-  inputs,
-  outputs,
   lib,
   pkgs,
+  self,
   config,
-  wrappers,
-  hostVars,
   ...
 }:
 {
-  networking.hostName = hostVars.hostName;
+  networking.hostName = self.hostVars.hostname;
 
   environment.systemPackages = [
     pkgs.openssh
     pkgs.trashy
     pkgs.starship
-    wrappers.nushell.drv
+    self.wrappers.nushell.drv
     pkgs.carapace
-    wrappers.git.drv
-    wrappers.helix.drv
+    self.wrappers.git.drv
+    self.wrappers.helix.drv
   ];
 
   #
   # ========== Overlays ==========
   #
-  nixpkgs = {
-    overlays = [
-      # (self: super: { git = wrappers.git; })
-      outputs.overlays.default
-    ];
-    config = {
-      allowUnfree = true;
-    };
-  };
 
   # slows down a lot
   documentation = {
@@ -47,14 +35,16 @@
   #
   # ========== Nix Nix Nix ==========
   #
+
+  nixpkgs.config.allowUnfree = true;
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    # registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
 
     # This will add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+    # nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     settings = {
       # See https://jackson.dev/post/nix-reasonable-defaults/

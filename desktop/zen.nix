@@ -1,10 +1,9 @@
 {
-  pkgs,
-  inputs,
+  self,
   ...
 }:
 {
   hm.home.packages = [
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    self.wrappers.firefox.drv
   ];
 }

@@ -5,16 +5,14 @@
 #
 ###############################################################
 {
-  inputs,
-  lib,
-  config,
   pkgs,
+  self,
   ...
 }:
 {
   imports = [
-    inputs.disko.nixosModules.disko
-    "${inputs.self}/disks/btrfs-disk-luks.nix"
+    "${self.sources.disko}/module.nix"
+    ../../disks/btrfs-disk-luks.nix
   ];
 
   virtualisation.docker.enable = true;

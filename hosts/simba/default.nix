@@ -5,21 +5,15 @@
 #
 ###############################################################
 {
-  inputs,
-  lib,
   config,
   pkgs,
-  wrappers,
+  self,
   ...
 }:
 {
   imports = [
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-nvidia
-    inputs.hardware.nixosModules.common-pc-ssd
-
-    inputs.disko.nixosModules.disko
-    "${inputs.self}/disks/btrfs-disk.nix"
+    "${self.sources.disko}/module.nix"
+    ../../disks/btrfs-disk.nix
     {
       _module.args = {
         disk = "/dev/nvme0n1";

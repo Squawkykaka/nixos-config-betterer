@@ -1,16 +1,13 @@
 {
   pkgs,
-  wrappers,
   self,
   lib,
-  inputs,
-  hostVars,
   ...
 }:
 
 {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
+    (import "${self.sources.home-manager}/nixos")
 
     # Let us use hm as shorthand for home-manager config
     (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" "gleask" ])
@@ -23,12 +20,9 @@
     extraSpecialArgs = {
       inherit
         pkgs
-        inputs
         self
-        wrappers
-        hostVars
         ;
     };
   };
-  hm.home.stateVersion = hostVars.stateVersion;
+  hm.home.stateVersion = self.hostVars.stateVersion;
 }

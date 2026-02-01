@@ -1,12 +1,8 @@
 # User config applicable to both nixos and darwin
 {
-  inputs,
-  pkgs,
   config,
   lib,
   self,
-  wrappers,
-  hostVars,
   ...
 }:
 let
@@ -17,7 +13,7 @@ in
   users.users.gleask = {
     name = "gleask";
     isNormalUser = true;
-    shell = wrappers.nushell.drv; # default shell
+    shell = self.wrappers.nushell.drv; # default shell
     hashedPasswordFile = config.sops.secrets."users/gleask/password".path;
     extraGroups = [
       "wheel"

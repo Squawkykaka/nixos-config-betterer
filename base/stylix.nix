@@ -1,7 +1,7 @@
-{ inputs, pkgs, ... }:
+{ self, pkgs, ... }:
 {
   # hm.imports = [ inputs.stylix.homeModules.stylix ];
-  imports = [ inputs.stylix.nixosModules.stylix ];
+  imports = [ (import self.sources.stylix).nixosModules.stylix ];
 
   hm.stylix = {
     enable = true;

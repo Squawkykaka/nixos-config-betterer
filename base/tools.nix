@@ -35,7 +35,7 @@
       tree # cli dir tree viewer
       unzip
       nixd # nix language server
-      nixfmt-rfc-style # nix formatter
+      nixfmt
       tldr # very nice short descriptions
       zip
       ;
