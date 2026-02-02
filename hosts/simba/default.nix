@@ -101,7 +101,6 @@
     pkgs.pinentry-gnome3
     pkgs.bottles
     pkgs.idescriptor
-    pkgs.handbrake
   ];
   services.udev.packages = [ pkgs.idescriptor ];
 
