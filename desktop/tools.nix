@@ -2,6 +2,7 @@
 {
   environment.systemPackages = [
     pkgs.vesktop
+    pkgs.vscodium
     pkgs.mpv
     pkgs.ghostty
     pkgs.gimp
