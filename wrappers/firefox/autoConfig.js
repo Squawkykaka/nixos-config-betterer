@@ -1,5 +1,6 @@
 lockPref("sidebar.verticalTabs", true);
 lockPref("sidebar.main.tools", "");
+lockPref("dom.webgpu.enabled", true);
 
 try {
   let sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
