@@ -2,6 +2,7 @@ let
   sources = import ./npins { };
   pkgs = import sources.nixpkgs {
     config.allowUnfree = true;
+    overlays = [ (import ./overlays { }).default ];
   };
   nixosSystem = import "${sources.nixpkgs}/nixos/lib/eval-config.nix";
   recursivelyImport = import ./lib { inherit (pkgs) lib; };

@@ -103,6 +103,22 @@
       "revision": "1e89149dcfc229e7e2ae24a8030f124a31e4f24f",
       "url": "https://github.com/Mic92/sops-nix/archive/1e89149dcfc229e7e2ae24a8030f124a31e4f24f.tar.gz",
       "hash": "sha256-twBMKGQvaztZQxFxbZnkg7y/50BW9yjtCBWwdjtOZew="
+    },
+    "watt": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NotAShelf",
+        "repo": "watt"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v1.0.0",
+      "revision": "0f95de1b13c059f397c7019f24de326284cf472b",
+      "url": "https://api.github.com/repos/NotAShelf/watt/tarball/refs/tags/v1.0.0",
+      "hash": "sha256-6fPKos/dksYYt8Ds3nwsaSWlvpZmKybbVF6tm+MqYV4="
     }
   },
   "version": 7

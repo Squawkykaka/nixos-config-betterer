@@ -1,0 +1,18 @@
+[[rule]]
+if = "?discharging"
+priority = 10
+
+# Set battery charging thresholds (as percentages, 0.0-1.0)
+power.charge-threshold-start = 0.4
+power.charge-threshold-end = 0.8
+
+# Set ACPI platform profile
+power.platform-profile = "low-power"
+
+cpu.frequency-mhz-maximum = 1500
+cpu.turbo = false
+# Apply to specific power supplies
+# power.for = ["BAT0"]
+
+[[rule]]
+priority = 9
