@@ -2,6 +2,7 @@ adios: {
   options.shellInit.mutators = [
     "/zoxide"
     "/nushell"
+    "/direnv"
   ];
   # options.environmentFile.default = ./env.nu;
 

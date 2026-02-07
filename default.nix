@@ -1,5 +1,5 @@
 let
-  sources = import ./npins;
+  sources = import ./npins { };
   pkgs = import sources.nixpkgs {
     config.allowUnfree = true;
   };
