@@ -19,20 +19,6 @@
   ];
 
   #
-  # ========== Overlays ==========
-  #
-
-  # slows down a lot
-  documentation = {
-    enable = false;
-    man.enable = false;
-    info.enable = false;
-    doc.enable = false;
-    dev.enable = false;
-  };
-  hm.manual.manpages.enable = false;
-
-  #
   # ========== Nix Nix Nix ==========
   #
 
