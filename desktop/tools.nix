@@ -9,6 +9,7 @@
     pkgs.gimp
     pkgs.imagemagick
     pkgs.ffmpeg-full
+    pkgs.gajim
     pkgs.kdePackages.korganizer
 
     (pkgs.callPackage "${self.sources.watt}/nix/package.nix" { })

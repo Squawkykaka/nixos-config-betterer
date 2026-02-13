@@ -6,7 +6,7 @@
     r2modman
     (lutris.override {
       extraPkgs = _pkgs: [
-        wineWowPackages.stable
+        # wineWowPackages.stable
         geckodriver
       ];
     })

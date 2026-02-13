@@ -12,6 +12,8 @@
   boot.loader.grub.devices = [ "nodev" ];
   boot.growPartition = true;
 
+  users.users.gleask.extraGroups = [ "acme" ];
+
   environment.systemPackages = with pkgs; [
     vim
   ];
@@ -175,6 +177,10 @@
         {
           publicKey = "OVx+WLrLyR/ShAYW3N2AiFRWJw+msbL4nBrJ+Z5u4VU=";
           allowedIPs = [ "10.25.25.3/32" ];
+        }
+        {
+          publicKey = "6eW3uO3Yl+TXhNMTzVgoWebAcDVuORp631CzUa98hxs=";
+          allowedIPs = [ "10.25.25.4/32" ];
         }
       ];
     };
