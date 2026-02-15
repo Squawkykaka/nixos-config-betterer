@@ -51,10 +51,9 @@
         "@wheel"
       ];
       # Deduplicate and optimize nix store
-      auto-optimise-store = true;
       warn-dirty = false;
 
-      allow-import-from-derivation = true;
+      allow-import-from-derivation = false;
 
       experimental-features = [
         "nix-command"
