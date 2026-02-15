@@ -24,6 +24,8 @@
 
   system.stateVersion = "25.11";
 
+  virtualisation.docker.enable = true;
+
   services.caddy.extraConfig = ''
     (trusted_only) {
       @not_trusted not remote_ip 10.0.0.0/8 192.168.0.0/16
