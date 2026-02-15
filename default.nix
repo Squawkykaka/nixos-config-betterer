@@ -43,6 +43,11 @@ in
       hostname = "bingbong";
       stateVersion = "25.11";
     };
+
+    kiri = mkHost {
+      hostname = "kiri";
+      stateVersion = "26.05";
+    };
   };
 
   packages = pkgs.lib.packagesFromDirectoryRecursive {
