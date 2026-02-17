@@ -1,6 +1,4 @@
 {
-  breakpointHook,
-  lib,
   stdenv,
   git,
   fetchFromGitHub,
@@ -10,7 +8,7 @@
   pnpmConfigHook,
 }:
 stdenv.mkDerivation (finalAttrs: {
-  pname = "pyrodactyl";
+  pname = "pyrodactyl-frontend";
   version = "4.5.0";
 
   src = fetchFromGitHub {
@@ -30,7 +28,6 @@ stdenv.mkDerivation (finalAttrs: {
     nodejs
     pnpmConfigHook
     pnpm
-    breakpointHook
   ];
 
   buildInputs = [
