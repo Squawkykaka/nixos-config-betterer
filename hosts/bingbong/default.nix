@@ -24,7 +24,6 @@
 
   system.stateVersion = "25.11";
 
-  virtualisation.docker.enable = true;
   services.caddy.virtualHosts."panel.smeagol.me".extraConfig = ''
     reverse_proxy 127.0.0.1:8793
   '';

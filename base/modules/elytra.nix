@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }:
 
@@ -16,7 +17,7 @@ in
 
     package = mkOption {
       type = types.package;
-      default = pkgs.elytra;
+      default = self.myPkgs.elytra;
       description = "Elytra package to use.";
     };
 
@@ -38,21 +39,6 @@ in
       description = "Working directory for Elytra.";
     };
 
-    panelUrl = mkOption {
-      type = types.str;
-      description = "Pyrodactyl panel URL.";
-    };
-
-    tokenFile = mkOption {
-      type = types.path;
-      description = "Path to file containing Elytra node token.";
-    };
-
-    nodeId = mkOption {
-      type = types.int;
-      description = "Node ID from panel.";
-    };
-
     openFirewall = mkOption {
       type = types.bool;
       default = true;
@@ -64,74 +50,38 @@ in
       default = 8080;
       description = "Port Elytra listens on.";
     };
-
-    useACME = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Use NixOS ACME integration for SSL.";
-    };
-
-    domain = mkOption {
-      type = types.nullOr types.str;
-      default = null;
-      description = "Domain for ACME certificate.";
-    };
-
-    enableRustic = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable rustic for backups.";
-    };
   };
 
   config = mkIf cfg.enable {
-
-    assertions = [
-      {
-        assertion = cfg.useACME -> cfg.domain != null;
-        message = "services.elytra.domain must be set when useACME = true";
-      }
-    ];
-
-    users.users.${cfg.user} = {
+    users.users.elytra = mkIf (cfg.user == "elytra") {
       isSystemUser = true;
       group = cfg.group;
-      home = cfg.dataDir;
-      createHome = true;
-      # shell = pkgs.shadow.nologin;
       description = "Elytra daemon user";
     };
 
+    systemd.tmpfiles.rules = [ "d /etc/elytra 600 ${cfg.user} ${cfg.group}" ];
+
     users.groups.${cfg.group} = { };
-
-    environment.systemPackages = optional cfg.enableRustic pkgs.rustic;
-
-    security.acme = mkIf cfg.useACME {
-      certs.${cfg.domain} = {
-        group = cfg.group;
-      };
-    };
 
     networking.firewall = mkIf cfg.openFirewall {
       allowedTCPPorts = [ cfg.port ];
     };
 
+    # docker is needed for elytra
+    virtualisation.docker.enable = true;
+
     systemd.services.elytra = {
       description = "Pyrodactyl Elytra Daemon";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
+      after = [ "docker.service" ];
+      requires = [ "docker.service" ];
+      partOf = [ "docker.service" ];
 
       serviceConfig = {
         User = cfg.user;
         Group = cfg.group;
         WorkingDirectory = cfg.dataDir;
 
-        ExecStartPre = ''
-          ${cfg.package}/bin/elytra configure \
-            --panel-url ${cfg.panelUrl} \
-            --token "$(cat ${cfg.tokenFile})" \
-            --node ${toString cfg.nodeId}
-        '';
+        PIDFile = "/run/elytra/daemon.pid";
 
         ExecStart = "${cfg.package}/bin/elytra";
 

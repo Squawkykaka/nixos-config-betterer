@@ -1,8 +1,15 @@
 let
   sources = import ./npins { };
+  overlay = (import ./overlays { }).default;
+
+  myPkgs = pkgs.lib.packagesFromDirectoryRecursive {
+    callPackage = pkgs.lib.callPackageWith pkgs;
+    directory = ./packages;
+  };
+
   pkgs = import sources.nixpkgs {
     config.allowUnfree = true;
-    overlays = [ (import ./overlays { }).default ];
+    overlays = [ overlay ];
   };
   nixosSystem = import "${sources.nixpkgs}/nixos/lib/eval-config.nix";
   recursivelyImport = import ./lib { inherit (pkgs) lib; };
@@ -13,7 +20,12 @@ let
     hostVars:
     nixosSystem {
       specialArgs.self = {
-        inherit hostVars sources wrappers;
+        inherit
+          hostVars
+          sources
+          wrappers
+          myPkgs
+          ;
       };
 
       modules = recursivelyImport (
@@ -50,10 +62,6 @@ in
     };
   };
 
-  packages = pkgs.lib.packagesFromDirectoryRecursive {
-    callPackage = pkgs.lib.callPackageWith pkgs;
-    directory = ./packages;
-  };
-
+  packages = myPkgs;
   inherit wrappers;
 }

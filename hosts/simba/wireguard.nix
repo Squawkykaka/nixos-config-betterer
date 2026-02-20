@@ -34,7 +34,7 @@ in
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
-      ExecStart = "${pkgs.wstunnel}/bin/wstunnel client -L 'udp://51821:localhost:51820?timeout_sec=0' wss://203.211.120.109:9800";
+      ExecStart = "${pkgs.wstunnel}/bin/wstunnel client -L 'udp://51821:localhost:51820?timeout_sec=0' wss://203.211.121.234:9800";
       Restart = "always";
       EnvironmentFile = config.sops.templates."wstunnel-env".path;
       User = "wstunnel";
