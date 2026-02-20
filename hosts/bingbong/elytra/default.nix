@@ -1,3 +1,4 @@
+{ config, lib }:
 {
   networking.firewall.allowedTCPPorts = [ 8080 ];
   services.caddy.virtualHosts."node.smeagol.me:8080".extraConfig = ''
