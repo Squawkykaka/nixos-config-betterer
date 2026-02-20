@@ -14,6 +14,8 @@
     };
   };
 
+  security.sudo.wheelNeedsPassword = false;
+
   programs.ssh.startAgent = true;
 
   networking.firewall.allowedTCPPorts = [ 22 ];

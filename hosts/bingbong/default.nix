@@ -7,6 +7,10 @@
 {
   services.cloud-init.network.enable = true;
 
+  networking.nameservers = [
+    "10.0.0.1"
+    "2401:7000:d900:5::3a4"
+  ];
   boot.loader.grub.enable = lib.mkDefault true; # Use the boot drive for GRUB
   boot.loader.timeout = 0; # Use the boot drive for GRUB
   boot.loader.grub.devices = [ "nodev" ];
@@ -18,7 +22,7 @@
     vim
   ];
 
-  security.sudo.wheelNeedsPassword = false;
+  virtualisation.docker.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 

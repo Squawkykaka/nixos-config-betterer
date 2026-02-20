@@ -23,7 +23,7 @@ in
 
     user = mkOption {
       type = types.str;
-      default = "elytra";
+      default = "pyrodactyl";
       description = "User account under which Elytra runs.";
     };
 
@@ -44,28 +44,24 @@ in
       default = true;
       description = "Open Elytra port in firewall.";
     };
-
-    port = mkOption {
-      type = types.port;
-      default = 8080;
-      description = "Port Elytra listens on.";
-    };
   };
 
   config = mkIf cfg.enable {
-    users.users.elytra = mkIf (cfg.user == "elytra") {
+    users.users.pyrodactyl = mkIf (cfg.user == "pyrodactyl") {
       isSystemUser = true;
       group = cfg.group;
       description = "Elytra daemon user";
+      extraGroups = [ "docker" ];
     };
 
-    systemd.tmpfiles.rules = [ "d /etc/elytra 600 ${cfg.user} ${cfg.group}" ];
+    systemd.tmpfiles.rules = [
+      "d /etc/elytra 0750 ${cfg.user} ${cfg.group}"
+      # "d ${cfg.dataDir} 0750 ${cfg.user} ${cfg.group}"
+      "d /var/log/elytra 0750 ${cfg.user} ${cfg.group}"
+      "d /tmp/elytra 0750 ${cfg.user} ${cfg.group}"
+    ];
 
-    users.groups.${cfg.group} = { };
-
-    networking.firewall = mkIf cfg.openFirewall {
-      allowedTCPPorts = [ cfg.port ];
-    };
+    users.groups.elytra = mkIf (cfg.group == "elytra") { };
 
     # docker is needed for elytra
     virtualisation.docker.enable = true;
@@ -76,6 +72,7 @@ in
       requires = [ "docker.service" ];
       partOf = [ "docker.service" ];
 
+      environment.TMPDIR = toString "/run/elytra";
       serviceConfig = {
         User = cfg.user;
         Group = cfg.group;
@@ -90,6 +87,9 @@ in
 
         LimitNOFILE = 4096;
         StateDirectory = "elytra";
+        AmbientCapabilities = [ "CAP_CHOWN" ];
+        CapabilityBoundingSet = [ "CAP_CHOWN" ];
+        NoNewPrivileges = false;
       };
     };
   };
