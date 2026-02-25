@@ -17,6 +17,15 @@
 
   environment.systemPackages = [ pkgs.kicad ];
 
+  users.groups.media = {
+    gid = 984;
+  };
+  users.users.gleask.extraGroups = [ "media" ];
+  boot.supportedFilesystems = [
+    "nfs"
+    "ntfs"
+  ];
+
   services.desktopManager.plasma6.enable = true;
   services.displayManager = {
     autoLogin.enable = true;
