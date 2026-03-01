@@ -1,0 +1,13 @@
+{
+  services.jitsi-meet = {
+    enable = true;
+    hostName = "jitsi.smeagol.com";
+    caddy.enable = true;
+  };
+  services.jitsi-videobridge.openFirewall = true;
+
+  # fuck it we ball
+  nixpkgs.config.permittedInsecurePackages = [
+    "jitsi-meet-1.0.8792"
+  ];
+}

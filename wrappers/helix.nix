@@ -6,6 +6,7 @@
         theme = "gruvbox";
         editor = {
           line-number = "relative";
+          soft-wrap.enable = true;
           mouse = false;
         };
       };

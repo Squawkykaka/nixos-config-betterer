@@ -28,6 +28,10 @@
 
   system.stateVersion = "25.11";
 
+  services.caddy.virtualHosts."node.smeagol.me:8080".extraConfig = ''
+    reverse_proxy 192.168.1.44:8080
+  '';
+
   services.caddy.virtualHosts."panel.smeagol.me".extraConfig = ''
     reverse_proxy 127.0.0.1:8793
   '';
