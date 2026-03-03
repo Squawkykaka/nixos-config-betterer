@@ -28,6 +28,14 @@ let
 
         build-system = with python.pkgs; [ hatchling ];
       };
+
+      slixmpp = super.slixmpp.overridePythonAttrs (old: rec {
+        version = "1.12.0";
+        src = old.src.override {
+          inherit version;
+          hash = "sha256-hjM1OIFYpHV5SSN32858pyuwOvaAA0tFZWCZI+5n9u4=";
+        };
+      });
     };
   };
 in
