@@ -14,7 +14,6 @@ pkgs.mkShell {
 
   nativeBuildInputs = builtins.attrValues {
     inherit (pkgs)
-      git
       pre-commit
       npins
       nix-output-monitor

@@ -3,8 +3,8 @@
   hm.services.mpd = {
     # user = "gleask";
     enable = true;
-    musicDirectory = /home/gleask/media/audio;
-    playlistDirectory = /home/gleask/media/audio/playlists;
+    musicDirectory = "/mnt/media/music";
+    playlistDirectory = "/home/gleask/media/audio/playlists";
 
     extraArgs = [ "--verbose" ];
 
