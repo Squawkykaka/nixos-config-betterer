@@ -15,12 +15,33 @@
     ../../disks/btrfs-disk-luks.nix
   ];
 
-  environment.systemPackages = [ pkgs.kicad ];
+  environment.systemPackages = [
+    pkgs.kicad
+    pkgs.winePackages.waylandFull
+  ];
+  virtualisation.libvirtd.enable = true;
+
+  # Enable TPM emulation (optional)
+  # install pkgs.swtpm system-wide for use in virt-manager (optional)
+  virtualisation.libvirtd.qemu = {
+    swtpm.enable = true;
+  };
+
+  # Enable USB redirection (optional)
+  virtualisation.spiceUSBRedirection.enable = true;
+  programs.virt-manager.enable = true;
+
+  programs.wireshark.enable = true;
+  programs.wireshark.dumpcap.enable = true;
+  programs.wireshark.usbmon.enable = true;
 
   users.groups.media = {
     gid = 984;
   };
-  users.users.gleask.extraGroups = [ "media" ];
+  users.users.gleask.extraGroups = [
+    "media"
+    "libvirtd"
+  ];
   boot.supportedFilesystems = [
     "nfs"
     "ntfs"

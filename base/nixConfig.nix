@@ -24,14 +24,10 @@
 
   nixpkgs.config.allowUnfree = true;
   nix = {
-    # This will add each flake input as a registry
-    # To make nix3 commands consistent with your flake
-    # registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-
-    # This will add your inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well, awesome!
     channel.enable = false;
-    nixPath = lib.mapAttrsToList (k: v: "${k}=${v}") self.sources;
+    nixPath = lib.mapAttrsToList (k: v: "${k}=${v}") self.sources // {
+      config-path = "/etc/nixos/configuration.nix";
+    };
     registry = lib.mapAttrs (_: path: {
       to = {
         type = "path";

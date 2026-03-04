@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  self,
   ...
 }:
 {
@@ -21,6 +22,12 @@
   environment.systemPackages = with pkgs; [
     vim
   ];
+
+  services.matterbridge = {
+    enable = true;
+    configPath = "/var/lib/matterbridge/config.toml";
+    package = self.myPkgs.matterbridge-ce;
+  };
 
   virtualisation.docker.enable = true;
 
@@ -52,7 +59,7 @@
     domain = "invidious.boom.boats";
     database.passwordFile = config.sops.secrets."invidious/password".path;
 
-    http3-ytproxy.enable = true;
+    # http3-ytproxy.enable = true;
     settings = {
       https_only = true;
       external_port = 443;
@@ -74,7 +81,6 @@
         "companioncache:/var/tmp/youtubei.js:rw"
       ];
       environment = {
-        # Same as configured on invidious above.
         SERVER_SECRET_KEY = "haedoh0eej1cev2U";
       };
     };
