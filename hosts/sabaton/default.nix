@@ -17,7 +17,7 @@
 
   environment.systemPackages = [
     pkgs.kicad
-    pkgs.winePackages.waylandFull
+    pkgs.wine64Packages.waylandFull
   ];
   virtualisation.libvirtd.enable = true;
 

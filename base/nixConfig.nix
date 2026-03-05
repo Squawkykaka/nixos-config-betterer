@@ -25,9 +25,7 @@
   nixpkgs.config.allowUnfree = true;
   nix = {
     channel.enable = false;
-    nixPath = lib.mapAttrsToList (k: v: "${k}=${v}") self.sources // {
-      config-path = "/etc/nixos/configuration.nix";
-    };
+    nixPath = (lib.mapAttrsToList (k: v: "${k}=${v}") self.sources) ++ [ "nixos-config=/etc/nixos" ];
     registry = lib.mapAttrs (_: path: {
       to = {
         type = "path";
