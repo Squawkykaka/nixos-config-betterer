@@ -1,6 +1,8 @@
 {
   lib,
   aria2,
+  makeWrapper,
+  symlinkJoin,
   python3,
   fetchFromGitHub,
 }:
@@ -25,43 +27,55 @@ let
       });
     };
   };
+
+  minerva-unwrapped = python.pkgs.buildPythonPackage rec {
+    pname = "minerva-worker";
+    version = "1.3.4";
+    pyproject = true;
+
+    src = fetchFromGitHub {
+      owner = "minerva-archive";
+      repo = "worker";
+      tag = "v${version}";
+      hash = "sha256-zxfPtTjOSeL4n1jG1avt2+sm58hV1ik6mB/FMmlRSes=";
+    };
+
+    build-system = with python.pkgs; [ hatchling ];
+
+    dependencies = with python.pkgs; [
+      click
+      rich
+      httpx
+      pathvalidate
+      pyjwt
+      humanize
+      humanfriendly
+      readchar
+    ];
+
+    buildInputs = [ aria2 ];
+
+    pythonRelaxDeps = [
+      "rich"
+      "pyjwt"
+    ];
+
+    meta = {
+      description = "Minerva DPN Worker";
+      homepage = "https://minerva-archive.org";
+      license = lib.licenses.cc0;
+      mainProgram = "minerva";
+    };
+  };
 in
-python.pkgs.buildPythonPackage rec {
-  pname = "minerva-worker";
-  version = "1.3.4";
-  pyproject = true;
+symlinkJoin {
+  pname = "minerva-worker-wrapped";
+  inherit (minerva-unwrapped) version meta;
 
-  src = fetchFromGitHub {
-    owner = "minerva-archive";
-    repo = "worker";
-    tag = "v${version}";
-    hash = "sha256-zxfPtTjOSeL4n1jG1avt2+sm58hV1ik6mB/FMmlRSes=";
-  };
-
-  build-system = with python.pkgs; [ hatchling ];
-
-  dependencies = with python.pkgs; [
-    click
-    rich
-    httpx
-    pathvalidate
-    pyjwt
-    humanize
-    humanfriendly
-    readchar
-  ];
-
-  buildInputs = [ aria2 ];
-
-  pythonRelaxDeps = [
-    "rich"
-    "pyjwt"
-  ];
-
-  meta = {
-    description = "Minerva DPN Worker";
-    homepage = "https://minerva-archive.org";
-    license = lib.licenses.cc0;
-    mainProgram = "minerva";
-  };
+  paths = [ minerva-unwrapped ];
+  buildInputs = [ makeWrapper ];
+  postBuild = /* bash */ ''
+    wrapProgram $out/bin/minerva \
+      --set PATH $PATH:${aria2}/bin
+  '';
 }
