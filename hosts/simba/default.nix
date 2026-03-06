@@ -96,6 +96,7 @@
   };
 
   environment.systemPackages = [
+    pkgs.rustup
     pkgs.freecad
     pkgs.dualsensectl
     pkgs.pinentry-gnome3
