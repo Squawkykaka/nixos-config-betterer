@@ -15,6 +15,13 @@
     ../../disks/btrfs-disk-luks.nix
   ];
 
+  zramSwap = {
+    enable = true;
+    priority = 100;
+    algorithm = "lz4";
+    memoryPercent = 50;
+  };
+
   environment.systemPackages = [
     pkgs.kicad
     pkgs.wine64Packages.waylandFull
