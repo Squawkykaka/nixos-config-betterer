@@ -17,7 +17,7 @@ in
 
     package = mkOption {
       type = types.package;
-      default = self.myPkgs.elytra;
+      default = pkgs.elytra;
       description = "Elytra package to use.";
     };
 

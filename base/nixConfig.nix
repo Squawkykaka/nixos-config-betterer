@@ -23,6 +23,7 @@
   #
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [ (import ../overlays { }).default ];
   nix = {
     channel.enable = false;
     nixPath = (lib.mapAttrsToList (k: v: "${k}=${v}") self.sources) ++ [ "nixos-config=/etc/nixos" ];
@@ -52,6 +53,10 @@
       experimental-features = [
         "nix-command"
         "flakes"
+        # for dynamic derivations
+        "dynamic-derivations"
+        "ca-derivations"
+        "recursive-nix"
       ];
 
       substituters = [

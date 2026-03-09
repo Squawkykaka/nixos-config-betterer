@@ -23,10 +23,12 @@
     vim
   ];
 
+  services.minerva.enable = true;
+
   services.matterbridge = {
     enable = true;
     configPath = "/var/lib/matterbridge/config.toml";
-    package = self.myPkgs.matterbridge-ce;
+    package = pkgs.matterbridge-ce;
   };
 
   virtualisation.docker.enable = true;

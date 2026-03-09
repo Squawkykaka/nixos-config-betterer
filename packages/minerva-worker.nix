@@ -30,14 +30,14 @@ let
 
   minerva-unwrapped = python.pkgs.buildPythonPackage rec {
     pname = "minerva-worker";
-    version = "1.3.4";
+    version = "2.0.0";
     pyproject = true;
 
     src = fetchFromGitHub {
       owner = "minerva-archive";
       repo = "worker";
       tag = "v${version}";
-      hash = "sha256-zxfPtTjOSeL4n1jG1avt2+sm58hV1ik6mB/FMmlRSes=";
+      hash = "sha256-ULIjAwVNwVi2WJNpOt3+PSoHeiNI0ZEBvfCQBBDIIv8=";
     };
 
     build-system = with python.pkgs; [ hatchling ];
@@ -51,6 +51,7 @@ let
       humanize
       humanfriendly
       readchar
+      websockets
     ];
 
     buildInputs = [ aria2 ];

@@ -1,4 +1,4 @@
-{ self, ... }:
+{ pkgs, ... }:
 {
   users.users.slidcord = {
     group = "slidcord";
@@ -11,7 +11,7 @@
 
     serviceConfig = {
       # PreStart = "mkdir -p /var/lib/slidcord";
-      ExecStart = "${self.myPkgs.slidcord}/bin/slidcord --jid discord.smeagol.me --secret Supeswef673232fjsaifa --home-dir /var/lib/slidcord";
+      ExecStart = "${pkgs.slidcord}/bin/slidcord --jid discord.smeagol.me --secret Supeswef673232fjsaifa --home-dir /var/lib/slidcord";
       Restart = "always";
       User = "slidcord";
       Group = "slidcord";

@@ -24,7 +24,6 @@ let
           hostVars
           sources
           wrappers
-          myPkgs
           ;
       };
 
