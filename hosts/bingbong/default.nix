@@ -127,13 +127,11 @@
   networking.firewall.allowedTCPPorts = [
     22
     443
-    9800
     8080
     7654
   ];
   networking.firewall.allowedUDPPorts = [
     7654
-    9800
   ];
 
   security.acme.defaults.email = "contact@squawkykaka.com";
@@ -149,65 +147,5 @@
     enable = true;
     externalInterface = "ens18";
     internalInterfaces = [ "wg0" ];
-  };
-
-  users.users.wstunnel = {
-    isSystemUser = true;
-    group = "wstunnel";
-  };
-  users.groups.wstunnel = { };
-
-  sops.secrets = {
-    "wstunnel_secret" = { };
-  };
-
-  sops.templates."wstunnel-env" = {
-    content = lib.generators.toKeyValue { } {
-      WSTUNNEL_HTTP_UPGRADE_PATH_PREFIX = config.sops.placeholder."wstunnel_secret";
-    };
-  };
-
-  systemd.services.wstunnel = {
-    wants = [ "network-online.target" ];
-    after = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
-
-    serviceConfig = {
-      ExecStart = "${pkgs.wstunnel}/bin/wstunnel server --restrict-to localhost:51820 wss://0.0.0.0:9800";
-      Restart = "always";
-      EnvironmentFile = config.sops.templates."wstunnel-env".path;
-      User = "wstunnel";
-      Group = "wstunnel";
-    };
-  };
-
-  networking.wg-quick.interfaces = {
-    wg0 = {
-      #     # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
-      privateKeyFile = config.sops.secrets."bingbong/private_key".path;
-      address = [ "10.25.25.1/32" ];
-      listenPort = 51820;
-      postUp = ''
-        ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.25.25.0/24 -o ens18 -j MASQUERADE
-      '';
-
-      #     # Undo the above
-      preDown = ''
-        ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.25.25.0/24 -o ens18 -j MASQUERADE
-      '';
-
-      peers = [
-        {
-          publicKey = "OVx+WLrLyR/ShAYW3N2AiFRWJw+msbL4nBrJ+Z5u4VU=";
-          allowedIPs = [ "10.25.25.3/32" ];
-        }
-        {
-          publicKey = "6eW3uO3Yl+TXhNMTzVgoWebAcDVuORp631CzUa98hxs=";
-          allowedIPs = [ "10.25.25.4/32" ];
-        }
-      ];
-    };
   };
 }
