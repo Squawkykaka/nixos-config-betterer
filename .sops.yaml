@@ -3,6 +3,7 @@ keys:
   - &simba age1st0a7lrqxnatvwz62hv4n3dwgfwrapv0ra9qpe28he95hr0shg9qdz623j
   - &bingbong age1p5v6e4g66g2tnyuul7kc6grlhj0t72dnvwgrtq0an5sk830clc6su45pkw
   - &kiri age1x9y0tp6ytp2jpz680fpdaezcxkzfphdsedpaz6awr7fugjjfaurq0y9z03
+  - &bandier age1ear02etyhxqc0ajtdtvtnqltz7w939gs97vnapm89quvcj8ylarsts2euc
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini|conf)$
     key_groups:
@@ -11,3 +12,4 @@ creation_rules:
           - *simba
           - *bingbong
           - *kiri
+          - *bandier

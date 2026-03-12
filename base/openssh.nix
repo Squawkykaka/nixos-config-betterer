@@ -12,11 +12,17 @@
       # Allow forwarding ports to everywhere
       GatewayPorts = "clientspecified";
     };
+
   };
 
   security.sudo.wheelNeedsPassword = false;
 
   programs.ssh.startAgent = true;
+  programs.ssh.extraConfig = ''
+    Host bandier
+      Hostname 159.13.63.123
+      Port 22
+  '';
 
   networking.firewall.allowedTCPPorts = [ 22 ];
 }

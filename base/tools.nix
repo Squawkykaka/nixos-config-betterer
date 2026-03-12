@@ -38,6 +38,7 @@
       nixfmt
       tldr # very nice short descriptions
       zip
+      dig
       ;
   };
 

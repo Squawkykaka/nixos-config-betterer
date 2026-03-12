@@ -5,20 +5,10 @@ in
 {
   networking.firewall.allowedTCPPorts = [
     9760
-    9761
   ];
   networking.firewall.allowedUDPPorts = [
     9760
-    9761
   ];
-
-  # services.caddy.virtualHosts."boom.boats".extraConfig = ''
-  # reverse_proxy 127.0.0.1:9761
-  # '';
-
-  security.acme.certs."boom.boats" = {
-    group = "sing-box";
-  };
 
   services.sing-box.enable = true;
   services.sing-box.settings = {
@@ -43,34 +33,7 @@ in
     ];
 
     inbounds = [
-      # websocket
-      {
-        type = "vless";
-        tag = "vless-in";
-        listen = "127.0.0.1";
-        listen_port = 9761;
-        users = [
-          {
-            uuid = {
-              _secret = config.sops.secrets."sing_box/uuid".path;
-            };
-          }
-        ];
-
-        transport = {
-          type = "ws";
-          path = "/jyjN5NKuN9VRGHqqzVXXzZgTV";
-        };
-
-        tls = {
-          enabled = true;
-          server_name = "boom.boats";
-          certificate_path = "${sslCertDir}/cert.pem";
-          key_path = "${sslCertDir}/key.pem";
-        };
-      }
-      # more secure, but my ip is blocked at school so need the websocket through cloudflare as i dont
-      # wanna set up a vps
+      # maybe setup in oracle vps
       {
         type = "vless";
         tag = "vless-in";

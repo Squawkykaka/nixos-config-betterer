@@ -59,6 +59,12 @@ in
       hostname = "kiri";
       stateVersion = "26.05";
     };
+
+    # vps
+    bandier = mkHost {
+      hostname = "bandier";
+      stateVersion = "26.05";
+    };
   };
 
   packages = myPkgs;
