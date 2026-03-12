@@ -71,6 +71,7 @@ in
       after = [ "docker.service" ];
       requires = [ "docker.service" ];
       partOf = [ "docker.service" ];
+      wantedBy = [ "multi-user.target" ];
 
       environment.TMPDIR = toString "/run/elytra";
       serviceConfig = {
