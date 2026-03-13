@@ -58,6 +58,7 @@
   services.displayManager = {
     autoLogin.enable = true;
     autoLogin.user = "gleask";
+    defaultSession = "mango";
   };
 
   networking.networkmanager.enable = true;

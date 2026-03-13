@@ -23,7 +23,7 @@
         extraPkgs =
           pkgs:
           (builtins.attrValues {
-            inherit (pkgs.xorg)
+            inherit (pkgs)
               libXcursor
               libXi
               libXinerama

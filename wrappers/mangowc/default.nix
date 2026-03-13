@@ -65,8 +65,9 @@
             null;
       };
 
-      environment = {
-        XDG_CONFIG_HOME = "$out";
-      };
+      flags = [
+        "-c"
+        "$out/mango/config.conf"
+      ];
     };
 }
