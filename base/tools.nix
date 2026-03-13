@@ -23,28 +23,30 @@
     preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
   };
 
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs)
-      btop # resource monitor
-      coreutils # basic gnu utils
-      curl
-      fzf # nice fuzzyfind
-      fastfetch # come on, we need it
-      pre-commit # git hooks
-      ripgrep # better grep
-      tree # cli dir tree viewer
-      unzip
-      nixd # nix language server
-      nixfmt
-      tldr # very nice short descriptions
-      zip
-      dig
-      ;
-  };
+  environment.systemPackages = with pkgs; [
+    btop # resource monitor
+    coreutils # basic gnu utils
+    curl
+    fzf # nice fuzzyfind
+    fastfetch # come on, we need it
+    pre-commit # git hooks
+    ripgrep # better grep
+    tree # cli dir tree viewer
+    unzip
+    nixd # nix language server
+    nixfmt
+    tldr # very nice short descriptions
+    zip
+    magic-wormhole
+    wireshark
+    inetutils
+    net-tools
+    unixtools.arp
+    dig
+  ];
 
   programs.appimage = {
     enable = true;
     binfmt = true;
   };
-
 }
