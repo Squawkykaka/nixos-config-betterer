@@ -43,6 +43,7 @@
     net-tools
     unixtools.arp
     dig
+    jujutsu
   ];
 
   programs.appimage = {

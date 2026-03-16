@@ -6,4 +6,10 @@
     uri = "https://idm.smeagol.me";
     ca_path = "/etc/kanidm/ca.pem";
   };
+
+  services.kanidm.unix = {
+    sshIntegration = true;
+    enable = true;
+    settings.kanidm.pam_allowed_login_groups = [ "pam-computers" ];
+  };
 }

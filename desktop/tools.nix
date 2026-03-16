@@ -12,6 +12,12 @@
     pkgs.gajim
     pkgs.kdePackages.korganizer
 
+    pkgs.swaybg
+    pkgs.grim
+    pkgs.slurp
+    pkgs.wl-clipboard
+    pkgs.brightnessctl
+
     (pkgs.callPackage "${self.sources.watt}/nix/package.nix" { })
   ];
 }
