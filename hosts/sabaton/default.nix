@@ -15,6 +15,11 @@
     ../../disks/btrfs-disk-luks.nix
   ];
 
+  # battery saving, also dont care about kde now
+  services.power-profiles-daemon.enable = false;
+  powerManagement.powertop.enable = true;
+  powerManagement.enable = true;
+
   zramSwap = {
     enable = true;
     priority = 100;

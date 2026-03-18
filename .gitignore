@@ -2,3 +2,5 @@
 latest.iso
 .direnv
 result
+nix.profile
+wrappers.svg

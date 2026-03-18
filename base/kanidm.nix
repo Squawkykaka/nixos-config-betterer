@@ -8,8 +8,8 @@
   };
 
   services.kanidm.unix = {
-    sshIntegration = true;
-    enable = true;
+    sshIntegration = false;
+    enable = false;
     settings.kanidm.pam_allowed_login_groups = [ "pam-computers" ];
   };
 }
