@@ -5,3 +5,7 @@
 - [] add back in mpv (wrap)
 - [] fixup xdg config
 - [] look at why this is needed `systemd.user.startServices = "sd-switch";`
+
+
+move to hjem
+make bar config

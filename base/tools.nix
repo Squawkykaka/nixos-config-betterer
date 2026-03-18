@@ -9,7 +9,6 @@
   hm.home = {
     username = "gleask";
     homeDirectory = "/home/gleask";
-    stateVersion = lib.mkDefault "24.11";
     sessionPath = [
       "$HOME/.local/bin"
     ];
