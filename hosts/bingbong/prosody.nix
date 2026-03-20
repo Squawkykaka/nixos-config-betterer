@@ -23,6 +23,7 @@ in
       #                                  <------->
       # do not change this, else 404
       uploadSubDir = "upload/";
+      maxDailyUploads = 0;
     };
   };
 

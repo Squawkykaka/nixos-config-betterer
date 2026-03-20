@@ -22,7 +22,10 @@
     preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
   };
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   environment.systemPackages = with pkgs; [
+    neovim
     btop # resource monitor
     coreutils # basic gnu utils
     curl

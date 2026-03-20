@@ -7,8 +7,6 @@ let
   pre-commit-check = import ./checks.nix { inherit sources; };
 in
 pkgs.mkShell {
-  NIX_CONFIG = "extra-experimental-features = nix-command flakes";
-
   inherit (pre-commit-check) shellHook;
   buildInputs = pre-commit-check.enabledPackages;
 

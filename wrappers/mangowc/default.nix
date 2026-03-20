@@ -1,7 +1,5 @@
 { types, ... }:
 {
-  name = "mangowc";
-
   inputs = {
     mkWrapper.path = "/mkWrapper";
     nixpkgs.path = "/nixpkgs";
@@ -44,7 +42,7 @@
       description = ''
         Script that get runs on startup, injected into the wrapped packages `autostart.sh`
 
-        The format is a regular bash script.
+        This takes the form of a shell script.
 
         Disjoint with the `autostartFile` option.
       '';
@@ -56,7 +54,7 @@
       description = ''
         `autostart.sh` file to be injected into the wrapped package.
 
-        The format is a regular bash script.
+        This takes the form of a shell script.
 
         Disjoint with the `autostart` option.
       '';
@@ -71,21 +69,6 @@
       inherit (inputs.nixpkgs.pkgs) writeText;
       inherit (inputs.nixpkgs.lib) generators;
       generated = generators.toKeyValue { } options.settings;
-
-      config-conf =
-        if options ? configFile then
-          options.configFile
-        else if options ? settings then
-          writeText "config.conf" generated
-        else
-          null;
-      autostart-sh =
-        if options ? autostartFile then
-          options.autostartFile
-        else if options ? autostart then
-          writeText "autostart.sh" options.autostart
-        else
-          null;
     in
     inputs.mkWrapper {
       inherit (options) package;
@@ -94,16 +77,34 @@
         mkdir -p $out/mango
       '';
 
-      symlinks = {
-        "$out/mango/config.conf" = config-conf;
-        "$out/mango/autostart.sh" = autostart-sh;
-      };
-
-      flags = [
-        "-c"
-        "$out/mango/config.conf"
-        "-s"
-        "$out/mango/autostart.sh"
-      ];
+      flags =
+        (
+          if options ? configFile then
+            [
+              "-c"
+              options.configFile
+            ]
+          else if options ? settings then
+            [
+              "-c"
+              (writeText "config.conf" generated)
+            ]
+          else
+            [ ]
+        )
+        ++ (
+          if options ? autostartFile then
+            [
+              "-s"
+              options.autostartFile
+            ]
+          else if options ? autostart then
+            [
+              "-s"
+              (writeText "autostart.sh" options.autostart)
+            ]
+          else
+            [ ]
+        );
     };
 }

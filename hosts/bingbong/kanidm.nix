@@ -10,7 +10,6 @@
   '';
   users.users.kanidm.extraGroups = [ "caddy" ];
   services.kanidm = {
-    package = pkgs.kanidm_1_9;
     enableServer = true;
     serverSettings = {
       bindaddress = "127.0.0.1:5776";
