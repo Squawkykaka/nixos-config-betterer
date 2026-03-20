@@ -83,19 +83,10 @@
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidiaSettings = true;
-    prime = {
-      offload = {
-        enable = false;
-        enableOffloadCmd = false;
-      };
-      sync.enable = true;
-      # Make sure to use the correct Bus ID values for your system!
-      amdgpuBusId = "PCI:54:0:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
   };
 
   environment.systemPackages = [
+    pkgs.ollama-cuda
     pkgs.rustup
     pkgs.freecad
     pkgs.dualsensectl
@@ -103,6 +94,7 @@
     pkgs.bottles
     pkgs.idescriptor
   ];
+
   services.udev.packages = [ pkgs.idescriptor ];
 
   system.stateVersion = "24.11";

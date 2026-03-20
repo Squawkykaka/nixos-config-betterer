@@ -25,6 +25,7 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.systemPackages = with pkgs; [
+    jujutsu
     neovim
     btop # resource monitor
     coreutils # basic gnu utils
