@@ -1,7 +1,5 @@
 { types, ... }@adios:
 {
-  name = "mpd";
-
   inputs = {
     mkWrapper = "/mkWrapper";
     nixpkgs = "/nixpkgs";
@@ -9,9 +7,10 @@
 
   options = {
     settings = {
-      type = types.attrs;
-      mutatorType = types.attrs;
-      mergeFunc = adios.lib.mergeFuncs.concatLines;
+      type = types.string;
+    };
+    configFile = {
+      type = types.pathLike;
     };
 
     package = {
@@ -27,6 +26,8 @@
     in
     inputs.mkWrapper {
       package = options.package;
-
+      preSymlink = ''
+        mkdir -p $out/mpd
+      '';
     };
 }

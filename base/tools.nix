@@ -47,6 +47,7 @@
     unixtools.arp
     dig
     jujutsu
+    krita
   ];
 
   programs.appimage = {

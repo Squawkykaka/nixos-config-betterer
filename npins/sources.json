@@ -17,14 +17,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "llakala",
+        "owner": "Squawkykaka",
         "repo": "adios-wrappers"
       },
-      "branch": "main",
+      "branch": "fix-nushell-regression",
       "submodules": false,
-      "revision": "824e0e3d6b691be0fdcdc921d2e990acc5d12733",
-      "url": "https://github.com/llakala/adios-wrappers/archive/824e0e3d6b691be0fdcdc921d2e990acc5d12733.tar.gz",
-      "hash": "sha256-SJqZw/aZFVQDVti1eyv1ZbuNlfUiWSeMAgISJ8dKQ+Y="
+      "revision": "c2ada70c58c2a740d724a5c1283e00e6841762ac",
+      "url": "https://github.com/Squawkykaka/adios-wrappers/archive/c2ada70c58c2a740d724a5c1283e00e6841762ac.tar.gz",
+      "hash": "sha256-svfIeuk7axr2tkm5mCsHz0OG0ojqiCt68RJPCtbtldI="
     },
     "disko": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "nixos-unstable",
       "submodules": false,
-      "revision": "dd9b079222d43e1943b6ebd802f04fd959dc8e61",
-      "url": "https://github.com/nixos/nixpkgs/archive/dd9b079222d43e1943b6ebd802f04fd959dc8e61.tar.gz",
-      "hash": "sha256-I45esRSssFtJ8p/gLHUZ1OUaaTaVLluNkABkk6arQwE="
+      "revision": "b40629efe5d6ec48dd1efba650c797ddbd39ace0",
+      "url": "https://github.com/nixos/nixpkgs/archive/b40629efe5d6ec48dd1efba650c797ddbd39ace0.tar.gz",
+      "hash": "sha256-TJ3lSQtW0E2JrznGVm8hOQGVpXjJyXY2guAxku2O9A4="
     },
     "sops-nix": {
       "type": "Git",

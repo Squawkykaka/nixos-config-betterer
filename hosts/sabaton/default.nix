@@ -53,6 +53,7 @@
   users.users.gleask.extraGroups = [
     "media"
     "libvirtd"
+    "wireshark"
   ];
   boot.supportedFilesystems = [
     "nfs"

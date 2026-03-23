@@ -12,30 +12,32 @@
       timestamp = true;
     };
 
-    dns.servers = [
-      {
-        type = "https";
-        tag = "cloudflare";
-        server = "1.1.1.1";
-      }
-      {
-        type = "tcp";
-        tag = "local";
-        server = "10.0.0.1";
-        detour = "wg-ep";
-      }
-    ];
+    dns = {
+      servers = [
+        {
+          type = "https";
+          tag = "cloudflare";
+          server = "1.1.1.1";
+        }
+        {
+          type = "tcp";
+          tag = "local";
+          server = "10.0.0.1";
+          detour = "wg-ep";
+        }
+      ];
 
-    dns.rules = [
-      {
-        domain_suffix = [
-          "smeagol.me"
-          "boom.boats"
-        ];
-        server = "local";
-      }
-    ];
-    dns.strategy = "ipv4_only";
+      rules = [
+        {
+          domain_suffix = [
+            "smeagol.me"
+            "boom.boats"
+          ];
+          server = "local";
+        }
+      ];
+      strategy = "ipv4_only";
+    };
 
     inbounds = [
       {
@@ -47,6 +49,7 @@
         auto_route = true;
         auto_redirect = true;
         strict_route = true;
+        sniff = true;
       }
     ];
     endpoints = [

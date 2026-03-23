@@ -2,9 +2,9 @@
 {
   hm.services.mpd = {
     # user = "gleask";
-    enable = true;
-    musicDirectory = "/mnt/media/music";
-    playlistDirectory = "/home/gleask/media/audio/playlists";
+    # enable = true;
+    musicDirectory = "nfs://192.168.1.44/volume1/linux-isos/music";
+    playlistDirectory = "nfs://192.168.1.44/volume1/linux-isos/music/playlists";
 
     extraArgs = [ "--verbose" ];
 
