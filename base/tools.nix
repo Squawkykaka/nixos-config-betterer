@@ -1,8 +1,5 @@
 {
-  config,
-  lib,
   pkgs,
-  wrappers,
   ...
 }:
 {
@@ -26,6 +23,7 @@
 
   environment.systemPackages = with pkgs; [
     jujutsu
+    libqalculate
     neovim
     btop # resource monitor
     coreutils # basic gnu utils

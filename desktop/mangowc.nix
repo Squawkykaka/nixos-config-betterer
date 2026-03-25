@@ -3,7 +3,10 @@
   programs.mangowc.enable = true;
   programs.mangowc.package = self.wrappers.mangowc.drv;
 
-  environment.systemPackages = [ pkgs.eww ];
+  environment.systemPackages = [
+    pkgs.eww
+    pkgs.noctalia-shell
+  ];
 
   security.polkit.enable = true;
 

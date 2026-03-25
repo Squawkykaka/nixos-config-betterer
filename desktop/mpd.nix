@@ -2,9 +2,9 @@
 {
   hm.services.mpd = {
     # user = "gleask";
-    # enable = true;
+    enable = true;
     musicDirectory = "nfs://192.168.1.44/volume1/linux-isos/music";
-    playlistDirectory = "nfs://192.168.1.44/volume1/linux-isos/music/playlists";
+    playlistDirectory = "/home/gleask/media/audio/playlists";
 
     extraArgs = [ "--verbose" ];
 
@@ -20,5 +20,6 @@
 
   environment.systemPackages = [
     pkgs.rmpc
+    pkgs.mpc
   ];
 }

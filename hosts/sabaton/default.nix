@@ -28,6 +28,8 @@
   };
 
   environment.systemPackages = [
+    pkgs.android-tools
+
     pkgs.kicad
     pkgs.wine64Packages.waylandFull
   ];
@@ -51,6 +53,8 @@
     gid = 984;
   };
   users.users.gleask.extraGroups = [
+    "adbusers"
+    "kvm"
     "media"
     "libvirtd"
     "wireshark"
