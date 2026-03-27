@@ -17,6 +17,7 @@
     pkgs.slurp
     pkgs.wl-clipboard
     pkgs.brightnessctl
+    self.wrappers.firefox.drv
 
     (pkgs.callPackage "${self.sources.watt}/nix/package.nix" { })
   ];
