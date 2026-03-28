@@ -10,8 +10,8 @@
   '';
   users.users.kanidm.extraGroups = [ "caddy" ];
   services.kanidm = {
-    enableServer = true;
-    serverSettings = {
+    server.enable = true;
+    server.settings = {
       bindaddress = "127.0.0.1:5776";
       # db_path = "/var/lib/kanidm/kanidm.db";
       tls_chain = "/var/lib/kanidm/chain.pem";

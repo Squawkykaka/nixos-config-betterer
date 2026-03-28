@@ -37,12 +37,16 @@
         use-caps-for-id = "yes";
         val-clean-additional = "yes";
       };
-      # forward-zone = [
-      # {
-      # name = ".";
-      # forward-addr = "1.1.1.1@853#cloudflare-dns.com";
-      # }
-      # ];
+      forward-zone = [
+        {
+          name = "smeagol.me.";
+          forward-addr = "10.0.0.1";
+        }
+        {
+          name = "boom.boats.";
+          foward-addr = "10.0.0.1";
+        }
+      ];
       # remote-control.control-enable = true;
     };
   };

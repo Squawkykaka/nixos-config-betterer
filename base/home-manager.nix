@@ -16,6 +16,8 @@
   # make home-manager backup files.
   home-manager.backupFileExtension = "bk";
 
+  hm.xdg.userDirs.setSessionVariables = true;
+
   home-manager = {
     extraSpecialArgs = {
       inherit
