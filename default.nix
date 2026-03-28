@@ -60,6 +60,11 @@ in
       stateVersion = "26.05";
     };
 
+    zhara = mkHost {
+      hostname = "zhara";
+      stateVersion = "26.05";
+    };
+
     # vps
     bandier = mkHost {
       hostname = "bandier";

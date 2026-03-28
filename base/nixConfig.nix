@@ -8,6 +8,13 @@
 {
   networking.hostName = self.hostVars.hostname;
 
+  zramSwap = {
+    enable = true;
+    priority = 100;
+    algorithm = "lz4";
+    memoryPercent = 50;
+  };
+
   environment.systemPackages = [
     pkgs.openssh
     pkgs.trashy

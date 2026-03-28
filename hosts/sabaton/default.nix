@@ -20,13 +20,6 @@
   powerManagement.powertop.enable = true;
   powerManagement.enable = true;
 
-  zramSwap = {
-    enable = true;
-    priority = 100;
-    algorithm = "lz4";
-    memoryPercent = 50;
-  };
-
   environment.systemPackages = [
     pkgs.android-tools
 
