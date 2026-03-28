@@ -21,6 +21,9 @@ list:
 filter
   # Filter out any path that doesn't look like `*.nix`. Don't forget to use
   # toString to prevent copying paths to the store unnecessarily
-  (elem: !isPath elem || hasSuffix ".nix" (toString elem))
+  (
+    elem:
+    !isPath elem || (hasSuffix ".nix" (toString elem) && !(hasSuffix ".disable.nix" (toString elem)))
+  )
   # Expand any folder to all the files within it.
   (concatMap expandIfFolder list)
