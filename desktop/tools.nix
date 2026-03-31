@@ -19,6 +19,7 @@
     pkgs.brightnessctl
     self.wrappers.firefox.drv
 
+    pkgs.krita
     (pkgs.callPackage "${self.sources.watt}/nix/package.nix" { })
   ];
 }

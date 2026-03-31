@@ -22,6 +22,11 @@
       };
     }
   ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  nix.settings.extra-platforms = [
+    "aarch64-linux"
+    "arm-linux"
+  ];
 
   services.kanata.enable = true;
   services.desktopManager.plasma6.enable = true;
