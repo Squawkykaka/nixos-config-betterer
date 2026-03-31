@@ -17,8 +17,9 @@
 
   # battery saving, also dont care about kde now
   services.power-profiles-daemon.enable = false;
-  powerManagement.powertop.enable = true;
-  powerManagement.enable = true;
+  # powerManagement.powertop.enable = true;
+  # powerManagement.enable = true;
+  services.auto-cpufreq.enable = true;
 
   environment.systemPackages = [
     pkgs.android-tools

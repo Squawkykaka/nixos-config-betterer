@@ -1,0 +1,52 @@
+[[rule]]
+if.all = [
+  "?discharging",
+  { is-less-than = 0.3, value = "%power-supply-charge" }
+]
+priority = 90
+
+cpu.governor = "powersave"
+cpu.energy-performance-preference = "power"
+cpu.frequency-mhz-maximum = 800
+cpu.turbo = false
+power.platform-profile = "low-power"
+
+#discharging
+[[rule]]
+if.all = [
+  "?discharging",
+  { is-less-than = 0.5, value = "%power-supply-charge" }
+]
+priority = 11
+
+cpu.governor = "powersave"
+cpu.frequency-mhz-maximum = 2000
+cpu.turbo = false
+cpu.governor = "powersave"
+cpu.energy-performance-preference = "power"
+
+[[rule]]
+if = "?discharging"
+priority = 10
+
+cpu.governor = "powersave"
+cpu.energy-performance-preference = "power"
+cpu.turbo = false
+
+[[rule]]
+priority = 9
+power.charge-threshold-start = 0.4
+power.charge-threshold-end = 0.8
+
+[[rule]]
+if.all = [
+  { is-more-than = 0.8, value = "%cpu-usage" },
+  { is-less-than = 15.0, value = "$cpu-idle-seconds" },
+  { is-less-than = 80.0, value = "$cpu-temperature" },
+]
+priority = 80
+
+cpu.governor = "performance"
+cpu.energy-performance-preference = "performance"
+power.platform-profile = "performance"
+cpu.turbo = true

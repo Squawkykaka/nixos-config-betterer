@@ -2,11 +2,6 @@ let
   sources = import ./npins { };
   overlay = (import ./overlays { }).default;
 
-  myPkgs = pkgs.lib.packagesFromDirectoryRecursive {
-    callPackage = pkgs.lib.callPackageWith pkgs;
-    directory = ./packages;
-  };
-
   pkgs = import sources.nixpkgs {
     config.allowUnfree = true;
     overlays = [ overlay ];
@@ -15,6 +10,23 @@ let
   recursivelyImport = import ./lib { inherit (pkgs) lib; };
 
   wrappers = import ./wrappers { inherit pkgs sources; };
+
+  systems = [
+    "x86_64-linux"
+    "aarch64-linux"
+  ];
+  forAllSystems =
+    set:
+    let
+      lib = import "${sources.nixpkgs}/lib";
+    in
+    lib.genAttrs systems (
+      system:
+      set (import sources.nixpkgs {
+        system = system;
+        overlays = [ overlay ];
+      }) system
+    );
 
   mkHost =
     hostVars:
@@ -72,6 +84,13 @@ in
     };
   };
 
-  packages = myPkgs;
+  packages = forAllSystems (
+    pkgs: _:
+    pkgs.lib.packagesFromDirectoryRecursive {
+      callPackage = pkgs.lib.callPackageWith pkgs;
+      directory = ./packages;
+    }
+  );
+
   inherit wrappers;
 }

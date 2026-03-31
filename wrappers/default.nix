@@ -6,16 +6,13 @@ let
   adios = import "${sources.adios}/adios";
   adios-wrappers = import sources.adios-wrappers { adios = sources.adios; };
 
-  root = {
-    name = "root";
-    modules = pkgs.lib.recursiveUpdate adios-wrappers (adios.lib.importModules ./.);
-  };
+  watt = (pkgs.callPackage "${sources.watt}/nix/package.nix" { });
+  root.modules = pkgs.lib.recursiveUpdate adios-wrappers (adios.lib.importModules ./.);
 
   tree = adios root {
     options = {
       "/nixpkgs" = {
-        inherit pkgs;
-        inherit (pkgs) lib;
+        inherit pkgs watt;
       };
     };
   };

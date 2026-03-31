@@ -7,11 +7,11 @@
         "owner": "llakala",
         "repo": "adios"
       },
-      "branch": "master",
+      "branch": "main",
       "submodules": false,
-      "revision": "8faf04c39db7a6ea4543effc433bb6d2ec320648",
-      "url": "https://github.com/llakala/adios/archive/8faf04c39db7a6ea4543effc433bb6d2ec320648.tar.gz",
-      "hash": "sha256-4ysYjCalnlTDPqiXn1lzkUrKSccjDIsYiB6zHb1cgaY="
+      "revision": "35f4f6af3ccaf94287905c489247160a2b766744",
+      "url": "https://github.com/llakala/adios/archive/35f4f6af3ccaf94287905c489247160a2b766744.tar.gz",
+      "hash": "sha256-G4j2HB/P16LkLsTM9m1XMdruLlGnrbFciQoFRI382U4="
     },
     "adios-wrappers": {
       "type": "Git",

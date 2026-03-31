@@ -1,6 +1,7 @@
 { self, pkgs, ... }:
 {
   environment.systemPackages = [
+    pkgs.thunderbird
     pkgs.vesktop
     pkgs.vscodium
     pkgs.mpv
