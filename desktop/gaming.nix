@@ -4,6 +4,7 @@
     prismlauncher
     # FIX Will return back to normal after nixpkgs updates
     r2modman
+    mangohud
     (lutris.override {
       extraPkgs = _pkgs: [
         # wineWowPackages.stable
@@ -47,6 +48,7 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = false;
       gamescopeSession.enable = true;
+
       extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
@@ -54,7 +56,9 @@
       enable = true;
       capSysNice = true;
       args = [
+        "--adaptive-sync"
         "--rt"
+        "--steam"
         "--expose-wayland"
       ];
     };

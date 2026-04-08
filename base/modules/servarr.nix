@@ -192,19 +192,6 @@ in
       reverse_proxy localhost:${toString config.services.lidarr.settings.server.port}
     '';
 
-    sops.secrets = {
-      "autobrr/secret" = { };
-    };
-    # services.notifiarr.enable = true;
-    services.autobrr = {
-      enable = true;
-      secretFile = config.sops.secrets."autobrr/secret".path;
-    };
-    services.caddy.virtualHosts."autobrr.smeagol.me".extraConfig = ''
-      import trusted_only
-      reverse_proxy localhost:${toString config.services.autobrr.settings.port}
-    '';
-
     services.flaresolverr.enable = true;
   };
 }

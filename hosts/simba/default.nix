@@ -84,6 +84,7 @@
   };
 
   environment.systemPackages = [
+    pkgs.kicad
     pkgs.ollama-cuda
     pkgs.rustup
     pkgs.freecad
