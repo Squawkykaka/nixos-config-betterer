@@ -23,8 +23,6 @@
     vim
   ];
 
-  services.minerva.enable = true;
-
   services.matterbridge = {
     enable = true;
     configPath = "/var/lib/matterbridge/config.toml";

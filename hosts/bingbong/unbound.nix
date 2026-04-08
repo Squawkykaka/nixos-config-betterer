@@ -45,6 +45,12 @@
         ];
         root-hints = "${pkgs.dns-root-data}/root.hints";
 
+        # disable dnssec for boom.boats and smeagol.me
+        domain-insecure = [
+          "boom.boats."
+          "smeagol.me."
+        ];
+
         # performance
         msg-cache-size = "50m";
         rrset-cache-size = "100m";
