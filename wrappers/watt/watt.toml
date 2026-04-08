@@ -22,7 +22,6 @@ priority = 11
 cpu.governor = "powersave"
 cpu.frequency-mhz-maximum = 2000
 cpu.turbo = false
-cpu.governor = "powersave"
 cpu.energy-performance-preference = "power"
 
 [[rule]]

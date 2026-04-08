@@ -128,7 +128,7 @@ in
       verbose
       # ban private IP ranges
       no-multicast-peers
-      external-ip=203.211.121.234
+      external-ip=203.211.123.150
       denied-peer-ip=0.0.0.0-0.255.255.255
       denied-peer-ip=10.0.0.0-10.255.255.255
       denied-peer-ip=100.64.0.0-100.127.255.255
