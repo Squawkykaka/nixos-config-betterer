@@ -40,22 +40,6 @@
     gid = 984;
   };
   users.users.gleask.extraGroups = [ "media" ];
-  fileSystems."/mnt/media" = {
-    device = "192.168.1.44:/volume1/linux-isos";
-    fsType = "nfs";
-
-    options = [
-      "rw"
-      "sec=sys"
-      "x-systemd.automount"
-      "x-systemd.idle-timeout=600"
-      "noatime"
-      "soft"
-      "_netdev"
-    ];
-
-    neededForBoot = false;
-  };
 
   networking = {
     networkmanager.enable = true;

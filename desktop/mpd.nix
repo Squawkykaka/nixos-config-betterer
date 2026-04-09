@@ -1,10 +1,24 @@
 { pkgs, ... }:
 {
+  fileSystems."/mnt/media" = {
+    device = "192.168.1.44:/volume1/linux-isos";
+    fsType = "nfs";
+
+    options = [
+      "rw"
+      "sec=sys"
+      "noatime"
+      "soft"
+      "_netdev"
+    ];
+
+    neededForBoot = false;
+  };
+
   hm.services.mpd = {
-    # user = "gleask";
-    enable = true;
-    musicDirectory = "nfs://192.168.1.44/volume1/linux-isos/music";
-    playlistDirectory = "/home/gleask/media/audio/playlists";
+    enable = false;
+    musicDirectory = "/mnt/media/music";
+    playlistDirectory = "/mnt/media/music/playlists";
 
     extraArgs = [ "--verbose" ];
 
