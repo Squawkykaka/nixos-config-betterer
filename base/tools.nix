@@ -3,22 +3,6 @@
   ...
 }:
 {
-  hm.home = {
-    username = "gleask";
-    homeDirectory = "/home/gleask";
-    sessionPath = [
-      "$HOME/.local/bin"
-    ];
-    sessionVariables = {
-      FLAKE = "$HOME/nixos";
-      TERM = "ghostty";
-      TERMINAL = "ghostty";
-      VISUAL = "hx";
-      EDITOR = "hx";
-    };
-    preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
-  };
-
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.systemPackages = with pkgs; [

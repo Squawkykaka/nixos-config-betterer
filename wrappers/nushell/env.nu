@@ -1,5 +1,9 @@
 $env.config.show_banner = false
 $env.config.buffer_editor = "hx"
+$env.TERM = "ghostty"
+$env.TERMINAL = "ghostty"
+$env.VISUAL = "hx"
+$env.EDITOR = "hx"
 
 $env.config.hooks.env_change.PWD = [
 { ||

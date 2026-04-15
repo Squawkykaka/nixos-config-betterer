@@ -3,6 +3,8 @@
   programs.mangowc.enable = true;
   programs.mangowc.package = self.wrappers.mangowc.drv;
 
+  services.displayManager.defaultSession = "mango";
+
   environment.systemPackages = [
     pkgs.eww
     pkgs.noctalia-shell
