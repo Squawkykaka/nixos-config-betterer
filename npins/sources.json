@@ -9,22 +9,22 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "a6164dbd9827d6df4077a06f0e6d13beeb0e1c6e",
-      "url": "https://github.com/llakala/adios/archive/a6164dbd9827d6df4077a06f0e6d13beeb0e1c6e.tar.gz",
-      "hash": "sha256-AxRDV5nvCt8GpUaOJqlw6Q5ey7cBrQhxeQJH/2EN3bQ="
+      "revision": "4d68ca782b39c60b56d079b33a2d190a5986d9ed",
+      "url": "https://github.com/llakala/adios/archive/4d68ca782b39c60b56d079b33a2d190a5986d9ed.tar.gz",
+      "hash": "sha256-ey/ZDNtxfFgKTUa8I/8519MBIYg21Fu5jqoQnVuiQHM="
     },
     "adios-wrappers": {
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "Squawkykaka",
+        "owner": "llakala",
         "repo": "adios-wrappers"
       },
-      "branch": "fix-nushell-regression",
+      "branch": "main",
       "submodules": false,
-      "revision": "64ffc8b9ca5823a90094894e721a203b965b5ac6",
-      "url": "https://github.com/Squawkykaka/adios-wrappers/archive/64ffc8b9ca5823a90094894e721a203b965b5ac6.tar.gz",
-      "hash": "sha256-xgaJq2S6o2PtiF3IqnU5Rn8jg6pPpe4dVVoZ52sWJ3s="
+      "revision": "e5906e21591ea9fac2f6a1b055563d00f5af031f",
+      "url": "https://github.com/llakala/adios-wrappers/archive/e5906e21591ea9fac2f6a1b055563d00f5af031f.tar.gz",
+      "hash": "sha256-mP34RaDqp01c0o5gGrcaalakdG5mfKMh5ZoXGltQGVw="
     },
     "disko": {
       "type": "Git",
