@@ -39,8 +39,6 @@ in
         "proto=tcp"
         "_netdev"
       ];
-
-      neededForBoot = false;
     };
     users.groups.media = {
       gid = 984;
