@@ -23,8 +23,6 @@
 
   environment.systemPackages = [
     pkgs.android-tools
-
-    pkgs.kicad
     pkgs.wine64Packages.waylandFull
   ];
   virtualisation.libvirtd.enable = true;
