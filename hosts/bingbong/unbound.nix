@@ -85,5 +85,5 @@
     };
   };
 
-  services.unbound.settings.server.local-data = [ "\"node.smeagol.me. A 192.168.1.48\"" ];
+  services.unbound.settings.server.local-data = [ "\"node.smeagol.me. A 192.168.1.49\"" ];
 }

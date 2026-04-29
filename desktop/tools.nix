@@ -4,12 +4,12 @@ let
 in
 {
   environment.systemPackages = [
+    pkgs.kicad
     pkgs.joplin
     pkgs.joplin-desktop
     pkgs.thunderbird
     pkgs.vesktop
     pkgs.vscodium
-    pkgs.mpv
     pkgs.ghostty
     pkgs.vicinae
     pkgs.gimp

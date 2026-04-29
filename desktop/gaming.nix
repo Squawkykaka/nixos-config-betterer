@@ -4,13 +4,6 @@
     prismlauncher
     # FIX Will return back to normal after nixpkgs updates
     r2modman
-    mangohud
-    (lutris.override {
-      extraPkgs = _pkgs: [
-        # wineWowPackages.stable
-        geckodriver
-      ];
-    })
   ];
 
   programs = {
