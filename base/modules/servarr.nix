@@ -51,54 +51,6 @@ in
     # users.users.jackett.extraGroups = [ "media" ];
     users.users.gleask.extraGroups = [ "media" ];
 
-    networking.wireguard.interfaces.wg-qbittorrent = {
-      # Use a separate network namespace for the VPN.
-      # sudo ip netns exec wg-qbittorrent curl --interface wg-mullvad https://am.i.mullvad.net/connected
-
-      privateKeyFile = config.sops.secrets."airvpn/private_key".path;
-      mtu = 1320;
-      ips = [
-        "10.149.200.203/32"
-        "fd7d:76ee:e68f:a993:95ea:4506:fd92:e338/128"
-      ];
-      interfaceNamespace = "wg-qbittorrent";
-
-      preSetup = ''
-        ip netns add wg-qbittorrent
-        ip -n wg-qbittorrent link set lo up
-
-        # Create a veth pair to link the namespaces
-        ip link add veth-host type veth peer name veth-vpn
-        ip link set veth-vpn netns wg-qbittorrent
-        ip addr add 10.200.200.1/24 dev veth-host
-        ip netns exec wg-qbittorrent ip addr add 10.200.200.2/24 dev veth-vpn
-        ip link set veth-host up
-        ip netns exec wg-qbittorrent ip link set veth-vpn up
-        ip netns exec wg-qbittorrent ip route add default via 10.200.200.1
-      '';
-
-      postShutdown = ''
-           # Delete the veth pair
-        ip link del veth-host
-
-           # Delete the namespace
-        ip netns del wg-qbittorrent
-      '';
-
-      peers = [
-        {
-          publicKey = "PyLCXAQT8KkM4T+dUsOQfn+Ub3pGxfGlxkIApuig+hk=";
-          allowedIPs = [
-            "0.0.0.0/0"
-            "::0/0"
-          ];
-          presharedKeyFile = config.sops.secrets."airvpn/preshared_key".path;
-          endpoint = "nz3.vpn.airdns.org:1637";
-          persistentKeepalive = 15;
-        }
-      ];
-    };
-
     services.qbittorrent = {
       enable = true;
       webuiPort = 3056;
@@ -128,10 +80,6 @@ in
         };
       };
     };
-    systemd.services.qbittorrent.serviceConfig = {
-      NetworkNamespacePath = "/var/run/netns/wg-qbittorrent";
-    };
-
     services.caddy.virtualHosts."torrent.smeagol.me".extraConfig = ''
       import trusted_only
       reverse_proxy 10.200.200.2:${toString config.services.qbittorrent.webuiPort} {

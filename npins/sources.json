@@ -78,6 +78,19 @@
       "url": "https://github.com/nixos/nixpkgs/archive/b12141ef619e0a9c1c84dc8c684040326f27cdcc.tar.gz",
       "hash": "sha256-ZSK0NL4a1BwVbbTBoSnWgbJy9HeZFXLYQizjb2DPF24="
     },
+    "rom": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "feel-co",
+        "repo": "rom"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "f7cbda3aaead90bf10604c0ab34a5519b6a1b421",
+      "url": "https://github.com/feel-co/rom/archive/f7cbda3aaead90bf10604c0ab34a5519b6a1b421.tar.gz",
+      "hash": "sha256-mTlwOybLmGWwXuE0ol6JSRXVVjROzgTB+HFg98GmE98="
+    },
     "sops-nix": {
       "type": "Git",
       "repository": {

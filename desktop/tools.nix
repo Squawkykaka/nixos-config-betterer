@@ -1,5 +1,9 @@
 { self, pkgs, ... }:
+let
+  rom = (pkgs.callPackage "${self.sources.rom}/nix/package.nix" { });
+in
 {
+
   environment.systemPackages = [
     pkgs.thunderbird
     pkgs.vesktop
@@ -22,5 +26,6 @@
 
     pkgs.krita
     self.wrappers.watt.drv
+    rom
   ];
 }

@@ -23,12 +23,6 @@
     vim
   ];
 
-  services.matterbridge = {
-    enable = true;
-    configPath = "/var/lib/matterbridge/config.toml";
-    package = pkgs.matterbridge-ce;
-  };
-
   virtualisation.docker.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
@@ -109,8 +103,11 @@
   services.caddy = {
     enable = true;
     package = pkgs.caddy.withPlugins {
-      plugins = [ "github.com/caddy-dns/cloudflare@v0.2.2" ];
-      hash = "sha256-7DGnojZvcQBZ6LEjT0e5O9gZgsvEeHlQP9aKaJIs/Zg=";
+      plugins = [
+        "github.com/caddy-dns/cloudflare@v0.2.2"
+        "github.com/mholt/caddy-webdav@v0.0.0-20260127042217-fa2f366b0d75"
+      ];
+      hash = "sha256-tgyxoWlP6Wz3nxkCjVpSTDctiTqFUPfPPc2kC7rpRZs=";
     };
 
     globalConfig = ''
@@ -137,8 +134,9 @@
   security.acme.defaults.dnsProvider = "cloudflare";
   security.acme.acceptTerms = true;
 
+  # getting off it rn
   kaka.servarr = {
-    enable = true;
+    enable = false;
   };
 
   networking.nat = {
