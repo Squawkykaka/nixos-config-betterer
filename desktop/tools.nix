@@ -3,8 +3,9 @@ let
   rom = (pkgs.callPackage "${self.sources.rom}/nix/package.nix" { });
 in
 {
-
   environment.systemPackages = [
+    pkgs.joplin
+    pkgs.joplin-desktop
     pkgs.thunderbird
     pkgs.vesktop
     pkgs.vscodium
