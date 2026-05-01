@@ -126,7 +126,5 @@ in
       import trusted_only
       reverse_proxy localhost:${toString config.services.lidarr.settings.server.port}
     '';
-
-    services.flaresolverr.enable = true;
   };
 }

@@ -33,7 +33,7 @@ in
     in
     # you must set the rule for .ssh separately first, otherwise it will be automatically created as root:root and .ssh/sockects will fail
     [
-      "d /home/gleask}/.ssh 0750 ${user} ${group} -"
-      "d /home/gleask}/.ssh/sockets 0750 ${user} ${group} -"
+      "d /home/gleask/.ssh 0750 ${user} ${group} -"
+      "d /home/gleask/.ssh/sockets 0750 ${user} ${group} -"
     ];
 }
