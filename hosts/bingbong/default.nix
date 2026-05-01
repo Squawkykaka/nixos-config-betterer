@@ -67,7 +67,7 @@
         "github.com/caddy-dns/cloudflare@v0.2.2"
         "github.com/mholt/caddy-webdav@v0.0.0-20260127042217-fa2f366b0d75"
       ];
-      hash = "sha256-tgyxoWlP6Wz3nxkCjVpSTDctiTqFUPfPPc2kC7rpRZs=";
+      hash = "sha256-cbIn2gYXJS2CSOh6xgN3lk8MPUmt0GSlOae1MLADYxg=";
     };
 
     globalConfig = ''
