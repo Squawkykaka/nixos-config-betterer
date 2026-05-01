@@ -4,7 +4,6 @@ let
 in
 {
   environment.systemPackages = [
-    pkgs.kicad
     pkgs.joplin
     pkgs.joplin-desktop
     pkgs.thunderbird

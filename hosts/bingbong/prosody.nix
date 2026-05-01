@@ -59,27 +59,8 @@ in
           key = "${sslCertDir}/key.pem";
         };
         extraConfig = ''
-          modules_enabled = {
-             "privilege";
-          }
-          privileged_entities = {
-            ["discord.${domainName}"] = {
-              roster  = "both";      -- for adding/removing contacts from the users' rosters
-              message = "outgoing";  -- for reflecting messages sent by the user themself from official Discord apps
-
-              iq = {
-                ["http://jabber.org/protocol/pubsub"]        = "both"; -- for PEP Bookmarks
-                ["http://jabber.org/protocol/pubsub#owner"]  = "set";  -- for Message Display Synchronization
-                ["urn:xmpp:http:upload:0"]                   = "get";  -- for HTTP Upload on behalf of users
-              };
-            };
-          }
-
           turn_external_host   = "turn.${domainName}"
           turn_external_secret = "aasoffaFDOSFH&8*%"
-
-          Component "discord.${domainName}"
-            component_secret = "Supeswef673232fjsaifa"
         '';
       };
       localhost = {
@@ -98,10 +79,7 @@ in
       "csi_simple"
       "muc_mam"
       "seclables"
-      "privilege"
     ];
-
-    extraPluginPaths = [ "/var/lib/prosody/prosody-modules/mod_privilege" ];
 
     extraConfig = ''
       muc_log_expires_after = "1m"

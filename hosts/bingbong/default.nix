@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  self,
   ...
 }:
 {
@@ -48,48 +47,10 @@
     }
   '';
 
-  services.invidious = {
-    enable = true;
-    domain = "invidious.boom.boats";
-    database.passwordFile = config.sops.secrets."invidious/password".path;
-
-    # http3-ytproxy.enable = true;
-    settings = {
-      https_only = true;
-      external_port = 443;
-
-      invidious_companion = [
-        {
-          private_url = "http://127.0.0.1:8282/companion";
-        }
-      ];
-      # Generate as per https://docs.invidious.io/installation/
-      invidious_companion_key = "haedoh0eej1cev2U";
-    };
-  };
-  virtualisation.oci-containers.containers = {
-    invidious-companion = {
-      image = "quay.io/invidious/invidious-companion:latest";
-      ports = [ "127.0.0.1:8282:8282" ];
-      volumes = [
-        "companioncache:/var/tmp/youtubei.js:rw"
-      ];
-      environment = {
-        SERVER_SECRET_KEY = "haedoh0eej1cev2U";
-      };
-    };
-  };
-
   sops.secrets = {
     "cloudflare/api_token" = { };
     "bingbong/private_key" = { };
-    "invidious/password" = { };
   };
-
-  services.caddy.virtualHosts.${config.services.invidious.domain}.extraConfig = ''
-    import trusted_only
-    reverse_proxy 127.0.0.1:${toString config.services.invidious.port}
-  '';
 
   sops.templates."matrix-caddy-env" = {
     content = ''
@@ -97,7 +58,6 @@
       CLOUDFLARE_EMAIL=${config.sops.placeholder."email"}
       CLOUDFLARE_DNS_API_TOKEN=${config.sops.placeholder."cloudflare/api_token"}
     '';
-    #    owner = "caddy";
   };
 
   services.caddy = {
@@ -135,13 +95,5 @@
   security.acme.acceptTerms = true;
 
   # getting off it rn
-  kaka.servarr = {
-    enable = false;
-  };
-
-  networking.nat = {
-    enable = true;
-    externalInterface = "ens18";
-    internalInterfaces = [ "wg0" ];
-  };
+  kaka.servarr.enable = true;
 }

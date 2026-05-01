@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 let
@@ -18,11 +17,6 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    sops.secrets = {
-      "airvpn/private_key" = { };
-      "airvpn/preshared_key" = { };
-    };
-
     boot.supportedFilesystems = [
       "nfs"
     ];
@@ -48,7 +42,6 @@ in
     users.users.sonarr.extraGroups = [ "media" ];
     users.users.radarr.extraGroups = [ "media" ];
     users.users.lidarr.extraGroups = [ "media" ];
-    # users.users.jackett.extraGroups = [ "media" ];
     users.users.gleask.extraGroups = [ "media" ];
 
     services.qbittorrent = {
@@ -82,7 +75,7 @@ in
     };
     services.caddy.virtualHosts."torrent.smeagol.me".extraConfig = ''
       import trusted_only
-      reverse_proxy 10.200.200.2:${toString config.services.qbittorrent.webuiPort} {
+      reverse_proxy 127.0.0.1:${toString config.services.qbittorrent.webuiPort} {
         header_up Host {host}
         header_up X-Forwarded-For {remote}
         header_up X-Forwarded-Host {host}
@@ -95,11 +88,7 @@ in
 
     services.jellyfin.enable = true;
     services.caddy.virtualHosts."jellyfin.smeagol.me".extraConfig = ''
-      reverse_proxy localhost:8096 {
-        # transport http {
-        #   versions 1.1
-        # }
-      }
+      reverse_proxy localhost:8096
     '';
     networking.firewall = {
       allowedTCPPorts = [
