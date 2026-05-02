@@ -7,30 +7,20 @@ let
     overlays = [ overlay ];
   };
   nixosSystem = import "${sources.nixpkgs}/nixos/lib/eval-config.nix";
-  recursivelyImport = import ./lib { inherit (pkgs) lib; };
-
-  wrappers = import ./wrappers { inherit pkgs sources; };
-
-  systems = [
-    "x86_64-linux"
-    "aarch64-linux"
-  ];
-  forAllSystems =
-    set:
-    let
-      lib = import "${sources.nixpkgs}/lib";
-    in
-    lib.genAttrs systems (
-      system:
-      set (import sources.nixpkgs {
-        system = system;
-        overlays = [ overlay ];
-      }) system
-    );
-
+  wrappers = {
+    x86_64-linux = import ./wrappers { inherit pkgs sources; };
+    aarch64-linux = import ./wrappers {
+      inherit sources;
+      pkgs = pkgs.pkgsCross.aarch64-multiplatform;
+    };
+  };
   mkHost =
     hostVars:
+    let
+      recursivelyImport = import ./lib { inherit (pkgs) lib; };
+    in
     nixosSystem {
+      inherit pkgs;
       specialArgs.self = {
         inherit
           hostVars
@@ -38,7 +28,6 @@ let
           wrappers
           ;
       };
-
       modules = recursivelyImport (
         [
           ./hosts/${hostVars.hostname}
@@ -84,13 +73,15 @@ in
     };
   };
 
-  packages = forAllSystems (
-    pkgs: _:
-    pkgs.lib.packagesFromDirectoryRecursive {
+  packages = {
+    x86_64-linux = pkgs.lib.packagesFromDirectoryRecursive {
       callPackage = pkgs.lib.callPackageWith pkgs;
       directory = ./packages;
-    }
-  );
-
+    };
+    aarch64-linux = pkgs.lib.packagesFromDirectoryRecursive {
+      callPackage = pkgs.lib.callPackageWith pkgs.pkgsCross.aarch64-multiplatform;
+      directory = ./packages;
+    };
+  };
   inherit wrappers;
 }
