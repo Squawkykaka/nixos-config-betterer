@@ -84,4 +84,11 @@
       ];
     };
   };
+
+  services.unbound.settings.server.local-data = builtins.concatLists (
+    map (el: [
+      "\"${el}. A 0.0.0.0\""
+      "\"${el}. AAAA ::1\""
+    ]) [ "youtube.com" "news.ycombinator.com" ]
+  );
 }

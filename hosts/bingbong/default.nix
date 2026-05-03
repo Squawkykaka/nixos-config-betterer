@@ -23,19 +23,14 @@
   ];
 
   virtualisation.docker.enable = true;
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
   system.stateVersion = "25.11";
-
   services.caddy.virtualHosts."node.smeagol.me:8080".extraConfig = ''
     reverse_proxy 192.168.1.48:8080
   '';
-
   services.caddy.virtualHosts."home.smeagol.me".extraConfig = ''
     reverse_proxy 10.0.0.195:8123
   '';
-
   services.caddy.virtualHosts."panel.smeagol.me".extraConfig = ''
     reverse_proxy 127.0.0.1:8793
   '';
@@ -94,6 +89,5 @@
   security.acme.defaults.dnsProvider = "cloudflare";
   security.acme.acceptTerms = true;
 
-  # getting off it rn
   kaka.servarr.enable = true;
 }

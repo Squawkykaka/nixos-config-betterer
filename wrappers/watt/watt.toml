@@ -32,10 +32,6 @@ cpu.governor = "powersave"
 cpu.energy-performance-preference = "power"
 cpu.turbo = false
 
-[[rule]]
-priority = 9
-power.charge-threshold-start = 0.4
-power.charge-threshold-end = 0.8
 
 [[rule]]
 if.all = [
