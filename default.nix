@@ -5,15 +5,12 @@ let
   pkgs = import sources.nixpkgs {
     config.allowUnfree = true;
     overlays = [ overlay ];
+    config.permittedInsecurePackages = [
+      "olm-3.2.16"
+    ];
   };
   nixosSystem = import "${sources.nixpkgs}/nixos/lib/eval-config.nix";
-  wrappers = {
-    x86_64-linux = import ./wrappers { inherit pkgs sources; };
-    aarch64-linux = import ./wrappers {
-      inherit sources;
-      pkgs = pkgs.pkgsCross.aarch64-multiplatform;
-    };
-  };
+  wrappers = import ./wrappers { inherit pkgs sources; };
   mkHost =
     hostVars:
     let

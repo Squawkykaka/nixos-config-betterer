@@ -2,7 +2,6 @@
   lib,
   pkgs,
   self,
-  config,
   ...
 }:
 {
@@ -29,7 +28,6 @@
   # ========== Nix Nix Nix ==========
   #
 
-  nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ (import ../overlays { }).default ];
   nix = {
     channel.enable = false;
