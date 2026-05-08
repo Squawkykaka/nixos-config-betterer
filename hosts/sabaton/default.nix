@@ -77,8 +77,6 @@
       efi.canTouchEfiVariables = true;
       timeout = 0;
     };
-
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   };
 
   # enable graphics

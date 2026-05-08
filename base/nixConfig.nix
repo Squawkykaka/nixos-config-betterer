@@ -14,6 +14,13 @@
     memoryPercent = 50;
   };
 
+  # yeet dirtyfrag exploit fuck building kernel
+  boot.blacklistedKernelModules = [
+    "esp4"
+    "esp6"
+    "rxrpc"
+  ];
+
   environment.systemPackages = [
     pkgs.openssh
     pkgs.trashy
