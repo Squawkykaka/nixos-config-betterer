@@ -68,16 +68,9 @@
   };
 
   environment.systemPackages = [
-    pkgs.ollama-cuda
     pkgs.rustup
-    pkgs.freecad
-    pkgs.dualsensectl
     pkgs.pinentry-gnome3
-    pkgs.bottles
-    pkgs.idescriptor
   ];
-
-  services.udev.packages = [ pkgs.idescriptor ];
 
   system.stateVersion = "24.11";
 }

@@ -52,6 +52,19 @@
       "url": "https://github.com/cachix/git-hooks.nix/archive/3cfd774b0a530725a077e17354fbdb87ea1c4aad.tar.gz",
       "hash": "sha256-PcRvlWayisPSjd0UcRQbhG8Oqw78AcPE6x872cPRHN8="
     },
+    "ncro": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "feel-co",
+        "repo": "ncro"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "86edf04bbd416df8fced33314c2939c6a08221f4",
+      "url": "https://github.com/feel-co/ncro/archive/86edf04bbd416df8fced33314c2939c6a08221f4.tar.gz",
+      "hash": "sha256-kabqLIwDUhxxotqrZ34NG6eGob7V+gYhifiDcM8xDQM="
+    },
     "nixos-hardware": {
       "type": "Git",
       "repository": {
