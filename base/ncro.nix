@@ -13,7 +13,7 @@ in
   ];
 
   services.ncro = {
-    package = ncro;
+    # package = ncro;
     settings = {
       upstreams = [
         {
@@ -28,5 +28,5 @@ in
     };
   };
 
-  nix.settings.substituters = pkgs.lib.mkForce [ "http://localhost:8080" ];
+  # nix.settings.substituters = pkgs.lib.mkForce [ "http://localhost:8080" ];
 }
