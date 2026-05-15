@@ -7,11 +7,9 @@
 {
   networking.hostName = self.hostVars.hostname;
 
-  zramSwap = {
+  boot.zswap = {
     enable = true;
-    priority = 100;
-    algorithm = "lz4";
-    memoryPercent = 50;
+    compressor = "lz4";
   };
 
   # yeet dirtyfrag exploit fuck building kernel
