@@ -1,5 +1,6 @@
 {
   pkgs,
+  self,
   ...
 }:
 {
@@ -7,7 +8,7 @@
 
   environment.systemPackages = with pkgs; [
     ncdu
-    jujutsu
+    (self.wrappers.jujutsu.drv)
     libqalculate
     neovim
     btop # resource monitor
@@ -29,7 +30,6 @@
     net-tools
     unixtools.arp
     dig
-    jujutsu
   ];
 
   programs.appimage = {

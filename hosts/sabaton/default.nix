@@ -21,12 +21,6 @@
   # powerManagement.enable = true;
   services.auto-cpufreq.enable = true;
 
-  environment.systemPackages = [
-    pkgs.android-tools
-    pkgs.wine64Packages.waylandFull
-  ];
-  virtualisation.libvirtd.enable = true;
-
   # Enable TPM emulation (optional)
   # install pkgs.swtpm system-wide for use in virt-manager (optional)
   virtualisation.libvirtd.qemu = {
@@ -45,7 +39,6 @@
     gid = 984;
   };
   users.users.gleask.extraGroups = [
-    "adbusers"
     "kvm"
     "media"
     "libvirtd"
@@ -56,7 +49,6 @@
     "ntfs"
   ];
 
-  services.desktopManager.plasma6.enable = true;
   services.displayManager = {
     autoLogin.enable = true;
     autoLogin.user = "gleask";

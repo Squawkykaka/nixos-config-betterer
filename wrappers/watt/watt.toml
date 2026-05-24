@@ -1,4 +1,5 @@
 [[rule]]
+name="critical-save-power"
 if.all = [
   "?discharging",
   { is-less-than = 0.3, value = "%power-supply-charge" }
@@ -7,12 +8,13 @@ priority = 90
 
 cpu.governor = "powersave"
 cpu.energy-performance-preference = "power"
-cpu.frequency-mhz-maximum = 800
+cpu.frequency-mhz-maximum = 200
 cpu.turbo = false
 power.platform-profile = "low-power"
 
 #discharging
 [[rule]]
+name="low-then-minimise-stuff"
 if.all = [
   "?discharging",
   { is-less-than = 0.5, value = "%power-supply-charge" }
@@ -25,6 +27,7 @@ cpu.turbo = false
 cpu.energy-performance-preference = "power"
 
 [[rule]]
+name="save-power-generally"
 if = "?discharging"
 priority = 10
 
@@ -34,8 +37,9 @@ cpu.turbo = false
 
 
 [[rule]]
+name = "maximise-perf-high-power"
 if.all = [
-  { is-more-than = 0.8, value = "%cpu-usage" },
+  { is-more-than = 0.8, value = { cpu-usage-since = "10sec" } },
   { is-less-than = 15.0, value = "$cpu-idle-seconds" },
   { is-less-than = 80.0, value = "$cpu-temperature" },
 ]

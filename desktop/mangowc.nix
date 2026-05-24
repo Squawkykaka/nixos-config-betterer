@@ -4,10 +4,15 @@
   programs.mangowc.package = self.wrappers.mangowc.drv;
 
   services.displayManager.defaultSession = "mango";
+  services.displayManager.sddm.theme = "sddm-astronaut-theme";
+  services.displayManager.sddm.extraPackages = [pkgs.qt6Packages.qtmultimedia];
+
+  services.fprintd.enable = true;
 
   environment.systemPackages = [
     pkgs.eww
     pkgs.noctalia-shell
+    pkgs.sddm-astronaut
   ];
 
   security.polkit.enable = true;

@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "6818cb417e123d0d25a7acea40528408460b42e2",
-      "url": "https://github.com/llakala/adios/archive/6818cb417e123d0d25a7acea40528408460b42e2.tar.gz",
-      "hash": "sha256-TqPmu/5uBc03u9iJNZBQ733ocz098IF9gkhzulvjmc0="
+      "revision": "78ac392edcd3831c20e76022306f8182088f9d4b",
+      "url": "https://github.com/llakala/adios/archive/78ac392edcd3831c20e76022306f8182088f9d4b.tar.gz",
+      "hash": "sha256-zkhCxcNl9tGyWrg22WF1qMo89t7l/KZ8azZM2hQW9Mw="
     },
     "adios-wrappers": {
       "type": "Git",
@@ -35,9 +35,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "63b4e7e6cf75307c1d26ac3762b886b5b0247267",
-      "url": "https://github.com/nix-community/disko/archive/63b4e7e6cf75307c1d26ac3762b886b5b0247267.tar.gz",
-      "hash": "sha256-8GzXDOXckDWwST8TY5DbwYFjdvQLlP7K9CLSVx6iTTo="
+      "revision": "65fb947964bd44fc0008faf77d1fcb7a9f40bb32",
+      "url": "https://github.com/nix-community/disko/archive/65fb947964bd44fc0008faf77d1fcb7a9f40bb32.tar.gz",
+      "hash": "sha256-wuOkjI6pRiN4sEn/EPBRnNW5cmcpvd7xtIM8y5LooAs="
     },
     "git-hooks.nix": {
       "type": "Git",
@@ -48,9 +48,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "3cfd774b0a530725a077e17354fbdb87ea1c4aad",
-      "url": "https://github.com/cachix/git-hooks.nix/archive/3cfd774b0a530725a077e17354fbdb87ea1c4aad.tar.gz",
-      "hash": "sha256-PcRvlWayisPSjd0UcRQbhG8Oqw78AcPE6x872cPRHN8="
+      "revision": "61ab0e80d9c7ab14c256b5b453d8b3fb0189ba0a",
+      "url": "https://github.com/cachix/git-hooks.nix/archive/61ab0e80d9c7ab14c256b5b453d8b3fb0189ba0a.tar.gz",
+      "hash": "sha256-kTwur1wV+01SdqskVMSo6JMEpg71ps3HpbFY2GsflKs="
     },
     "ncro": {
       "type": "Git",
@@ -61,9 +61,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "86edf04bbd416df8fced33314c2939c6a08221f4",
-      "url": "https://github.com/feel-co/ncro/archive/86edf04bbd416df8fced33314c2939c6a08221f4.tar.gz",
-      "hash": "sha256-kabqLIwDUhxxotqrZ34NG6eGob7V+gYhifiDcM8xDQM="
+      "revision": "34822460d389348f93ab08c99333af609f89ee08",
+      "url": "https://github.com/feel-co/ncro/archive/34822460d389348f93ab08c99333af609f89ee08.tar.gz",
+      "hash": "sha256-vBg7cql2fYq1scJc5eJX2Egv2lwlfbI4lizjMaWP5GE="
     },
     "nixos-hardware": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "3bcaa367d4c550d687a17ac792fd5cda214ee871",
-      "url": "https://github.com/nixos/nixos-hardware/archive/3bcaa367d4c550d687a17ac792fd5cda214ee871.tar.gz",
-      "hash": "sha256-lkesY6x2X2qxlqLM7CT2iM/0rP2JB7fruPN3h8POXmI="
+      "revision": "c97bc4d15bd3473dd095e8e8ba57330ab1943a77",
+      "url": "https://github.com/nixos/nixos-hardware/archive/c97bc4d15bd3473dd095e8e8ba57330ab1943a77.tar.gz",
+      "hash": "sha256-j1iZsLy6oFApqR1oiDmHhvkwxXqcNi0aoSJj643LuwU="
     },
     "nixpkgs": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "nixos-unstable",
       "submodules": false,
-      "revision": "1c3fe55ad329cbcb28471bb30f05c9827f724c76",
-      "url": "https://github.com/nixos/nixpkgs/archive/1c3fe55ad329cbcb28471bb30f05c9827f724c76.tar.gz",
-      "hash": "sha256-bxrdOn8SCOv8tN4JbTF/TXq7kjo9ag4M+C8yzzIRYbE=",
+      "revision": "d233902339c02a9c334e7e593de68855ad26c4cb",
+      "url": "https://github.com/nixos/nixpkgs/archive/d233902339c02a9c334e7e593de68855ad26c4cb.tar.gz",
+      "hash": "sha256-30sZNZoA1cqF5JNO9fVX+wgiQYjB7HJqqJ4ztCDeBZE=",
       "frozen": true
     },
     "rom": {
@@ -101,9 +101,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "c558ce03f4763f861d8a1de25e69b111e63c197e",
-      "url": "https://github.com/feel-co/rom/archive/c558ce03f4763f861d8a1de25e69b111e63c197e.tar.gz",
-      "hash": "sha256-Ttjh24GzioYSkW7HOx9BVPRhCR20unQ5FVwa37jpr3o="
+      "revision": "ada9d276d293324300b6f91526a1c0295930da8a",
+      "url": "https://github.com/feel-co/rom/archive/ada9d276d293324300b6f91526a1c0295930da8a.tar.gz",
+      "hash": "sha256-KRJuRspPYtz0AxYUgk0an9e1xqaKVZ4DNvxoAyNTg4M="
     },
     "sops-nix": {
       "type": "Git",
@@ -129,10 +129,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "v1.0.0",
-      "revision": "0f95de1b13c059f397c7019f24de326284cf472b",
-      "url": "https://api.github.com/repos/NotAShelf/watt/tarball/refs/tags/v1.0.0",
-      "hash": "sha256-6fPKos/dksYYt8Ds3nwsaSWlvpZmKybbVF6tm+MqYV4="
+      "version": "v1.1.0",
+      "revision": "b7cff1e5bfcd23e49bd37f38607e974af9c47562",
+      "url": "https://api.github.com/repos/NotAShelf/watt/tarball/refs/tags/v1.1.0",
+      "hash": "sha256-fGvO7QSZTw9qjh7EJPm2W2rI01WdB1oMDe2gTRGitfI="
     }
   },
   "version": 7

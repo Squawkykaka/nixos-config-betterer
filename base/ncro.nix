@@ -1,11 +1,9 @@
 {
-  self,
   pkgs,
   ...
 }:
 let
-  ncro = pkgs.callPackage "${self.sources.ncro}/nix/package.nix";
-  ncroModule = import "${self.sources.ncro}/nix/module.nix" false;
+  ncroModule = import /home/gleask/documents/projects/public/ncro/nix/module.nix;
 in
 {
   imports = [
@@ -13,7 +11,7 @@ in
   ];
 
   services.ncro = {
-    # package = ncro;
+    enable = true;
     settings = {
       upstreams = [
         {
@@ -28,5 +26,5 @@ in
     };
   };
 
-  # nix.settings.substituters = pkgs.lib.mkForce [ "http://localhost:8080" ];
+  nix.settings.substituters = pkgs.lib.mkForce [ "http://localhost:8080" ];
 }
