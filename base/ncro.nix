@@ -2,12 +2,9 @@
   pkgs,
   ...
 }:
-let
-  ncroModule = import /home/gleask/documents/projects/public/ncro/nix/module.nix;
-in
 {
   imports = [
-    ncroModule
+    /home/gleask/documents/projects/public/ncro/nix/module.nix
   ];
 
   services.ncro = {

@@ -15,6 +15,11 @@
     pkgs.sddm-astronaut
   ];
 
+  environment.variables = {
+    XCURSOR_THEME = "BreezeX-Dark";
+    XCURSOR_SIZE = 24;
+  };
+
   security.polkit.enable = true;
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
