@@ -1,7 +1,4 @@
 { self, pkgs, ... }:
-let
-  rom = (pkgs.callPackage "${self.sources.rom}/nix/package.nix" { });
-in
 {
   environment.systemPackages = [
     pkgs.joplin
@@ -26,6 +23,5 @@ in
 
     pkgs.krita
     self.wrappers.watt.drv
-    rom
   ];
 }

@@ -92,19 +92,6 @@
       "hash": "sha256-30sZNZoA1cqF5JNO9fVX+wgiQYjB7HJqqJ4ztCDeBZE=",
       "frozen": true
     },
-    "rom": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "feel-co",
-        "repo": "rom"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "ada9d276d293324300b6f91526a1c0295930da8a",
-      "url": "https://github.com/feel-co/rom/archive/ada9d276d293324300b6f91526a1c0295930da8a.tar.gz",
-      "hash": "sha256-KRJuRspPYtz0AxYUgk0an9e1xqaKVZ4DNvxoAyNTg4M="
-    },
     "sops-nix": {
       "type": "Git",
       "repository": {
