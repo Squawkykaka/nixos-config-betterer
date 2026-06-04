@@ -6,7 +6,8 @@
   networking.wg-quick.interfaces.wg0 = {
     address = [ "192.168.2.3/32" ];
     privateKeyFile = config.sops.secrets."sabaton/private_key".path;
-    dns = [ "10.0.0.76" ];
+    # my dns is forked rn
+    # dns = [ "10.0.0.76" ];
     peers = [
       {
         publicKey = "mKnXJRvRByS+CqIHJIg056fjDjVfxzqFYRFi4rQIShc=";

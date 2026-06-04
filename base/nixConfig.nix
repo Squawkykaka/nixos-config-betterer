@@ -7,11 +7,6 @@
 {
   networking.hostName = self.hostVars.hostname;
 
-  boot.zswap = {
-    enable = true;
-    compressor = "lz4";
-  };
-
   # yeet dirtyfrag exploit fuck building kernel
   boot.blacklistedKernelModules = [
     "esp4"

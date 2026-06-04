@@ -5,7 +5,6 @@
 #
 ###############################################################
 {
-  pkgs,
   self,
   ...
 }:
@@ -14,6 +13,11 @@
     "${self.sources.disko}/module.nix"
     ../../disks/btrfs-disk-luks.nix
   ];
+
+  boot.zswap = {
+    enable = true;
+    compressor = "lz4";
+  };
 
   # battery saving, also dont care about kde now
   services.power-profiles-daemon.enable = false;

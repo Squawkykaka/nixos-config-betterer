@@ -14,6 +14,7 @@
   systemd.services.update-unbound-blocklist = {
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
+    before = [ "unbound.service" ];
     path = [
       pkgs.bash
       pkgs.curl
@@ -21,9 +22,9 @@
     ];
 
     serviceConfig = {
-      # Type = "simple";
+      Type = "oneshot";
       User = "root";
-      ExecStart = "${./update-blocklist.sh}";
+      ExecStart = "${../bingbong/update-blocklist.sh}";
       ExecStartPost = "${pkgs.systemd}/bin/systemctl reload unbound.service";
     };
   };
@@ -43,8 +44,9 @@
           "10.0.0.0/8 allow"
           "192.168.0.0/16 allow"
         ];
+        tls-cert-bundle = "/etc/ssl/certs/ca-certificates.crt";
         root-hints = "${pkgs.dns-root-data}/root.hints";
-
+        auto-trust-anchor-file = "/var/lib/unbound/root.key";
         # disable dnssec for boom.boats and smeagol.me
         domain-insecure = [
           "boom.boats."
@@ -60,7 +62,7 @@
         prefetch = "yes";
         prefetch-key = "yes";
         so-reuseport = "yes";
-        num-threads = 16;
+        num-threads = 4;
 
         # Privacy and security
         hide-identity = "yes";
@@ -68,6 +70,7 @@
         qname-minimisation = "yes";
         harden-glue = "yes";
         harden-dnssec-stripped = "yes";
+        harden-referral-path = "yes";
         use-caps-for-id = "yes";
         val-clean-additional = "yes";
       };
@@ -85,10 +88,14 @@
     };
   };
 
-  services.unbound.settings.server.local-data = builtins.concatLists (
-    map (el: [
-      "\"${el}. A 0.0.0.0\""
-      "\"${el}. AAAA ::1\""
-    ]) [ "youtube.com" "news.ycombinator.com" ]
-  );
+  services.unbound.settings.server.local-data =
+    builtins.concatMap
+      (el: [
+        "\"${el}. A 0.0.0.0\""
+        "\"${el}. AAAA ::1\""
+      ])
+      [
+        "youtube.com"
+        "news.ycombinator.com"
+      ];
 }

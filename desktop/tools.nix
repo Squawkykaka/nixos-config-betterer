@@ -1,6 +1,7 @@
 { self, pkgs, ... }:
 {
   environment.systemPackages = [
+    pkgs.noctalia-shell
     pkgs.joplin
     pkgs.joplin-desktop
     pkgs.thunderbird
