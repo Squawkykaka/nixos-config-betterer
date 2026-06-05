@@ -1,7 +1,14 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    prismlauncher
+    (prismlauncher.override {
+      # Change Java runtimes available to Prism Launcher
+      jdks = [
+        graalvmPackages.graalvm-oracle_25
+        zulu21
+        zulu25
+      ];
+    })
     # FIX Will return back to normal after nixpkgs updates
     r2modman
   ];

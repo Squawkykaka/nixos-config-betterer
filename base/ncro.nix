@@ -1,10 +1,11 @@
 {
   pkgs,
+  self,
   ...
 }:
 {
   imports = [
-    /home/gleask/documents/projects/public/ncro/nix/module.nix
+    (self.sources.ncro + /nix/module.nix)
   ];
 
   services.ncro = {

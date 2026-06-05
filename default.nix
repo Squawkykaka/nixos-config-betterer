@@ -68,6 +68,11 @@ in
       hostname = "bandier";
       stateVersion = "26.05";
     };
+
+    iso = mkHost {
+      hostname = "iso";
+      stateVersion = "26.05";
+    };
   };
 
   packages = {

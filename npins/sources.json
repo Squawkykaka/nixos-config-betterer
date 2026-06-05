@@ -61,9 +61,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "34822460d389348f93ab08c99333af609f89ee08",
-      "url": "https://github.com/feel-co/ncro/archive/34822460d389348f93ab08c99333af609f89ee08.tar.gz",
-      "hash": "sha256-vBg7cql2fYq1scJc5eJX2Egv2lwlfbI4lizjMaWP5GE="
+      "revision": "15a1c0b180a815373d8a61298dbb2baa2dbbf578",
+      "url": "https://github.com/feel-co/ncro/archive/15a1c0b180a815373d8a61298dbb2baa2dbbf578.tar.gz",
+      "hash": "sha256-mEEA8YtAWJZlLaci4z7JXuXSL5W5aIrdjCn/6rtcQqs="
     },
     "nixos-hardware": {
       "type": "Git",
