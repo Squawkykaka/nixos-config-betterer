@@ -1,9 +1,8 @@
 { self, pkgs, ... }:
 {
+  programs.thunar.enable = true;
   environment.systemPackages = [
-    pkgs.noctalia-shell
-    pkgs.joplin
-    pkgs.joplin-desktop
+    pkgs.feh
     pkgs.thunderbird
     pkgs.vesktop
     pkgs.vscodium
@@ -13,16 +12,12 @@
     pkgs.imagemagick
     pkgs.ffmpeg-full
     pkgs.gajim
-    pkgs.kdePackages.korganizer
-
     pkgs.swaybg
     pkgs.grim
     pkgs.slurp
     pkgs.wl-clipboard
     pkgs.brightnessctl
     self.wrappers.firefox.drv
-
-    pkgs.krita
     self.wrappers.watt.drv
   ];
 }

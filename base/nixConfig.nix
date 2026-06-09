@@ -58,10 +58,6 @@
       experimental-features = [
         "nix-command"
         "flakes"
-        # for dynamic derivations
-        "dynamic-derivations"
-        "ca-derivations"
-        "recursive-nix"
       ];
 
       # Public Keys
@@ -89,8 +85,6 @@
   programs.nh = {
     enable = true;
     clean.enable = true;
-    clean.extraArgs = "--keep-since 20d --keep 5";
-    flake = "/home/gleask/nixos";
   };
 
   #
