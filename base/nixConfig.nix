@@ -24,6 +24,14 @@
     self.wrappers.helix.drv
   ];
 
+    boot.kernel.sysfs = {
+    kernel.mm.transparent_hugepage = {
+      enabled = "always";
+      # defrag = "defer";
+      shmem_enabled = "advise";
+    };
+  };
+
   #
   # ========== Nix Nix Nix ==========
   #
