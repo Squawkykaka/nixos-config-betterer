@@ -2,6 +2,7 @@
 {
   programs.thunar.enable = true;
   environment.systemPackages = [
+    pkgs.filezilla
     pkgs.feh
     pkgs.thunderbird
     pkgs.vesktop

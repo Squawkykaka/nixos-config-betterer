@@ -27,9 +27,14 @@
     "aarch64-linux"
     "arm-linux"
   ];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu = {
+    swtpm.enable = true;
+  };
 
-  services.kanata.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Enable USB redirection (optional)
+  virtualisation.spiceUSBRedirection.enable = true;
+  programs.virt-manager.enable = true;
 
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   boot.supportedFilesystems = [
@@ -39,7 +44,12 @@
   users.groups.media = {
     gid = 984;
   };
-  users.users.gleask.extraGroups = [ "media" ];
+  users.users.gleask.extraGroups = [
+    "media"
+
+    "kvm"
+    "libvirtd"
+  ];
 
   networking = {
     networkmanager.enable = true;

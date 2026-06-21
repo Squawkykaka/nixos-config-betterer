@@ -27,6 +27,7 @@
 
   # Enable TPM emulation (optional)
   # install pkgs.swtpm system-wide for use in virt-manager (optional)
+  virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu = {
     swtpm.enable = true;
   };
