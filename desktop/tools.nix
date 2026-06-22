@@ -19,6 +19,5 @@
     pkgs.wl-clipboard
     pkgs.brightnessctl
     self.wrappers.firefox.drv
-    self.wrappers.watt.drv
   ];
 }

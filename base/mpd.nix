@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   services.mpd.enable = true;
   services.mpd.settings = {
@@ -5,8 +6,9 @@
     playlist_directory = "/mnt/media/music/playlists";
     audio_output = [
       {
-        name = "pipewire";
-        type = "pipewire";
+        type = "alsa";
+        name = "alsa";
+        device = "default";
       }
     ];
   };
@@ -30,5 +32,12 @@
   users.groups.media = {
     gid = 984;
   };
+  systemd.services.mpd = {
+    after = [ "mnt-media.mount" ];
+    requires = [ "mnt-media.mount" ];
+  };
   users.users.gleask.extraGroups = [ "media" ];
+  users.users.mpd.extraGroups = [ "media" ];
+
+  environment.systemPackages = [ pkgs.rmpc ];
 }
