@@ -16,12 +16,53 @@
     }
   ];
 
+  sops.secrets = {
+    "cloudflare/api_token" = { };
+    "bingbong/private_key" = { };
+  };
+
+  sops.templates."matrix-caddy-env" = {
+    content = ''
+      CF_API_TOKEN=${config.sops.placeholder."cloudflare/api_token"}
+      CLOUDFLARE_EMAIL=${config.sops.placeholder."email"}
+      CLOUDFLARE_DNS_API_TOKEN=${config.sops.placeholder."cloudflare/api_token"}
+    '';
+  };
+
+  services.caddy = {
+    enable = true;
+    openFirewall = true;
+    package = pkgs.caddy.withPlugins {
+      plugins = [
+        "github.com/caddy-dns/cloudflare@v0.2.2"
+      ];
+      hash = "sha256-wHW0l15aLswe7gV9WioXo//abd0sJI82I7zIroRG3uU=";
+    };
+
+    globalConfig = ''
+      acme_dns cloudflare {env.CF_API_TOKEN}
+    '';
+
+    virtualHosts."5etools.boom.boats".extraConfig = ''
+      root ${pkgs."5etools"}
+      file_server
+    '';
+    virtualHosts."panel.boom.boats".extraConfig = ''
+      reverse_proxy 127.0.0.1:7887
+    '';
+    virtualHosts."node.boom.boats:8080".extraConfig = ''
+      reverse_proxy 127.0.0.1:8089
+    '';
+  };
+  systemd.services.caddy.serviceConfig.EnvironmentFile = [
+    config.sops.templates."matrix-caddy-env".path
+  ];
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.nameservers = [
-    "10.0.0.1"
-    "2401:7000:d900:5::3a4"
+    "192.168.1.254"
   ];
   hardware.graphics = {
     enable = true;

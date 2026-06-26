@@ -5,13 +5,9 @@
 
   services.displayManager.defaultSession = "mango";
   services.displayManager.sddm.theme = "sddm-astronaut-theme";
-  services.displayManager.sddm.extraPackages = [pkgs.qt6Packages.qtmultimedia];
-
-  services.fprintd.enable = true;
+  services.displayManager.sddm.extraPackages = [ pkgs.qt6Packages.qtmultimedia ];
 
   environment.systemPackages = [
-    pkgs.eww
-    pkgs.noctalia-shell
     pkgs.sddm-astronaut
   ];
 
