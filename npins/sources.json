@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "47b7913af1d138725870109450e6ba941017d429",
-      "url": "https://github.com/llakala/adios/archive/47b7913af1d138725870109450e6ba941017d429.tar.gz",
-      "hash": "sha256-X9FEv/4cy7VgFWR/HOthFtjLyTq5dC6W+lKZ/NoeY1s="
+      "revision": "f6d1ffcbdbd1b84820f8c5948b2af49b4c73a3d0",
+      "url": "https://github.com/llakala/adios/archive/f6d1ffcbdbd1b84820f8c5948b2af49b4c73a3d0.tar.gz",
+      "hash": "sha256-b8qThpsPcMwsxHMTENjLUVJzaViZPG0K5Fngx1p9dJE="
     },
     "adios-wrappers": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "62a5a64a7fe2d71a158f5e33db70e3f29d9197db",
-      "url": "https://github.com/llakala/adios-wrappers/archive/62a5a64a7fe2d71a158f5e33db70e3f29d9197db.tar.gz",
-      "hash": "sha256-I6tf60Bsv4+3zTlqGtdzrcefIPsdJZ9LQUwfU435ilA="
+      "revision": "821c64e50107b3f6d78e94b0f733530b64502a6b",
+      "url": "https://github.com/llakala/adios-wrappers/archive/821c64e50107b3f6d78e94b0f733530b64502a6b.tar.gz",
+      "hash": "sha256-Fi5qWJFjUNw1n14GbXPbyyOIx75sZLXvrmaZyKht8Ww="
     },
     "disko": {
       "type": "Git",
@@ -48,9 +48,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "3bbec39bc90eadfa031e6f3b77272f3f60803e39",
-      "url": "https://github.com/cachix/git-hooks.nix/archive/3bbec39bc90eadfa031e6f3b77272f3f60803e39.tar.gz",
-      "hash": "sha256-U3yTuGBnmXvXoQI3qkpfEDsn9RovQPAjN7ndRco+3u0="
+      "revision": "bca82caa46d5ec0f5d422c61fb1e30bc51313cbe",
+      "url": "https://github.com/cachix/git-hooks.nix/archive/bca82caa46d5ec0f5d422c61fb1e30bc51313cbe.tar.gz",
+      "hash": "sha256-jGiy6+sxjNWXSjp25uoJuNfyH9zBK1PEDY0lVoL4ibQ="
     },
     "ncro": {
       "type": "Git",
@@ -61,9 +61,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "eb67df31a0d64e3361a5589c786e4af9a9cb8c1d",
-      "url": "https://github.com/feel-co/ncro/archive/eb67df31a0d64e3361a5589c786e4af9a9cb8c1d.tar.gz",
-      "hash": "sha256-6DQAktdvTUNNRb8cNGndntsYER02rDbL8GQGJVnZ7Ps="
+      "revision": "6a20f496c472a31c0cc5c8935893844267f82c1d",
+      "url": "https://github.com/feel-co/ncro/archive/6a20f496c472a31c0cc5c8935893844267f82c1d.tar.gz",
+      "hash": "sha256-x6AIpkQI2Vzz0xZRxAjtzItmPlao7O198EH+hs7Zz0E="
     },
     "nixos-hardware": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "08018c72174a4df5657f8d94178ac69fb9c243e5",
-      "url": "https://github.com/nixos/nixos-hardware/archive/08018c72174a4df5657f8d94178ac69fb9c243e5.tar.gz",
-      "hash": "sha256-JrPh4M6S7aPsEE9tOENuZrxC6o2szSLlK+t4+nLke9s="
+      "revision": "a9cf7546a938c737b079e738de73934a13de9784",
+      "url": "https://github.com/nixos/nixos-hardware/archive/a9cf7546a938c737b079e738de73934a13de9784.tar.gz",
+      "hash": "sha256-a7+T6QSeowynwZ1ZJJbP8T8ntAytvrui8kFGJmIZt2c="
     },
     "nixpkgs": {
       "type": "Git",
@@ -87,10 +87,9 @@
       },
       "branch": "nixos-unstable",
       "submodules": false,
-      "revision": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
-      "url": "https://github.com/nixos/nixpkgs/archive/9ae611a455b90cf061d8f332b977e387bda8e1ca.tar.gz",
-      "hash": "sha256-md8WlXOlfnIeHeOScMTTHFyf2d6iaTwPl2apR5EQ3P4=",
-      "frozen": true
+      "revision": "65179426c83bb3f6bc14898b42ea1c6f01d374b0",
+      "url": "https://github.com/nixos/nixpkgs/archive/65179426c83bb3f6bc14898b42ea1c6f01d374b0.tar.gz",
+      "hash": "sha256-xnJJk+ct+D2+wdRxj1wk36w5zV9RVESwRqcklPdt3fM="
     },
     "sops-nix": {
       "type": "Git",
@@ -101,25 +100,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "420f8d2e9882911f65cfac15cc706f639ba96cca",
-      "url": "https://github.com/Mic92/sops-nix/archive/420f8d2e9882911f65cfac15cc706f639ba96cca.tar.gz",
-      "hash": "sha256-NFHmA7H47adqiyp+0iEOyZOQhmigDqA/NBAlf4imB6U="
-    },
-    "watt": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "NotAShelf",
-        "repo": "watt"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v1.2.0",
-      "revision": "9614494b18c06a47aecddac72e3cca8322dd44f8",
-      "url": "https://api.github.com/repos/NotAShelf/watt/tarball/refs/tags/v1.2.0",
-      "hash": "sha256-mb7z1NHhS5DtFNzi/H/XQR5RfhYY5ELxJg8DFMWtzmU="
+      "revision": "f1406619a3884cd5c47992a70b8b35c9c0fcb4c9",
+      "url": "https://github.com/Mic92/sops-nix/archive/f1406619a3884cd5c47992a70b8b35c9c0fcb4c9.tar.gz",
+      "hash": "sha256-aCWC8ngycU7OdJrU2+Je3qf+1a2ykuBvpPhZT/9tXMc="
     }
   },
   "version": 8
