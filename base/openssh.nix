@@ -2,7 +2,7 @@
 {
   services.openssh = {
     enable = true;
-    ports = [ 22 ];
+    ports = [ 2222 ];
 
     settings = {
       # Harden
@@ -26,5 +26,5 @@
       Port 22
   '';
 
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 2222 ];
 }

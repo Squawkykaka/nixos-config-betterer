@@ -14,22 +14,12 @@
   boot.loader.grub.enable = lib.mkDefault true; # Use the boot drive for GRUB
   boot.loader.timeout = 0; # Use the boot drive for GRUB
   boot.loader.grub.devices = [ "nodev" ];
-  boot.growPartition = true;
 
-  users.users.gleask.extraGroups = [ "acme" ];
-
-  environment.systemPackages = with pkgs; [
-    vim
-  ];
-
-  virtualisation.docker.enable = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "25.11";
+
   services.caddy.virtualHosts."node.smeagol.me:8080".extraConfig = ''
     reverse_proxy 192.168.1.48:8080
-  '';
-  services.caddy.virtualHosts."home.smeagol.me".extraConfig = ''
-    reverse_proxy 10.0.0.195:8123
   '';
   services.caddy.virtualHosts."panel.smeagol.me".extraConfig = ''
     reverse_proxy 127.0.0.1:8793
@@ -47,7 +37,7 @@
     "bingbong/private_key" = { };
   };
 
-  sops.templates."matrix-caddy-env" = {
+  sops.templates."caddy-env" = {
     content = ''
       CF_API_TOKEN=${config.sops.placeholder."cloudflare/api_token"}
       CLOUDFLARE_EMAIL=${config.sops.placeholder."email"}
@@ -57,6 +47,7 @@
 
   services.caddy = {
     enable = true;
+    openFirewall = true;
     package = pkgs.caddy.withPlugins {
       plugins = [
         "github.com/caddy-dns/cloudflare@v0.2.2"
@@ -70,24 +61,15 @@
     '';
   };
   systemd.services.caddy.serviceConfig.EnvironmentFile = [
-    config.sops.templates."matrix-caddy-env".path
+    config.sops.templates."caddy-env".path
   ];
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [
-    22
-    443
-    8080
-    7654
-  ];
-  networking.firewall.allowedUDPPorts = [
-    7654
-  ];
 
   security.acme.defaults.email = "contact@squawkykaka.com";
   security.acme.defaults.environmentFile = config.sops.templates."matrix-caddy-env".path;
   security.acme.defaults.dnsProvider = "cloudflare";
   security.acme.acceptTerms = true;
 
-  kaka.servarr.enable = true;
+  kaka.servarr.enable = false;
 }

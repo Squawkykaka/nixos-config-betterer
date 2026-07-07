@@ -23,6 +23,8 @@
   virtualisation.waydroid.enable = true;
   virtualisation.waydroid.package = pkgs.waydroid-nftables;
 
+  services.fprintd.enable = true;
+
   # battery saving, also dont care about kde now
   services.power-profiles-daemon.enable = false;
   # powerManagement.powertop.enable = true;

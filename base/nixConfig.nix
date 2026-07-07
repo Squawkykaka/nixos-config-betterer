@@ -32,6 +32,15 @@
     };
   };
 
+  services.fwupd.enable = true;
+
+  documentation = {
+    enable = false;
+    man.enable = false;
+    info.enable = false;
+    doc.enable = false;
+    dev.enable = false;
+  };
   #
   # ========== Nix Nix Nix ==========
   #
