@@ -39,32 +39,6 @@
       "url": "https://github.com/nix-community/disko/archive/ff8702b4de27f72b4c78573dfb89ec74e36abdf1.tar.gz",
       "hash": "sha256-RxWs5ND31KzTG7wvMM+PMfUjyNpmIEr999lqNARaM5o="
     },
-    "git-hooks.nix": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "cachix",
-        "repo": "git-hooks.nix"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "bca82caa46d5ec0f5d422c61fb1e30bc51313cbe",
-      "url": "https://github.com/cachix/git-hooks.nix/archive/bca82caa46d5ec0f5d422c61fb1e30bc51313cbe.tar.gz",
-      "hash": "sha256-jGiy6+sxjNWXSjp25uoJuNfyH9zBK1PEDY0lVoL4ibQ="
-    },
-    "ncro": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "feel-co",
-        "repo": "ncro"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "6a20f496c472a31c0cc5c8935893844267f82c1d",
-      "url": "https://github.com/feel-co/ncro/archive/6a20f496c472a31c0cc5c8935893844267f82c1d.tar.gz",
-      "hash": "sha256-x6AIpkQI2Vzz0xZRxAjtzItmPlao7O198EH+hs7Zz0E="
-    },
     "nixos-hardware": {
       "type": "Git",
       "repository": {

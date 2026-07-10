@@ -2,8 +2,8 @@
 {
   services.mpd.enable = true;
   services.mpd.settings = {
-    music_directory = "/mnt/media/music";
-    playlist_directory = "/mnt/media/music/playlists";
+    music_directory = "nfs://192.168.1.44/volume1/linux-isos/music";
+    playlist_directory = "/home/gleask/media/audio/playlists";
     audio_output = [
       {
         type = "alsa";
@@ -12,33 +12,6 @@
       }
     ];
   };
-  boot.supportedFilesystems = [
-    "nfs"
-  ];
-  fileSystems."/mnt/media" = {
-    device = "192.168.1.44:/volume1/linux-isos";
-    fsType = "nfs";
-
-    options = [
-      "rw"
-      "sec=sys"
-      "noatime"
-      "hard"
-      "intr"
-      "proto=tcp"
-      "_netdev"
-    ];
-    neededForBoot = false;
-  };
-  users.groups.media = {
-    gid = 984;
-  };
-  systemd.services.mpd = {
-    after = [ "mnt-media.mount" ];
-    requires = [ "mnt-media.mount" ];
-  };
-  users.users.gleask.extraGroups = [ "media" ];
-  users.users.mpd.extraGroups = [ "media" ];
 
   environment.systemPackages = [ pkgs.rmpc ];
 }

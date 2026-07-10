@@ -1,13 +1,9 @@
 # User config applicable to both nixos and darwin
 {
   config,
-  lib,
   self,
   ...
 }:
-let
-  pubKeys = lib.filesystem.listFilesRecursive ./keys;
-in
 {
   users.mutableUsers = false;
   users.users.gleask = {
@@ -21,19 +17,6 @@ in
     ];
 
     # These get placed into /etc/ssh/authorized_keys.d/<name> on nixos
-    openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
+    openssh.authorizedKeys.keys = map (file: builtins.readFile ./keys/${file}) (builtins.attrNames (builtins.readDir ./keys));
   };
-
-  # Create ssh sockets directory for controlpaths when homemanager not loaded (i.e. isMinimal)
-  systemd.tmpfiles.rules =
-    let
-      user = config.users.users.gleask.name;
-
-      inherit (config.users.users.gleask) group;
-    in
-    # you must set the rule for .ssh separately first, otherwise it will be automatically created as root:root and .ssh/sockects will fail
-    [
-      "d /home/gleask/.ssh 0750 ${user} ${group} -"
-      "d /home/gleask/.ssh/sockets 0750 ${user} ${group} -"
-    ];
 }

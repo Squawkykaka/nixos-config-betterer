@@ -1,10 +1,17 @@
 let
   sources = import ./npins { };
-  overlay = (import ./overlays { }).default;
 
   pkgs = import sources.nixpkgs {
     config.allowUnfree = true;
-    overlays = [ overlay ];
+    overlays = [
+      (
+        final: prev:
+        prev.lib.packagesFromDirectoryRecursive {
+          callPackage = prev.lib.callPackageWith final;
+          directory = ./packages;
+        }
+      )
+    ];
     config.permittedInsecurePackages = [
       "olm-3.2.16"
     ];

@@ -3,4 +3,5 @@ latest.iso
 .direnv
 result
 nix.profile
+profile
 wrappers.svg

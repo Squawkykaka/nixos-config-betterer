@@ -22,14 +22,12 @@
       };
     }
   ];
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  nix.settings.extra-platforms = [
-    "aarch64-linux"
-    "arm-linux"
-  ];
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemu = {
-    swtpm.enable = true;
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      swtpm.enable = true;
+    };
   };
 
   # Enable USB redirection (optional)
@@ -37,16 +35,7 @@
   programs.virt-manager.enable = true;
 
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-  boot.supportedFilesystems = [
-    "nfs"
-    "ntfs"
-  ];
-  users.groups.media = {
-    gid = 984;
-  };
   users.users.gleask.extraGroups = [
-    "media"
-
     "kvm"
     "libvirtd"
   ];
@@ -68,8 +57,6 @@
     ];
   };
 
-  services.flatpak.enable = true;
-
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     open = true;
@@ -77,10 +64,7 @@
     nvidiaSettings = true;
   };
 
-  environment.systemPackages = [
-    pkgs.rustup
-    pkgs.pinentry-gnome3
-  ];
+  services.flatpak.enable = true;
 
   system.stateVersion = "24.11";
 }

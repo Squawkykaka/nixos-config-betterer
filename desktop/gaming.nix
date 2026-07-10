@@ -52,17 +52,6 @@
       extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
-    gamescope = {
-      enable = true;
-      capSysNice = true;
-      args = [
-        "--adaptive-sync"
-        "--rt"
-        "--steam"
-        "--expose-wayland"
-      ];
-    };
-
     gamemode = {
       enable = true;
       settings = {

@@ -8,6 +8,7 @@
 
   environment.systemPackages = with pkgs; [
     ncdu
+    (self.wrappers.direnv.drv)
     (self.wrappers.jujutsu.drv)
     neovim
     btop # resource monitor
@@ -15,7 +16,6 @@
     curl
     fzf # nice fuzzyfind
     fastfetch # come on, we need it
-    pre-commit # git hooks
     ripgrep # better grep
     tree # cli dir tree viewer
     unzip
@@ -30,9 +30,4 @@
     unixtools.arp
     dig
   ];
-
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
 }

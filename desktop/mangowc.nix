@@ -3,9 +3,14 @@
   programs.mangowc.enable = true;
   programs.mangowc.package = self.wrappers.mangowc.drv;
 
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "sddm-astronaut-theme";
+
+    extraPackages = [ pkgs.qt6Packages.qtmultimedia ];
+  };
   services.displayManager.defaultSession = "mango";
-  services.displayManager.sddm.theme = "sddm-astronaut-theme";
-  services.displayManager.sddm.extraPackages = [ pkgs.qt6Packages.qtmultimedia ];
 
   environment.systemPackages = [
     pkgs.sddm-astronaut

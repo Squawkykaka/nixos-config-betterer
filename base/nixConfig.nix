@@ -24,7 +24,7 @@
     self.wrappers.helix.drv
   ];
 
-    boot.kernel.sysfs = {
+  boot.kernel.sysfs = {
     kernel.mm.transparent_hugepage = {
       enabled = "always";
       # defrag = "defer";
@@ -36,7 +36,10 @@
   # ========== Nix Nix Nix ==========
   #
 
-  nixpkgs.overlays = [ (import ../overlays { }).default ];
+  documentation.nixos.enable = false;
+  documentation.info.enable = false;
+  documentation.doc.enable = false;
+
   nix = {
     channel.enable = false;
     nixPath = (lib.mapAttrsToList (k: v: "${k}=${v}") self.sources) ++ [ "nixos-config=/etc/nixos" ];
@@ -71,7 +74,6 @@
       # Public Keys
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
   };
