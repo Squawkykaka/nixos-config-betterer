@@ -37,7 +37,7 @@ let
           ./hosts/${hostVars.hostname}
           ./base
         ]
-        ++ (if hostVars ? desktop then [ ./desktop ] else [ ])
+        ++ (if hostVars ? modules then hostVars.modules else [ ])
       );
     };
 in
@@ -46,13 +46,13 @@ in
     simba = mkHost {
       hostname = "simba";
       stateVersion = "24.11";
-      desktop = true;
+      modules = [ ./desktop ];
     };
 
     sabaton = mkHost {
       hostname = "sabaton";
       stateVersion = "24.11";
-      desktop = true;
+      modules = [ ./desktop ];
     };
 
     bingbong = mkHost {
