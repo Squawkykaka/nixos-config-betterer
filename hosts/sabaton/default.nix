@@ -6,6 +6,7 @@
 ###############################################################
 {
   self,
+  pkgs,
   ...
 }:
 {
@@ -18,6 +19,9 @@
     enable = true;
     compressor = "lz4";
   };
+
+  virtualisation.waydroid.enable = true;
+  virtualisation.waydroid.package = pkgs.waydroid-nftables;
 
   # battery saving, also dont care about kde now
   services.power-profiles-daemon.enable = false;

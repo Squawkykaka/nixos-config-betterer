@@ -5,7 +5,7 @@ _: {
       email = "squawkykaka@gmail.com";
     };
     aliases = {
-      st =[ "status"];
+      st = [ "status" ];
     };
   };
 }
