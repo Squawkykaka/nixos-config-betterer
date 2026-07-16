@@ -13,6 +13,7 @@ let
       )
     ];
     config.permittedInsecurePackages = [
+      "electron-40.10.5"
       "olm-3.2.16"
     ];
   };
