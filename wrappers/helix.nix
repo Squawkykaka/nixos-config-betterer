@@ -1,9 +1,8 @@
-{ types, ... }@adios:
-{
+_: {
   options = {
     settings = {
       default = {
-        theme = "gruvbox";
+        theme = "ayu_dark";
         editor = {
           line-number = "relative";
           soft-wrap.enable = true;
