@@ -2,14 +2,8 @@
 let
   sources = import ./npins;
   pkgs = import sources.nixpkgs { };
-  # pre-commit = sources."git-hooks.nix" {};
-
-  pre-commit-check = import ./checks.nix { inherit sources; };
 in
 pkgs.mkShell {
-  inherit (pre-commit-check) shellHook;
-  buildInputs = pre-commit-check.enabledPackages;
-
   nativeBuildInputs = builtins.attrValues {
     inherit (pkgs)
       pre-commit

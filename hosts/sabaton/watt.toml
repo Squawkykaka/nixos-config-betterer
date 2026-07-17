@@ -1,0 +1,128 @@
+# Emergency thermal protection (highest priority)
+[[rule]]
+name="emergency-thermal"
+if = { is-more-than = 85.0, value = "$cpu-temperature" }
+priority = 100
+
+cpu.energy-perf-bias = { if.is-energy-perf-bias-available = "power", then = "power" }
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "power", then = "power" }
+cpu.frequency-mhz-maximum = { if = "?frequency-available", then = 2000 }
+cpu.governor = { if.is-governor-available = "powersave", then = "powersave" }
+cpu.turbo = { if = "?turbo-available", then = false }
+
+# Critical battery preservation
+[[rule]]
+name="critical-battery"
+if.all = [ "?discharging", { is-less-than = 0.3, value = "%power-supply-charge" } ]
+priority = 90
+
+cpu.energy-perf-bias = { if.is-energy-perf-bias-available = "power", then = "power" }
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "power", then = "power" }
+cpu.frequency-mhz-maximum = 800
+cpu.governor = { if.is-governor-available = "powersave", then = "powersave" }
+cpu.turbo = { if = "?turbo-available", then = false }
+power.platform-profile = { if.is-platform-profile-available = "low-power", then = "low-power" }
+
+# High performance mode for sustained high load
+[[rule]]
+name="sustained-high-load"
+if.all = [
+  { is-more-than = 0.8, value = { cpu-usage-since = "2sec" } },
+  { is-less-than = 30.0, value = "$cpu-idle-seconds" },
+  { is-less-than = 75.0, value = "$cpu-temperature" },
+]
+priority = 80
+
+cpu.energy-perf-bias = { if.is-energy-perf-bias-available = "performance", then = "performance" }
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "performance", then = "performance" }
+cpu.governor = { if.is-governor-available = "performance", then = "performance" }
+cpu.turbo = { if = "?turbo-available", then = true }
+
+# Performance mode when not discharging
+[[rule]]
+name="perf-charging"
+if.all = [
+  { not = "?discharging" },
+  { is-more-than = 0.1, value = { cpu-usage-since = "1sec" } },
+  { is-less-than = 80.0, value = "$cpu-temperature" },
+]
+priority = 70
+
+cpu.energy-perf-bias = { if.is-energy-perf-bias-available = "balance-performance", then = "balance-performance" }
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "performance", then = "performance" }
+cpu.governor = { if.is-governor-available = "performance", then = "performance" }
+cpu.turbo = { if = "?turbo-available", then = true }
+
+# Moderate performance for medium load
+[[rule]]
+name="moderate-mediumload"
+if.all = [
+  { is-more-than = 0.4, value = { cpu-usage-since = "5sec" } },
+  { is-less-than = 0.8, value = { cpu-usage-since = "5sec" } },
+]
+priority = 60
+
+cpu.energy-perf-bias = { if.is-energy-perf-bias-available = "balance-performance", then = "balance-performance" }
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "balance_performance", then = "balance_performance" }
+cpu.governor = { if.is-governor-available = "schedutil", then = "schedutil" }
+
+# Power saving during low activity
+[[rule]]
+name="lowactivety-powersave"
+if.all = [
+  { is-less-than = 0.2, value = { cpu-usage-since = "10sec" } },
+  { is-more-than = 60.0, value = "$cpu-idle-seconds" },
+]
+priority = 50
+
+cpu.energy-perf-bias = { if.is-energy-perf-bias-available = "power", then = "power" }
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "power", then = "power" }
+cpu.governor = { if.is-governor-available = "powersave", then = "powersave" }
+cpu.turbo = { if = "?turbo-available", then = false }
+
+# Extended idle power optimization
+[[rule]]
+name="idle-poweroptimise"
+if = { is-more-than = 300.0, value = "$cpu-idle-seconds" }
+priority = 40
+
+cpu.energy-perf-bias = { if.is-energy-perf-bias-available = "power", then = "power" }
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "power", then = "power" }
+cpu.frequency-mhz-maximum = { if = "?frequency-available", then = 1600 }
+cpu.governor = { if.is-governor-available = "powersave", then = "powersave" }
+cpu.turbo = { if = "?turbo-available", then = false }
+
+# Battery conservation when discharging
+[[rule]]
+name="conversewhiledischarge"
+if.all = [ "?discharging", { is-less-than = 0.5, value = "%power-supply-charge" } ]
+priority = 30
+
+cpu.energy-perf-bias = { if.is-energy-perf-bias-available = "power", then = "power" }
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "power", then = "power" }
+cpu.frequency-mhz-maximum = { if = "?frequency-available", then = 2000 }
+cpu.governor = { if.is-governor-available = "powersave", then = "powersave" }
+cpu.turbo = { if = "?turbo-available", then = false }
+power.platform-profile = { if.is-platform-profile-available = "low-power", then = "low-power" }
+
+# General battery mode
+[[rule]]
+name="general-battery"
+if = "?discharging"
+priority = 20
+
+cpu.energy-perf-bias = { if.is-energy-perf-bias-available = "balance-power", then = "balance-power" }
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "power", then = "power" }
+cpu.frequency-mhz-maximum = { if = "?frequency-available", then = 1800 }
+cpu.frequency-mhz-minimum = { if = "?frequency-available", then = 200 }
+cpu.governor = { if.is-governor-available = "powersave", then = "powersave" }
+cpu.turbo = { if = "?turbo-available", then = false }
+
+# Balanced performance for general use - Default fallback rule
+[[rule]]
+name="fallback"
+priority = 0
+
+cpu.energy-perf-bias = { if.is-energy-perf-bias-available = "balance-performance", then = "balance-performance" }
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "balance_performance", then = "balance_performance" }
+cpu.governor = { if.is-governor-available = "schedutil", then = "schedutil" }
