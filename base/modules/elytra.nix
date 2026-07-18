@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  self,
   ...
 }:
 
@@ -14,12 +13,7 @@ in
 {
   options.services.elytra = {
     enable = mkEnableOption "Elytra daemon";
-
-    package = mkOption {
-      type = types.package;
-      default = pkgs.elytra;
-      description = "Elytra package to use.";
-    };
+    package = mkPackageOption pkgs "elytra" {};
 
     user = mkOption {
       type = types.str;

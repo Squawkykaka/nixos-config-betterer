@@ -21,7 +21,7 @@
     "bingbong/private_key" = { };
   };
 
-  sops.templates."matrix-caddy-env" = {
+  sops.templates."caddy-env" = {
     content = ''
       CF_API_TOKEN=${config.sops.placeholder."cloudflare/api_token"}
       CLOUDFLARE_EMAIL=${config.sops.placeholder."email"}
@@ -55,7 +55,7 @@
     '';
   };
   systemd.services.caddy.serviceConfig.EnvironmentFile = [
-    config.sops.templates."matrix-caddy-env".path
+    config.sops.templates."caddy-env".path
   ];
 
   boot.loader.systemd-boot.enable = true;
