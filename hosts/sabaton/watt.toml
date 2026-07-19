@@ -135,7 +135,15 @@ cpu.turbo                         = { if = "?turbo-available", then = false }
 cpu.energy-perf-bias              = { if.is-energy-perf-bias-available = "balance-performance", then = "balance-performance" }
 cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "balance_performance", then = "balance_performance" }
 cpu.governor                      = { if.is-governor-available = "schedutil", then = "schedutil" }
-power.charge-threshold-start      = 40
-power.charge-threshold-end        = 80
 name                              = "default-balanced"
 priority                          = 0
+
+# [[rule]]
+# name = "protect-battery"
+# priority = 10
+
+# # Set battery charging thresholds (as percentages, 0-100)
+# power.charge-threshold-start = 40
+# power.charge-threshold-end = 80
+# # Apply to specific power supplies
+# power.for = ["BAT0"]
