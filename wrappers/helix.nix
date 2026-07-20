@@ -17,7 +17,7 @@ _: {
       in
       [
         pkgs.superhtml
-        pkgs.nil
+        # pkgs.nil
         pkgs.nixd
         pkgs.erlang-language-platform
       ];
