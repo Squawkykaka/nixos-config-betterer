@@ -16,6 +16,7 @@
   };
 
   services.caddy.virtualHosts."vault.boom.boats".extraConfig = ''
+    import trusted_only
     reverse_proxy 127.0.0.1:8222
   '';
 }

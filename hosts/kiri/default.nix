@@ -42,6 +42,12 @@
     globalConfig = ''
       acme_dns cloudflare {env.CF_API_TOKEN}
     '';
+    extraConfig = ''
+      (trusted_only) {
+        @not_trusted not remote_ip 10.0.0.0/8 192.168.0.0/16
+        respond @not_trusted 403
+      }
+    '';
 
     virtualHosts."5etools.boom.boats".extraConfig = ''
       root ${pkgs."5etools"}
