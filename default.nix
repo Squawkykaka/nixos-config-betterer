@@ -66,17 +66,6 @@ in
       stateVersion = "26.05";
     };
 
-    zhara = mkHost {
-      hostname = "zhara";
-      stateVersion = "26.05";
-    };
-
-    # vps
-    bandier = mkHost {
-      hostname = "bandier";
-      stateVersion = "26.05";
-    };
-
     iso = mkHost {
       hostname = "iso";
       stateVersion = "26.05";

@@ -9,6 +9,7 @@
   '';
 
   services.caddy.virtualHosts."technitium.boom.boats".extraConfig = ''
+    import trusted_only
     reverse_proxy 127.0.0.1:5380
   '';
 }

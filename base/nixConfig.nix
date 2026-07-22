@@ -85,12 +85,6 @@
   # Enable firmware with a license allowing redistribution
   hardware.enableRedistributableFirmware = true;
 
-  # This should be handled by config.security.pam.sshAgentAuth.enable
-  security = {
-    polkit.enable = true;
-    rtkit.enable = true;
-  };
-
   #
   # ========== Nix Helper ==========
   #
