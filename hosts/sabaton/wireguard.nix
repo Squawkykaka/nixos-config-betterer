@@ -11,7 +11,7 @@
       {
         publicKey = "mKnXJRvRByS+CqIHJIg056fjDjVfxzqFYRFi4rQIShc=";
         allowedIPs = [ "0.0.0.0/0" ];
-        endpoint = "boom.boats:41654";
+        endpoint = "150.107.32.12:41654";
       }
     ];
   };

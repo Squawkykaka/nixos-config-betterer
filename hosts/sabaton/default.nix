@@ -23,17 +23,17 @@
   virtualisation.waydroid.enable = true;
   virtualisation.waydroid.package = pkgs.waydroid-nftables;
 
-  services.fprintd.enable = true;
   # Enable TPM emulation (optional)
   # install pkgs.swtpm system-wide for use in virt-manager (optional)
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemu = {
-    swtpm.enable = true;
+  # Enable USB redirection (optional)
+  programs.virt-manager.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.swtpm.enable = true;
   };
 
-  # Enable USB redirection (optional)
-  virtualisation.spiceUSBRedirection.enable = true;
-  programs.virt-manager.enable = true;
+  services.fprintd.enable = true;
 
   programs.wireshark.enable = true;
   programs.wireshark.dumpcap.enable = true;
@@ -58,6 +58,22 @@
     autoLogin.user = "gleask";
   };
 
+  services.resolved = {
+    enable = true;
+    settings.Resolve = {
+      DNSSEC = "true";
+      Domains = [ "~." ];
+      DNSOverTLS = "true";
+      # FallbackDNS = [
+      #   "1.1.1.1"
+      #   "1.0.0.1"
+      # ];
+    };
+  };
+  networking.nameservers = [
+    "1.1.1.1"
+    "1.0.0.1"
+  ];
   networking.networkmanager.enable = true;
 
   # make sure my touchpad works when typing
