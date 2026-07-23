@@ -41,19 +41,27 @@
 
     globalConfig = ''
       acme_dns cloudflare {env.CF_API_TOKEN}
+      email contact@squawkykaka.com
     '';
     extraConfig = ''
       (trusted_only) {
         @not_trusted not remote_ip 10.0.0.0/8 192.168.0.0/16
         respond @not_trusted 403
       }
-    '';
 
-    virtualHosts."5etools.boom.boats".extraConfig = ''
-      root ${pkgs."5etools"}
-      file_server
+      (tls_client) {
+        tls {
+          client_auth {
+            mode require_and_verify
+            trust_pool file {
+              pem_file ${./root.pem}
+            }
+          }
+        }
+      }
     '';
     virtualHosts."panel.boom.boats".extraConfig = ''
+      import tls_client
       reverse_proxy 127.0.0.1:7887
     '';
     virtualHosts."node.boom.boats:8080".extraConfig = ''

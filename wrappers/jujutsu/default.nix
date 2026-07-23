@@ -2,7 +2,7 @@ _: {
   options.settings.default = {
     user = {
       name = "Squawkykaka";
-      email = "me@squawkykaka.com";
+      email = "contact@squawkykaka.com";
     };
     signing = {
       backend = "ssh";

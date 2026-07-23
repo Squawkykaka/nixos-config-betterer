@@ -166,7 +166,7 @@ in
     certs = {
       ${domainName} = {
         # webroot = "/var/www/${domainName}";
-        email = "squawkykaka@gmail.com";
+        email = "contact@squawkykaka.com";
         extraDomainNames = [
           "muc.xmpp.${domainName}"
           "upload.xmpp.${domainName}"

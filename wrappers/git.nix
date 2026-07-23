@@ -5,7 +5,7 @@ adios: {
     {
       user = {
         name = "Squawkykaka";
-        email = "squawkykaka@gmail.com";
+        email = "contact@squawkykaka.com";
 
         init.defaultBranch = "main";
         signingKey = "/home/gleask/.ssh/id_ed25519";
