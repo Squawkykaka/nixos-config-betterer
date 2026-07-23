@@ -17,6 +17,8 @@
     ];
 
     # These get placed into /etc/ssh/authorized_keys.d/<name> on nixos
-    openssh.authorizedKeys.keys = map (file: builtins.readFile ./keys/${file}) (builtins.attrNames (builtins.readDir ./keys));
+    openssh.authorizedKeys.keys = map (file: builtins.readFile ./keys/${file}) (
+      builtins.attrNames (builtins.readDir ./keys)
+    );
   };
 }

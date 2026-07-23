@@ -13,7 +13,7 @@ in
 {
   options.services.elytra = {
     enable = mkEnableOption "Elytra daemon";
-    package = mkPackageOption pkgs "elytra" {};
+    package = mkPackageOption pkgs "elytra" { };
 
     user = mkOption {
       type = types.str;

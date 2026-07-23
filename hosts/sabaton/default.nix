@@ -58,24 +58,6 @@
     autoLogin.user = "gleask";
   };
 
-  services.resolved = {
-    enable = true;
-    settings.Resolve = {
-      DNSSEC = "true";
-      Domains = [ "~." ];
-      DNSOverTLS = "true";
-      # FallbackDNS = [
-      #   "1.1.1.1"
-      #   "1.0.0.1"
-      # ];
-    };
-  };
-  networking.nameservers = [
-    "1.1.1.1"
-    "1.0.0.1"
-  ];
-  networking.networkmanager.enable = true;
-
   # make sure my touchpad works when typing
   services.libinput.enable = true;
   services.libinput = {
