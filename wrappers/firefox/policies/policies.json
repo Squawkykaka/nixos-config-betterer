@@ -46,14 +46,14 @@
       "SponsoredStories": false,
       "Snippets": false
     },
-        "SearchEngines": {
+    "SearchEngines": {
       "Add": [
         {
           "Alias": "ddg",
           "IconURL": "https://duckduckgo.com/assets/logo_header.v109.svg",
           "Method": "GET",
           "Name": "DuckDuckGo",
-          "URLTemplate": "https://duckduckgo.com/{searchTerms}"
+          "URLTemplate": "https://noai.duckduckgo.com/{searchTerms}"
         }
       ],
       "Default": "DuckDuckGo",

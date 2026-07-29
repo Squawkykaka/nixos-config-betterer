@@ -14,6 +14,7 @@
 
   environment.systemPackages = [
     pkgs.sddm-astronaut
+    self.wrappers.quickshell.drv
   ];
 
   environment.variables = {

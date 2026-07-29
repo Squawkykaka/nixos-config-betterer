@@ -3,7 +3,7 @@
   sources,
 }:
 let
-  adios = import "${sources.adios}/adios";
+  adios = import sources.adios;
   adios-wrappers = import sources.adios-wrappers { inherit adios; };
 
   root.modules = pkgs.lib.recursiveUpdate adios-wrappers (
