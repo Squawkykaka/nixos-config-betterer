@@ -5,8 +5,9 @@ import Quickshell.Io
 
 Scope {
     id: root
+    readonly property string fontFamily: "FiraCode Nerd Font"
     readonly property string time: {
-        Qt.formatDateTime(clock.date, "ddd\nMMM d \nhh:mm\nAP")
+        Qt.formatDateTime(clock.date, "hh:mm");
     }
     property var ipcData
 
@@ -19,7 +20,7 @@ Scope {
             PanelWindow {
                 id: mainBar
                 screen: modelData
-                color: "black"
+                color: Colors.base3
 
                 anchors {
                     top: true
@@ -27,42 +28,19 @@ Scope {
                     left: true
                 }
 
-                implicitWidth: 70
+                implicitWidth: 75
 
                 ColumnLayout {
-                    anchors.fill: parent
-                    anchors.margins: 8
-
-                    // Text {
-                    //     text: root.time
-                    // }
-                    // Item { Layout.fillHeight: true }
-                }
-            }
-
-            PanelWindow {
-                id: tagWindow
-                screen: modelData
-                color: "transparent"
-
-                anchors {
-                    top: true
-                    left: mainBar
-                }
-                implicitWidth: 70
-                implicitHeight: column.implicitHeight + 20
-
-                ColumnLayout {
-                    id: column
                     anchors.fill: parent
                     anchors.margins: 8
                     spacing: 6
 
                     Repeater {
                         model: {
-                            if (!ipcData) return [];
-                            const currentWindow = root.ipcData.find(window => window.monitor == modelData.name)
-                            return currentWindow.tags.filter(tag => tag.is_active || tag.client_count > 0)
+                            if (!ipcData)
+                                return [];
+                            const currentWindow = root.ipcData.find(window => window.monitor == modelData.name);
+                            return currentWindow.tags.filter(tag => tag.is_active || tag.client_count > 0);
                         }
 
                         Rectangle {
@@ -72,28 +50,119 @@ Scope {
                             radius: 6
 
                             color: {
-                                if (modelData.is_active) return "red"
-                                if (modelData.is_urgent) return "purple"
-                                return "gray"
+                                if (modelData.is_active)
+                                    return Colors.base1;
+                                if (modelData.is_urgent)
+                                    return Colors.purple;
+                                return Colors.base2;
                             }
 
                             Text {
+                                font.family: root.fontFamily
                                 anchors.centerIn: parent
                                 text: parent.modelData.index
-                                color: "white"
+                                color: Colors.base03
                                 font.bold: parent.modelData.is_active
                             }
-                
                         }
+                    }
+                    Seperator {}
+                    Item {
+                        Layout.fillHeight: true
+                    }
+                    // CPU
+                    ColumnLayout {
+                        visible: false
+                        Layout.alignment: Qt.AlignHCenter
+
+                        Text {
+                            text: "\uf4bc"
+                            Layout.alignment: Qt.AlignHCenter
+                            font.pixelSize: 30
+                        }
+                        Text {
+                            text: "N/A"
+                            font.pixelSize: 15
+                        }
+                    }
+                    Seperator {}
+                    // battery
+                    RowLayout {
+                        Text {
+                            readonly property string batteryStatus: batteryStatusFile.text().trim()
+                            font.family: root.fontFamily
+                            font.pixelSize: 20
+                            text: {
+                                if (batteryStatus == "Discharging") {
+                                    let fillLevel = batteryFile.text().trim();
+                                    if (fillLevel < 10)
+                                        return "\udb80\udc8e";
+                                    if (fillLevel < 20)
+                                        return "\udb80\udc7a";
+                                    if (fillLevel < 30)
+                                        return "\udb80\udc7b";
+                                    if (fillLevel < 40)
+                                        return "\udb80\udc7c";
+                                    if (fillLevel < 50)
+                                        return "\udb80\udc7d";
+                                    if (fillLevel < 60)
+                                        return "\udb80\udc7e";
+                                    if (fillLevel < 70)
+                                        return "\udb80\udc7f";
+                                    if (fillLevel < 80)
+                                        return "\udb80\udc80";
+                                    if (fillLevel < 90)
+                                        return "\udb80\udc81";
+                                    if (fillLevel < 95)
+                                        return "\udb80\udc82";
+                                    if (fillLevel <= 100)
+                                        return "\udb80\udc79";
+                                }
+                                if (batteryStatus == "Charging")
+                                    return "\udb80\udc84";
+                                if (batteryStatus == "Not charging")
+                                    return "\udb80\udc83";
+                                return "N/A";
+                            }
+                            color: {
+                                if (batteryStatus == "Discharging")
+                                    return Colors.red;
+                                if (batteryStatus == "Charging")
+                                    return Colors.green;
+                                if (batteryStatus == "Not charging")
+                                    return Colors.orange;
+                                return Colors.base03;
+                            }
+                        }
+
+                        ColumnLayout {
+                            Text {
+                                // turn into a battery, red and flashing into lower state when draining, and lighting when charging. Power shows and the wattage below nad above
+                                id: batteryIndicator
+                                color: Colors.base03
+                                text: batteryFile.text().trim() + "%"
+                            }
+                            Text {
+                                color: Colors.base03
+                                text: (Number(batteryPowerFile.text().trim() / 1000000).toFixed(2) + "W")
+                            }
+                        }
+                    }
+                    Text {
+                        font.family: root.fontFamily
+                        font.weight: 500
+                        font.pixelSize: 19
+                        color: Colors.base03
+                        text: root.time
                     }
                 }
             }
         }
     }
-    
+
     SystemClock {
-      id: clock
-      precision: SystemClock.Minutes
+        id: clock
+        precision: SystemClock.Minutes
     }
 
     Process {
@@ -103,10 +172,34 @@ Scope {
         stdout: StdioCollector {
             waitForEnd: false
             onTextChanged: {
-                const lines = text.split("\n")
-                const json = JSON.parse(lines[lines.length - 2])
-                root.ipcData = json.all_tags
+                const lines = text.split("\n");
+                const json = JSON.parse(lines[lines.length - 2]);
+                root.ipcData = json.all_tags;
             }
+        }
+    }
+
+    FileView {
+        id: batteryFile
+        path: "/sys/class/power_supply/BAT0/capacity"
+    }
+    FileView {
+        id: batteryStatusFile
+        path: "/sys/class/power_supply/BAT0/status"
+    }
+    FileView {
+        id: batteryPowerFile
+        path: "/sys/class/power_supply/BAT0/power_now"
+    }
+
+    Timer {
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: {
+            batteryFile.reload();
+            batteryStatusFile.reload();
+            batteryPowerFile.reload();
         }
     }
 }

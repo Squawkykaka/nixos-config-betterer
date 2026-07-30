@@ -4,12 +4,15 @@ let
   pkgs = import sources.nixpkgs { };
 in
 pkgs.mkShell {
-  nativeBuildInputs = builtins.attrValues {
-    inherit (pkgs)
-      pre-commit
-      npins
-      nix-output-monitor
-      sops
-      ;
-  };
+  nativeBuildInputs = with pkgs; [
+    npins
+    sops
+  ];
+  buildInputs = with pkgs; [
+    kdePackages.qtdeclarative
+    kdePackages.qt5compat
+  ];
+  shellHook = ''
+    export QML_IMPORT_PATH=$PWD/src
+  '';
 }
