@@ -28,7 +28,7 @@ Scope {
                     left: true
                 }
 
-                implicitWidth: 75
+                implicitWidth: 80
 
                 ColumnLayout {
                     anchors.fill: parent
@@ -122,6 +122,8 @@ Scope {
                                     return "\udb80\udc84";
                                 if (batteryStatus == "Not charging")
                                     return "\udb80\udc83";
+                                if (batteryStatus == "Full")
+                                    return "\udb80\udc79";
                                 return "N/A";
                             }
                             color: {
@@ -136,6 +138,7 @@ Scope {
                         }
 
                         ColumnLayout {
+                            Layout.alignment: Qt.AlignRight
                             Text {
                                 // turn into a battery, red and flashing into lower state when draining, and lighting when charging. Power shows and the wattage below nad above
                                 id: batteryIndicator
@@ -149,6 +152,7 @@ Scope {
                         }
                     }
                     Text {
+                        Layout.alignment: Qt.AlignHCenter
                         font.family: root.fontFamily
                         font.weight: 500
                         font.pixelSize: 19

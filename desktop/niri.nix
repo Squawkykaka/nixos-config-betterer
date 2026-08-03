@@ -1,7 +1,7 @@
 { pkgs, self, ... }:
 {
-  programs.mangowc.enable = true;
-  programs.mangowc.package = self.wrappers.mangowc.drv;
+  programs.niri.enable = true;
+  programs.niri.package = self.wrappers.niri.drv;
 
   services.displayManager.sddm = {
     enable = true;
@@ -10,7 +10,7 @@
 
     extraPackages = [ pkgs.qt6Packages.qtmultimedia ];
   };
-  services.displayManager.defaultSession = "mango";
+  services.displayManager.defaultSession = "niri";
 
   environment.systemPackages = [
     pkgs.sddm-astronaut
