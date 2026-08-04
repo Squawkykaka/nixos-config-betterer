@@ -1,5 +1,10 @@
 { pkgs, ... }: {
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-wlr
+    pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-gnome
+    pkgs.gnome-keyring
+  ];
   environment.etc."xdg/user-dirs.defaults".text = ''
     DESKTOP=.desktop
     DOWNLOAD=downloads

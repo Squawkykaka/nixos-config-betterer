@@ -1,4 +1,11 @@
 _: {
   options.configFiles.mutators = [ "./." ];
-  mutations."/niri".configFiles = { }: [ (toString ./config.kdl) ];
+  mutations."/niri".configFiles = { inputs }: [
+    (toString ./config.kdl)
+    (
+      inputs.nixpkgs.pkgs.writeText "startup.kdl" /* kdl */ ''
+        spawn-at-startup "${inputs.nixpkgs.pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
+      ''
+    )
+  ];
 }
