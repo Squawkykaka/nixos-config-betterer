@@ -9,7 +9,6 @@ Scope {
     readonly property string time: {
         Qt.formatDateTime(clock.date, "hh:mm");
     }
-    property var ipcData
 
     Variants {
         model: Quickshell.screens
@@ -20,6 +19,7 @@ Scope {
             PanelWindow {
                 id: mainBar
                 screen: modelData
+
                 color: Colors.base3
 
                 anchors {
@@ -36,12 +36,7 @@ Scope {
                     spacing: 6
 
                     Repeater {
-                        model: {
-                            if (!ipcData)
-                                return [];
-                            const currentWindow = root.ipcData.find(window => window.monitor == modelData.name);
-                            return currentWindow.tags.filter(tag => tag.is_active || tag.client_count > 0);
-                        }
+                        model: Niri.workspaces.filter(el => el.output == mainBar.screen.name) //TODO
 
                         Rectangle {
                             required property var modelData
@@ -50,7 +45,7 @@ Scope {
                             radius: 6
 
                             color: {
-                                if (modelData.is_active)
+                                if (modelData.is_focused)
                                     return Colors.base1;
                                 if (modelData.is_urgent)
                                     return Colors.purple;
@@ -60,13 +55,26 @@ Scope {
                             Text {
                                 font.family: root.fontFamily
                                 anchors.centerIn: parent
-                                text: parent.modelData.index
+                                text: parent.modelData.idx
                                 color: Colors.base03
                                 font.bold: parent.modelData.is_active
                             }
                         }
                     }
                     Seperator {}
+                    Repeater {
+                        model: Niri.windows.filter(el => el.workspace_id == Niri.workspaces.find(el => el.is_focused).id)
+
+                        Rectangle {
+                            required property var modelData
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 32
+
+                            Text {
+                                text: modelData.title
+                            }
+                        }
+                    }
                     Item {
                         Layout.fillHeight: true
                     }
@@ -167,20 +175,6 @@ Scope {
     SystemClock {
         id: clock
         precision: SystemClock.Minutes
-    }
-
-    Process {
-        id: mangoIpc
-        running: true
-        command: ["mmsg", "watch", "all-tags"]
-        stdout: StdioCollector {
-            waitForEnd: false
-            onTextChanged: {
-                const lines = text.split("\n");
-                const json = JSON.parse(lines[lines.length - 2]);
-                root.ipcData = json.all_tags;
-            }
-        }
     }
 
     FileView {
