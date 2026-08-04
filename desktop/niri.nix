@@ -13,6 +13,7 @@
   services.displayManager.defaultSession = "niri";
 
   environment.systemPackages = [
+    pkgs.xwayland-satellite
     pkgs.sddm-astronaut
     pkgs.kdePackages.spectacle
     pkgs.libnotify
