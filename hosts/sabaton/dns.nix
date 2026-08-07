@@ -1,11 +1,11 @@
 {
   networking = {
-    nameservers = [
-      "127.0.0.1"
-    ];
+    # nameservers = [
+    #   "9.9.9.9"
+    # ];
     networkmanager = {
       enable = true;
-      dns = "none";
+      # dns = "none";
     };
   };
 }
