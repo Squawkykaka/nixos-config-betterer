@@ -96,6 +96,7 @@ Scope {
                     Seperator {}
                     // battery
                     RowLayout {
+                        visible: batteryStatusFile.exists
                         Text {
                             readonly property string batteryStatus: batteryStatusFile.text().trim()
                             font.family: root.fontFamily
@@ -182,6 +183,8 @@ Scope {
         path: "/sys/class/power_supply/BAT0/capacity"
     }
     FileView {
+        property bool exists: true
+        onLoadFailed: exists = false
         id: batteryStatusFile
         path: "/sys/class/power_supply/BAT0/status"
     }
