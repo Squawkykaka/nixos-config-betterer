@@ -50,7 +50,6 @@ in
 
     systemd.tmpfiles.rules = [
       "d /etc/elytra 0750 ${cfg.user} ${cfg.group}"
-      # "d ${cfg.dataDir} 0750 ${cfg.user} ${cfg.group}"
       "d /var/log/elytra 0750 ${cfg.user} ${cfg.group}"
       "d /tmp/elytra 0750 ${cfg.user} ${cfg.group}"
     ];

@@ -19,15 +19,10 @@
     ripgrep # better grep
     tree # cli dir tree viewer
     unzip
-    nixd # nix language server
     nixfmt
     tldr # very nice short descriptions
     zip
     magic-wormhole
-    wireshark
-    inetutils
-    net-tools
-    unixtools.arp
     dig
   ];
 }

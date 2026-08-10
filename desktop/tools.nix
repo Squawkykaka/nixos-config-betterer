@@ -2,6 +2,8 @@
 {
   programs.thunar.enable = true;
   environment.systemPackages = [
+    pkgs.wireshark
+    pkgs.nixd
     pkgs.rustup
     pkgs.filezilla
     pkgs.feh
