@@ -52,6 +52,7 @@ in
       "d /etc/elytra 0750 ${cfg.user} ${cfg.group}"
       "d /var/log/elytra 0750 ${cfg.user} ${cfg.group}"
       "d /tmp/elytra 0750 ${cfg.user} ${cfg.group}"
+      "d /run/elytra 0750 ${cfg.user} ${cfg.group}"
     ];
 
     users.groups.elytra = mkIf (cfg.group == "elytra") { };
