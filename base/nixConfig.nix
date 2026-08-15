@@ -7,6 +7,8 @@
 {
   networking.hostName = self.hostVars.hostname;
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # yeet dirtyfrag exploit fuck building kernel
   boot.blacklistedKernelModules = [
     "esp4"
