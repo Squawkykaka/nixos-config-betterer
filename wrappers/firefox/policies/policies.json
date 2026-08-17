@@ -54,9 +54,15 @@
           "Method": "GET",
           "Name": "DuckDuckGo",
           "URLTemplate": "https://noai.duckduckgo.com/{searchTerms}"
+        }, {
+          "Alias": "kagi",
+          "IconURL": "https://help.kagi.com/assets/kagi-logo.Bh8O11VU.png",
+          "Method": "GET",
+          "Name": "Kagi Search",
+          "URLTemplate": "https://kagi.com/search?q={searchTerms}"
         }
       ],
-      "Default": "DuckDuckGo",
+      "Default": "Kagi Search",
       "PreventInstalls": true
     }
   }
