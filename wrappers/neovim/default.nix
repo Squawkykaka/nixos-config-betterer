@@ -73,7 +73,7 @@
 
     extraLuaPackages = {
       type = types.any;
-      default = fn: [ ];
+      default = fn: [ fn.jsregexp ];
       description = ''
         A list of extra needed lua packages.
       '';
@@ -83,13 +83,17 @@
     };
 
     startPlugins = {
-      type = types.attrsOf types.path;
+      type = types.attrsOf types.pathLike;
       description = ''
         The list of plugins to add to the nvim config, and run at startup.
+
+        String paths are loaded in dev mode
       '';
       example = ''
         {
-          example = ./example
+          inherit (pkgs.vimPlugins) telescope;
+          # dev mode
+          myconfig = toString ./config
         }
       '';
     };
@@ -98,28 +102,6 @@
       type = types.attrsOf types.path;
       description = ''
         A list of nvim plugins to load when needed.
-      '';
-    };
-
-    devPlugins = {
-      type = types.attrsOf (
-        types.struct "devPlugin" {
-          pure = types.path;
-          impure = types.string;
-        }
-      );
-      description = ''
-        A list of plugins to load, that has a impure mode for hot-reloading
-
-        This is where you will want to store your config.
-      '';
-    };
-
-    dev = {
-      type = types.bool;
-      default = true;
-      description = ''
-        Whether dev mode is enabled or not.
       '';
     };
   };
@@ -143,7 +125,7 @@
         filterAttrs
         escapeShellArgs
         ;
-      inherit (builtins) concatStringsSep mapAttrs attrValues;
+      inherit (builtins) concatStringsSep isString attrValues;
 
       isTreesitter = p: p.isTreesitterGrammar or false || p.isTreesitterQuery or false;
       optPlugins =
@@ -157,7 +139,7 @@
             attrValues (options.startPlugins or { }) ++ attrValues (options.optPlugins or { })
           );
         in
-        (filterAttrs (_: v: v != null && !isTreesitter v) (options.startPlugins or { }))
+        (filterAttrs (_: v: v != null && !isTreesitter v && !isString v) (options.startPlugins or { }))
         // (
           if allTreesitter != [ ] then
             {
@@ -168,9 +150,8 @@
             }
           else
             { }
-        )
-        // (if !options.dev then devPlugins else { });
-      devPlugins = mapAttrs (_: v: v.${if options.dev then "impure" else "pure"}) options.devPlugins;
+        );
+      devPlugins = filterAttrs (_: v: isString v) options.startPlugins;
 
       generatedInitLua =
         let
@@ -226,7 +207,7 @@
           let
             fn = name: mapAttrsToList (n: _: "pack/adios/${name}/" + n);
           in
-          (fn "start" (options.startPlugins or { })) ++ (fn "opt" (options.optPlugins or { }));
+          (fn "start" startPlugins) ++ (fn "opt" optPlugins);
 
         buildCommand = /* bash */ ''
           mkdir -p "$out/nix-support"
@@ -301,7 +282,7 @@
       wrapperArgsStr = escapeShellArgs [
         "--add-flags"
         "--cmd \"lua vim.opt.packpath:prepend('${configDir}'); vim.opt.runtimepath:prepend('${configDir}'); ${
-          if options.dev && devPlugins != { } then
+          if devPlugins != { } then
             ''
               vim.opt.runtimepath:prepend('${concatStringsSep "," (attrValues devPlugins)}'); vim.opt.runtimepath:append('${
                 concatStringsSep "," (map (p: p + "/after") (attrValues devPlugins))
