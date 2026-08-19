@@ -1,5 +1,5 @@
 _: {
-  options.configFiles.mutators = [ "./." ];
+  options.configFiles.mutators = [ "/niri" ];
   mutations."/niri".configFiles = { inputs }: [
     (toString ./config.kdl)
     (

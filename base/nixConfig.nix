@@ -23,7 +23,7 @@
     self.wrappers.nushell.drv
     pkgs.carapace
     self.wrappers.git.drv
-    self.wrappers.helix.drv
+    self.wrappers.neovim.drv
   ];
 
   boot.kernel.sysfs = {

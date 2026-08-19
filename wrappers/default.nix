@@ -4,7 +4,8 @@
 }:
 let
   adios = import sources.adios;
-  adios-wrappers = import sources.adios-wrappers { inherit adios; };
+  # adios-wrappers = import sources.adios-wrappers { inherit adios; };
+  adios-wrappers = import /home/gleask/documents/projects/public/adios-wrappers { inherit adios; };
 
   root.modules = pkgs.lib.recursiveUpdate adios-wrappers (
     adios.lib.importModules { directory = ./.; }
@@ -18,10 +19,4 @@ let
     };
   };
 in
-builtins.mapAttrs (
-  _: wrapper:
-  if wrapper.args.options ? __functor then
-    (removeAttrs wrapper.args.options [ "__functor" ]) // { drv = wrapper { }; }
-  else
-    wrapper.args.options
-) tree.modules
+builtins.mapAttrs (_: wrapper: wrapper // { drv = wrapper { }; }) tree.modules
