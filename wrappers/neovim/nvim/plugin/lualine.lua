@@ -4,7 +4,6 @@ require("lualine").setup({
     "fugitive",
   },
 
-
   sections = {
     lualine_b = {
       "branch",

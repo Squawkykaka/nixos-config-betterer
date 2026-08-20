@@ -19,7 +19,6 @@ Autopairs_utils.surrounding_spaces = function(a1, ins, a2, lang)
     end)
 end
 
-
 npairs.add_rules({
   Rule("```", "```"):with_pair(conds.not_before_char("`", 3)),
 })

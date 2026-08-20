@@ -9,18 +9,15 @@ _: {
 
         inherit (inputs.nixpkgs.pkgs.vimPlugins)
           # essentials
-          auto-session
           canola-nvim
           blink-cmp
           conform-nvim
-          fzf-lua
           lualine-lsp-progress
           lualine-nvim
           lz-n
           nvim-autopairs
           nvim-lspconfig
           nvim-surround
-          rainbow-delimiters-nvim
           #neat
           colorful-menu-nvim # Show completion types in color
           luasnip

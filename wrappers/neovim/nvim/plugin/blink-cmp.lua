@@ -12,26 +12,24 @@ vim.keymap.set("c", "<C-n>", "<Down>")
 vim.keymap.set("c", "<Up>", "<Nop>")
 vim.keymap.set("c", "<Down>", "<Nop>")
 
-local prev_providers = nil
-
 blink.setup({
   keymap = {
     preset = "none",
 
-  ["<C-space>"] = { "show", "hide" },
+    ["<C-space>"] = { "show", "hide" },
 
-  ["<C-j>"] = { "select_next", "fallback" },
-  ["<C-k>"] = { "select_prev", "fallback" },
+    ["<C-j>"] = { "select_next", "fallback" },
+    ["<C-k>"] = { "select_prev", "fallback" },
 
-  ["<C-l>"] = { "accept", "fallback" },
-  ["<CR>"] = { "accept", "fallback" },
+    ["<C-l>"] = { "accept", "fallback" },
+    ["<CR>"] = { "accept", "fallback" },
 
     ["<Tab>"] = { "snippet_forward", "fallback" },
     ["<S-Tab>"] = { "snippet_backward", "fallback" },
   },
 
   completion = {
-        list = {
+    list = {
       selection = {
         preselect = true,
         -- Ghost text is preferable
@@ -45,7 +43,7 @@ blink.setup({
       auto_show_delay_ms = 0,
     },
 
-    accept = { auto_brackets = {enabled = true}},
+    accept = { auto_brackets = { enabled = true } },
 
     menu = {
       draw = {
@@ -67,7 +65,7 @@ blink.setup({
 
   snippets = {
     preset = "luasnip",
-        active = function()
+    active = function()
       local ls = require("luasnip")
       local mode = vim.api.nvim_get_mode().mode
       if ls.in_snippet() and not blink.is_visible() then
@@ -85,20 +83,19 @@ blink.setup({
   },
 
   sources = {
-    default = { "lsp", "path", "snippets", "omni"},
+    default = { "lsp", "path", "snippets", "omni" },
     per_filetype = {
-      nix = { "lsp_no_keywords", "path", "snippets", "omni" },
+      nix = { "path", "snippets", "omni" },
       lua = { "lsp", "path", "snippets", "omni" },
     },
 
     providers = {
       snippets = { opts = { show_autosnippets = false } },
-       --     lazydev = {
-       -- name = "LazyDev",
-       -- module = "lazydev.integrations.blink",
-       -- score_offset = 100,
-   --   },
-    }
-  }
-
+      --     lazydev = {
+      -- name = "LazyDev",
+      -- module = "lazydev.integrations.blink",
+      -- score_offset = 100,
+      --   },
+    },
+  },
 })
