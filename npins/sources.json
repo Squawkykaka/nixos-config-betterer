@@ -17,14 +17,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "Squawkykaka",
+        "owner": "llakala",
         "repo": "adios-wrappers"
       },
-      "branch": "add-neovim",
+      "branch": "main",
       "submodules": false,
-      "revision": "68baf70e95fbf938950b22d77ae27f42be2a461e",
-      "url": "https://github.com/Squawkykaka/adios-wrappers/archive/68baf70e95fbf938950b22d77ae27f42be2a461e.tar.gz",
-      "hash": "sha256-7bBlOQq/nFpot/8bFX4bqZOHsdCLystL2+jM4umwKjo="
+      "revision": "c32d50ae8eda79d345827f1f80d3e6cc870edbdc",
+      "url": "https://github.com/llakala/adios-wrappers/archive/c32d50ae8eda79d345827f1f80d3e6cc870edbdc.tar.gz",
+      "hash": "sha256-KOm9Rj+V00zoWpvBxsehiSIKDzfGqs6p1iPxS1RLEsQ="
     },
     "disko": {
       "type": "Git",

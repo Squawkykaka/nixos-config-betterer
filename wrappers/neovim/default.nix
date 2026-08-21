@@ -2,6 +2,10 @@ _: {
   options = {
     initLua.default = ./init.lua;
     treesitterPackage.defaultFunc = { inputs }: import ./plugins/treesitter.nix inputs.nixpkgs.pkgs;
+    aliases.default = [
+      "vim"
+      "hx"
+    ];
     startPlugins.defaultFunc =
       { inputs }:
       {
@@ -15,6 +19,7 @@ _: {
           lualine-lsp-progress
           lualine-nvim
           lz-n
+          fzf-lua
           nvim-autopairs
           nvim-lspconfig
           nvim-surround

@@ -3,7 +3,6 @@ vim.loader.enable()
 local g = vim.g
 local o = vim.o
 
-
 require("vim._core.ui2").enable({})
 
 o.winborder = "rounded"
@@ -29,7 +28,7 @@ o.shiftround = true -- Round to the nearest indentation level when using `<` and
 o.breakindent = true -- Continue indented wrapped line at same level
 o.autoindent = true -- keep smartindent and cindent off, and rely on filetype indentation
 
-o.wrap = true
+o.wrap = false
 o.textwidth = 80
 
 o.ignorecase = true
