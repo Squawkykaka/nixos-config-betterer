@@ -6,6 +6,10 @@ screenshot-path "/home/gleask/media/images/Screenshots/Screenshot from %Y-%m-%d 
 
 prefer-no-csd
 
+cursor {
+  xcursor-size 24
+}
+
 binds {
 	Alt+Q { close-window; }
 	Mod+Shift+E { quit; }

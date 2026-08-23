@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   self,
   ...
 }:
@@ -16,20 +15,9 @@
     "rxrpc"
   ];
 
-  environment.systemPackages = [
-    pkgs.openssh
-    pkgs.trashy
-    pkgs.starship
-    self.wrappers.nushell.drv
-    pkgs.carapace
-    self.wrappers.git.drv
-    self.wrappers.neovim.drv
-  ];
-
   boot.kernel.sysfs = {
     kernel.mm.transparent_hugepage = {
       enabled = "always";
-      # defrag = "defer";
       shmem_enabled = "advise";
     };
   };

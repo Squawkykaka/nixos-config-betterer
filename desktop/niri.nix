@@ -20,10 +20,5 @@
     self.wrappers.quickshell.drv
   ];
 
-  environment.variables = {
-    XCURSOR_THEME = "BreezeX-Dark";
-    XCURSOR_SIZE = 24;
-  };
-
   security.polkit.enable = true;
 }

@@ -10,7 +10,10 @@
     ncdu
     (self.wrappers.direnv.drv)
     (self.wrappers.jujutsu.drv)
-    neovim
+    (self.wrappers.neovim.drv)
+    (self.wrappers.git.drv)
+    (self.wrappers.nushell.drv)
+    trashy
     btop # resource monitor
     coreutils # basic gnu utils
     curl

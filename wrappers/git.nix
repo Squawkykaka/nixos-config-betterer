@@ -24,6 +24,6 @@ adios: {
     "__pycache__/"
     ".venv/"
     # direnv
-    ".direnv"
+    "**/.direnv"
   ];
 }
