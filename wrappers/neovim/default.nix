@@ -19,6 +19,7 @@ _: {
           lualine-lsp-progress
           lualine-nvim
           lz-n
+          leap-nvim
           fzf-lua
           nvim-autopairs
           nvim-lspconfig

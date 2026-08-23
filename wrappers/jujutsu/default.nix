@@ -1,6 +1,4 @@
 _: {
-  inputs.git.from = { parent }: parent.git;
-  options.ignoredPaths.defaultFunc = { inputs }: inputs.git.ignoredPaths;
   options.settings.default = {
     user = {
       name = "Squawkykaka";
