@@ -13,6 +13,7 @@ _: {
 
         inherit (inputs.nixpkgs.pkgs.vimPlugins)
           # essentials
+          neorg
           canola-nvim
           blink-cmp
           conform-nvim
@@ -45,7 +46,11 @@ _: {
         };
       };
 
-    extraLuaPackages.default = ps: [ ps.jsregexp ];
+    extraLuaPackages.default = ps: [
+      ps.jsregexp
+      ps.lua-utils-nvim
+      ps.pathlib-nvim
+    ];
 
     optPlugins.defaultFunc = { inputs }: {
       inherit (inputs.nixpkgs.pkgs.vimPlugins)
@@ -59,6 +64,7 @@ _: {
     extraPackages.defaultFunc = { inputs }: with inputs.nixpkgs;
       [
         pkgs.lua-language-server
+        pkgs.typescript-language-server
         pkgs.tinymist
         pkgs.nil
         pkgs.basedpyright

@@ -10,6 +10,7 @@ pkgs.vimPlugins.nvim-treesitter.withPlugins (
     lua
     luadoc
     nix
+    svelte
 
     # rarer langs
     typst
