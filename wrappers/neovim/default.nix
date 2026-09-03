@@ -55,7 +55,6 @@ _: {
     optPlugins.defaultFunc = { inputs }: {
       inherit (inputs.nixpkgs.pkgs.vimPlugins)
         typst-preview-nvim
-        markdown-preview-nvim
         vim-fugitive
         vim-rhubarb # Make `:GBrowse` from fugitive work with Github
         ;
@@ -66,6 +65,7 @@ _: {
         pkgs.lua-language-server
         pkgs.typescript-language-server
         pkgs.tinymist
+        pkgs.websocat
         pkgs.nil
         pkgs.basedpyright
 

@@ -1,18 +1,8 @@
 {
-  services.technitium-dns-server = {
-    enable = true;
-  };
-  networking.firewall.allowedUDPPorts = [
-    53
-    853
-  ];
-
-  services.caddy.virtualHosts."dns.boom.boats".extraConfig = ''
-    reverse_proxy 127.0.0.1:8053
-  '';
-
-  services.caddy.virtualHosts."technitium.boom.boats".extraConfig = ''
-    import trusted_only
-    reverse_proxy 127.0.0.1:5380
+  services.caddy.virtualHosts."home.squawkykaka.com".extraConfig = ''
+    reverse_proxy {
+      to 192.168.1.168:8123
+      to [2401:7000:6b82:7300:65c3:596:ac49:4768]:8123
+    }
   '';
 }

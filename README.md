@@ -1,4 +1,4 @@
-Hosts:
+osts:
 - bandier - Oracle VPS
 - kiri - old desktop pc
 - bingbong - proxmox vm
