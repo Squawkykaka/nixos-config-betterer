@@ -2,6 +2,7 @@
   environment.systemPackages = [
     pkgs.ladspa-sdk
     pkgs.qpwgraph
+    pkgs.easyeffects
   ];
   programs.noisetorch.enable = true;
 
