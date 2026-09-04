@@ -73,6 +73,7 @@ _: {
         pkgs.stylua
         pkgs.marksman
         pkgs.nixfmt
+        pkgs.svelte-language-server
       ];
   };
 }

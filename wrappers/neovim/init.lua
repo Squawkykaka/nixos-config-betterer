@@ -5,6 +5,7 @@ vim.lsp.enable({
   "lua_ls",
   "nil_ls",
   "basedpyright",
+  "svelte",
   "ts_ls",
   "marksman",
   "tinymist",
