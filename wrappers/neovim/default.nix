@@ -74,6 +74,7 @@ _: {
         pkgs.marksman
         pkgs.nixfmt
         pkgs.svelte-language-server
+        pkgs.rust-analyzer
       ];
   };
 }

@@ -2,6 +2,7 @@ require("init")
 require("lz.n").load("lazy")
 
 vim.lsp.enable({
+  "rust_analyzer",
   "lua_ls",
   "nil_ls",
   "basedpyright",
