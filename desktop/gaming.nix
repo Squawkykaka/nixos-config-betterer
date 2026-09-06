@@ -11,6 +11,7 @@
     })
     # FIX Will return back to normal after nixpkgs updates
     r2modman
+    supertuxkart
   ];
 
   programs = {

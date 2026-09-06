@@ -3,8 +3,8 @@
     pkgs.ladspa-sdk
     pkgs.qpwgraph
     pkgs.easyeffects
+    pkgs.pavucontrol
   ];
-  programs.noisetorch.enable = true;
 
   security.rtkit.enable = true;
   services = {

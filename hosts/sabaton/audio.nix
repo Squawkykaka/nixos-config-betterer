@@ -1,0 +1,22 @@
+{
+  pkgs,
+  ...
+}:
+{
+  services.pipewire = {
+    wireplumber.extraConfig = {
+      "51-rename-devices" = {
+        "monitor.alsa.rules" = [
+          {
+            matches = [ { "node.name" = "alsa_output.pci-0000_07_00.6.analog-stereo"; } ];
+            actions = {
+              update-props = {
+                "node.description" = "Laptop Speakers";
+              };
+            };
+          }
+        ];
+      };
+    };
+  };
+}
