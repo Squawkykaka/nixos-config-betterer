@@ -13,7 +13,6 @@
     (self.wrappers.neovim.drv)
     (self.wrappers.git.drv)
     (self.wrappers.nushell.drv)
-    trashy
     btop # resource monitor
     coreutils # basic gnu utils
     curl
@@ -25,7 +24,6 @@
     nixfmt
     tldr # very nice short descriptions
     zip
-    magic-wormhole
     dig
   ];
 }

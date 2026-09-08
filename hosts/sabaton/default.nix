@@ -33,12 +33,6 @@
     qemu.swtpm.enable = true;
   };
 
-  services.fprintd.enable = true;
-
-  programs.wireshark.enable = true;
-  programs.wireshark.dumpcap.enable = true;
-  programs.wireshark.usbmon.enable = true;
-
   users.groups.media = {
     gid = 984;
   };
@@ -47,10 +41,6 @@
     "media"
     "libvirtd"
     "wireshark"
-  ];
-  boot.supportedFilesystems = [
-    "nfs"
-    "ntfs"
   ];
 
   services.displayManager = {
@@ -63,6 +53,8 @@
   services.libinput = {
     touchpad.disableWhileTyping = true;
   };
+
+  networking.networkmanager.enable = true;
 
   # set the boot loader
   boot = {

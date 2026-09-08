@@ -5,8 +5,6 @@
       # Change Java runtimes available to Prism Launcher
       jdks = [
         graalvmPackages.graalvm-oracle_25
-        zulu21
-        zulu25
       ];
     })
     # FIX Will return back to normal after nixpkgs updates
@@ -17,10 +15,6 @@
   programs = {
     steam = {
       enable = true;
-      protontricks = {
-        enable = true;
-        package = pkgs.protontricks;
-      };
       package = pkgs.steam.override {
         extraPkgs =
           pkgs:
@@ -48,7 +42,6 @@
       };
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = false;
-      gamescopeSession.enable = true;
 
       extraCompatPackages = [ pkgs.proton-ge-bin ];
     };

@@ -8,7 +8,7 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  # yeet dirtyfrag exploit fuck building kernel
+  # yeet dirtyfrag exploit
   boot.blacklistedKernelModules = [
     "esp4"
     "esp6"

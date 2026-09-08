@@ -15,7 +15,6 @@
   environment.systemPackages = [
     pkgs.xwayland-satellite
     pkgs.sddm-astronaut
-    pkgs.kdePackages.spectacle
     pkgs.libnotify
     self.wrappers.quickshell.drv
   ];
