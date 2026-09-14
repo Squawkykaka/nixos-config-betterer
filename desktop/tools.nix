@@ -2,7 +2,7 @@
 {
   programs.thunar.enable = true;
   environment.systemPackages = [
-    pkgs.godot
+    pkgs.at
     pkgs.rustup
     pkgs.thunderbird
     pkgs.ghostty

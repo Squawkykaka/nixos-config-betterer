@@ -16,6 +16,7 @@
     pkgs.xwayland-satellite
     pkgs.sddm-astronaut
     pkgs.libnotify
+    self.wrappers.dunst.drv
     self.wrappers.quickshell.drv
   ];
 
