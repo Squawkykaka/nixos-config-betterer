@@ -15,6 +15,15 @@
     ../../disks/btrfs-disk-luks.nix
   ];
 
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend-then-hibernate";
+  };
+  systemd.sleep.settings.Sleep = {
+    SuspendMode = "suspend";
+    HibernateMode = "shutdown";
+    HibernateDelaySec = 7200;
+  };
+
   boot.zswap = {
     enable = true;
     compressor = "lz4";
@@ -56,8 +65,21 @@
 
   networking.networkmanager.enable = true;
 
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="pci", TEST=="power/control", ATTR{power/control}="auto"
+  '';
+
   # set the boot loader
   boot = {
+    kernelParams = [
+      "mem_sleep_default=deep"
+      "nmi_watchdog=0"
+      "snd_hda_intel.power_save=1"
+    ];
+    kernel.sysctl = {
+      "vm.dirty_writeback_centisecs" = 1500;
+    };
+
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;

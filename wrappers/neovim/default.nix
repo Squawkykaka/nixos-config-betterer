@@ -1,17 +1,17 @@
 _: {
   options = {
-    initLua.default = ./init.lua;
+    initLuaFile.default = toString ./init.lua;
     treesitterPackage.defaultFunc = { inputs }: import ./plugins/treesitter.nix inputs.nixpkgs.pkgs;
     aliases.default = [
       "vim"
       "hx"
     ];
+    devPlugins.default = [ (toString ./nvim) ];
     startPlugins.defaultFunc =
       { inputs }:
       {
-        __config = toString ./nvim;
-
         inherit (inputs.nixpkgs.pkgs.vimPlugins)
+          vim-wakatime
           # essentials
           neorg
           canola-nvim
@@ -75,6 +75,7 @@ _: {
         pkgs.nixfmt
         pkgs.svelte-language-server
         pkgs.rust-analyzer
+        pkgs.wakatime-cli
       ];
   };
 }

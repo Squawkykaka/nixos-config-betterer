@@ -44,11 +44,11 @@ cpu.energy-perf-bias = { if.all = [
   { not.is-driver-loaded = "intel_pstate" },
   { is-energy-perf-bias-available = "performance" },
 ], then = "performance" }
-cpu.energy-performance-preference = { if.all = [
-  { not.is-driver-loaded = "intel_pstate" },
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "performance", then = "performance" }
+cpu.governor = { else = { if.is-governor-available = "performance", then = "performance" }, if.all = [
+  { is-driver-loaded = "intel_pstate" },
   { is-energy-performance-preference-available = "performance" },
-], then = "performance" }
-cpu.governor = { if.is-governor-available = "performance", then = "performance" }
+], then = "powersave" }
 cpu.turbo = { if = "?turbo-available", then = true }
 
 [[rule]]
@@ -64,11 +64,11 @@ cpu.energy-perf-bias = { if.all = [
   { not.is-driver-loaded = "intel_pstate" },
   { is-energy-perf-bias-available = "balance-performance" },
 ], then = "balance-performance" }
-cpu.energy-performance-preference = { if.all = [
-  { not.is-driver-loaded = "intel_pstate" },
+cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "performance", then = "performance" }
+cpu.governor = { else = { if.is-governor-available = "performance", then = "performance" }, if.all = [
+  { is-driver-loaded = "intel_pstate" },
   { is-energy-performance-preference-available = "performance" },
-], then = "performance" }
-cpu.governor = { if.is-governor-available = "performance", then = "performance" }
+], then = "powersave" }
 cpu.turbo = { if = "?turbo-available", then = true }
 
 [[rule]]
@@ -81,7 +81,7 @@ priority = 60
 
 cpu.energy-perf-bias              = { if.is-energy-perf-bias-available = "balance-performance", then = "balance-performance" }
 cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "balance_performance", then = "balance_performance" }
-cpu.governor                      = { if.is-governor-available = "schedutil", then = "schedutil" }
+cpu.governor                      = { first-available-governor = [ "schedutil", "powersave" ] }
 
 [[rule]]
 if.all = [
@@ -127,23 +127,13 @@ priority = 20
 cpu.energy-perf-bias              = { if.is-energy-perf-bias-available = "balance-performance", then = "balance-performance" }
 cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "power", then = "power" }
 cpu.frequency-mhz-maximum         = { if = "?frequency-available", then = 1800 }
-cpu.frequency-mhz-minimum         = { if = "?frequency-available", then = 200 }
+cpu.frequency-mhz-minimum         = { if = "?frequency-available", then = "$cpu-frequency-minimum" }
 cpu.governor                      = { if.is-governor-available = "powersave", then = "powersave" }
 cpu.turbo                         = { if = "?turbo-available", then = false }
 
 [[rule]]
 cpu.energy-perf-bias              = { if.is-energy-perf-bias-available = "balance-performance", then = "balance-performance" }
 cpu.energy-performance-preference = { if.is-energy-performance-preference-available = "balance_performance", then = "balance_performance" }
-cpu.governor                      = { if.is-governor-available = "schedutil", then = "schedutil" }
+cpu.governor                      = { first-available-governor = [ "schedutil", "powersave" ] }
 name                              = "default-balanced"
 priority                          = 0
-
-# [[rule]]
-# name = "protect-battery"
-# priority = 10
-
-# # Set battery charging thresholds (as percentages, 0-100)
-# power.charge-threshold-start = 40
-# power.charge-threshold-end = 80
-# # Apply to specific power supplies
-# power.for = ["BAT0"]
