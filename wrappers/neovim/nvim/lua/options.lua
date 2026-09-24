@@ -6,6 +6,7 @@ local o = vim.o
 require("vim._core.ui2").enable({})
 
 o.winborder = "rounded"
+o.scrolloff = 10
 
 o.number = true
 o.relativenumber = true

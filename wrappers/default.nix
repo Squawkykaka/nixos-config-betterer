@@ -3,7 +3,7 @@
   sources,
 }:
 let
-  adios = import sources.adios;
+  adios = import sources.lladios;
   # adios-wrappers = import sources.adios-wrappers { inherit adios; };
   adios-wrappers = import /home/gleask/documents/projects/public/adios-wrappers { inherit adios; };
 

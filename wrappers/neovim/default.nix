@@ -11,6 +11,7 @@ _: {
       { inputs }:
       {
         inherit (inputs.nixpkgs.pkgs.vimPlugins)
+          auto-session
           vim-wakatime
           # essentials
           neorg

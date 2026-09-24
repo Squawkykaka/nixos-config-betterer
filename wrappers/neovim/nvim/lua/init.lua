@@ -1,5 +1,6 @@
 require("lsp")
+require("editmacro")
+require("editmacro")
 require("keybindings")
 require("colorscheme")
 require("options")
-
