@@ -1,6 +1,6 @@
-_: {
+{ promise, ... }: {
   options.configFile.default = ./dunstrc;
-  options.dropinFiles.defaultFunc =
+  options.dropinFiles.default = promise (
     { inputs }:
     let
       inherit (inputs.nixpkgs) pkgs;
@@ -15,6 +15,7 @@ _: {
           icon_path = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita/16x16/status/:${pkgs.adwaita-icon-theme}/share/icons/Adwaita/16x16/emblems/";
         };
       };
-    };
+    }
+  );
 
 }

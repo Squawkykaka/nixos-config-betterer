@@ -1,4 +1,4 @@
-_: {
+{ promise, ... }: {
   options = {
     settings = {
       default = {
@@ -10,8 +10,9 @@ _: {
         };
       };
     };
-    extraPackages.defaultFunc =
+    extraPackages.default = promise (
       { inputs }:
+
       let
         inherit (inputs.nixpkgs) pkgs;
       in
@@ -19,6 +20,7 @@ _: {
         pkgs.superhtml
         pkgs.nixd
         pkgs.erlang-language-platform
-      ];
+      ]
+    );
   };
 }

@@ -1,13 +1,14 @@
-adios: {
+{ promise, ... }: {
   options = {
-    package.defaultFunc = { inputs }: inputs.nixpkgs.pkgs.firefox-beta-unwrapped;
+    package.defaultFunc =
+      { inputs }:
+      inputs.nixpkgs.pkgs.firefox-beta-unwrapped;
     policiesFiles.default = [
       ./policies/policies.json
       ./policies/preferences.json
       # ./policies/extensions.json
     ];
-
-    autoConfigFiles.defaultFunc =
+    autoConfigFiles.default = promise (
       { inputs }:
       let
         inherit (inputs.nixpkgs) pkgs;
@@ -15,6 +16,7 @@ adios: {
       in
       [
         (replaceVars ./autoConfig.js { userChromeFile = ./userChrome.css; })
-      ];
+      ]
+    );
   };
 }

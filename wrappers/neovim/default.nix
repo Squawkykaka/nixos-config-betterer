@@ -1,13 +1,15 @@
-_: {
+{ promise, ... }: {
   options = {
     initLuaFile.default = toString ./init.lua;
-    treesitterPackage.defaultFunc = { inputs }: import ./plugins/treesitter.nix inputs.nixpkgs.pkgs;
+    treesitterPackage.default = promise (
+      { inputs }: import ./plugins/treesitter.nix inputs.nixpkgs.pkgs
+    );
     aliases.default = [
       "vim"
       "hx"
     ];
     devPlugins.default = [ (toString ./nvim) ];
-    startPlugins.defaultFunc =
+    startPlugins.default = promise (
       { inputs }:
       {
         inherit (inputs.nixpkgs.pkgs.vimPlugins)
@@ -45,7 +47,8 @@ _: {
         nvim-highlight-colors = inputs.nixpkgs.pkgs.vimPlugins.nvim-highlight-colors.overrideAttrs {
           meta.license = [ ];
         };
-      };
+      }
+    );
 
     extraLuaPackages.default = ps: [
       ps.jsregexp
@@ -53,15 +56,18 @@ _: {
       ps.pathlib-nvim
     ];
 
-    optPlugins.defaultFunc = { inputs }: {
-      inherit (inputs.nixpkgs.pkgs.vimPlugins)
-        typst-preview-nvim
-        vim-fugitive
-        vim-rhubarb # Make `:GBrowse` from fugitive work with Github
-        ;
-    };
+    optPlugins.default = promise (
+      { inputs }: {
+        inherit (inputs.nixpkgs.pkgs.vimPlugins)
+          typst-preview-nvim
+          vim-fugitive
+          vim-rhubarb # Make `:GBrowse` from fugitive work with Github
+          ;
+      }
+    );
 
-    extraPackages.defaultFunc = { inputs }: with inputs.nixpkgs;
+    extraPackages.default = promise (
+      { inputs }: with inputs.nixpkgs;
       [
         pkgs.lua-language-server
         pkgs.typescript-language-server
@@ -77,6 +83,7 @@ _: {
         pkgs.svelte-language-server
         pkgs.rust-analyzer
         pkgs.wakatime-cli
-      ];
+      ]
+    );
   };
 }

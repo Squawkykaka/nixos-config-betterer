@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "5f22481df5e832c156a81cc5c5de920ccc35c540",
-      "url": "https://github.com/llakala/adios-wrappers/archive/5f22481df5e832c156a81cc5c5de920ccc35c540.tar.gz",
-      "hash": "sha256-w+UbwkHYEKABpmzu5DRkhEAwo9r21AHP7ivJurPFmx0="
+      "revision": "92f87d75ec0505ea61df54d25e8626085b9f61f0",
+      "url": "https://github.com/llakala/adios-wrappers/archive/92f87d75ec0505ea61df54d25e8626085b9f61f0.tar.gz",
+      "hash": "sha256-hmohip2ayFVwsAX1HY/4NbcsTY+zrepQaZIHlRlVsNE="
     },
     "disko": {
       "type": "Git",
@@ -35,9 +35,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "00160d01ce821f74028037d2ef6629abe784e126",
-      "url": "https://github.com/llakala/lladios/archive/00160d01ce821f74028037d2ef6629abe784e126.tar.gz",
-      "hash": "sha256-3Lo77+rVZDZ2MPsV3c7vsCVmz2ISWx5HJfKZleCbR5I="
+      "revision": "b639cb9add27d4a79c9d7ddc9eda39c3e0332f92",
+      "url": "https://github.com/llakala/lladios/archive/b639cb9add27d4a79c9d7ddc9eda39c3e0332f92.tar.gz",
+      "hash": "sha256-MrkJRnXw1BYQwRcyyIw6krhZ31n/kPwovPgmNjCPWM0="
     },
     "nixos-hardware": {
       "type": "Git",
