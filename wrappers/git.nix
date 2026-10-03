@@ -1,6 +1,6 @@
-adios: {
+{ promise, ... }: {
   options.settings.mutators = [ "/git" ];
-  mutations."/git".settings =
+  mutations."/git".settings = promise (
     { }:
     {
       user = {
@@ -13,7 +13,8 @@ adios: {
       commit.gpgSign = true;
       tag.gpgSign = true;
       gpg.format = "ssh";
-    };
+    }
+  );
   options.ignoredPaths.default = [
     ".csvignore"
     # nix

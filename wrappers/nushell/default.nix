@@ -1,4 +1,4 @@
-adios: {
+{ promise, ... }: {
   options.shellInit.mutators = [
     "/zoxide"
     "/nushell"
@@ -6,7 +6,7 @@ adios: {
   ];
   # options.environmentFile.default = ./env.nu;
 
-  mutations."/nushell".shellInit =
+  mutations."/nushell".shellInit = promise (
     { inputs }:
     ''
       $env.PATH = ($env.PATH | split row (char esep) | where { $in != "/home/gleask/.config/carapace/bin" } | prepend "/home/gleask/.config/carapace/bin")
@@ -46,5 +46,6 @@ adios: {
       $env.config = $current
 
       ${builtins.readFile ./env.nu}
-    '';
+    ''
+  );
 }

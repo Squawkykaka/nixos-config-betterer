@@ -1,5 +1,5 @@
-adios: {
-  mutations."/nushell".shellInit =
+{ promise, ... }: {
+  mutations."/nushell".shellInit = promise (
     { inputs, options }:
     let
       finalWrapper = options { };
@@ -42,5 +42,6 @@ adios: {
 
       alias z = __zoxide_z
       alias zi = __zoxide_zi
-    '';
+    ''
+  );
 }

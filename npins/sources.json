@@ -7,7 +7,7 @@
         "owner": "llakala",
         "repo": "adios-wrappers"
       },
-      "branch": "main",
+      "branch": "promises",
       "submodules": false,
       "revision": "dcab48d96e6120ae8d73d2d4c0394f0960ec646f",
       "url": "https://github.com/llakala/adios-wrappers/archive/dcab48d96e6120ae8d73d2d4c0394f0960ec646f.tar.gz",
@@ -33,7 +33,7 @@
         "owner": "llakala",
         "repo": "lladios"
       },
-      "branch": "main",
+      "branch": "promise-deprecations",
       "submodules": false,
       "revision": "4a5e900239bc2248cd7620954090df5b4fe52b4b",
       "url": "https://github.com/llakala/lladios/archive/4a5e900239bc2248cd7620954090df5b4fe52b4b.tar.gz",
