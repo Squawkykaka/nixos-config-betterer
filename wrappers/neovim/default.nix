@@ -1,5 +1,22 @@
 { promise, ... }: {
   options = {
+    package.default = promise (
+      { inputs }:
+      let
+        inherit (inputs.nixpkgs.pkgs) neovim-unwrapped fetchFromGitHub;
+      in
+      neovim-unwrapped.overrideAttrs (oldAttrs: {
+        doCheck = false;
+        doInstallCheck = false;
+        src = fetchFromGitHub {
+          owner = "neovim";
+          repo = "neovim";
+          rev = "fb1f321b0efb31101891ec6cc93d4087bc4ee325";
+          hash = "";
+        };
+        # patches = (oldAttrs.patches or [ ]) ++ [ ./patches/better-e-binding.patch ];
+      })
+    );
     initLuaFile.default = toString ./init.lua;
     treesitterPackage.default = promise (
       { inputs }: import ./plugins/treesitter.nix inputs.nixpkgs.pkgs
@@ -81,7 +98,6 @@
         pkgs.marksman
         pkgs.nixfmt
         pkgs.svelte-language-server
-        pkgs.rust-analyzer
         pkgs.wakatime-cli
       ]
     );
