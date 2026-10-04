@@ -1,6 +1,7 @@
 {
   lib,
   self,
+  pkgs,
   ...
 }:
 {
@@ -71,7 +72,7 @@
   };
 
   # Database for aiding terminal-based programs
-  environment.enableAllTerminfo = true;
+  environment.systemPackages = [ pkgs.ghostty.terminfo ];
   # Enable firmware with a license allowing redistribution
   hardware.enableRedistributableFirmware = true;
 
