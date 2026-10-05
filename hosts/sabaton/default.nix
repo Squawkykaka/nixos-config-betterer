@@ -17,6 +17,8 @@
 
   services.logind.settings.Login = {
     HandleLidSwitch = "suspend-then-hibernate";
+    IdleAction = "lock";
+    IdleActionSec = 300;
   };
   systemd.sleep.settings.Sleep = {
     SuspendMode = "suspend";
