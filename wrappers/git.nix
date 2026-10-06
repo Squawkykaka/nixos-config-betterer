@@ -1,5 +1,6 @@
 { promise, ... }: {
   options.settings.mutators = [ "/git" ];
+  options.package.default = promise ({ inputs }: inputs.nixpkgs.pkgs.gitMinimal);
   mutations."/git".settings = promise (
     { }:
     {

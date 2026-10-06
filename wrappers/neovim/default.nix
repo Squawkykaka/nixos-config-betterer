@@ -12,7 +12,7 @@
           owner = "neovim";
           repo = "neovim";
           rev = "fb1f321b0efb31101891ec6cc93d4087bc4ee325";
-          hash = "";
+          hash = "sha256-iu27Z3oFBjEgjFRFpGsaNMslywFY7TbdDkBixWMxLOw=";
         };
         # patches = (oldAttrs.patches or [ ]) ++ [ ./patches/better-e-binding.patch ];
       })
