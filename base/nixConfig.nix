@@ -35,7 +35,7 @@
 
   nix = {
     channel.enable = false;
-    settings.nix-path = (lib.mapAttrsToList (k: v: "${k}=${v}") self.sources) ++ [
+    nixPath = (lib.mapAttrsToList (k: v: "${k}=${v}") self.sources) ++ [
       "nixos-config=/etc/nixos"
     ];
     registry = lib.mapAttrs (_: path: {

@@ -7,6 +7,7 @@ screenshot-path "/home/gleask/media/images/Screenshots/Screenshot from %Y-%m-%d 
 prefer-no-csd
 
 cursor {
+  xcursor-theme "macOS"
   xcursor-size 24
 }
 
@@ -56,5 +57,5 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
+    open-floating false
 }
