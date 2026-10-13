@@ -87,7 +87,7 @@
       { inputs }: with inputs.nixpkgs;
       [
         pkgs.lua-language-server
-        pkgs.typescript-language-server
+        # pkgs.typescript-language-server
         pkgs.tinymist
         pkgs.websocat
         pkgs.nil

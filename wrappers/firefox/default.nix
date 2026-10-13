@@ -1,9 +1,5 @@
 { promise, ... }: {
   options = {
-    package.default = promise (
-      { inputs }:
-      inputs.nixpkgs.pkgs.firefox-beta-unwrapped
-    );
     policiesFiles.default = [
       ./policies/policies.json
       ./policies/preferences.json
