@@ -13,13 +13,13 @@
     )
   ];
   hjem.users.gleask.files = {
-    ".icons/breeze-dark".source = pkgs.kdePackages.breeze-icons + /share/icons/breeze-dark;
+    ".icons/breeze-dark".source = pkgs.kdePackages.breeze-icons + /share/icons/breeze;
     ".icons/macOS".source = pkgs.apple-cursor + /share/icons/macOS;
     ".config/gtk-3.0/settings.ini".text = lib.generators.toINI { } {
       Settings = {
         gtk-theme-name = "Breeze";
         gtk-icon-theme-name = "Breeze";
-        gtk-font-name = "Noto Sans  11";
+        gtk-font-name = "Noto Sans 11";
         gtk-cursor-theme-name = "macOS";
         gtk-cursor-theme-size = 24;
 
@@ -35,7 +35,7 @@
       Settings = {
         gtk-theme-name = "Breeze";
         gtk-icon-theme-name = "Breeze";
-        gtk-font-name = "Noto Sans  11";
+        gtk-font-name = "Noto Sans 11";
         gtk-cursor-theme-name = "macOS";
         gtk-cursor-theme-size = 24;
         # light modee

@@ -83,11 +83,15 @@
     };
 
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot.enable = false;
+      limine.enable = true;
+      limine.secureBoot.enable = true;
       efi.canTouchEfiVariables = true;
       timeout = 0;
     };
   };
+
+  environment.systemPackages = [ pkgs.sbctl ];
 
   # enable graphics
   hardware.graphics = {
