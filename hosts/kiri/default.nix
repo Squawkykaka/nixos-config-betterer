@@ -86,7 +86,10 @@
     ];
   };
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = true;
+  hardware.nvidia = {
+    open = true;
+    package = pkgs.linuxPackages.nvidiaPackages.stable;
+  };
 
   networking.firewall.allowedTCPPorts = [
     22

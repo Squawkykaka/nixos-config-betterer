@@ -11,6 +11,7 @@
   libxi,
   libxrandr,
   libGL,
+  lttng-ust_2_12,
   libglvnd,
   libxkbcommon,
   wayland,
@@ -26,10 +27,12 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   version = "2026.10.13.5602"; # Bump to update
   pname = "ksa";
   src = requireFile {
-    name = "setup_ksa_v${finalAttrs.version}.tar.gz";
+    name = "ksa_linux_v${finalAttrs.version}.tar.gz";
     url = "https://ahwoo.com/app/100000/kitten-space-agency";
-    sha256 = "sha256-KrZTZ7Bwa/eCAlLQwXVxp/PmAwGOCONEG9tbQNK3uM4=";
+    sha256 = "16h02346pkazsvr56cdqwpwhqxawkrs4x72wpjj689mf9jvxn505";
   };
+
+  unpackPhase = "tar xf $src";
 
   dontBuild = true;
   dontConfigure = true;
@@ -40,6 +43,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
+    lttng-ust_2_12.out
     libgcc
     icu
     wayland
@@ -71,7 +75,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       --unset WAYLAND_SOCKET \
       --set XDG_SESSION_TYPE "x11" \
       --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath finalAttrs.buildInputs}" \
-      --prefix VK_LAYER_PATH : "${vulkan-validation-layers}/share/vulkan/explicit_layer.d" \ 
+      --prefix VK_LAYER_PATH : "${vulkan-validation-layers}/share/vulkan/explicit_layer.d" \
       --prefix PATH : "${dotnet-runtime_10}" \
       --set DOTNET_ROOT "${dotnet-runtime_10}/share/dotnet" \
       --set DOTNET_ROOT_X64 "${dotnet-runtime_10}/share/dotnet" \
