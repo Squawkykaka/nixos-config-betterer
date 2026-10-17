@@ -60,13 +60,6 @@
         }
       }
     '';
-    virtualHosts."panel.boom.boats".extraConfig = ''
-      import tls_client
-      reverse_proxy 127.0.0.1:7887
-    '';
-    virtualHosts."node.boom.boats:8080".extraConfig = ''
-      reverse_proxy 127.0.0.1:8089
-    '';
   };
   systemd.services.caddy.serviceConfig.EnvironmentFile = [
     config.sops.templates."caddy-env".path
@@ -90,21 +83,6 @@
     open = true;
     package = pkgs.linuxPackages.nvidiaPackages.stable;
   };
-
-  networking.firewall.allowedTCPPorts = [
-    22
-    2022
-    8080
-  ];
-  networking.firewall.allowedTCPPortRanges = [
-    {
-      from = 20000;
-      to = 20100;
-    }
-  ];
-
-  virtualisation.docker.enable = true;
-  services.elytra.enable = true;
 
   system.stateVersion = "26.05";
 }
