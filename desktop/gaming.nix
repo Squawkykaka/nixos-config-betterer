@@ -5,6 +5,7 @@
       # Change Java runtimes available to Prism Launcher
       jdks = [
         graalvmPackages.graalvm-oracle_25
+        temurin-bin-17
       ];
     })
     # FIX Will return back to normal after nixpkgs updates

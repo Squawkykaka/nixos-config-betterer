@@ -1,9 +1,6 @@
 { promise, ... }: {
   mutations."/nushell".shellInit = promise (
-    { inputs, options }:
-    let
-      finalWrapper = options { };
-    in
+    { result }:
     ''
       export-env {
         $env.config = (
@@ -19,7 +16,7 @@
         if not $__zoxide_hooked {
           $env.config.hooks.env_change.PWD = ($env.config.hooks.env_change.PWD | append {
             __zoxide_hook: true,
-            code: {|_, dir| ${finalWrapper}/bin/zoxide add -- $dir}
+            code: {|_, dir| ${result}/bin/zoxide add -- $dir}
           })
         }
       }
@@ -30,14 +27,14 @@
           [ '-' ] => {'-'},
           [ $arg ] if ($arg | path expand | path type) == 'dir' => {$arg}
           _ => {
-            ${finalWrapper}/bin/zoxide query --exclude $env.PWD -- ...$rest | str trim -r -c "\n"
+            ${result}/bin/zoxide query --exclude $env.PWD -- ...$rest | str trim -r -c "\n"
           }
         }
         cd $path
       }
 
       def --env --wrapped __zoxide_zi [...rest:string] {
-        cd $'(${finalWrapper}/bin/zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
+        cd $'(${result}/bin/zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
       }
 
       alias z = __zoxide_z
