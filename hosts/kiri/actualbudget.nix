@@ -1,13 +1,17 @@
 { pkgs, ... }: {
   services.actual = {
     enable = true;
-    package = pkgs.actual-server.overrideAttrs (old: {
-      version = "26.10.0";
-      src = old.src.overrideAttrs {
+    package = pkgs.actual-server.overrideAttrs (
+      old:
+      assert old.version != "26.10.0";
+      {
         version = "26.10.0";
-        hash = "sha256-jBh6mrYVVX7dNz5rv/VO766ezIuwBmXbtRSKgUOkahc=";
-      };
-    });
+        src = old.src.overrideAttrs {
+          version = "26.10.0";
+          hash = "sha256-jBh6mrYVVX7dNz5rv/VO766ezIuwBmXbtRSKgUOkahc=";
+        };
+      }
+    );
     settings = {
       port = 9007;
       hostname = "127.0.0.1";

@@ -51,8 +51,8 @@
           tiny-inline-diagnostic-nvim
           # # mini-nvim stuff
           # mini-ai
-          # mini-comment
           # mini-extra # More textobjects for mini-ai
+          # mini-comment
           # Colorschemes
           onedarkpro-nvim
           tokyonight-nvim

@@ -1,21 +1,18 @@
 { promise, ... }: {
   options.settings.mutators = [ "/git" ];
   options.package.default = promise ({ inputs }: inputs.nixpkgs.pkgs.gitMinimal);
-  mutations."/git".settings = promise (
-    { }:
-    {
-      user = {
-        name = "Squawkykaka";
-        email = "contact@squawkykaka.com";
+  mutations."/git".settings = {
+    user = {
+      name = "Squawkykaka";
+      email = "contact@squawkykaka.com";
 
-        init.defaultBranch = "main";
-        signingKey = "/home/gleask/.ssh/id_ed25519";
-      };
-      commit.gpgSign = true;
-      tag.gpgSign = true;
-      gpg.format = "ssh";
-    }
-  );
+      init.defaultBranch = "main";
+      signingKey = "/home/gleask/.ssh/id_ed25519";
+    };
+    commit.gpgSign = true;
+    tag.gpgSign = true;
+    gpg.format = "ssh";
+  };
   options.ignoredPaths.default = [
     ".csvignore"
     # nix

@@ -11,6 +11,25 @@ cursor {
   xcursor-size 24
 }
 
+layer-rule {
+  match namespace="wallpaper"
+  place-within-backdrop true
+}
+
+layer-rule {
+  match namespace="notifications"
+  block-out-from "screencast"
+}
+
+window-rule {
+  clip-to-geometry true
+  geometry-corner-radius 8
+  background-effect {
+    blur false
+    xray false
+  }
+}
+
 binds {
 	Alt+Q { close-window; }
 	Mod+Shift+E { quit; }
@@ -19,43 +38,84 @@ binds {
 
 	Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+H     { focus-column-left; }
-    Mod+J     { focus-window-down; }
-    Mod+K     { focus-window-up; }
-    Mod+L     { focus-column-right; }
+  Mod+H        { focus-column-left; }
+  Mod+Shift+H  { move-column-left; }
+  Mod+L        { focus-column-right; }
+  Mod+Shift+L  { move-column-right; }
 
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
-    Mod+4 { focus-workspace 4; }
-    Mod+5 { focus-workspace 5; }
-    Mod+6 { focus-workspace 6; }
-    Mod+7 { focus-workspace 7; }
-    Mod+8 { focus-workspace 8; }
-    Mod+9 { focus-workspace 9; }
+  Mod+Minus { set-column-width "-10%"; }
+  Mod+Equal { set-column-width "+10%"; }
 
-    Mod+M { maximize-window-to-edges; }
-    Mod+Shift+P { power-off-monitors; }
+  Mod+M { maximize-window-to-edges; }
+  Mod+B { maximize-column; }
+  Mod+V { toggle-window-floating; }
+  Mod+Shift+P { power-off-monitors; }
 
-    Print { screenshot; }
+  Print { screenshot; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
-
+  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+  XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+  XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+  XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 }
 
 layout {
 	gaps 10
+  background-color "rgba(0,0,0,0)"
+
+  shadow {
+    on
+    color "rgba(0,0,0,0.3)"
+    offset x=0 y=0
+  }
 }
 
-window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating false
+animations {
+  workspace-switch {
+    spring damping-ratio=0.75 stiffness=523 epsilon=0.0001
+  }
+  horizontal-view-movement {
+    spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
+  }
+  overview-open-close {
+    spring damping-ratio=0.60 stiffness=503 epsilon=0.0001
+  }
+  window-open {
+    duration-ms 300
+    curve "ease-out-expo"
+
+    custom-shader r"
+      vec4 fall_from_top(vec3 coords_geo, vec3 size_geo) {
+        float progress = niri_clamped_progress * niri_clamped_progress;
+        vec2 coords = (coords_geo.xy - vec2(0.5, 0.0)) * size_geo.xy;
+        coords.y += (1.0 - progress) * 1440.0;
+        float random = (niri_random_seed - 0.5) / 2.0;
+        random = sign(random) - random;
+        float max_angle = 0.5 * random;
+        float angle = (1.0 - progress) * max_angle;
+        mat2 rotate = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+        coords = rotate * coords;
+        coords_geo = vec3(coords / size_geo.xy + vec2(0.5, 0.0), 1.0);
+        vec3 coords_tex = niri_geo_to_tex * coords_geo;
+        return texture2D(niri_tex, coords_tex.st);
+      }
+
+      vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+        return fall_from_top(coords_geo, size_geo);
+      }
+    "
+  }
+  window-movement {
+    spring damping-ratio=0.60 stiffness=300 epsilon=0.0001
+  }
+
+}
+
+blur {
+  passes 1
+  offset 2.0
+  noise 0.01
+  saturation 1.5
 }
