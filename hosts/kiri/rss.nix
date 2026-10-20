@@ -8,7 +8,7 @@
   services.miniflux.config.LISTEN_ADDR = "localhost:7434";
   services.miniflux.adminCredentialsFile = config.sops.templates."miniflux-env".path;
 
-  services.caddy.virtualHosts."rss.boom.boats".extraConfig = ''
+  services.caddy.virtualHosts."rss.squawkykaka.com".extraConfig = ''
     reverse_proxy ${config.services.miniflux.config.LISTEN_ADDR}
   '';
 }

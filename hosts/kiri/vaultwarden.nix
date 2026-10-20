@@ -5,7 +5,7 @@
   '';
   services.vaultwarden = {
     enable = true;
-    domain = "vault.boom.boats";
+    domain = "vault.squawkykaka.com";
     config = {
       ROCKET_ADDRESS = "127.0.0.1";
       ROCKET_PORT = 8222;
@@ -15,7 +15,7 @@
     environmentFile = config.sops.templates."vaultwarden".path;
   };
 
-  services.caddy.virtualHosts."vault.boom.boats".extraConfig = ''
+  services.caddy.virtualHosts."vault.squawkykaka.com".extraConfig = ''
     import trusted_only
     reverse_proxy 127.0.0.1:8222
   '';
