@@ -5,6 +5,16 @@
     dnssec.strict = true;
 
     lan.enabled = true;
+    forwarding = [
+      {
+        suffix = "boom.boats";
+        upstream = "192.168.1.254";
+      }
+      {
+        suffix = "squawkykaka.com";
+        upstream = "192.168.1.254";
+      }
+    ];
   };
 
   users.groups.numa = { };
