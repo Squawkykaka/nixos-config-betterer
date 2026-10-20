@@ -4,7 +4,7 @@
     (prismlauncher.override {
       # Change Java runtimes available to Prism Launcher
       jdks = [
-        graalvmPackages.graalvm-oracle_25
+        temurin-bin-25
         temurin-bin-17
       ];
     })
