@@ -11,3 +11,29 @@ osts:
 - sabaton - laptop
 - simba - tower
 - zhara - raspberry pi
+
+Possible idea for a new layout?
+```nix
+.
+├── default.nix
+└── root
+    ├── desktop
+    │   ├── applications.nix
+    │   ├── gnome
+    │   │   ├── @bingbong
+    │   │   │   └── hardware-configuration.nix
+    │   │   ├── gnome.nix
+    │   │   ├── gnome-theming.nix
+    │   │   └── @sabaton
+    │   └── plasma
+    │       ├── plasma-config.nix
+    │       ├── @simba
+    │       └── wallpaper.nix
+    ├── hardening.nix
+    ├── kernel.nix
+    └── server
+        ├── docker.nix
+        ├── @kiri
+        │   └── hardware-configuration.nix
+        └── rss.nix
+```
