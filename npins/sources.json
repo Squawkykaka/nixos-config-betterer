@@ -13,6 +13,19 @@
       "url": "https://github.com/llakala/adios-wrappers/archive/9a1964d16fe9a6276be06f7500b6a517e213c85d.tar.gz",
       "hash": "sha256-HSvvi7fX3ZhL8ESZOPcAeGBzUvctfjmR3u7kDoY6wdg="
     },
+    "circus": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "manic-systems",
+        "repo": "circus"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "73ad593943efa09fc67ee4178e668a612b732cab",
+      "url": "https://github.com/manic-systems/circus/archive/73ad593943efa09fc67ee4178e668a612b732cab.tar.gz",
+      "hash": "sha256-qotRru7wDwt1S48zypcM9RDH5EKNmgdPEC0LFvr8xRI="
+    },
     "disko": {
       "type": "Git",
       "repository": {
